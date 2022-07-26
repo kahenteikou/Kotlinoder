@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +14,8 @@ import java.util.ResourceBundle;
 public class MainWindowController  implements Initializable {
     @FXML
     private Button Button1;
+    @FXML
+    private Pane MainPane;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
@@ -28,4 +31,5 @@ public class MainWindowController  implements Initializable {
     public void File_Quit_OnAction(ActionEvent event){
         Platform.exit();
     }
+
 }
