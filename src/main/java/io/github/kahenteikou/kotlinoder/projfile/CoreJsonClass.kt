@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 class CoreJsonClass {
     @JsonProperty("name")
     var name: String=""
+    @JsonProperty("transfers")
     var TransferList: List<CoreJson_TransferListElement> = emptyList()
-    
+
 
 }
