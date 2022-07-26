@@ -34,3 +34,10 @@ javafx{
 test {
     useJUnitPlatform()
 }
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+sourceCompatibility = "17"
+targetCompatibility  = "17"
