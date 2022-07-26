@@ -13,15 +13,9 @@ import java.util.ResourceBundle;
 
 public class MainWindowController  implements Initializable {
     @FXML
-    private Button Button1;
-    @FXML
     private Pane MainPane;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    }
-    @FXML
-    public void Button1_OnAction(ActionEvent event){
-        System.out.println("Button1_OnAction");
     }
     @FXML
     public void File_Open_OnAction(ActionEvent event){
