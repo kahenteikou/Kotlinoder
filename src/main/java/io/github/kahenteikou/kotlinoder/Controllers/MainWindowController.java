@@ -1,7 +1,9 @@
 package io.github.kahenteikou.kotlinoder.Controllers;
 
+import eu.mihosoft.vrl.workflow.FlowFactory;
 import eu.mihosoft.vrl.workflow.VFlow;
 import eu.mihosoft.vrl.workflow.fx.VCanvas;
+import eu.mihosoft.vrl.workflow.io.WorkflowIO;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -25,6 +27,8 @@ public class MainWindowController  implements Initializable {
         Pane root=(Pane)canvas.getContent();
         MainPane.getChildren().add(root);
         rootPane=root;
+        workflow= FlowFactory.newFlow();
+        workflow.newNode().setTitle("title");
     }
     @FXML
     public void File_Open_OnAction(ActionEvent event){
