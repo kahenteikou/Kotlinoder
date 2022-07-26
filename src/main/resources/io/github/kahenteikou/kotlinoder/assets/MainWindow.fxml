@@ -27,5 +27,6 @@
         </menus>
       </MenuBar>
       <Button fx:id="Button1" mnemonicParsing="false" onAction="#Button1_OnAction" text="Button" />
+      <StackPane fx:id="MainPane" prefHeight="150.0" prefWidth="200.0" />
    </children>
 </VBox>
