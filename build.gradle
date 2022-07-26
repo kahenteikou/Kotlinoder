@@ -41,3 +41,8 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 }
 sourceCompatibility = "17"
 targetCompatibility  = "17"
+jar{
+    manifest{
+        attributes 'Main-Class': 'io.github.kahenteikou.kotlinoder.main.Launcher'
+    }
+}
