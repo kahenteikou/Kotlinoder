@@ -6,7 +6,7 @@ plugins {
 
 group 'io.github.kahenteikou.kotlinoder'
 version '1.0-SNAPSHOT'
-
+mainClassName="io.github.kahenteikou.kotlinoder.main.Launcher"
 repositories {
     mavenCentral()
 }
