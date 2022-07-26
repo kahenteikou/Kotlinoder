@@ -3,9 +3,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.kahenteikou.kotlinoder.Controllers.MainWindowController">
+<VBox minHeight="480.0" minWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.kahenteikou.kotlinoder.Controllers.MainWindowController">
    <children>
-      <Button fx:id="Button1" layoutX="139.0" layoutY="77.0" mnemonicParsing="false" onAction="#Button1_OnAction" text="Button" />
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Open(&amp;O)" />
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button fx:id="Button1" mnemonicParsing="false" onAction="#Button1_OnAction" text="Button" />
    </children>
-</AnchorPane>
+</VBox>
