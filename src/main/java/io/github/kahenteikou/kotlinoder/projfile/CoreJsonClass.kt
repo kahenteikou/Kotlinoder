@@ -7,6 +7,6 @@ class CoreJsonClass {
     var name: String=""
     @JsonProperty("transfers")
     var TransferList: List<CoreJson_TransferListElement> = emptyList()
-
+    
 
 }
