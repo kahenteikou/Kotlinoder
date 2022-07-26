@@ -15,6 +15,9 @@ repositories {
 dependencies {
     implementation "eu.mihosoft.vrl.workflow:vworkflows-core:0.2.5.0"
     implementation "eu.mihosoft.vrl.workflow:vworkflows-fx:0.2.5.0"
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.10'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
