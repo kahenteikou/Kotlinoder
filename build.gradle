@@ -40,10 +40,19 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         jvmTarget = "17"
     }
 }
+sourceSets {
+    main {
+        output.resourcesDir = java.outputDir
+    }
+}
 sourceCompatibility = "17"
 targetCompatibility  = "17"
 jar{
     manifest{
         attributes 'Main-Class': 'io.github.kahenteikou.kotlinoder.main.Launcher'
     }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
