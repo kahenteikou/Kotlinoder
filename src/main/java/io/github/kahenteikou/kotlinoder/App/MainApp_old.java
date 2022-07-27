@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class MainApp extends Application {
+public class MainApp_old extends Application {
     private MainWindowController controller;
     @Override
     public void start(Stage stage) throws Exception {
