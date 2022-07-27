@@ -16,11 +16,12 @@ import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import jfxtras.labs.scene.layout.ScalableContentPane;
 
 public class MainWindowController  implements Initializable {
     @FXML
-    private Pane MainPane;
-    private Pane rootPane;
+    private ScalableContentPane MainPane;
+    private ScalableContentPane rootPane;
     private VCanvas canvas;
     VFlow workflow;
     @Override

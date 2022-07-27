@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import jfxtras.labs.scene.layout.ScalableContentPane?>
 <VBox minHeight="480.0" minWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.kahenteikou.kotlinoder.Controllers.MainWindowController">
    <children>
       <MenuBar>
@@ -26,6 +27,6 @@
           </Menu>
         </menus>
       </MenuBar>
-      <StackPane fx:id="MainPane" VBox.vgrow="ALWAYS" />
+      <ScalableContentPane fx:id="MainPane" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>
