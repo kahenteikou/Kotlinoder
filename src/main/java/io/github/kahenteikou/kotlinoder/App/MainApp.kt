@@ -13,16 +13,16 @@ class MainApp : Application() {
     lateinit private var controller : MainWindowController
     @Throws(Exception::class)
     override fun start(stage:Stage) {
-        var l2:AssetStub = AssetStub()
-        var loader: FXMLLoader = FXMLLoader(l2.javaClass.getResource("MainWindow.fxml"))
-        var canvas:StackPane = StackPane()
-        var scene : Scene= Scene(canvas, 800.0, 600.0)
+        var l2 = AssetStub()
+        var loader = FXMLLoader(l2.javaClass.getResource("MainWindow.fxml"))
+        var canvas = StackPane()
+        var scene = Scene(canvas, 800.0, 600.0)
         try{
             loader.load<Any>()
         }catch (e:Exception){
             e.printStackTrace()
         }
-        controller = loader.getController<MainWindowController>()
+        controller = loader.getController()
         canvas.children.add((loader.getRoot() as Node))
         stage.title = "MainWindow"
         stage.scene=scene
