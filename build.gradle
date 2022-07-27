@@ -38,18 +38,20 @@ javafx{
 test {
     useJUnitPlatform()
 }
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-        jvmTarget = "17"
+allprojects {
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = "17"
+        }
     }
-}
-sourceSets {
-    main {
-        output.resourcesDir = java.outputDir
+    sourceSets {
+        main {
+            output.resourcesDir = java.outputDir
+        }
     }
+    sourceCompatibility = "17"
+    targetCompatibility = "17"
 }
-sourceCompatibility = "17"
-targetCompatibility  = "17"
 jar{
     manifest{
         attributes 'Main-Class': 'io.github.kahenteikou.kotlinoder.main.Launcher'
