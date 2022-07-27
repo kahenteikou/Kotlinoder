@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.Controllers
 
 import eu.mihosoft.vrl.workflow.VFlow
+import eu.mihosoft.vrl.workflow.fx.ScalableContentPane
 import javafx.application.Platform
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
@@ -13,7 +14,9 @@ class MainWindowController : Initializable {
     lateinit private var rootPane: Pane
     lateinit private var flow: VFlow
     override fun initialize(location: java.net.URL?, resources: java.util.ResourceBundle?) {
-
+        println("init")
+        var canvas:ScalableContentPane=ScalableContentPane()
+        
     }
     fun File_Open_OnAction(event : ActionEvent){
 
