@@ -25,15 +25,17 @@ public class MainWindowController  implements Initializable {
     VFlow workflow;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        /*
         canvas=new VCanvas();
         Pane root=(Pane)canvas.getContent();
-        MainPane.getChildren().add(canvas);
-        rootPane=root;
+        MainPane.getChildren().add(canvas);*/
+        rootPane=MainPane;
         workflow= FlowFactory.newFlow();
-        workflow.newNode().setTitle("title");
-        workflow.newNode().setTitle("title");
-        workflow.newNode().setTitle("title");
-        workflow.newNode().setTitle("title");
+        VNode node1=workflow.newNode();
+        node1.setTitle("Node1");
+        node1.setWidth(300);
+        node1.setHeight(200);
+
         updateUI();
     }
     @FXML

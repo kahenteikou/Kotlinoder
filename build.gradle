@@ -14,6 +14,9 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/org.jfxtras/jfxtras-labs
+    implementation 'org.jfxtras:jfxtras-labs:9.0-r1'
+
     implementation "eu.mihosoft.vrl.workflow:vworkflows-core:0.2.5.0"
     implementation "eu.mihosoft.vrl.workflow:vworkflows-fx:0.2.5.0"
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
