@@ -2,6 +2,8 @@ package io.github.kahenteikou.kotlinoder.Controllers;
 
 import eu.mihosoft.vrl.workflow.FlowFactory;
 import eu.mihosoft.vrl.workflow.VFlow;
+import eu.mihosoft.vrl.workflow.VNode;
+import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.VCanvas;
 import eu.mihosoft.vrl.workflow.io.WorkflowIO;
 import javafx.application.Application;
@@ -25,10 +27,16 @@ public class MainWindowController  implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         canvas=new VCanvas();
         Pane root=(Pane)canvas.getContent();
-        MainPane.getChildren().add(root);
+        MainPane.getChildren().add(canvas);
         rootPane=root;
         workflow= FlowFactory.newFlow();
-        workflow.newNode().setTitle("title");
+        VNode nodekun=workflow.newNode();
+        nodekun.setTitle("title");
+        nodekun.setWidth(200);
+        nodekun.setHeight(200);
+        nodekun.setX(0);
+        nodekun.setY(0);
+        updateUI();
     }
     @FXML
     public void File_Open_OnAction(ActionEvent event){
@@ -38,5 +46,12 @@ public class MainWindowController  implements Initializable {
     public void File_Quit_OnAction(ActionEvent event){
         Platform.exit();
     }
+    private void updateUI(){
+        rootPane.getChildren().clear();
+        workflow.getModel().setVisible(true);
 
+        FXSkinFactory skinFactory = new FXSkinFactory(rootPane);
+
+        workflow.setSkinFactories(skinFactory);
+    }
 }
