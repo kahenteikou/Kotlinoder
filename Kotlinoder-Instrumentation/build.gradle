@@ -8,6 +8,8 @@ dependencies{
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.10'
     implementation "eu.mihosoft.vrl.workflow:vworkflows-core:0.2.5.0"
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-compiler
+    runtimeOnly 'org.jetbrains.kotlin:kotlin-compiler:1.7.10'
 
 // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-test
     implementation 'org.jetbrains.kotlin:kotlin-test:1.7.10'
