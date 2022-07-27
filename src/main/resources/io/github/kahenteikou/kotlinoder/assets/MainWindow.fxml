@@ -27,6 +27,6 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ScalableContentPane fx:id="MainPane" VBox.vgrow="ALWAYS" />
+      <ScalableContentPane fx:id="view" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>
