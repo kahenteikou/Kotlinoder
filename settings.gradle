@@ -1,2 +1,3 @@
 rootProject.name = 'Kotlinoder'
-
+include 'Kotlinoder-CodeObserver'
+include 'Kotlinoder-Instrumentation'
