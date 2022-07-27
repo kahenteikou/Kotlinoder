@@ -30,12 +30,10 @@ public class MainWindowController  implements Initializable {
         MainPane.getChildren().add(canvas);
         rootPane=root;
         workflow= FlowFactory.newFlow();
-        VNode nodekun=workflow.newNode();
-        nodekun.setTitle("title");
-        nodekun.setWidth(200);
-        nodekun.setHeight(200);
-        nodekun.setX(0);
-        nodekun.setY(0);
+        workflow.newNode().setTitle("title");
+        workflow.newNode().setTitle("title");
+        workflow.newNode().setTitle("title");
+        workflow.newNode().setTitle("title");
         updateUI();
     }
     @FXML

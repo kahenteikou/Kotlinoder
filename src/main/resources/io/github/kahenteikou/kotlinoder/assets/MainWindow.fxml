@@ -26,6 +26,6 @@
           </Menu>
         </menus>
       </MenuBar>
-      <StackPane fx:id="MainPane" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+      <StackPane fx:id="MainPane" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>
