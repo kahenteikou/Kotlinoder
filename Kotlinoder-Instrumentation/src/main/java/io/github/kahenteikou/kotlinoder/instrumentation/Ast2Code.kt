@@ -38,7 +38,6 @@ class Ast2Code {
         val context=ContextForNewModule(projcontext,
         Name.special("<main>"),
         builtins,null)
-        val a : Psi
         return null
     }
 }
