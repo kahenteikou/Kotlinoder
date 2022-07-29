@@ -50,7 +50,6 @@ class Ast2Code {
         var psif= ksfactory.createFile("""
             package io.github.kahenteikou.kotlinoder.instrumentation
             import io.github.kahenteikou.kotlinoder.instrumentation.CustomBuiltins
-            @Suppress("unused")
             class A{
                 fun foo(){
                     val a=CustomBuiltins(StorageManager.Companion.Empty)
@@ -60,9 +59,7 @@ class Ast2Code {
         """.trimIndent())
         for(elem in psif.children){
             if(elem is KtClass){
-                for( anot : KtAnnotationEntry in elem.annotationEntries){
-                    println(anot.text)
-                }
+                
             }
         }
         println(psif.text)
