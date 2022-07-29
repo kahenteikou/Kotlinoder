@@ -18,13 +18,11 @@ import org.jetbrains.kotlin.config.languageVersionSettings
 import org.jetbrains.kotlin.context.ContextForNewModule
 import org.jetbrains.kotlin.context.ProjectContext
 import org.jetbrains.kotlin.name.Name
-import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtElement
-import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.kotlin.psi.KtPsiFactory
+import org.jetbrains.kotlin.psi.*
 import org.jetbrains.kotlin.storage.StorageManager
 
 class CustomBuiltins(sm : StorageManager) : KotlinBuiltIns(sm)
+
 class Ast2Code {
     companion object{
         @JvmStatic
@@ -52,6 +50,7 @@ class Ast2Code {
         var psif= ksfactory.createFile("""
             package io.github.kahenteikou.kotlinoder.instrumentation
             import io.github.kahenteikou.kotlinoder.instrumentation.CustomBuiltins
+            @Suppress("unused")
             class A{
                 fun foo(){
                     val a=CustomBuiltins(StorageManager.Companion.Empty)
@@ -59,6 +58,13 @@ class Ast2Code {
                 }
             }
         """.trimIndent())
+        for(elem in psif.children){
+            if(elem is KtClass){
+                for( anot : KtAnnotationEntry in elem.annotationEntries){
+                    println(anot.text)
+                }
+            }
+        }
         println(psif.text)
 
     }
