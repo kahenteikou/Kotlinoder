@@ -30,11 +30,36 @@ class Ast2Code {
         @JvmStatic
         fun main(args: Array<String>) {
             var A2=Ast2Code()
-            println(A2.exampleCodeGen().text);
+            A2.exampleCodeGen()
         }
     }
 
-    fun exampleCodeGen(){
-        
+    fun exampleCodeGen() {
+
+        val config= CompilerConfiguration()
+        var dispos= Disposer.newDisposable()
+        val env=KotlinCoreEnvironment.createForProduction(
+            dispos,
+            config,
+            EnvironmentConfigFiles.JVM_CONFIG_FILES
+        )/*
+        val projcontext=ProjectContext(env.project,"Proj An")
+        val builtins= CustomBuiltins(projcontext.storageManager)
+        val context=ContextForNewModule(projcontext,
+        Name.special("<main>"),
+        builtins,null)*/
+        var ksfactory = KtPsiFactory(env.project)
+        var psif= ksfactory.createFile("""
+            package io.github.kahenteikou.kotlinoder.instrumentation
+            import io.github.kahenteikou.kotlinoder.instrumentation.CustomBuiltins
+            class A{
+                fun foo(){
+                    val a=CustomBuiltins(StorageManager.Companion.Empty)
+                    println(a.toString())
+                }
+            }
+        """.trimIndent())
+        println(psif.text)
+
     }
 }
