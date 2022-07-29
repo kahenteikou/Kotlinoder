@@ -26,6 +26,7 @@ class Ast2Code {
     }
 
     fun exampleCodeGen(): AnalysisResult? {
+        /*
         val config= CompilerConfiguration()
         var dispos= Disposer.newDisposable()
         val env=KotlinCoreEnvironment.createForProduction(
@@ -37,7 +38,8 @@ class Ast2Code {
         val builtins= CustomBuiltins(projcontext.storageManager)
         val context=ContextForNewModule(projcontext,
         Name.special("<main>"),
-        builtins,null)
+        builtins,null)*/
+        
         return null
     }
 }
