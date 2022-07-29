@@ -27,7 +27,7 @@ class Ast2Code {
         @JvmStatic
         fun main(args: Array<String>) {
             var A2=Ast2Code()
-            println(A2.exampleCodeGen().fileType.description);
+            println(A2.exampleCodeGen().text);
         }
     }
 
@@ -45,11 +45,7 @@ class Ast2Code {
         val context=ContextForNewModule(projcontext,
         Name.special("<main>"),
         builtins,null)*/
-        var psif= KtPsiFactory(env.project).createFile("""
-            fun main(args: Array<String>) {
-                println("Hello, world!")
-            }
-        """.trimIndent()) as KtFile
+        var psif= KtPsiFactory(env.project).createFile("")
         return psif
     }
 }
