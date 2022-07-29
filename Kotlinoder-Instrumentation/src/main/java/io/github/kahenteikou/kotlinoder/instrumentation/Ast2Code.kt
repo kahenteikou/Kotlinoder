@@ -27,11 +27,11 @@ class Ast2Code {
         @JvmStatic
         fun main(args: Array<String>) {
             var A2=Ast2Code()
-            A2.exampleCodeGen();
+            println(A2.exampleCodeGen().fileType.description);
         }
     }
 
-    fun exampleCodeGen(): KtFile? {
+    fun exampleCodeGen(): KtFile {
 
         val config= CompilerConfiguration()
         var dispos= Disposer.newDisposable()
