@@ -1,6 +1,8 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
 import com.intellij.openapi.util.Disposer
+import com.intellij.psi.PsiClass
+import com.intellij.psi.PsiClassInitializer
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
@@ -16,6 +18,7 @@ import org.jetbrains.kotlin.config.languageVersionSettings
 import org.jetbrains.kotlin.context.ContextForNewModule
 import org.jetbrains.kotlin.context.ProjectContext
 import org.jetbrains.kotlin.name.Name
+import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtElement
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtPsiFactory
@@ -31,21 +34,7 @@ class Ast2Code {
         }
     }
 
-    fun exampleCodeGen(): KtFile {
-
-        val config= CompilerConfiguration()
-        var dispos= Disposer.newDisposable()
-        val env=KotlinCoreEnvironment.createForProduction(
-            dispos,
-            config,
-            EnvironmentConfigFiles.JVM_CONFIG_FILES
-        )/*
-        val projcontext=ProjectContext(env.project,"Proj An")
-        val builtins= CustomBuiltins(projcontext.storageManager)
-        val context=ContextForNewModule(projcontext,
-        Name.special("<main>"),
-        builtins,null)*/
-        var psif= KtPsiFactory(env.project).createFile("")
-        return psif
+    fun exampleCodeGen(){
+        
     }
 }
