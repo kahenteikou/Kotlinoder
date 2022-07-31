@@ -46,6 +46,6 @@ final class Type : IType {
     override fun hashCode(): Int {
         var hash:Int=7
         hash=71*hash+java.util.Objects.hashCode(this.packageName)
-        
+        hash=71*hash+java.util.Objects.hashCode(this.shortName)
     }
 }
