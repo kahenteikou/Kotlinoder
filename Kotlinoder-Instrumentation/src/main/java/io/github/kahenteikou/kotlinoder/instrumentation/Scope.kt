@@ -5,5 +5,6 @@ interface Scope : CodeEntity{
     fun getType(): ScopeType
     fun getName(): String
     fun getScopeArgs(): Array<Object>
+    fun getVariables():Collection<Variable>
 
 }

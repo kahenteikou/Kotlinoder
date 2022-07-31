@@ -34,6 +34,9 @@ class InvocationImpl :Invocation{
         this.returnValueName=retValName
         arguments.addAll(args)
         var varkun:Variable?=null
+        try{
+            varkun=this.parent.getV
+        }
     }
 
     override fun getVariableName(): String {
