@@ -36,6 +36,13 @@ class InvocationImpl :Invocation{
         var varkun:Variable?=null
         try{
             varkun=this.parent.getVariable(varName)
+        }catch (e:Exception){
+            //??
+        }
+        if(!isStatic&&isScope() && varkun == null){
+            throw IllegalArgumentException("Variable $varName not found in scope ${this.parent.getName()}")
+        }else {
+            //val typekun:Type
         }
     }
 
@@ -85,6 +92,9 @@ class InvocationImpl :Invocation{
 
     override fun setCode(code: String?) {
         this.code=code
+    }
+    fun setStatic(Statickun:Boolean){
+        this.Static=Statickun
     }
 
 }
