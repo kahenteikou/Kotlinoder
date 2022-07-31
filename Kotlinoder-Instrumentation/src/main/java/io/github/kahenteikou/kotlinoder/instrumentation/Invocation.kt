@@ -6,5 +6,7 @@ interface Invocation:CodeEntity {
     val ReturnValueName:String
     val Arguments:List<Variable>
     val isConstructor:Boolean
-    
+    val isVoid:Boolean
+    val isScope:Boolean
+    val isStatic:Boolean
 }
