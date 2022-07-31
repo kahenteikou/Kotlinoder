@@ -21,6 +21,15 @@ final class Type : IType {
     constructor(packageName:String,shortName:String) :this(packageName,shortName,false){
         validate()
     }
+    constructor(fullName:String):this(fullName,false){
+        validate()
+    }
+    constructor(fullName:String,isReturnOrParamType: Boolean){
+        this.shortName=fullName
+        this.packageName=""
+        this.isReturnOrParamType=isReturnOrParamType
+        validate()
+    }
 
     private fun validate(){
 
