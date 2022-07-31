@@ -99,4 +99,8 @@ class VariableImpl : Variable{
         }
         return true
     }
+
+    override fun toString(): String {
+        return "[ const=$constant, type=$type, name=$varName, val=$value]"
+    }
 }
