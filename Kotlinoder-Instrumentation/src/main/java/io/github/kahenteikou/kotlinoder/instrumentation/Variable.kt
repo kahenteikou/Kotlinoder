@@ -21,5 +21,12 @@ class VariableImpl : Variable{
     private var value:JvmType.Object
     private var constant:Boolean
     private var staticVar:Boolean
-    
+    constructor(scope:Scope,type:IType,varName:String,value:JvmType.Object,constant:Boolean,staticVar:Boolean){
+        this.scope=scope
+        this.type=type
+        this.varName=varName
+        this.value=value
+        this.constant=constant
+        this.staticVar=staticVar
+    }
 }
