@@ -76,11 +76,11 @@ class InvocationImpl :Invocation{
         this._id=id
     }
 
-    override fun getCode(): String {
+    override fun getCode(): String? {
         return code
     }
 
-    override fun setCode(code: String) {
+    override fun setCode(code: String?) {
         this.code=code
     }
 
