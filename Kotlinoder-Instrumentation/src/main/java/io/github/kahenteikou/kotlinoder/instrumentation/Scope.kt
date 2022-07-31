@@ -5,5 +5,5 @@ interface Scope : CodeEntity{
     val Type: ScopeType
     val Name: String
     val ScopeArgs: Array<Object>
-    
+
 }
