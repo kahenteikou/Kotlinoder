@@ -83,6 +83,20 @@ class VariableImpl : Variable{
     }
 
     override fun equals(other: Any?): Boolean {
-        
+
+        if(other==null){
+            return false
+        }
+        if(this.javaClass != other.javaClass){
+            return false
+        }
+        var other:VariableImpl=other as VariableImpl
+        if(!java.util.Objects.equals(this.scope,other.scope)){
+            return false
+        }
+        if(!java.util.Objects.equals(this.varName,other.varName)){
+            return false
+        }
+        return true
     }
 }
