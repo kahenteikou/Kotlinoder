@@ -34,4 +34,12 @@ final class Type : IType {
     private fun validate(){
 
     }
+
+    override fun getFullClassName(): String {
+        if(packageName.isEmpty()){
+            return shortName
+        }else{
+            return packageName+"."+shortName
+        }
+    }
 }
