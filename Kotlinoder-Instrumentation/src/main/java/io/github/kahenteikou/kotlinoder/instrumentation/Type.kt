@@ -53,4 +53,21 @@ final class Type : IType {
     override fun toString(): String {
         return "[pck:" + packageName + ", name:" + shortName + "]"
     }
+
+    override fun equals(other: java.util.Objects?): Boolean {
+        if(other==null){
+            return false
+        }
+        if(this.javaClass != other.javaClass){
+            return false
+        }
+        var other:Type=other as Type
+        if(!java.util.Objects.equals(this.packageName,other.packageName)){
+            return false
+        }
+        if(!java.util.Objects.equals(this.shortName,other.shortName)){
+            return false
+        }
+        return true
+    }
 }
