@@ -1,9 +1,9 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
 interface Scope : CodeEntity{
-    val Parent: Scope
-    val Type: ScopeType
-    val Name: String
-    val ScopeArgs: Array<Object>
+    fun getParent(): Scope
+    fun getType(): ScopeType
+    fun getName(): String
+    fun getScopeArgs(): Array<Object>
 
 }
