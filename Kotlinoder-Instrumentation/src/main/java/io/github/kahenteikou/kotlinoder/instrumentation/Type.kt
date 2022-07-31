@@ -18,6 +18,9 @@ final class Type : IType {
         this.isReturnOrParamType = isReturnOrParamType
         validate()
     }
+    constructor(packageName:String,shortName:String) :this(packageName,shortName,false){
+        validate()
+    }
 
     private fun validate(){
 
