@@ -42,4 +42,10 @@ final class Type : IType {
             return packageName+"."+shortName
         }
     }
+
+    override fun hashCode(): Int {
+        var hash:Int=7
+        hash=71*hash+java.util.Objects.hashCode(this.packageName)
+        
+    }
 }
