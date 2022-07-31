@@ -12,3 +12,6 @@ interface Variable {
 
 
 }
+class VariableImpl : Variable{
+    
+}
