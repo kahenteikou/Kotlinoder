@@ -43,6 +43,7 @@ class InvocationImpl :Invocation{
             throw IllegalArgumentException("Variable $varName not found in scope ${this.parent.getName()}")
         }else {
             //val typekun:Type
+            var type=Type(varName)
         }
     }
 
