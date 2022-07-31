@@ -18,7 +18,7 @@ class InvocationImpl :Invocation{
     private final var arguments:ArrayList<Variable> = ArrayList()
     private final var Constructor:Boolean
     private final var Void: Boolean
-    private var code:String=""
+    private var code:String?=null
     private final var parent:Scope
     private var Static:Boolean
     constructor(parent:Scope,id:String,varName:String,methodName:String,
