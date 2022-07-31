@@ -36,4 +36,10 @@ class VariableImpl : Variable{
         this.staticVar=true
 
     }
+    companion object {
+        @JvmStatic
+        fun createStaticVar(scope: Scope, type: IType): VariableImpl {
+            return VariableImpl(scope, type)
+        }
+    }
 }
