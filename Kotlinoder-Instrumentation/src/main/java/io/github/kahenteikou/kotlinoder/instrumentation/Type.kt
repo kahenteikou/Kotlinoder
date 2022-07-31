@@ -54,7 +54,7 @@ final class Type : IType {
         return "[pck:" + packageName + ", name:" + shortName + "]"
     }
 
-    override fun equals(other: java.util.Objects?): Boolean {
+    override fun equals(other: Any?): Boolean {
         if(other==null){
             return false
         }
