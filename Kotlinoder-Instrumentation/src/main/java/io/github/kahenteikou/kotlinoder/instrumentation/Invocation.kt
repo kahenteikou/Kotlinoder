@@ -35,7 +35,7 @@ class InvocationImpl :Invocation{
         arguments.addAll(args)
         var varkun:Variable?=null
         try{
-            varkun=this.parent.getV
+            varkun=this.parent.getVariable(varName)
         }
     }
 
