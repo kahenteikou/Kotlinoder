@@ -34,7 +34,54 @@ class InvocationImpl :Invocation{
         this.returnValueName=retValName
         arguments.addAll(args)
         var varkun:Variable?=null
-        
-
     }
+
+    override fun getVariableName(): String {
+        return varName
+    }
+
+    override fun getMethodName(): String {
+        return MethodName
+    }
+
+    override fun getReturnValueName(): String {
+        return returnValueName
+    }
+
+    override fun getArguments(): List<Variable> {
+        TODO("Not yet implemented")
+    }
+
+    override fun isConstructor(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun isVoid(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun isScope(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun isStatic(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun getId(): String {
+        TODO("Not yet implemented")
+    }
+
+    override fun setId(id: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getCode(): String {
+        TODO("Not yet implemented")
+    }
+
+    override fun setCode(code: String) {
+        TODO("Not yet implemented")
+    }
+
 }
