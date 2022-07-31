@@ -10,3 +10,16 @@ interface Invocation:CodeEntity {
     fun isScope():Boolean
     fun isStatic():Boolean
 }
+class InvocationImpl :Invocation{
+    private var _id : String
+    private final var varName:String
+    private final var MethodName:String
+    private final var returnValueName:String
+    private final var arguments:List<Variable> = ArrayList()
+    private final var constructor:Boolean
+    private final var Void: Boolean
+    private var code:String
+    private final var parent:Scope
+    private var Static:Boolean
+    
+}
