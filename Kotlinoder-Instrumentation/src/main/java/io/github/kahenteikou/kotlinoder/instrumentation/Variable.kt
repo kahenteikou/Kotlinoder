@@ -74,4 +74,11 @@ class VariableImpl : Variable{
     override fun getScope(): Scope {
         return scope
     }
+
+    override fun hashCode(): Int {
+        var hash=5
+        hash=hash*83+java.util.Objects.hashCode(this.scope)
+        hash=hash*83+java.util.Objects.hashCode(this.varName)
+        return hash
+    }
 }
