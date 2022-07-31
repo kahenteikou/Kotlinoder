@@ -81,4 +81,8 @@ class VariableImpl : Variable{
         hash=hash*83+java.util.Objects.hashCode(this.varName)
         return hash
     }
+
+    override fun equals(other: Any?): Boolean {
+        
+    }
 }
