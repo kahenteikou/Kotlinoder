@@ -49,39 +49,39 @@ class InvocationImpl :Invocation{
     }
 
     override fun getArguments(): List<Variable> {
-        TODO("Not yet implemented")
+        return arguments
     }
 
     override fun isConstructor(): Boolean {
-        TODO("Not yet implemented")
+        return Constructor
     }
 
     override fun isVoid(): Boolean {
-        TODO("Not yet implemented")
+        return Void
     }
 
     override fun isScope(): Boolean {
-        TODO("Not yet implemented")
+        return false
     }
 
     override fun isStatic(): Boolean {
-        TODO("Not yet implemented")
+        return Static
     }
 
     override fun getId(): String {
-        TODO("Not yet implemented")
+        return _id
     }
 
     override fun setId(id: String) {
-        TODO("Not yet implemented")
+        this._id=id
     }
 
     override fun getCode(): String {
-        TODO("Not yet implemented")
+        return code
     }
 
     override fun setCode(code: String) {
-        TODO("Not yet implemented")
+        this.code=code
     }
 
 }
