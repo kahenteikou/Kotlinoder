@@ -55,23 +55,23 @@ class VariableImpl : Variable{
         return value
     }
 
-    override fun setValue(o: Object) {
-        TODO("Not yet implemented")
+    override fun setValue(o: Object?) {
+        this.value=o
     }
 
     override fun isStatic(): Boolean {
-        TODO("Not yet implemented")
+        return staticVar
     }
 
-    override fun isConstant(): Boolean {
-        TODO("Not yet implemented")
+    override fun isConstant(): Boolean? {
+        return constant
     }
 
-    override fun setConstant(b: Boolean) {
-        TODO("Not yet implemented")
+    override fun setConstant(b: Boolean?) {
+        this.constant=b
     }
 
     override fun getScope(): Scope {
-        TODO("Not yet implemented")
+        return scope
     }
 }
