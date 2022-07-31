@@ -49,4 +49,8 @@ final class Type : IType {
         hash=71*hash+java.util.Objects.hashCode(this.shortName)
         return hash
     }
+
+    override fun toString(): String {
+        return "[pck:" + packageName + ", name:" + shortName + "]"
+    }
 }
