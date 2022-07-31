@@ -31,7 +31,10 @@ class InvocationImpl :Invocation{
         this.Constructor=Constructor
         this.Void=isVoid
         this.Static=isStatic
+        this.returnValueName=retValName
         arguments.addAll(args)
+        var varkun:Variable?=null
         
+
     }
 }
