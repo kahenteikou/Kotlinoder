@@ -47,5 +47,6 @@ final class Type : IType {
         var hash:Int=7
         hash=71*hash+java.util.Objects.hashCode(this.packageName)
         hash=71*hash+java.util.Objects.hashCode(this.shortName)
+        return hash
     }
 }
