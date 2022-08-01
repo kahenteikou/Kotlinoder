@@ -99,3 +99,11 @@ class InvocationImpl :Invocation{
     }
 
 }
+class ScopeInvocationImpl: ScopeInvocation {
+    override fun getScope(): Scope {
+        TODO("Not yet implemented")
+    }
+    constructor(scope: Scope) {
+        this.scope = scope
+    }
+}
