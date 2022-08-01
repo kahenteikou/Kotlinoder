@@ -23,8 +23,11 @@ class ControlFlowImpl:ControlFlow{
         retValueName: String,
         vararg args: Variable
     ): Invocation {
-        TODO("Not yet implemented")
+        val result:Invocation= InvocationImpl(parent,id,varName,mName,false,isVoid,false,retValueName,*args)
+        getInvocations().add(result)
+        return result
     }
+    
 
     override fun callStaticMethod(
         id: String,
