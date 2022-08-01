@@ -32,11 +32,12 @@ class DataFlowImpl :DataFlow{
     }
 
     override fun getRelationsForReceiver(invocation: Invocation): MutableList<DataRelation> {
-        TODO("Not yet implemented")
+        return _relationsForReceiver.get(invocation) as MutableList<DataRelation>
     }
 
     override fun create(controlFlow: ControlFlow) {
-        TODO("Not yet implemented")
+        println(">> creating dataflow: ")
+        
     }
 
 }
