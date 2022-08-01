@@ -8,5 +8,7 @@ interface Scope : CodeEntity{
     fun getVariables():Collection<Variable>
     fun getVariable(name:String):Variable?
     fun createVariable(type:IType,varName:String):Variable?
+    fun createStaticVariable(type:IType):Variable?
+    
 
 }
