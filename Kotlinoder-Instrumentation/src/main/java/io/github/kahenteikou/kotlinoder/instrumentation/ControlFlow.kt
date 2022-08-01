@@ -44,6 +44,8 @@ class ControlFlowImpl:ControlFlow{
 
     override fun callScope(scope: Scope): ScopeInvocation {
         val result:ScopeInvocation = ScopeInvocationImpl(scope)
+        getInvocations().add(result)
+        return result
     }
 
     override fun getInvocations(): ArrayList<Invocation> {

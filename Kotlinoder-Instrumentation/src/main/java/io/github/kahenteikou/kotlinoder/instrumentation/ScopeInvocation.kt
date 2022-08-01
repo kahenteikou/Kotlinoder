@@ -1,5 +1,5 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
-interface ScopeInvocation {
+interface ScopeInvocation : Invocation {
     fun getScope(): Scope
 }
