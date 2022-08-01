@@ -23,7 +23,10 @@ class DataFlowImpl :DataFlow{
     }
     fun createDataRelation(sender:Invocation,receiver:Invocation){
         var relation=DataRelationImpl(sender,receiver)
-        
+        _relations.add(relation)
+        _relationsForSender.put(sender,relation)
+        println("sender: " + _relationsForSender.get(sender).size)
+        _relationsForReceiver.put(receiver,relation)
     }
     override fun getRelations(): MutableList<DataRelation> {
         return _relations
