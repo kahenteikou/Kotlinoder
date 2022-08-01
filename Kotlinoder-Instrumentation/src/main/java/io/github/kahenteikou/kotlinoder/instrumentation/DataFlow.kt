@@ -39,6 +39,7 @@ class DataFlowImpl :DataFlow{
         println(">> creating dataflow: ")
         var sender:Map<String,Invocation> = HashMap()
         for(i : Invocation in controlFlow.getInvocations()){
+            println(" --> i:" + i.getMethodName())
             
         }
     }
