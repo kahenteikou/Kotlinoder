@@ -21,3 +21,6 @@ interface Scope : CodeEntity{
 
 
 }
+class ScopeImpl:Scope{
+    
+}
