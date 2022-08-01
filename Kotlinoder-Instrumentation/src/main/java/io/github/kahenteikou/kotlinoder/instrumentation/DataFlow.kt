@@ -65,7 +65,10 @@ class DataFlowImpl :DataFlow{
             }
         }
         for(i:Invocation in controlFlow.getInvocations()){
-            
+            if(i is ScopeInvocation ){
+                var subScope=i.getScope()
+                
+            }
         }
     }
 
