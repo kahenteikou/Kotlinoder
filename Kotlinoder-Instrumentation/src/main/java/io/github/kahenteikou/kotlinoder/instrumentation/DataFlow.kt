@@ -37,16 +37,21 @@ class DataFlowImpl :DataFlow{
 
     override fun create(controlFlow: ControlFlow) {
         println(">> creating dataflow: ")
-        var sender:HashMap<String,Invocation> = HashMap()
+        var senders:HashMap<String,Invocation> = HashMap()
         for(i : Invocation in controlFlow.getInvocations()){
             println(" --> i:" + i.getMethodName())
             if(!i.isVoid()){
                 println("  |--> potential sender with var " + i.getReturnValueName())
-                sender.put(i.getReturnValueName(),i)
+                senders.put(i.getReturnValueName(),i)
             }
         }
         for(receiver:Invocation in controlFlow.getInvocations()){
-
+            for(v:Variable in receiver.getArguments()){
+                var sender=senders.get(v.getName())
+                println(">> searching sender for " + v.getName()
+                 + " with type " + v.getType())
+                
+            }
         }
     }
 
