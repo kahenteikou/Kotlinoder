@@ -56,5 +56,14 @@ class ControlFlowImpl:ControlFlow{
         this.parent = parent
     }
 
+    override fun toString(): String {
+        var result:String = "[\n"
+        for(invocation in getInvocations()){
+            result += invocation.toString()+"\n"
+        }
+        result += "]"
+        return result
+    }
+
 
 }
