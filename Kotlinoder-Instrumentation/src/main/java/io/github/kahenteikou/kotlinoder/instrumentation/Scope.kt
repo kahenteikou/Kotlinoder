@@ -13,6 +13,11 @@ interface Scope : CodeEntity{
     fun assignVariable(varNameDest:String,varNameSrc:String)
     fun getControlFlow():ControlFlow
     fun getScopes():ArrayList<Scope>
-
+    fun getScopeById(id:String) :Scope
+    fun createVariable(type:IType):Variable?
+    fun getDataFlow():DataFlow
+    fun generateDataFlow()
+    fun createScope(id:String,type:ScopeType,name:String,args:Array<Object>):Scope
+    
 
 }
