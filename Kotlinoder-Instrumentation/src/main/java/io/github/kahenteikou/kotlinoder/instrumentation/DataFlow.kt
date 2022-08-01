@@ -45,6 +45,9 @@ class DataFlowImpl :DataFlow{
                 sender.put(i.getReturnValueName(),i)
             }
         }
+        for(receiver:Invocation in controlFlow.getInvocations()){
+
+        }
     }
 
 }
