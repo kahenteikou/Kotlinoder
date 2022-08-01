@@ -9,6 +9,10 @@ interface Scope : CodeEntity{
     fun getVariable(name:String):Variable?
     fun createVariable(type:IType,varName:String):Variable?
     fun createStaticVariable(type:IType):Variable?
+    fun assignConstant(varName:String,constant:Object)
+    fun assignVariable(varNameDest:String,varNameSrc:String)
+    fun getControlFlow():ControlFlow
+    fun getScopes():ArrayList<Scope>
 
 
 }
