@@ -27,7 +27,7 @@ class ControlFlowImpl:ControlFlow{
         getInvocations().add(result)
         return result
     }
-    
+
 
     override fun callStaticMethod(
         id: String,
@@ -37,7 +37,9 @@ class ControlFlowImpl:ControlFlow{
         retValueName: String,
         vararg args: Variable
     ): Invocation {
-        TODO("Not yet implemented")
+        val result:Invocation= InvocationImpl(parent,id,type.getFullClassName(),mName,false,isVoid,true,retValueName,*args)
+        getInvocations().add(result)
+        return result
     }
 
     override fun callScope(scope: Scope): ScopeInvocation {
