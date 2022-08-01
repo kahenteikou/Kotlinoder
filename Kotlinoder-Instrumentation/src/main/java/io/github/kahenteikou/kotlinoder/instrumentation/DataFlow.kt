@@ -64,6 +64,9 @@ class DataFlowImpl :DataFlow{
                 }
             }
         }
+        for(i:Invocation in controlFlow.getInvocations()){
+            
+        }
     }
 
 }
