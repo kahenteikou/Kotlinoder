@@ -60,7 +60,7 @@ class DataFlowImpl :DataFlow{
                     println("--> sender found for '"
                     + v.getName()
                     + "', " + sender.getMethodName())
-
+                    createDataRelation(sender,receiver)
                 }
             }
         }
