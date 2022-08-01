@@ -12,5 +12,10 @@ class ControlFlowImpl:ControlFlow{
     override fun getInvocations(): List<Invocation> {
         return invocations
     }
+    private final var parent:Scope
+    constructor(parent:Scope){
+        this.parent = parent
+    }
+    
 
 }
