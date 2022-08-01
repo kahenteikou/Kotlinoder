@@ -51,7 +51,7 @@ final class Type : IType {
     }
 
     override fun toString(): String {
-        return "[pck:" + packageName + ", name:" + shortName + "]"
+        return "[pck:$packageName, name:$shortName]"
     }
 
     override fun equals(other: Any?): Boolean {
