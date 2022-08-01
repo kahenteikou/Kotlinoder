@@ -21,7 +21,9 @@ class DataFlowImpl :DataFlow{
         println("sender:"+_relationsForSender.get(sender).size)
         _relationsForReceiver.put(receiver,relation)
     }
-
+    fun createDataRelation(sender:Invocation,receiver:Invocation){
+        
+    }
     override fun getRelations(): MutableList<DataRelation> {
         return _relations
     }
@@ -54,7 +56,7 @@ class DataFlowImpl :DataFlow{
                     println("--> sender found for '"
                     + v.getName()
                     + "', " + sender.getMethodName())
-                    
+
                 }
             }
         }
