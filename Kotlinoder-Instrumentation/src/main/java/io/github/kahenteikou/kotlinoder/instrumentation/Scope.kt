@@ -22,5 +22,10 @@ interface Scope : CodeEntity{
 
 }
 class ScopeImpl:Scope{
+    private var _id:String
+    private var _parent:Scope
+    private var _type:ScopeType
+    private final var name:String
+    private var scopeArgs:Array<Object>
     
 }
