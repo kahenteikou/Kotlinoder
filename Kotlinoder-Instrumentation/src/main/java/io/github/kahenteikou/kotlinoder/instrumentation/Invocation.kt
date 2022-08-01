@@ -1,7 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
 interface Invocation:CodeEntity {
-    fun getVariableName():String
+    fun getVariableName():String?
     fun getMethodName():String
     fun getReturnValueName():String
     fun getArguments():List<Variable>
@@ -12,7 +12,7 @@ interface Invocation:CodeEntity {
 }
 open class InvocationImpl :Invocation{
     private var _id : String
-    private final var varName:String
+    private final var varName:String?
     private final var MethodName:String
     private final var returnValueName:String
     private final var arguments:ArrayList<Variable> = ArrayList()
@@ -21,7 +21,7 @@ open class InvocationImpl :Invocation{
     private var code:String?=null
     private final var parent:Scope
     private var Static:Boolean
-    constructor(parent:Scope,id:String,varName:String,methodName:String,
+    constructor(parent:Scope,id:String,varName:String?,methodName:String,
                 Constructor:Boolean,isVoid:Boolean,isStatic:Boolean,
     retValName:String,vararg args:Variable){
         this.parent=parent
@@ -35,7 +35,8 @@ open class InvocationImpl :Invocation{
         arguments.addAll(args)
         var varkun:Variable?=null
         try{
-            varkun=this.parent.getVariable(varName)
+            if(varName != null)
+                varkun=this.parent.getVariable(varName)
         }catch (e:Exception){
             //??
         }
@@ -47,7 +48,7 @@ open class InvocationImpl :Invocation{
         }
     }
 
-    override fun getVariableName(): String {
+    override fun getVariableName(): String? {
         return varName
     }
 
@@ -100,10 +101,11 @@ open class InvocationImpl :Invocation{
 
 }
 class ScopeInvocationImpl: InvocationImpl , ScopeInvocation {
+    private final var scope:Scope
     override fun getScope(): Scope {
-        TODO("Not yet implemented")
+        return scope
     }
-    constructor(scope: Scope) {
+    constructor(scope: Scope) : super(scope,"",null,"scope",false,true,true,"") {
         this.scope = scope
     }
 }

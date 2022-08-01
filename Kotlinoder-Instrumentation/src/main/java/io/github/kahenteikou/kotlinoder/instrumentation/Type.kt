@@ -6,8 +6,8 @@ final class Type : IType {
         return packageName
     }
 
-    private final var shortName:String
-    override fun getShortName(): String {
+    private final var shortName:String?
+    override fun getShortName(): String? {
         return shortName
     }
 
@@ -21,10 +21,10 @@ final class Type : IType {
     constructor(packageName:String,shortName:String) :this(packageName,shortName,false){
         validate()
     }
-    constructor(fullName:String):this(fullName,false){
+    constructor(fullName:String?):this(fullName,false){
         validate()
     }
-    constructor(fullName:String,isReturnOrParamType: Boolean){
+    constructor(fullName:String?,isReturnOrParamType: Boolean){
         this.shortName=fullName
         this.packageName=""
         this.isReturnOrParamType=isReturnOrParamType
@@ -35,7 +35,7 @@ final class Type : IType {
 
     }
 
-    override fun getFullClassName(): String {
+    override fun getFullClassName(): String? {
         if(packageName.isEmpty()){
             return shortName
         }else{
