@@ -7,3 +7,6 @@ interface ControlFlow {
     fun callScope(scope:Scope):ScopeInvocation
     fun getInvocations():List<Invocation>
 }
+class ControlFlowImpl:ControlFlow{
+    
+}
