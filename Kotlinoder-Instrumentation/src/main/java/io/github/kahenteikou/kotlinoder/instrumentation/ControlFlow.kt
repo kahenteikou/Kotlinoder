@@ -8,5 +8,6 @@ interface ControlFlow {
     fun getInvocations():List<Invocation>
 }
 class ControlFlowImpl:ControlFlow{
-    
+    private final val invocations:List<Invocation> =ArrayList()
+
 }
