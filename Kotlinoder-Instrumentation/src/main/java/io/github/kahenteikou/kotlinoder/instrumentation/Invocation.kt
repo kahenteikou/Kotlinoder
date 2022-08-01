@@ -10,7 +10,7 @@ interface Invocation:CodeEntity {
     fun isScope():Boolean
     fun isStatic():Boolean
 }
-class InvocationImpl :Invocation{
+open class InvocationImpl :Invocation{
     private var _id : String
     private final var varName:String
     private final var MethodName:String
@@ -99,7 +99,7 @@ class InvocationImpl :Invocation{
     }
 
 }
-class ScopeInvocationImpl: ScopeInvocation {
+class ScopeInvocationImpl: InvocationImpl , ScopeInvocation {
     override fun getScope(): Scope {
         TODO("Not yet implemented")
     }
