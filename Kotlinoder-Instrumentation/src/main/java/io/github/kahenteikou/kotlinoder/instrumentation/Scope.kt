@@ -7,5 +7,6 @@ interface Scope : CodeEntity{
     fun getScopeArgs(): Array<Object>
     fun getVariables():Collection<Variable>
     fun getVariable(name:String):Variable?
+    fun createVariable(type:IType,varName:String):Variable?
 
 }
