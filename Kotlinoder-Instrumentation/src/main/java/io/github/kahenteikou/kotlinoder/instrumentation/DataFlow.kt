@@ -50,7 +50,12 @@ class DataFlowImpl :DataFlow{
                 var sender=senders.get(v.getName())
                 println(">> searching sender for " + v.getName()
                  + " with type " + v.getType())
-                
+                if(sender!=null){
+                    println("--> sender found for '"
+                    + v.getName()
+                    + "', " + sender.getMethodName())
+                    
+                }
             }
         }
     }
