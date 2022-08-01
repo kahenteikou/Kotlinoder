@@ -4,9 +4,9 @@ import com.google.common.collect.ArrayListMultimap
 import com.google.common.collect.ListMultimap
 
 interface DataFlow {
-    fun getRelations():ArrayList<DataRelation>
-    fun getRelationsForSender(invocation: Invocation):ArrayList<DataRelation>
-    fun getRelationsForReceiver(invocation: Invocation):ArrayList<DataRelation>
+    fun getRelations():MutableList<DataRelation>
+    fun getRelationsForSender(invocation: Invocation):MutableList<DataRelation>
+    fun getRelationsForReceiver(invocation: Invocation):MutableList<DataRelation>
     fun create(controlFlow: ControlFlow)
 
 }
@@ -22,15 +22,16 @@ class DataFlowImpl :DataFlow{
         _relationsForReceiver.put(receiver,relation)
     }
 
-    override fun getRelations(): ArrayList<DataRelation> {
+    override fun getRelations(): MutableList<DataRelation> {
         return _relations
     }
 
-    override fun getRelationsForSender(invocation: Invocation): ArrayList<DataRelation> {
-        TODO("Not yet implemented")
+    override fun getRelationsForSender(invocation: Invocation): MutableList<DataRelation> {
+        return _relationsForSender.get(invocation) as MutableList<DataRelation>
+
     }
 
-    override fun getRelationsForReceiver(invocation: Invocation): ArrayList<DataRelation> {
+    override fun getRelationsForReceiver(invocation: Invocation): MutableList<DataRelation> {
         TODO("Not yet implemented")
     }
 
