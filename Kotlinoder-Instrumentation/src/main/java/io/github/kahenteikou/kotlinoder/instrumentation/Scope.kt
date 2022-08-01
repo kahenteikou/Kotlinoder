@@ -9,6 +9,6 @@ interface Scope : CodeEntity{
     fun getVariable(name:String):Variable?
     fun createVariable(type:IType,varName:String):Variable?
     fun createStaticVariable(type:IType):Variable?
-    
+
 
 }
