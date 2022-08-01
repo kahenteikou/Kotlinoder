@@ -43,7 +43,7 @@ class ControlFlowImpl:ControlFlow{
     }
 
     override fun callScope(scope: Scope): ScopeInvocation {
-        TODO("Not yet implemented")
+        val result:ScopeInvocation = ScopeInvocationImpl(scope)
     }
 
     override fun getInvocations(): ArrayList<Invocation> {
