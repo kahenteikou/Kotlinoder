@@ -18,6 +18,6 @@ interface Scope : CodeEntity{
     fun getDataFlow():DataFlow
     fun generateDataFlow()
     fun createScope(id:String,type:ScopeType,name:String,args:Array<Object>):Scope
-    
+
 
 }
