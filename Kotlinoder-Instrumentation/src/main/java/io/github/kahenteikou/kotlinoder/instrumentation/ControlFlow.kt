@@ -9,5 +9,8 @@ interface ControlFlow {
 }
 class ControlFlowImpl:ControlFlow{
     private final val invocations:List<Invocation> =ArrayList()
+    override fun getInvocations(): List<Invocation> {
+        return invocations
+    }
 
 }
