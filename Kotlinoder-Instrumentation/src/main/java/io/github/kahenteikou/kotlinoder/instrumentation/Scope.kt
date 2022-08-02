@@ -123,4 +123,7 @@ class ScopeImpl:Scope{
         }
         println(">> assignment: $varNameDest = $varNameSrc")
     }
+    override fun getControlFlow():ControlFlow{
+        return controlFlow
+    }
 }
