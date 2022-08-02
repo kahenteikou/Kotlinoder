@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.lang
 
 import java.io.BufferedReader
+import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 
@@ -16,6 +17,14 @@ class Keywords {
             val reader=BufferedReader(InputStreamReader(iStream))
             var code:String=""
             try{
+                while(reader.ready()){
+                    var line:String=reader.readLine()
+                    if(line.trim().startsWith('#')||line.trim().isEmpty()){
+                        continue
+                    }
+                    code += "$line\n"
+                }
+            }catch (ex:IOException){
                 
             }
             return code
