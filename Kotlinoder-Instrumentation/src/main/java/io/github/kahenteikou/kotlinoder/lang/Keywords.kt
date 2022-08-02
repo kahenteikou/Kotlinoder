@@ -8,13 +8,15 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 class Keywords {
-    private var keywords:Set<String> = HashSet<String>()
     companion object{
+
+        @JvmStatic
+        private var keywords:HashSet<String> = HashSet<String>()
         init{
             var keyWordStr=readKeyWords(
                 "/io/github/kahenteikou/kotlinoder/lang/keywords_kotlin"
             )
-            
+            keywords.addAll(keyWordStr.split("\n"))
         }
 
         @JvmStatic
