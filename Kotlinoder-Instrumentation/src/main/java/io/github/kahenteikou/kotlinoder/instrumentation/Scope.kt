@@ -83,6 +83,8 @@ class ScopeImpl:Scope{
     }
     override fun createVariable(type:IType,varName:String):Variable?{
         var __variable:Variable=VariableImpl(this,type,varName,null,false)
+        variables.put(varName,__variable)
+        return __variable
 
     }
 }
