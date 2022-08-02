@@ -4,6 +4,8 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
+import java.util.logging.Level
+import java.util.logging.Logger
 
 class Keywords {
     private var keywords:Set<String> = HashSet<String>()
@@ -25,7 +27,13 @@ class Keywords {
                     code += "$line\n"
                 }
             }catch (ex:IOException){
-                
+                Logger.getLogger(Keywords::class.java.name).log(Level.SEVERE,null,ex)
+            }finally{
+                try{
+                    reader.close()
+                }catch (ex:IOException){
+                    Logger.getLogger(Keywords::class.java.name).log(Level.SEVERE,null,ex)
+                }
             }
             return code
         }
