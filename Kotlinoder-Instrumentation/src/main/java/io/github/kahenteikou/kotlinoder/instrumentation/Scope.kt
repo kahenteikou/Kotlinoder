@@ -202,7 +202,7 @@ class ScopeImpl:Scope{
     }
 
     override fun createScope(id: String, type: ScopeType, name: String, args: Array<Object>): Scope {
-        TODO("Not yet implemented")
+        return ScopeImpl(id,this,type,name,args)
     }
 
 }
