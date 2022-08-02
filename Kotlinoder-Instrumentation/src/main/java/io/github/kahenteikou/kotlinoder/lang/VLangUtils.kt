@@ -23,5 +23,8 @@ class VLangUtils {
         fun slashToDot(name:String):String{
             return name.replace("/",".")
         }
+        fun shortNameFromFullClassName(name:String):String{
+            
+        }
     }
 }
