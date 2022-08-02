@@ -34,7 +34,18 @@ class VLangUtils {
         }
         @JvmStatic
         fun packageNameFromFullClassName(name:String):String{
-            
+            var name2=name.replace(".","/")
+            val pathkun=name2.split("/")
+            var result:String=""
+            if(pathkun.size>0){
+                for(i in 0 until pathkun.size-1){
+                    if(i>0){
+                        result+="/"
+                    }
+                    result+=pathkun[i]
+                }
+            }
+            return result
         }
     }
 }
