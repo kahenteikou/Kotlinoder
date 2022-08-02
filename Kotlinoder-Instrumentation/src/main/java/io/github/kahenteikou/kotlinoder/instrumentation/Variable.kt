@@ -10,7 +10,7 @@ interface Variable {
     fun isStatic():Boolean?
     fun isConstant():Boolean?
     fun setConstant(b:Boolean?)
-    fun getScope():Scope
+    fun getScope():Scope?
 
 
 }
