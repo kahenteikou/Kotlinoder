@@ -81,4 +81,7 @@ class ScopeImpl:Scope{
         }
         return result
     }
+    override fun createVariable(type:IType,varName:String):Variable?{
+        
+    }
 }
