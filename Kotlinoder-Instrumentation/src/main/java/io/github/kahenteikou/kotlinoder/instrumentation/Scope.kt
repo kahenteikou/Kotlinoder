@@ -112,4 +112,7 @@ class ScopeImpl:Scope{
             variablekun.setConstant(true)
         }
     }
+    override fun assignVariable(varNameDest:String,varNameSrc:String){
+        
+    }
 }
