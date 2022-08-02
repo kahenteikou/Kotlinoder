@@ -100,6 +100,7 @@ class ScopeImpl:Scope{
     }
     override fun createStaticVariable(type:IType):Variable?{
         var variablekun=VariableImpl.createStaticVar(_parent,type)
-
+        variables.put(variablekun.getName()!!,variablekun)
+        return variablekun
     }
 }
