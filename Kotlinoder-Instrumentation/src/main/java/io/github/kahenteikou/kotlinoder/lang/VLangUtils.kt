@@ -19,5 +19,9 @@ class VLangUtils {
             }
             return Patterns.PACKAGE_NAME.matcher(packageName2).matches()
         }
+        @JvmStatic
+        fun slashToDot(name:String):String{
+            return name.replace("/",".")
+        }
     }
 }
