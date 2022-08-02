@@ -33,6 +33,14 @@ class ScopeImpl:Scope{
     private final var scopes:ArrayList<Scope> = ArrayList()
     private var code:String
     private var readOnlyScopes:List<Scope>
-    
+    constructor(id:String ,parent:Scope,type:ScopeType,name:String,args:Array<Object>){
+        this._id = id
+        this._parent = parent
+        this._type = type
+        this.name = name
+        this.scopeArgs = args
+        this.controlFlow = ControlFlowImpl(this)
+        this.dataFlow = DataFlowImpl()
+    }
 
 }
