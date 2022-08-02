@@ -42,8 +42,13 @@ class ScopeImpl:Scope{
         this.controlFlow = ControlFlowImpl(this)
         this.dataFlow = DataFlowImpl()
         if(_parent != null){
-            
+            if(this._parent is ScopeImpl){
+                (this._parent as ScopeImpl).addScope(this)
+            }
         }
+    }
+    private fun addScope(s : ScopeImpl){
+        scopes.add(s)
     }
 
 }
