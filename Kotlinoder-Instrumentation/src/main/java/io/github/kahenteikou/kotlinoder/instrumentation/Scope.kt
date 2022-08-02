@@ -155,5 +155,12 @@ class ScopeImpl:Scope{
     override fun getName(): String{
         return name
     }
+    override fun getId() : String{
+        return _id
+    }
+    override fun setId(id:String){
+        this._id=id
+    }
+    
 
 }
