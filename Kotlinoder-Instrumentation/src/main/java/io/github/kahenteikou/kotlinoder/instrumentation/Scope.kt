@@ -142,6 +142,10 @@ class ScopeImpl:Scope{
         return readOnlyScopes!!
     }
 
+    override fun getScopeById(id: String): Scope {
+        
+    }
+
     override fun toString(): String {
         var result="Scope:$_type"
         result += "\n>> Variables:\n"
@@ -190,6 +194,10 @@ class ScopeImpl:Scope{
                 s.generateDataFlow()
             }
         }
+    }
+
+    override fun createScope(id: String, type: ScopeType, name: String, args: Array<Object>): Scope {
+        TODO("Not yet implemented")
     }
 
 }
