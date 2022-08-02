@@ -7,7 +7,7 @@ interface Variable {
     fun getType(): IType
     fun getValue(): Object?
     fun setValue(o:Object?)
-    fun isStatic():Boolean
+    fun isStatic():Boolean?
     fun isConstant():Boolean?
     fun setConstant(b:Boolean?)
     fun getScope():Scope
@@ -58,7 +58,7 @@ class VariableImpl : Variable{
         this.value=o
     }
 
-    override fun isStatic(): Boolean {
+    override fun isStatic(): Boolean? {
         return staticVar
     }
 
