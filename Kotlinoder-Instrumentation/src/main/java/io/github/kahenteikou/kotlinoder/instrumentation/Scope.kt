@@ -41,7 +41,9 @@ class ScopeImpl:Scope{
         this.scopeArgs = args
         this.controlFlow = ControlFlowImpl(this)
         this.dataFlow = DataFlowImpl()
-        if
+        if(_parent != null){
+            
+        }
     }
 
 }
