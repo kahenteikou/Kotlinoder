@@ -13,7 +13,7 @@ class VLangUtils {
             }
             val identifiers=packageName2.split("\\.")
             for(id in identifiers){
-                if(KeyWords)
+                if(Keywords.)
             }
         }
     }

@@ -43,5 +43,9 @@ class Keywords {
             }
             return code
         }
+        @JvmStatic
+        fun isKeyword(word:String):Boolean{
+            return keywords.contains(word)
+        }
     }
 }
