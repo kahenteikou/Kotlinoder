@@ -145,7 +145,11 @@ class ScopeImpl:Scope{
         for(v:Variable in variables.values){
             result += " --> $v \n"
         }
-        
+        result += "\n>> ControlFlow:\n $controlFlow"
+        result += "\n>> SubScopes:\n"
+        for(s:Scope in scopes){
+            result += "$s \n"
+        }
         return result
     }
 
