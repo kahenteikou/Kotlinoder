@@ -29,5 +29,8 @@ class ScopeImpl:Scope{
     private var scopeArgs:Array<Object>
     private var variables:HashMap<String,Variable> = HashMap()
     private var controlFlow:ControlFlow
+    private var dataFlow:DataFlow
     private final var scopes:ArrayList<Scope> = ArrayList()
+    
+
 }
