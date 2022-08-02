@@ -44,12 +44,17 @@ class ScopeImpl:Scope{
         this.scopeArgs = args
         this.controlFlow = ControlFlowImpl(this)
         this.dataFlow = DataFlowImpl()
-        if(_parent != null){
+        if(parent != null){
             if(this._parent is ScopeImpl){
                 (this._parent as ScopeImpl).addScope(this)
             }else{
                 throw UnsupportedOperationException("Unsupported parent scope specified." +
                  " Only ScopeImpl based based implementations are supported!")
+            }
+            if(parent.getType() != ScopeType.CLASS &&
+                    parent.getType() != ScopeType.NONE &&
+                    parent.getType() != ScopeType.COMPILATION_UNIT){
+                parent.getControlFlow().callScope(this)
             }
         }
     }
