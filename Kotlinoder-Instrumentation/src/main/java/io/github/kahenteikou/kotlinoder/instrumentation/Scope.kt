@@ -88,6 +88,9 @@ class ScopeImpl:Scope{
 
     }
     override fun createVariable(type:IType):Variable?{
+        var varNamePrefix="vrlInternalVar"
+        var counter:Int = 0
         
+
     }
 }
