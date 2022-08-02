@@ -1,5 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
+import io.github.kahenteikou.kotlinoder.lang.VLangUtils
+
 final class Type : IType {
     private final var packageName:String
     override fun getPackageName(): String {
@@ -25,9 +27,18 @@ final class Type : IType {
         validate()
     }
     constructor(fullName:String?,isReturnOrParamType: Boolean){
-        this.shortName=fullName
-        this.packageName=""
+        //complete!!
+        if(!VLangUtils.isShortName(fullName!!)){
+            this.packageName=VLangUtils.slashToDot(
+                VLangUtils.packageNameFromFullClassName(fullName!!)
+            )
+            this.shortName=VLangUtils.shortNameFromFullClassName(fullName!!)
+        }else{
+            this.packageName=""
+            this.shortName=fullName
+        }
         this.isReturnOrParamType=isReturnOrParamType
+
         validate()
     }
 
