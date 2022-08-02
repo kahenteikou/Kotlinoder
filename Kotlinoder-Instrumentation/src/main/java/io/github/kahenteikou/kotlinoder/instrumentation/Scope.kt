@@ -1,7 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
 interface Scope : CodeEntity{
-    fun getParent(): Scope
+    fun getParent(): Scope?
     fun getType(): ScopeType
     fun getName(): String
     fun getScopeArgs(): Array<Object>
@@ -23,7 +23,7 @@ interface Scope : CodeEntity{
 }
 class ScopeImpl:Scope{
     private var _id:String
-    private var _parent:Scope
+    private var _parent:Scope?
     private var _type:ScopeType
     private final var name:String
     private var scopeArgs:Array<Object>
@@ -33,7 +33,7 @@ class ScopeImpl:Scope{
     private final var scopes:ArrayList<Scope> = ArrayList()
     private var code:String
     private var readOnlyScopes:List<Scope>
-    constructor(id:String ,parent:Scope,type:ScopeType,name:String,args:Array<Object>){
+    constructor(id:String ,parent:Scope?,type:ScopeType,name:String,args:Array<Object>){
         this._id = id
         this._parent = parent
         this._type = type
@@ -41,6 +41,7 @@ class ScopeImpl:Scope{
         this.scopeArgs = args
         this.controlFlow = ControlFlowImpl(this)
         this.dataFlow = DataFlowImpl()
+        if
     }
 
 }
