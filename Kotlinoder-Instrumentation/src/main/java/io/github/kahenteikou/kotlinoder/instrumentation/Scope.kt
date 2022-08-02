@@ -98,4 +98,7 @@ class ScopeImpl:Scope{
         return createVariable(type,varName)
 
     }
+    override fun createStaticVariable(type:IType):Variable?{
+
+    }
 }
