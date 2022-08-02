@@ -37,7 +37,7 @@ class ScopeImpl:Scope{
     private var controlFlow:ControlFlow
     private var dataFlow:DataFlow
     private final var scopes:ArrayList<Scope> = ArrayList()
-    private var code:String?
+    private var code:String?=null
     private var readOnlyScopes:List<Scope>? = null
     constructor(id:String ,parent:Scope?,type:ScopeType,name:String,args:Array<Object>){
         this._id = id
@@ -60,6 +60,9 @@ class ScopeImpl:Scope{
                 parent.getControlFlow().callScope(this)
             }
         }
+    }
+    override fun getScopeArgs(): Array<Object>{
+        return scopeArgs
     }
     private fun addScope(s : ScopeImpl){
         scopes.add(s)
@@ -171,6 +174,6 @@ class ScopeImpl:Scope{
     override fun getDataFlow():DataFlow{
         return dataFlow
     }
-    
+
 
 }
