@@ -62,4 +62,9 @@ class ScopeImpl:Scope{
         scopes.add(s)
     }
 
+    override fun getType(): ScopeType {
+        return _type
+    }
+    
+
 }
