@@ -20,14 +20,13 @@ class VariableImpl : Variable{
     private final var varName:String?
     private var value:Object?=null
     private var constant:Boolean?=null
-    private var staticVar:Boolean
-    constructor(scope:Scope,type:IType,varName:String,value:Object,constant:Boolean,staticVar:Boolean){
+    private var staticVar:Boolean?=null
+    constructor(scope:Scope,type:IType,varName:String,value:Object?,constant:Boolean){
         this.scope=scope
         this.type=type
         this.varName=varName
         this.value=value
         this.constant=constant
-        this.staticVar=staticVar
     }
     constructor(scope:Scope,type:IType){
         this.scope=scope
