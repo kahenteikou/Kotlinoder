@@ -24,6 +24,8 @@ class VLangUtils {
             return name.replace("/",".")
         }
         fun shortNameFromFullClassName(name:String):String{
+            var name2=name.replace(".","/")
+            val pathkun=name2.split("/")
             
         }
     }
