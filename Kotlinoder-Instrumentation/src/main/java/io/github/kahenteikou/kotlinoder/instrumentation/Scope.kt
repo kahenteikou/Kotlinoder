@@ -184,7 +184,12 @@ class ScopeImpl:Scope{
                 i.getScope().generateDataFlow()
             }
         }
-        
+        val isClassOrScript:Boolean = getType() == ScopeType.CLASS || getType() == ScopeType.NONE || getType() == ScopeType.COMPILATION_UNIT
+        if(isClassOrScript){
+            for(s:Scope in getScopes()){
+                s.generateDataFlow()
+            }
+        }
     }
 
 }
