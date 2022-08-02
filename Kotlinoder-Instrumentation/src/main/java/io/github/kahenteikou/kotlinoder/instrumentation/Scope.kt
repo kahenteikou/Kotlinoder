@@ -139,4 +139,14 @@ class ScopeImpl:Scope{
         return readOnlyScopes!!
     }
 
+    override fun toString(): String {
+        var result="Scope:$_type"
+        result += "\n>> Variables:\n"
+        for(v:Variable in variables.values){
+            result += " --> $v \n"
+        }
+        
+        return result
+    }
+
 }
