@@ -103,4 +103,13 @@ class ScopeImpl:Scope{
         variables.put(variablekun.getName()!!,variablekun)
         return variablekun
     }
+    override fun assignConstant(varName:String,constant:Object){
+        var variablekun=getVariable(varName)
+        if(variablekun == null){
+            throw IllegalArgumentException("Variable $varName does not exist!")
+        }else{
+            variablekun.setValue(constant)
+            variablekun.setConstant(true)
+        }
+    }
 }
