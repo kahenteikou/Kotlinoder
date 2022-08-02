@@ -91,7 +91,11 @@ class ScopeImpl:Scope{
         var varNamePrefix="vrlInternalVar"
         var counter:Int = 0
         var varName:String = varNamePrefix + counter.toString()
-        
+        while(getVariable(varName) != null){
+            counter++
+            varName = varNamePrefix + counter.toString()
+        }
+        return createVariable(type,varName)
 
     }
 }
