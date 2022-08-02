@@ -24,6 +24,10 @@ class VLangUtils {
             return name.replace("/",".")
         }
         @JvmStatic
+        fun dotToSlash(name:String):String{
+            return name.replace(".","/")
+        }
+        @JvmStatic
         fun shortNameFromFullClassName(name:String):String{
             var name2=name.replace(".","/")
             val pathkun=name2.split("/")
@@ -49,7 +53,7 @@ class VLangUtils {
         }
         @JvmStatic
         fun isShortName(name:String):Boolean{
-            
+            return slashToDot(name).equals(shortNameFromFullClassName(name))
         }
     }
 }
