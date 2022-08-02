@@ -19,7 +19,7 @@ interface Scope : CodeEntity{
     fun assignVariable(varNameDest:String,varNameSrc:String)
     fun getControlFlow():ControlFlow
     fun getScopes():List<Scope>
-    fun getScopeById(id:String) :Scope
+    fun getScopeById(id:String) :Scope?
     fun createVariable(type:IType):Variable?
     fun getDataFlow():DataFlow
     fun generateDataFlow()
@@ -142,8 +142,13 @@ class ScopeImpl:Scope{
         return readOnlyScopes!!
     }
 
-    override fun getScopeById(id: String): Scope {
-        
+    override fun getScopeById(id: String): Scope? {
+        for(s in scopes){
+            if(s.getId().equals(id)){
+                return s
+            }
+        }
+        return null
     }
 
     override fun toString(): String {
