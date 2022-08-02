@@ -32,5 +32,9 @@ class VLangUtils {
             }
             return name2
         }
+        @JvmStatic
+        fun packageNameFromFullClassName(name:String):String{
+            
+        }
     }
 }
