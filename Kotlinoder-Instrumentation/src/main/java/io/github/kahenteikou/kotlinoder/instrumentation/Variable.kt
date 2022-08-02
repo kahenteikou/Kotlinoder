@@ -15,20 +15,20 @@ interface Variable {
 
 }
 class VariableImpl : Variable{
-    private final var scope:Scope
+    private final var scope:Scope?
     private final var type:IType
     private final var varName:String?
     private var value:Object?=null
     private var constant:Boolean?=null
     private var staticVar:Boolean?=null
-    constructor(scope:Scope,type:IType,varName:String,value:Object?,constant:Boolean){
+    constructor(scope:Scope?,type:IType,varName:String,value:Object?,constant:Boolean){
         this.scope=scope
         this.type=type
         this.varName=varName
         this.value=value
         this.constant=constant
     }
-    constructor(scope:Scope,type:IType){
+    constructor(scope:Scope?,type:IType){
         this.scope=scope
         this.type=type
         this.varName=type.getFullClassName()
@@ -37,7 +37,7 @@ class VariableImpl : Variable{
     }
     companion object {
         @JvmStatic
-        fun createStaticVar(scope: Scope, type: IType): VariableImpl {
+        fun createStaticVar(scope: Scope?, type: IType): VariableImpl {
             return VariableImpl(scope, type)
         }
     }
