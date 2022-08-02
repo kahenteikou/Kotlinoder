@@ -73,6 +73,12 @@ class ScopeImpl:Scope{
         if(result == null && this.getParent() != null){
             result= getParent()?.getVariable(name)
         }
+        if(result != null){
+            var parentName="<unknown>"
+            if(_parent != null){
+                parentName= _parent!!.getName()
+            }
+        }
         return result
     }
 }
