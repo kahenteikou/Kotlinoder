@@ -23,10 +23,14 @@ class VLangUtils {
         fun slashToDot(name:String):String{
             return name.replace("/",".")
         }
+        @JvmStatic
         fun shortNameFromFullClassName(name:String):String{
             var name2=name.replace(".","/")
             val pathkun=name2.split("/")
-            
+            if(pathkun.size>0){
+                return pathkun[pathkun.size-1]
+            }
+            return name2
         }
     }
 }
