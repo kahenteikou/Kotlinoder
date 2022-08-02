@@ -174,6 +174,14 @@ class ScopeImpl:Scope{
     override fun getDataFlow():DataFlow{
         return dataFlow
     }
-
+    override fun generateDataFlow(){
+        println("DATAFLOW---------------------------------")
+        for(i:Invocation in controlFlow.getInvocations()){
+            for(v:Variable in i.getArguments()){
+                println("--> varname: $v, $i")
+            }
+            
+        }
+    }
 
 }
