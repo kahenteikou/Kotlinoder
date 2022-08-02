@@ -70,7 +70,7 @@ class VariableImpl : Variable{
         this.constant=b
     }
 
-    override fun getScope(): Scope {
+    override fun getScope(): Scope? {
         return scope
     }
 
