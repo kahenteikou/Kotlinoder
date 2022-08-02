@@ -11,10 +11,14 @@ class Keywords {
     private var keywords:Set<String> = HashSet<String>()
     companion object{
         init{
-
+            var keyWordStr=readKeyWords(
+                "/io/github/kahenteikou/kotlinoder/lang/keywords_kotlin"
+            )
+            
         }
+
         @JvmStatic
-        fun readKeyWords(codeName:String):String{
+        private fun readKeyWords(codeName:String):String{
             val iStream:InputStream=Keywords::class.java.getResourceAsStream(codeName)
             val reader=BufferedReader(InputStreamReader(iStream))
             var code:String=""
