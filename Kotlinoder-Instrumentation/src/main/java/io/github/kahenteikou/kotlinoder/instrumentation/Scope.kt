@@ -68,5 +68,8 @@ class ScopeImpl:Scope{
     override fun getVariables():Collection<Variable>{
         return variables.values
     }
+    override fun getVariable(name:String):Variable?{
+        val result=variables.get(name)
 
+    }
 }
