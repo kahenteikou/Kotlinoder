@@ -65,6 +65,8 @@ class ScopeImpl:Scope{
     override fun getType(): ScopeType {
         return _type
     }
-    
+    override fun getVariables():Collection<Variable>{
+        return variables.values
+    }
 
 }
