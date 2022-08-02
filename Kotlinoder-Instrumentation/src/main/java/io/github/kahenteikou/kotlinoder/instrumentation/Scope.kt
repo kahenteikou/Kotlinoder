@@ -152,5 +152,8 @@ class ScopeImpl:Scope{
         }
         return result
     }
+    override fun getName(): String{
+        return name
+    }
 
 }
