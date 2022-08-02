@@ -121,6 +121,6 @@ class ScopeImpl:Scope{
         if(varSrc == null) {
             throw IllegalArgumentException("Variable $varNameSrc does not exist!")
         }
-        
+        println(">> assignment: $varNameDest = $varNameSrc")
     }
 }
