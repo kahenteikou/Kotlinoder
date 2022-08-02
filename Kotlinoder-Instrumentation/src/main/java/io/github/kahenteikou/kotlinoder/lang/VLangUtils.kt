@@ -4,7 +4,7 @@ class VLangUtils {
     companion object{
         @JvmStatic
         fun isPackageNameValid(packageName: String?): Boolean {
-            val packageName2=packageName
+            var packageName2=packageName
             if("".equals(packageName2)){
                 return true
             }
@@ -13,7 +13,9 @@ class VLangUtils {
             }
             val identifiers=packageName2.split("\\.")
             for(id in identifiers){
-                if(Keywords.)
+                if(Keywords.isKeyword(id)){
+                    return false
+                }
             }
         }
     }
