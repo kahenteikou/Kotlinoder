@@ -32,6 +32,7 @@ class ScopeImpl:Scope{
     private var dataFlow:DataFlow
     private final var scopes:ArrayList<Scope> = ArrayList()
     private var code:String
+    private var readOnlyScopes:List<Scope>
     
 
 }
