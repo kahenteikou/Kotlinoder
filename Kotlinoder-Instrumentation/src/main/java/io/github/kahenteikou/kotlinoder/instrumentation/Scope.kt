@@ -31,6 +31,7 @@ class ScopeImpl:Scope{
     private var controlFlow:ControlFlow
     private var dataFlow:DataFlow
     private final var scopes:ArrayList<Scope> = ArrayList()
+    private var code:String
     
 
 }
