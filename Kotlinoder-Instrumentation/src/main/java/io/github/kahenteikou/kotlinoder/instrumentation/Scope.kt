@@ -28,4 +28,6 @@ class ScopeImpl:Scope{
     private final var name:String
     private var scopeArgs:Array<Object>
     private var variables:HashMap<String,Variable> = HashMap()
+    private var controlFlow:ControlFlow
+    
 }
