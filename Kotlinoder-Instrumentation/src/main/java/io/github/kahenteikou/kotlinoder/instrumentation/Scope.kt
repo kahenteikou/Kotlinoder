@@ -180,8 +180,11 @@ class ScopeImpl:Scope{
             for(v:Variable in i.getArguments()){
                 println("--> varname: $v, $i")
             }
-            
+            if(i is ScopeInvocation){
+                i.getScope().generateDataFlow()
+            }
         }
+        
     }
 
 }
