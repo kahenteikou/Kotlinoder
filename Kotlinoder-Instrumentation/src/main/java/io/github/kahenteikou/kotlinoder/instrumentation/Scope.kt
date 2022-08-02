@@ -1,5 +1,8 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
+import org.jetbrains.kotlin.fir.resolve.calls.Unsupported
+import java.lang.UnsupportedOperationException
+
 interface Scope : CodeEntity{
     fun getParent(): Scope?
     fun getType(): ScopeType
@@ -44,6 +47,9 @@ class ScopeImpl:Scope{
         if(_parent != null){
             if(this._parent is ScopeImpl){
                 (this._parent as ScopeImpl).addScope(this)
+            }else{
+                throw UnsupportedOperationException("Unsupported parent scope specified." +
+                 " Only ScopeImpl based based implementations are supported!")
             }
         }
     }
