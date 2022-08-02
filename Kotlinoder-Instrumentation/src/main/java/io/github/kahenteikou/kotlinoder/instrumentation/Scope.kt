@@ -113,6 +113,8 @@ class ScopeImpl:Scope{
         }
     }
     override fun assignVariable(varNameDest:String,varNameSrc:String){
+        var varDest=getVariable(varNameDest)
+        var varSrc=getVariable(varNameSrc)
         
     }
 }
