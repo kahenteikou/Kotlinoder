@@ -17,6 +17,7 @@ class VLangUtils {
                     return false
                 }
             }
+            return Patterns.PACKAGE_NAME.matcher(packageName2).matches()
         }
     }
 }
