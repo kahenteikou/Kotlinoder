@@ -115,6 +115,12 @@ class ScopeImpl:Scope{
     override fun assignVariable(varNameDest:String,varNameSrc:String){
         var varDest=getVariable(varNameDest)
         var varSrc=getVariable(varNameSrc)
+        if(varDest == null) {
+            throw IllegalArgumentException("Variable $varNameDest does not exist!")
+        }
+        if(varSrc == null) {
+            throw IllegalArgumentException("Variable $varNameSrc does not exist!")
+        }
         
     }
 }
