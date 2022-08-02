@@ -168,5 +168,9 @@ class ScopeImpl:Scope{
     override fun setCode(code:String?){
         this.code=code
     }
+    override fun getDataFlow():DataFlow{
+        return dataFlow
+    }
+    
 
 }
