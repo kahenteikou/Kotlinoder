@@ -69,7 +69,10 @@ class ScopeImpl:Scope{
         return variables.values
     }
     override fun getVariable(name:String):Variable?{
-        val result=variables.get(name)
-
+        var result=variables.get(name)
+        if(result == null && this.getParent() != null){
+            result= getParent()?.getVariable(name)
+        }
+        return result
     }
 }
