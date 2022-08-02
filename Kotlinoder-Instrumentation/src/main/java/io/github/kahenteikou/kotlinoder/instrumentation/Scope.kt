@@ -2,6 +2,9 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 
 import org.jetbrains.kotlin.fir.resolve.calls.Unsupported
 import java.lang.UnsupportedOperationException
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 interface Scope : CodeEntity{
     fun getParent(): Scope?
@@ -15,7 +18,7 @@ interface Scope : CodeEntity{
     fun assignConstant(varName:String,constant:Object)
     fun assignVariable(varNameDest:String,varNameSrc:String)
     fun getControlFlow():ControlFlow
-    fun getScopes():ArrayList<Scope>
+    fun getScopes():List<Scope>
     fun getScopeById(id:String) :Scope
     fun createVariable(type:IType):Variable?
     fun getDataFlow():DataFlow
@@ -35,7 +38,7 @@ class ScopeImpl:Scope{
     private var dataFlow:DataFlow
     private final var scopes:ArrayList<Scope> = ArrayList()
     private var code:String
-    private var readOnlyScopes:List<Scope>
+    private var readOnlyScopes:List<Scope>? = null
     constructor(id:String ,parent:Scope?,type:ScopeType,name:String,args:Array<Object>){
         this._id = id
         this._parent = parent
@@ -126,4 +129,14 @@ class ScopeImpl:Scope{
     override fun getControlFlow():ControlFlow{
         return controlFlow
     }
+    override fun getParent(): Scope?{
+        return _parent
+    }
+    override fun getScopes():List<Scope>{
+        if(readOnlyScopes == null){
+            readOnlyScopes = Collections.unmodifiableList(scopes)
+        }
+        return readOnlyScopes!!
+    }
+
 }
