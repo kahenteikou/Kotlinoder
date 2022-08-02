@@ -47,5 +47,9 @@ class VLangUtils {
             }
             return result
         }
+        @JvmStatic
+        fun isShortName(name:String):Boolean{
+            
+        }
     }
 }
