@@ -1,5 +1,7 @@
 package io.github.kahenteikou.kotlinoder.lang
 
+import java.util.regex.Pattern
+
 class VLangUtils {
     companion object{
         @JvmStatic
@@ -60,8 +62,13 @@ class VLangUtils {
             return "[a-zA-Z\\p{L}\$_][a-zA-Z\\p{L}\$_0-9]*"
         }
         @JvmStatic
-        fun isIdentifierValid(varName:String,acceptKeywords:Boolean):Boolean{
-
+        fun isIdentifierValid(varName:String?,acceptKeywords:Boolean):Boolean{
+            var varName2=varName
+            if(varName2 == null){
+                varName2=""
+            }
+            val p= Pattern.compile(getIdentifierRegex())
+            
         }
     }
 }
