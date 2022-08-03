@@ -43,7 +43,18 @@ final class Type : IType {
     }
 
     private fun validate(){
-
+        if(!VLangUtils.isPackageNameValid(VLangUtils.slashToDot(packageName))){
+            throw IllegalArgumentException("Specified package is invalid: " + getPackageName())
+        }
+        if(!isReturnOrParamType){
+            if(!VLangUtils.isClassNameValid(shortName)){
+                throw IllegalArgumentException("Specified classname is invalid: " + getShortName())
+            }
+        }else{
+            if(!VLangUtils.isIdentifierValid(shortName,true)){
+                throw IllegalArgumentException("Specified classname is invalid: " + getShortName())
+            }
+        }
     }
 
     override fun getFullClassName(): String? {
