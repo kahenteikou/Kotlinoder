@@ -68,7 +68,11 @@ class VLangUtils {
                 varName2=""
             }
             val p= Pattern.compile(getIdentifierRegex())
-            
+            var resultkun=p.matcher(varName2).matches()
+            if(resultkun && !acceptKeywords){
+                resultkun=!Keywords.isKeyword(varName2)
+            }
+            return resultkun
         }
     }
 }
