@@ -55,5 +55,9 @@ class VLangUtils {
         fun isShortName(name:String):Boolean{
             return slashToDot(name).equals(shortNameFromFullClassName(name))
         }
+        @JvmStatic
+        private fun getIdentifierRegex():String{
+            return "[a-zA-Z\\p{L}\$_][a-zA-Z\\p{L}\$_0-9]*"
+        }
     }
 }
