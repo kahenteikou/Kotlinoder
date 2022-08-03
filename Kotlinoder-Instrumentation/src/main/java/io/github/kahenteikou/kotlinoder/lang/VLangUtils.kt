@@ -74,5 +74,17 @@ class VLangUtils {
             }
             return resultkun
         }
+        @JvmStatic
+        fun isIdentifierValid(varName:String?):Boolean{
+            return isIdentifierValid(varName,true)
+        }
+        @JvmStatic
+        fun isClassNameValid(className:String?):Boolean{
+            var className2=className
+            if(className2 == null){
+                className2=""
+            }
+            return isIdentifierValid(className2)
+        }
     }
 }
