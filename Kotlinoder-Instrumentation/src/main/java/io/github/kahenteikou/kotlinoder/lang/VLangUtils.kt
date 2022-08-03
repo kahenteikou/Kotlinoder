@@ -59,5 +59,9 @@ class VLangUtils {
         private fun getIdentifierRegex():String{
             return "[a-zA-Z\\p{L}\$_][a-zA-Z\\p{L}\$_0-9]*"
         }
+        @JvmStatic
+        fun isIdentifierValid(varName:String,acceptKeywords:Boolean):Boolean{
+
+        }
     }
 }
