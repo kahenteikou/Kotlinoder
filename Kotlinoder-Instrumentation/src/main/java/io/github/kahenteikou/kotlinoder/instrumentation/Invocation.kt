@@ -108,4 +108,8 @@ class ScopeInvocationImpl: InvocationImpl , ScopeInvocation {
     constructor(scope: Scope) : super(scope,"",null,"scope",false,true,true,"") {
         this.scope = scope
     }
+
+    override fun isScope(): Boolean {
+        return true
+    }
 }
