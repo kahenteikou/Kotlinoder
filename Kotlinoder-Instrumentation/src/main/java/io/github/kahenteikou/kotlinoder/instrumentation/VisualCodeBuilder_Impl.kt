@@ -22,4 +22,9 @@ class VisualCodeBuilder_Impl : VisualCodeBuilder {
             return ScopeImpl(idRequest.request(),null,type,name,*args)
         }
     }
+
+    override fun declareCompilationUnit(name: String, packageName: String): CompilationUnitDeclaration {
+        return CompilationUnitDeclaration_Impl(idRequest.request(),null,name,packageName)
+    }
+    
 }
