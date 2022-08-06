@@ -9,4 +9,7 @@ interface VisualCodeBuilder {
     fun declareFor(scope:Scope?,varName:String,from:Int,to:Int,inc:Int):ForDeclaration
     fun declareClass(scope:CompilationUnitDeclaration,type:IType,modifiers:IModifiers,extends:IExtends,implements:IExtends):ClassDeclaration
     fun declareMethod(scope:ClassDeclaration,modifiers:IModifiers,returnType:Type,methodName:String,params:IParameters ):MethodDeclaration
+    fun declareWhile(scope:Scope?,check:Invocation):WhileDeclaration
+    fun invokeMethod(scope:Scope?,varName:String,mName:String,isVoid:Boolean,retValName:String,vararg args:Variable):Invocation
+    
 }
