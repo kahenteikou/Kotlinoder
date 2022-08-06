@@ -1,4 +1,5 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
+//complete
 
 interface MethodDeclaration :Scope {
     fun getModifiers():IModifiers
