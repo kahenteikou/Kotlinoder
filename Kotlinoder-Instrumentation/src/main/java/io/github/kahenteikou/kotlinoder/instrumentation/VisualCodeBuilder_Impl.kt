@@ -12,5 +12,14 @@ class VisualCodeBuilder_Impl : VisualCodeBuilder {
             return generator.newId()
         }
     }
-    
+    private fun popVariable():String{
+        return variables.pop()
+    }
+    private fun createScope(parent:Scope?,type:ScopeType,name:String,vararg args:Any?):Scope{
+        if(parent!=null){
+            return parent.createScope(idRequest.request(),type,name,*args)
+        }else{
+            return ScopeImpl(idRequest.request(),null,type,name,*args)
+        }
+    }
 }
