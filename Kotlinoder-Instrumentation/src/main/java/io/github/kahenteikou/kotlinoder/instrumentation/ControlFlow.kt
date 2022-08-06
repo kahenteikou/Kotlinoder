@@ -5,10 +5,10 @@ interface ControlFlow {
     fun callMethod(id: String,varName:String,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
     fun callStaticMethod(id:String,type:IType,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
     fun callScope(scope:Scope):ScopeInvocation
-    fun getInvocations():ArrayList<Invocation>
+    fun getInvocations():MutableList <Invocation>
 }
 class ControlFlowImpl:ControlFlow{
-    private final val invocations:ArrayList<Invocation> =ArrayList()
+    private final val invocations:MutableList <Invocation> =java.util.ArrayList<Invocation>()
     override fun createInstance(id: String, type: IType, varName: String, vararg args: Variable): Invocation {
         val result:Invocation = InvocationImpl(parent,id,type.getFullClassName(),"<init>",true,false,true,varName,*args)
         getInvocations().add(result)
@@ -48,7 +48,7 @@ class ControlFlowImpl:ControlFlow{
         return result
     }
 
-    override fun getInvocations(): ArrayList<Invocation> {
+    override fun getInvocations(): MutableList <Invocation> {
         return invocations
     }
     private final var parent:Scope
