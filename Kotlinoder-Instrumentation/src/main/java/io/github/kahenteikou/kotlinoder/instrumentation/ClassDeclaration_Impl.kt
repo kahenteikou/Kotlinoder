@@ -9,7 +9,37 @@ ClassDeclaration{
         metadata=getScopeArgs()[0] as ClassDeclarationMetaData
         createVariable(getClassType(),"this")
     }
-    
+
+    override fun getClassModifiers(): IModifiers {
+        TODO("Not yet implemented")
+    }
+
+    override fun getClassType(): IType {
+        TODO("Not yet implemented")
+    }
+
+    override fun getExtends(): IExtends {
+        TODO("Not yet implemented")
+    }
+
+    override fun getImplements(): IExtends {
+        TODO("Not yet implemented")
+    }
+
+    override fun getDeclaredMethods(): MutableList<MethodDeclaration> {
+        TODO("Not yet implemented")
+    }
+
+    override fun declareMethod(
+        id: String,
+        modifiers: IModifiers,
+        returnType: IType,
+        methodName: String,
+        params: IParameters
+    ): MethodDeclaration {
+        TODO("Not yet implemented")
+    }
+
 
 }
 final class ClassDeclarationMetaData {
