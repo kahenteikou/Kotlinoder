@@ -9,7 +9,19 @@ ScopeImpl(id,parent,ScopeType.COMPILATION_UNIT,name,null),CompilationUnitDeclara
         if(!VLangUtils.isPackageNameValid(packageName)){
             throw IllegalArgumentException("Invalid package name: $packageName")
         }
-        metadata=CompilationUnitMetaData(packageName)
+        metadata= CompilationUnitMetaData(packageName)
+    }
+
+    override fun getFileName(): String {
+        return super.getName()
+    }
+
+    override fun getDeclaredClasses(): MutableList<ClassDeclaration> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getPackageName(): String {
+        return metadata.getPackageName()
     }
 
 }
