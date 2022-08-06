@@ -13,4 +13,29 @@ class ForDeclarationMetaData {
         this._to=_to
         this._inc=_inc
     }
+    fun getVarName():String{
+        return varName
+    }
+    fun getFrom():Int{
+        return _from
+    }
+    fun getTo():Int{
+        return _to
+    }
+    fun getInc():Int{
+        return _inc
+    }
+    fun setVarName(varName:String){
+        this.varName=varName
+    }
+    fun setFrom(from:Int){
+        this._from=from
+    }
+    fun setTo(to:Int){
+        this._to=to
+    }
+    fun setInc(inc:Int){
+        this._inc=inc
+    }
+    
 }
