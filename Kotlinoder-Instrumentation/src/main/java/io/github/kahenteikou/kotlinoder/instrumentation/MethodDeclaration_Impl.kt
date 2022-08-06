@@ -13,19 +13,19 @@ class MethodDeclaration_Impl(id:String,methodName:String,parent:Scope?,returnTyp
         }
     }
     override fun getModifiers(): IModifiers {
-        TODO("Not yet implemented")
+        return metadata.getModifiers()!!
     }
 
     override fun getParameters(): IParameters {
-        TODO("Not yet implemented")
+        return metadata.getParams()!!
     }
 
     override fun getParameterAsVariable(p: IParameter): Variable {
-        TODO("Not yet implemented")
+        return getVariable(p.getName())!!
     }
 
     override fun getReturnType(): IType {
-        TODO("Not yet implemented")
+        return metadata.getType()!!
     }
 
 }
