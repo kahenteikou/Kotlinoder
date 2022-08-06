@@ -1,5 +1,5 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
-
+//complete
 class MethodDeclaration_Impl(id:String,methodName:String,parent:Scope?,returnType:IType,modifiers:IModifiers?,params:IParameters?) :
     ScopeImpl(id,parent,ScopeType.METHOD,methodName,MethodDeclarationMetaData(returnType,modifiers,params)),MethodDeclaration {
     private final var metadata:MethodDeclarationMetaData
