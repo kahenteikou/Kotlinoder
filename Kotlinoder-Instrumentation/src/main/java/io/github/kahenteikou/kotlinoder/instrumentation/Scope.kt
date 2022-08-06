@@ -10,7 +10,7 @@ interface Scope : CodeEntity{
     fun getParent(): Scope?
     fun getType(): ScopeType
     fun getName(): String
-    fun getScopeArgs(): Array<Object>
+    fun getScopeArgs(): Array<out Any?>
     fun getVariables():Collection<Variable>
     fun getVariable(name:String):Variable?
     fun createVariable(type:IType,varName:String):Variable?
@@ -23,23 +23,23 @@ interface Scope : CodeEntity{
     fun createVariable(type:IType):Variable?
     fun getDataFlow():DataFlow
     fun generateDataFlow()
-    fun createScope(id:String,type:ScopeType,name:String,args:Array<Object>):Scope
+    fun createScope(id:String,type:ScopeType,name:String,vararg args : Any?):Scope
 
 
 }
-class ScopeImpl:Scope{
+open class ScopeImpl:Scope{
     private var _id:String
     private var _parent:Scope?
     private var _type:ScopeType
     private final var name:String
-    private var scopeArgs:Array<Object>
+    private var scopeArgs:Array<out Any?>
     private var variables:HashMap<String,Variable> = HashMap()
     private var controlFlow:ControlFlow
     private var dataFlow:DataFlow
     private final var scopes:ArrayList<Scope> = ArrayList()
     private var code:String?=null
     private var readOnlyScopes:MutableList <Scope>? = null
-    constructor(id:String ,parent:Scope?,type:ScopeType,name:String,args:Array<Object>){
+    constructor(id:String ,parent:Scope?,type:ScopeType,name:String,vararg args:Any?){
         this._id = id
         this._parent = parent
         this._type = type
@@ -61,7 +61,7 @@ class ScopeImpl:Scope{
             }
         }
     }
-    override fun getScopeArgs(): Array<Object>{
+    override fun getScopeArgs(): Array<out Any?>{
         return scopeArgs
     }
     private fun addScope(s : ScopeImpl){
@@ -201,8 +201,8 @@ class ScopeImpl:Scope{
         }
     }
 
-    override fun createScope(id: String, type: ScopeType, name: String, args: Array<Object>): Scope {
-        return ScopeImpl(id,this,type,name,args)
+    override fun createScope(id: String, type: ScopeType, name: String, vararg args: Any?): Scope {
+        return ScopeImpl(id,this,type,name,*args)
     }
 
 }
