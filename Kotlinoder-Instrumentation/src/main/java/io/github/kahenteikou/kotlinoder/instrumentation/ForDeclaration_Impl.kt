@@ -30,6 +30,18 @@ ForDeclaration {
     override fun getInc(): Int {
         return metadata.getInc()
     }
+    fun setVarName(varName:String){
+        metadata.setVarName(varName)
+    }
+    fun setFrom(from:Int){
+        metadata.setFrom(from)
+    }
+    fun setTo(to:Int){
+        metadata.setTo(to)
+    }
+    fun setInc(inc:Int){
+        metadata.setInc(inc)
+    }
 
 }
 class ForDeclarationMetaData {
