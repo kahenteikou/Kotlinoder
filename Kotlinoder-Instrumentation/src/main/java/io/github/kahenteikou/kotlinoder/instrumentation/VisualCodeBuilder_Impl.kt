@@ -36,4 +36,8 @@ class VisualCodeBuilder_Impl : VisualCodeBuilder {
         variables.push(resultkun!!.getName())
         return resultkun!!
     }
+    override fun declareMethod(scope:ClassDeclaration,modifiers:IModifiers,returnType:Type,methodName:String,params:IParameters ):MethodDeclaration{
+        return scope.declareMethod(idRequest.request(),modifiers,returnType,methodName,params)
+    }
+    
 }
