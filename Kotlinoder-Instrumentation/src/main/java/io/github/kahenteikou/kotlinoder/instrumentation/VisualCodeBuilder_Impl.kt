@@ -88,5 +88,9 @@ class VisualCodeBuilder_Impl : VisualCodeBuilder {
     fun setIdRequest(idRequest:IdRequest){
         this.idRequest=idRequest
     }
-    
+    override fun declareClass(scope:CompilationUnitDeclaration,type:IType,modifiers:IModifiers,extends:IExtends,implements:IExtends):ClassDeclaration {
+        var id: String = idRequest.request()
+        var resultkun: ClassDeclaration =ClassDeclaration_Impl(id,scope,type,modifiers,extends,implements)
+        return resultkun
+    }
 }
