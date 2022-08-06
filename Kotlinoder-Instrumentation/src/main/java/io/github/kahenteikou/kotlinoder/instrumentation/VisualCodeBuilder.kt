@@ -1,5 +1,5 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
-
+//complete
 interface VisualCodeBuilder {
     fun declareCompilationUnit(name:String,packageName:String):CompilationUnitDeclaration
     fun assignConstant(scope:Scope?,varName:String,constant:Any?)
@@ -11,5 +11,5 @@ interface VisualCodeBuilder {
     fun declareMethod(scope:ClassDeclaration,modifiers:IModifiers,returnType:Type,methodName:String,params:IParameters ):MethodDeclaration
     fun declareWhile(scope:Scope?,check:Invocation):WhileDeclaration
     fun invokeMethod(scope:Scope?,varName:String,mName:String,isVoid:Boolean,retValName:String,vararg args:Variable):Invocation
-    
+    fun invokeStaticMethod(scope:Scope?,type:IType,mName:String,isVoid:Boolean,retValName:String,vararg args:Variable):Invocation
 }
