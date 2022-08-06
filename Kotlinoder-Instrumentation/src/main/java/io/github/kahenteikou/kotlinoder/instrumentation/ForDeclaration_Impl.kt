@@ -1,5 +1,5 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
-
+//complete
 class ForDeclaration_Impl(id:String,parent:Scope?,varName:String,from:Int,to:Int,inc:Int):
 ScopeImpl(id,parent,ScopeType.FOR,ScopeType.FOR.name,ForDeclarationMetaData(varName,from,to,inc)),
 ForDeclaration {
