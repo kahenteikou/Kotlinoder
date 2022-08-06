@@ -105,7 +105,10 @@ open class InvocationImpl :Invocation{
             resultStr+="scopeType: " + this.getScope().getType() + ", "
         }
         resultStr += "constructor=$Constructor, var=$varName, mName=$MethodName, retValName=$returnValueName, args=["
-        
+        for(arg in arguments){
+            resultStr+=arg +", "
+        }
+        resultStr += "]"
         return resultStr
     }
 
