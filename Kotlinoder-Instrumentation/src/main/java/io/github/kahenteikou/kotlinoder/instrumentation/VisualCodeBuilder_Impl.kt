@@ -82,4 +82,7 @@ class VisualCodeBuilder_Impl : VisualCodeBuilder {
     override fun assignConstant(scope:Scope?,varName:String,constant:Any?){
         scope!!.assignConstant(varName,constant)
     }
+    override fun assignVariable(scope:Scope?,varNameDest:String,varNameSrc:String){
+        scope!!.assignVariable(varNameDest,varNameSrc)
+    }
 }
