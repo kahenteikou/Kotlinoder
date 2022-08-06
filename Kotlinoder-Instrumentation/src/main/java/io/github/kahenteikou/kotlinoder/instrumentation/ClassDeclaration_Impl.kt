@@ -15,19 +15,19 @@ ClassDeclaration{
     }
 
     override fun getClassType(): IType {
-        TODO("Not yet implemented")
+        return metadata.getType()
     }
 
     override fun getExtends(): IExtends {
-        TODO("Not yet implemented")
+        return metadata.getExtends()!!
     }
 
     override fun getImplements(): IExtends {
-        TODO("Not yet implemented")
+        return metadata.getImplements()!!
     }
 
     override fun getDeclaredMethods(): MutableList<MethodDeclaration> {
-        TODO("Not yet implemented")
+        return metadata.getDeclaredMethods()!!
     }
 
     override fun declareMethod(
