@@ -7,5 +7,7 @@ class WhileDeclarationMetaData {
     constructor(check:Invocation){
         this.check = check
     }
-    
+    fun getCheck():Invocation{
+        return check
+    }
 }
