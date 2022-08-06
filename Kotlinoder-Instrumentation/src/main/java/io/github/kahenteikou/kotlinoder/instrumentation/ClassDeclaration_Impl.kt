@@ -37,7 +37,14 @@ ClassDeclaration{
         methodName: String,
         params: IParameters
     ): MethodDeclaration {
-        TODO("Not yet implemented")
+        if(this.getType() != ScopeType.CLASS &&
+                this.getType() != ScopeType.NONE &&
+                    this.getType() != ScopeType.COMPILATION_UNIT){
+            throw IllegalArgumentException("Specified scopetype does not support method declaration: " + this.getType())
+        }
+        var methodScope:MethodDeclaration=MethodDeclaration_Impl(id,methodName,this,returnType,modifiers,params)
+        metadata.getDeclaredMethods()!!.add(methodScope)
+        return methodScope
     }
 
 
