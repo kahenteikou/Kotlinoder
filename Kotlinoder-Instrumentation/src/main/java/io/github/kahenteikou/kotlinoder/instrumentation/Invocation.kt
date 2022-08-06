@@ -99,6 +99,16 @@ open class InvocationImpl :Invocation{
         this.Static=Statickun
     }
 
+    override fun toString(): String {
+        var resultStr="[ "
+        if(this is ScopeInvocationImpl){
+            resultStr+="scopeType: " + this.getScope().getType() + ", "
+        }
+        resultStr += "constructor=$Constructor, var=$varName, mName=$MethodName, retValName=$returnValueName, args=["
+        
+        return resultStr
+    }
+
 }
 class ScopeInvocationImpl: InvocationImpl , ScopeInvocation {
     private final var scope:Scope
