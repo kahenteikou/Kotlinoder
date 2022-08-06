@@ -1,6 +1,9 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
-class ForDeclaration_Impl {
+class ForDeclaration_Impl(id:String,parent:Scope?,varName:String,from:Int,to:Int,inc:Int):
+ScopeImpl(id,parent,ScopeType.FOR,ScopeType.FOR.name,ForDeclarationMetaData(varName,from,to,inc)),
+ForDeclaration {
+
 }
 class ForDeclarationMetaData {
     private var varName:String
@@ -37,5 +40,5 @@ class ForDeclarationMetaData {
     fun setInc(inc:Int){
         this._inc=inc
     }
-    
+
 }
