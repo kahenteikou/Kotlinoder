@@ -11,7 +11,7 @@ ClassDeclaration{
     }
 
     override fun getClassModifiers(): IModifiers {
-        TODO("Not yet implemented")
+        return metadata.getModifiers()!!
     }
 
     override fun getClassType(): IType {
