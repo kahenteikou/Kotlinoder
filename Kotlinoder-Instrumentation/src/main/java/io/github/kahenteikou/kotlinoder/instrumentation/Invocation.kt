@@ -106,7 +106,7 @@ open class InvocationImpl :Invocation{
         }
         resultStr += "constructor=$Constructor, var=$varName, mName=$MethodName, retValName=$returnValueName, args=["
         for(arg in arguments){
-            resultStr+=arg +", "
+            resultStr+=arg + ", "
         }
         resultStr += "]"
         return resultStr
