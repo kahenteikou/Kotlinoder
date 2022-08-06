@@ -16,19 +16,19 @@ ForDeclaration {
         createVariable(Type("int"),varName)
     }
     override fun getVarName(): String {
-        TODO("Not yet implemented")
+        return metadata.getVarName()
     }
 
     override fun getFrom(): Int {
-        TODO("Not yet implemented")
+        return metadata.getFrom()
     }
 
     override fun getTo(): Int {
-        TODO("Not yet implemented")
+        return metadata.getTo()
     }
 
     override fun getInc(): Int {
-        TODO("Not yet implemented")
+        return metadata.getInc()
     }
 
 }
