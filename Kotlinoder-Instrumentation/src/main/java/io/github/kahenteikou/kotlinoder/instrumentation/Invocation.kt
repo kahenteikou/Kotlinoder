@@ -4,7 +4,7 @@ interface Invocation:CodeEntity {
     fun getVariableName():String?
     fun getMethodName():String
     fun getReturnValueName():String
-    fun getArguments():List<Variable>
+    fun getArguments():List<Variable?>
     fun isConstructor():Boolean
     fun isVoid():Boolean
     fun isScope():Boolean
@@ -15,7 +15,7 @@ open class InvocationImpl :Invocation{
     private final var varName:String?
     private final var MethodName:String
     private final var returnValueName:String
-    private final var arguments:ArrayList<Variable> = ArrayList()
+    private final var arguments:ArrayList<Variable?> = ArrayList()
     private final var Constructor:Boolean
     private final var Void: Boolean
     private var code:String?=null
@@ -23,7 +23,7 @@ open class InvocationImpl :Invocation{
     private var Static:Boolean
     constructor(parent:Scope,id:String,varName:String?,methodName:String,
                 Constructor:Boolean,isVoid:Boolean,isStatic:Boolean,
-    retValName:String,vararg args:Variable){
+    retValName:String,vararg args:Variable?){
         this.parent=parent
         this._id=id
         this.varName=varName
@@ -60,7 +60,7 @@ open class InvocationImpl :Invocation{
         return returnValueName
     }
 
-    override fun getArguments(): List<Variable> {
+    override fun getArguments(): List<Variable?> {
         return arguments
     }
 

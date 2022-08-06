@@ -64,4 +64,9 @@ class VisualCodeBuilder_Impl : VisualCodeBuilder {
         scope!!.getControlFlow().callScope(resultkun)
         return resultkun
     }
+    override fun createInstance(scope:Scope?,type:IType,varName:String,vararg args:Variable?){
+        var id:String=idRequest.request()
+        scope!!.getControlFlow().createInstance(id,type,varName,*args)
+
+    }
 }

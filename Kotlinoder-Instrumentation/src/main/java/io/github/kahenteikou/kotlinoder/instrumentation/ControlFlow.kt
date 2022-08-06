@@ -1,7 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
 interface ControlFlow {
-    fun createInstance(id:String,type: IType,varName:String,vararg args:Variable):Invocation
+    fun createInstance(id:String,type: IType,varName:String,vararg args:Variable?):Invocation
     fun callMethod(id: String,varName:String,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
     fun callStaticMethod(id:String,type:IType,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
     fun callScope(scope:Scope):ScopeInvocation
@@ -9,7 +9,7 @@ interface ControlFlow {
 }
 class ControlFlowImpl:ControlFlow{
     private final val invocations:MutableList <Invocation> =java.util.ArrayList<Invocation>()
-    override fun createInstance(id: String, type: IType, varName: String, vararg args: Variable): Invocation {
+    override fun createInstance(id: String, type: IType, varName: String, vararg args: Variable?): Invocation {
         val result:Invocation = InvocationImpl(parent,id,type.getFullClassName(),"<init>",true,false,true,varName,*args)
         getInvocations().add(result)
         return result
