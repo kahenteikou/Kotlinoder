@@ -1,5 +1,5 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
-
+//comp
 interface Invocation:CodeEntity {
     fun getVariableName():String?
     fun getMethodName():String
