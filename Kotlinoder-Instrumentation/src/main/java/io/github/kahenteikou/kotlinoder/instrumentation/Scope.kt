@@ -18,7 +18,7 @@ interface Scope : CodeEntity{
     fun assignConstant(varName:String,constant:Object)
     fun assignVariable(varNameDest:String,varNameSrc:String)
     fun getControlFlow():ControlFlow
-    fun getScopes():List<Scope>
+    fun getScopes():MutableList <Scope>
     fun getScopeById(id:String) :Scope?
     fun createVariable(type:IType):Variable?
     fun getDataFlow():DataFlow
@@ -38,7 +38,7 @@ class ScopeImpl:Scope{
     private var dataFlow:DataFlow
     private final var scopes:ArrayList<Scope> = ArrayList()
     private var code:String?=null
-    private var readOnlyScopes:List<Scope>? = null
+    private var readOnlyScopes:MutableList <Scope>? = null
     constructor(id:String ,parent:Scope?,type:ScopeType,name:String,args:Array<Object>){
         this._id = id
         this._parent = parent
@@ -135,7 +135,7 @@ class ScopeImpl:Scope{
     override fun getParent(): Scope?{
         return _parent
     }
-    override fun getScopes():List<Scope>{
+    override fun getScopes():MutableList <Scope>{
         if(readOnlyScopes == null){
             readOnlyScopes = Collections.unmodifiableList(scopes)
         }
