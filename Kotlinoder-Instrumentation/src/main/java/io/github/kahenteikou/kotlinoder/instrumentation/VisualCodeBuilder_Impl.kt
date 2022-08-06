@@ -51,4 +51,17 @@ class VisualCodeBuilder_Impl : VisualCodeBuilder {
         scope,varName,from,to,inc)
         return resultkun
     }
+    override fun declareWhile(scope:Scope?,check:Invocation):WhileDeclaration{
+        if(scope!!.getType()== ScopeType.CLASS||scope!!.getType()==ScopeType.INTERFACE) {
+            throw UnsupportedOperationException(
+                "Unsupported parent scope specified."
+                        + " Class ${ScopeType.CLASS} or ${ScopeType.INTERFACE} " +
+                        " based implementations are not supported!"
+            )
+        }
+        var resultkun:WhileDeclaration_Impl=WhileDeclaration_Impl(idRequest.request(),
+                scope,check)
+        scope!!.getControlFlow().callScope(resultkun)
+        return resultkun
+    }
 }
