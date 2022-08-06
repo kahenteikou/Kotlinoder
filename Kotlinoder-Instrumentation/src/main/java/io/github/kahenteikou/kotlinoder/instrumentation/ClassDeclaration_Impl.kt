@@ -1,6 +1,16 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
-class ClassDeclaration_Impl {
+class ClassDeclaration_Impl(id:String,parent:Scope?,type:IType,modifiers: IModifiers?,extends: IExtends?,implements: IExtends?) :
+ScopeImpl(id,parent,ScopeType.CLASS,type.getFullClassName()!!,
+    ClassDeclarationMetaData(type,modifiers,extends,implements)),
+ClassDeclaration{
+    private final var metadata:ClassDeclarationMetaData
+    init{
+        metadata=getScopeArgs()[0] as ClassDeclarationMetaData
+        createVariable(getClassType(),"this")
+    }
+    
+
 }
 final class ClassDeclarationMetaData {
     private final var type:IType
