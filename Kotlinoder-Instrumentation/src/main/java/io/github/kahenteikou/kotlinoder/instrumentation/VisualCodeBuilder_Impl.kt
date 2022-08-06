@@ -85,4 +85,8 @@ class VisualCodeBuilder_Impl : VisualCodeBuilder {
     override fun assignVariable(scope:Scope?,varNameDest:String,varNameSrc:String){
         scope!!.assignVariable(varNameDest,varNameSrc)
     }
+    fun setIdRequest(idRequest:IdRequest){
+        this.idRequest=idRequest
+    }
+    
 }
