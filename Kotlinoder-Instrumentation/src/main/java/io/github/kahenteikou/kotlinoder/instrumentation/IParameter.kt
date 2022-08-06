@@ -2,12 +2,12 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 
 interface IParameter {
     /**
-     * name
+     * @return name
      */
     fun getName():String
 
     /**
-     * type
+     * @return type
      */
     fun getType():IType
 }
