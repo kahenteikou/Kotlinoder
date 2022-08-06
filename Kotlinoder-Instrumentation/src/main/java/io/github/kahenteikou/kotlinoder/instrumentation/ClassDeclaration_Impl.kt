@@ -1,5 +1,5 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
-
+//complete
 class ClassDeclaration_Impl(id:String,parent:Scope?,type:IType,modifiers: IModifiers?,extends: IExtends?,implements: IExtends?) :
 ScopeImpl(id,parent,ScopeType.CLASS,type.getFullClassName()!!,
     ClassDeclarationMetaData(type,modifiers,extends,implements)),
