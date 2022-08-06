@@ -13,4 +13,13 @@ final class MethodDeclarationMetaData {
         this.modifiers = modifiers
         this.params = params
     }
+    fun getType():IType{
+        return type
+    }
+    fun getModifiers():IModifiers?{
+        return modifiers
+    }
+    fun getParams():IParameters?{
+        return params
+    }
 }
