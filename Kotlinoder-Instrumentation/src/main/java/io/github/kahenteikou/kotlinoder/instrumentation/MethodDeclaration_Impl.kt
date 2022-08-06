@@ -2,6 +2,29 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 
 class MethodDeclaration_Impl(id:String,methodName:String,parent:Scope?,returnType:IType,modifiers:IModifiers?,params:IParameters?) :
     ScopeImpl(id,parent,ScopeType.METHOD,methodName,MethodDeclarationMetaData(returnType,modifiers,params)),MethodDeclaration {
+    private final var metadata:MethodDeclarationMetaData
+    init{
+        metadata=getScopeArgs()[0] as MethodDeclarationMetaData
+        createParamVariables()
+    }
+    fun createParamVariables(){
+
+    }
+    override fun getModifiers(): IModifiers {
+        TODO("Not yet implemented")
+    }
+
+    override fun getParameters(): IParameters {
+        TODO("Not yet implemented")
+    }
+
+    override fun getParameterAsVariable(p: IParameter): Variable {
+        TODO("Not yet implemented")
+    }
+
+    override fun getReturnType(): IType {
+        TODO("Not yet implemented")
+    }
 
 }
 final class MethodDeclarationMetaData {
