@@ -54,4 +54,19 @@ final class ClassDeclarationMetaData {
         this.extends = extends
         this.implements = implements
     }
+    fun getExtends():IExtends?{
+        return extends
+    }
+    fun getImplements():IExtends?{
+        return implements
+    }
+    fun getType():IType{
+        return type
+    }
+    fun getModifiers():IModifiers?{
+        return modifiers
+    }
+    fun getDeclaredMethods():MutableList<MethodDeclaration>{
+        return declaredMethods
+    }
 }
