@@ -12,7 +12,8 @@ ForDeclaration {
         }else if(!forceIncrement&&!equal&&inc>=0) {
             throw IllegalArgumentException("For loop cannot have positive or zero increment!")
         }
-        
+        metadata=getScopeArgs()[0] as ForDeclarationMetaData
+        createVariable(Type("int"),varName)
     }
     override fun getVarName(): String {
         TODO("Not yet implemented")
