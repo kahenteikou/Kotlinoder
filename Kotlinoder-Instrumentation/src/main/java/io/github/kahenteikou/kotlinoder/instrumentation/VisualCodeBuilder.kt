@@ -6,5 +6,6 @@ interface VisualCodeBuilder {
     fun assignVariable(scope:Scope?,varNameDest:String,varNameSrc:String)
     fun createInstance(scope:Scope?,type:IType,varName:String,vararg args:Variable?)
     fun createVariable(scope:Scope?,type:IType,varName:String):Variable
+    fun declareFor(scope:Scope?,varName:String,from:Int,to:Int,inc:Int):ForDeclaration
     
 }
