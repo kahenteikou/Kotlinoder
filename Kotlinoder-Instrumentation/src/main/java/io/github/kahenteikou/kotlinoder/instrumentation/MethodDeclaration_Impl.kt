@@ -7,8 +7,10 @@ class MethodDeclaration_Impl(id:String,methodName:String,parent:Scope?,returnTyp
         metadata=getScopeArgs()[0] as MethodDeclarationMetaData
         createParamVariables()
     }
-    fun createParamVariables(){
-
+    private fun createParamVariables(){
+        for(p in metadata.getParams()!!.getParamenters()!!){
+            createVariable(p.getType(),p.getName())
+        }
     }
     override fun getModifiers(): IModifiers {
         TODO("Not yet implemented")
