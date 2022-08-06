@@ -5,9 +5,12 @@ class MethodDeclaration_Impl(id:String,methodName:String,parent:Scope?,returnTyp
 
 }
 final class MethodDeclarationMetaData {
+    private final var type:IType
+    private final var modifiers:IModifiers?
+    private final var params:IParameters?
     constructor(type:IType,modifiers: IModifiers?,params:IParameters?){
-        /*this.type = type
+        this.type = type
         this.modifiers = modifiers
-        this.params = params*/
+        this.params = params
     }
 }
