@@ -8,4 +8,5 @@ interface VisualCodeBuilder {
     fun createVariable(scope:Scope?,type:IType,varName:String):Variable
     fun declareFor(scope:Scope?,varName:String,from:Int,to:Int,inc:Int):ForDeclaration
     fun declareClass(scope:CompilationUnitDeclaration,type:IType,modifiers:IModifiers,extends:IExtends,implements:IExtends):ClassDeclaration
+    fun declareMethod(scope:ClassDeclaration,modifiers:IModifiers,returnType:Type,methodName:String,params:IParameters ):MethodDeclaration
 }
