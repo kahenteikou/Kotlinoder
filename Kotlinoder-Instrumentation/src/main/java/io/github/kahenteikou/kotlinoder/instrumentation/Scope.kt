@@ -15,7 +15,7 @@ interface Scope : CodeEntity{
     fun getVariable(name:String):Variable?
     fun createVariable(type:IType,varName:String):Variable?
     fun createStaticVariable(type:IType):Variable?
-    fun assignConstant(varName:String,constant:Object)
+    fun assignConstant(varName:String,constant:Any?)
     fun assignVariable(varNameDest:String,varNameSrc:String)
     fun getControlFlow():ControlFlow
     fun getScopes():MutableList <Scope>
@@ -109,7 +109,7 @@ open class ScopeImpl:Scope{
         variables.put(variablekun.getName()!!,variablekun)
         return variablekun
     }
-    override fun assignConstant(varName:String,constant:Object){
+    override fun assignConstant(varName:String,constant:Any?){
         var variablekun=getVariable(varName)
         if(variablekun == null){
             throw IllegalArgumentException("Variable $varName does not exist!")
@@ -186,7 +186,7 @@ open class ScopeImpl:Scope{
     override fun generateDataFlow(){
         println("DATAFLOW---------------------------------")
         for(i:Invocation in controlFlow.getInvocations()){
-            for(v:Variable in i.getArguments()){
+            for(v:Variable? in i.getArguments()){
                 println("--> varname: $v, $i")
             }
             if(i is ScopeInvocation){
