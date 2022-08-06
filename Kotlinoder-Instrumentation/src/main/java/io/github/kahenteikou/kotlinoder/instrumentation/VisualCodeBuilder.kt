@@ -1,4 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
 interface VisualCodeBuilder {
+    fun declareCompilationUnit(name:String,packageName:String)
+    fun assignConstant(scope:Scope?,varName:String,constant:Any?)
+    fun assignVariable(scope:Scope?,varNameDest:String,varNameSrc:String)
 }
