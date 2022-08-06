@@ -39,5 +39,16 @@ class VisualCodeBuilder_Impl : VisualCodeBuilder {
     override fun declareMethod(scope:ClassDeclaration,modifiers:IModifiers,returnType:Type,methodName:String,params:IParameters ):MethodDeclaration{
         return scope.declareMethod(idRequest.request(),modifiers,returnType,methodName,params)
     }
-    
+    override fun declareFor(scope:Scope?,varName:String,from:Int,to:Int,inc:Int):ForDeclaration{
+        if(scope!!.getType()== ScopeType.CLASS||scope!!.getType()==ScopeType.INTERFACE) {
+            throw UnsupportedOperationException(
+                "Unsupported parent scope specified."
+                        + " Class ${ScopeType.CLASS} or ${ScopeType.INTERFACE} " +
+                        " based implementations are not supported!"
+            )
+        }
+        var resultkun:ForDeclaration=ForDeclaration_Impl(idRequest.request(),
+        scope,varName,from,to,inc)
+        return resultkun
+    }
 }
