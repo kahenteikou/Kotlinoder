@@ -1,5 +1,5 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
-
+//complete
 interface ClassDeclaration : Scope {
     fun getClassModifiers():IModifiers
     fun getClassType():IType
