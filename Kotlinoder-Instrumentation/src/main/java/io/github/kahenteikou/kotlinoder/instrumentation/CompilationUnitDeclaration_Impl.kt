@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
-
+//complete
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
+import java.util.stream.Collectors
 
 class CompilationUnitDeclaration_Impl(id:String,parent:Scope?,name:String,packageName: String):
 ScopeImpl(id,parent,ScopeType.COMPILATION_UNIT,name,null),CompilationUnitDeclaration{
@@ -17,7 +18,10 @@ ScopeImpl(id,parent,ScopeType.COMPILATION_UNIT,name,null),CompilationUnitDeclara
     }
 
     override fun getDeclaredClasses(): MutableList<ClassDeclaration> {
-        TODO("Not yet implemented")
+        return getScopes().stream().
+                filter{it is ClassDeclaration}.
+                map{it->it as ClassDeclaration}.
+                collect(Collectors.toList())
     }
 
     override fun getPackageName(): String {
