@@ -52,6 +52,13 @@ class InvocationCodeRenderer :CodeRenderer<Invocation>{
             var si:ScopeInvocation=i as ScopeInvocation
             var s:Scope=si.getScope()
             if(s is ForDeclaration){
+                cb.append("for( ").append(s.getVarName()).
+                        append(" in ").append(s.getFrom().toString())
+                if(s.getInc()>0){
+                    cb.append(" until ").append(s.getTo().toString())
+                }else{
+                    cb.append(" downTo ").append(s.getTo().toString())
+                }
                 
             }
         }
