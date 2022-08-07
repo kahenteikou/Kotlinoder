@@ -43,6 +43,10 @@ class Scope2Code {
             var myFile:CompilationUnitDeclaration=builder.declareCompilationUnit(
                 "MyFile.kt","my.testpackage"
             )
+            var myFileClass:ClassDeclaration=builder.declareClass(
+                myFile,Type("my.testpackage.MyFileClass"),
+                Modifier(Modifier.PUBLIC),
+            )
             return myFile
         }
         @JvmStatic
