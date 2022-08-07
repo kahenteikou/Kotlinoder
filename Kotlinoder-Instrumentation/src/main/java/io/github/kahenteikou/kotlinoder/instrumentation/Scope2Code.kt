@@ -13,5 +13,12 @@ final class Utils {
             modifierNames[Modifier.PUBLIC]="public"
             modifierNames[Modifier.STATIC]="@JvmStatic"
         }
+        fun modifierToName(m:Modifier):String{
+            return modifierNames.get(m)!!
+        }
     }
+    private constructor(){
+        throw AssertionError()
+    }
+
 }
