@@ -122,5 +122,10 @@ class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
     override fun render(entity: MethodDeclaration, cb: CodeBuilder) {
         TODO("Not yet implemented")
     }
+    private fun createModifiers(md:MethodDeclaration,cb:CodeBuilder){
+        for(m in md.getModifiers().getModifiers()){
+            cb.append(Utils.modifierToName(m)).append(" ")
+        }
+    }
 
 }
