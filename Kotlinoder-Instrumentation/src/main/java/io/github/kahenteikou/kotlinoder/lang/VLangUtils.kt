@@ -96,5 +96,13 @@ class VLangUtils {
             }
             return code2.replace("\"","\\\"")
         }
+        @JvmStatic
+        fun isVariableNameValid(varName:String?):Boolean{
+            var varName2=varName
+            if(varName2 == null){
+                varName2=""
+            }
+            return isIdentifierValid(varName2)
+        }
     }
 }
