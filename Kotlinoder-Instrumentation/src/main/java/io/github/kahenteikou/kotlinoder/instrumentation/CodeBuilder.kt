@@ -64,7 +64,13 @@ class CodeBuilder {
             newLine(indentDepth)
         }
         setIndentDepth(indentDepth)
-        
+        var result:StringBuilder= StringBuilder()
+        for(line in code){
+            result.append(getIndentation(line.getIndentCount()))
+                .append(line.getLine())
+                .append("\n")
+        }
+        return result.toString()
     }
     companion object{
         private class Line{
