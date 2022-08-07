@@ -1,5 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
+import org.jetbrains.kotlin.diagnostics.rendering.renderParameter
+
 class Scope2Code {
 }
 final class Utils {
@@ -32,7 +34,25 @@ class InvocationCodeRenderer :CodeRenderer<Invocation>{
         render(entity,cb)
         return cb.getCode()
     }
-    override fun render(entity: Invocation, cb: CodeBuilder) {
+    override fun render(i: Invocation, cb: CodeBuilder) {
+        if(i.isConstructor()){
+            cb.append(" ").append(i.getReturnValueName()).
+                    append(" = ").append(i.getVariableName()!!).
+                    append("(")
+            renderParams(i,cb)
+            cb.append(")")
+        }else if(!i.isScope()){
+            cb.
+                    append(i.getVariableName()!!).
+                    append(".").
+                    append(i.getMethodName()).append("(")
+            renderParams(i,cb)
+            cb.append(")")
+        }else{
+            
+        }
+    }
+    fun renderParams(e:Invocation,cb:CodeBuilder){
 
     }
 }
