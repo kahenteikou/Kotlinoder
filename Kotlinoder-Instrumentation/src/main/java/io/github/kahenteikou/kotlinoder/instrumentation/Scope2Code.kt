@@ -4,6 +4,19 @@ import io.github.kahenteikou.kotlinoder.lang.VLangUtils
 import org.jetbrains.kotlin.diagnostics.rendering.renderParameter
 
 class Scope2Code {
+    companion object{
+        @JvmStatic
+        fun getCode(scope:CompilationUnitDeclaration){
+            var renderer=CompilationUnitRenderer(
+                ClassDeclarationRenderer(
+                    MethodDeclarationRenderer(
+                        InvocationCodeRenderer()
+                    )
+                )
+            )
+            return renderer.render(scope)
+        }
+    }
 }
 final class Utils {
     companion object{
