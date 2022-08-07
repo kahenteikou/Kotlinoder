@@ -49,7 +49,11 @@ class InvocationCodeRenderer :CodeRenderer<Invocation>{
             renderParams(i,cb)
             cb.append(")")
         }else{
-            
+            var si:ScopeInvocation=i as ScopeInvocation
+            var s:Scope=si.getScope()
+            if(s is ForDeclaration){
+                
+            }
         }
     }
     fun renderParams(e:Invocation,cb:CodeBuilder){
