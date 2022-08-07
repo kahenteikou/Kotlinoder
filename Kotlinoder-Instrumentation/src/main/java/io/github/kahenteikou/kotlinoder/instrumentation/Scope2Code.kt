@@ -67,9 +67,21 @@ class InvocationCodeRenderer :CodeRenderer<Invocation>{
                 }else{
                     cb.append(" step ").append(s.getInc().toString())
                 }
-                
+                cb.append(") {")
+                if(!s.getControlFlow().getInvocations().isEmpty()){
+                    cb.newLine()
+                    cb.incIndentation()
+                }
+                for(j in s.getControlFlow().getInvocations()){
+                    render(j,cb)
+                }
+                if(!s.getControlFlow().getInvocations().isEmpty()){
+                    cb.decIndentation()
+                }
+                cb.append("}")
             }
         }
+        cb.newLine()
     }
     fun renderParams(e:Invocation,cb:CodeBuilder){
 
