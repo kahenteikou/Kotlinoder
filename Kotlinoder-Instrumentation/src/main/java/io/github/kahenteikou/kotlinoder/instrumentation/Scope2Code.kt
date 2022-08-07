@@ -37,6 +37,11 @@ class Scope2Code {
             var renderer=InvocationCodeRenderer()
             return renderer.render(scope)
         }
+        @JvmStatic
+        fun demoScope():CompilationUnitDeclaration{
+            var builder:VisualCodeBuilder=VisualCodeBuilder_Impl()
+            
+        }
     }
 }
 final class Utils {
