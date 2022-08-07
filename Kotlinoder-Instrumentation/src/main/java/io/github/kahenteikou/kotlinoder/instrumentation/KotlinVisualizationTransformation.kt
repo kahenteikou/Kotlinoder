@@ -3,13 +3,14 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.IdGenerator
 import org.jetbrains.kotlin.psi.KtClass
+import org.jetbrains.kotlin.psi.KtClassOrObject
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtVisitor
 import java.util.*
 
 class KotlinVisualizationTransformation {
 }
-class KotlinCodeVisitor : KtVisitor<Unit, VisualCodeBuilder_Impl> {
+class KotlinCodeVisitor : KtVisitor<Unit, Int> {
     private var codeBuilder:VisualCodeBuilder_Impl
     private var ktFile:KtFile
     private var rootScope:Scope?=null
@@ -51,9 +52,8 @@ class KotlinCodeVisitor : KtVisitor<Unit, VisualCodeBuilder_Impl> {
         return result
     }
 
-    override fun visitClass(klass: KtClass, data: VisualCodeBuilder_Impl?) {
-        println(klass.name)
-        super.visitClass(klass, data)
+    override fun visitClass(klass: KtClass, data: Int?) {
+        println(">> visitClass: ${klass.name}")
+        return super.visitClass(klass, data)
     }
-
 }
