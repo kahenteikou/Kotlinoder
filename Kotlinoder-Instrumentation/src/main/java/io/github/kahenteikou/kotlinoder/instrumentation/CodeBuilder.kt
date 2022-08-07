@@ -32,6 +32,10 @@ class CodeBuilder {
         }
         return result
     }
+    fun append(s:String):CodeBuilder{
+        currentLine.append(s)
+        return this
+    }
     companion object{
         private class Line{
             private var indentCount:Int
