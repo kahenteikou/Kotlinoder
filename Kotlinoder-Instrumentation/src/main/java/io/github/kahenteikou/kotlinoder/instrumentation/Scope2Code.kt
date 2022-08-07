@@ -188,6 +188,10 @@ class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
         for(typekun2 in cd.getExtends().getTypes()){
             types.add(typekun2)
         }
+        if(types.isEmpty()){
+            return
+        }
+        var isFirst:Boolean=true
         
     }
 }
