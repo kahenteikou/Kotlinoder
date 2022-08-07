@@ -72,6 +72,9 @@ class CodeBuilder {
         }
         return result.toString()
     }
+    fun getCode():String{
+        return getCode(4)
+    }
     companion object{
         private class Line{
             private var indentCount:Int
