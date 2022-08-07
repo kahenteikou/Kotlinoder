@@ -222,8 +222,8 @@ class CompilationUnitRenderer :CodeRenderer<CompilationUnitDeclaration>{
         return cb.getCode()
     }
 
-    override fun render(entity: CompilationUnitDeclaration, cb: CodeBuilder) {
-        TODO("Not yet implemented")
+    override fun render(e: CompilationUnitDeclaration, cb: CodeBuilder) {
+        if(e.getPackageName()!=null)
     }
 
 
