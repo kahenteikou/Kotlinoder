@@ -45,8 +45,9 @@ class Scope2Code {
             )
             var myFileClass:ClassDeclaration=builder.declareClass(
                 myFile,Type("my.testpackage.MyFileClass"),
-                Modifier(Modifier.PUBLIC),
+                Modifiers(Modifier.PUBLIC),Extends(),Extends()
             )
+            
             return myFile
         }
         @JvmStatic
