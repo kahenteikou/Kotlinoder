@@ -59,6 +59,13 @@ class CodeBuilder {
         code.clear()
         return this
     }
+    fun getCode(indentDepth:Int):String{
+        if(currentLine.isNotEmpty()){
+            newLine(indentDepth)
+        }
+        setIndentDepth(indentDepth)
+        
+    }
     companion object{
         private class Line{
             private var indentCount:Int
