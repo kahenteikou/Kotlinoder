@@ -150,3 +150,6 @@ class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
     }
 
 }
+class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration>{
+    
+}
