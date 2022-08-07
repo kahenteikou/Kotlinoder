@@ -44,7 +44,14 @@ class CodeBuilder {
     fun newLine():CodeBuilder{
         return newLine(cursorPos)
     }
-    
+    fun addLine(line:String,indentCount:Int):CodeBuilder{
+        if(currentLine.isNotEmpty()){
+            code.add(Line(currentLine.toString(),indentCount))
+            currentLine=StringBuilder()
+        }
+        code.add(Line(line,indentCount))
+        return this
+    }
     companion object{
         private class Line{
             private var indentCount:Int
