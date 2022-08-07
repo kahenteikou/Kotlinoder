@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.diagnostics.rendering.renderParameter
 class Scope2Code {
     companion object{
         @JvmStatic
-        fun getCode(scope:CompilationUnitDeclaration){
+        fun getCode(scope:CompilationUnitDeclaration):String{
             var renderer=CompilationUnitRenderer(
                 ClassDeclarationRenderer(
                     MethodDeclarationRenderer(
