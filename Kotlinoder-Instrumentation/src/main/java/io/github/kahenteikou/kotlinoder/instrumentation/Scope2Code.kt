@@ -26,5 +26,13 @@ class InvocationCodeRenderer :CodeRenderer<Invocation>{
     constructor(){
 
     }
-    
+
+    override fun render(entity: Invocation): String {
+        var cb=CodeBuilder()
+        render(entity,cb)
+        return cb.getCode()
+    }
+    override fun render(entity: Invocation, cb: CodeBuilder) {
+
+    }
 }
