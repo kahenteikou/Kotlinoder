@@ -45,6 +45,11 @@ class Scope2Code {
             )
             return myFile
         }
+        @JvmStatic
+        fun main(args:Array<String>){
+            var scope:CompilationUnitDeclaration=demoScope()
+            
+        }
     }
 }
 final class Utils {
