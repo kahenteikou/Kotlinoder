@@ -230,6 +230,12 @@ class CompilationUnitRenderer :CodeRenderer<CompilationUnitDeclaration>{
             classDeclarationRenderer!!.render(cd,cb)
         }
     }
+    fun getClassDeclarationRenderer():CodeRenderer<ClassDeclaration>{
+        return classDeclarationRenderer!!
+    }
+    fun setClassDeclarationRenderer(classDeclarationRenderer:CodeRenderer<ClassDeclaration>){
+        this.classDeclarationRenderer=classDeclarationRenderer
+    }
 
 
 }
