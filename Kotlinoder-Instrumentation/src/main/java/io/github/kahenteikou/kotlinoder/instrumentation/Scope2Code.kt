@@ -208,6 +208,8 @@ class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
     }
 }
 class CompilationUnitRenderer :CodeRenderer<CompilationUnitDeclaration>{
-    private var classDeclarationRenderer:CodeRenderer<ClassDeclaration>
+    private var classDeclarationRenderer:CodeRenderer<ClassDeclaration>?=null
     
+
+
 }
