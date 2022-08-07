@@ -47,7 +47,7 @@ class Scope2Code {
                 myFile,Type("my.testpackage.MyFileClass"),
                 Modifiers(Modifier.PUBLIC),Extends(),Extends()
             )
-            
+            builder
             return myFile
         }
         @JvmStatic
@@ -221,8 +221,10 @@ class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
     private fun createDeclaredVariables(cd:ClassDeclaration,cb:CodeBuilder){
         for(v:Variable in cd.getVariables()){
             if(!"this".equals(v.getName())){
-                cb.newLine().append(v.getType().getFullClassName()!!).
-                        append(" ").append(v.getName()!!).newLine()
+                /*cb.newLine().append(v.getType().getFullClassName()!!).
+                        append(" ").append(v.getName()!!).newLine()*/
+                cb.newLine().append("var ").append(v.getName()!!).append(" : ")
+                    .append(v.getType().getFullClassName()!!).newLine()
             }
         }
         cb.newLine()
