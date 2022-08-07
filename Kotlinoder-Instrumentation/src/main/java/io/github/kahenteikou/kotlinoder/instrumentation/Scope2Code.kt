@@ -1,7 +1,12 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
+import com.intellij.openapi.util.Disposer
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
+import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
+import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
+import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.diagnostics.rendering.renderParameter
+import org.jetbrains.kotlin.psi.KtPsiFactory
 
 class Scope2Code {
     companion object{
@@ -71,6 +76,21 @@ class Scope2Code {
             )
             println(renderer.render(scope))
             println("demo")
+            //kotlin parser
+
+            val config= CompilerConfiguration()
+            var dispos= Disposer.newDisposable()
+            val env= KotlinCoreEnvironment.createForProduction(
+                dispos,
+                config,
+                EnvironmentConfigFiles.JVM_CONFIG_FILES
+            )
+            var ksfactory = KtPsiFactory(env.project)
+            var psif= ksfactory.createFile(renderer.render(scope).trimIndent())
+
+            for(elem in psif.children) {
+                println(elem.text)
+            }
         }
     }
 }
