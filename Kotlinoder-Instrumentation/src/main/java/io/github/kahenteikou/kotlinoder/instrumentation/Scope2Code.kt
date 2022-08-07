@@ -47,7 +47,8 @@ class Scope2Code {
                 myFile,Type("my.testpackage.MyFileClass"),
                 Modifiers(Modifier.PUBLIC),Extends(),Extends()
             )
-            builder
+            builder.createVariable(myFileClass,Type("Int"),"value1")
+            
             return myFile
         }
         @JvmStatic
