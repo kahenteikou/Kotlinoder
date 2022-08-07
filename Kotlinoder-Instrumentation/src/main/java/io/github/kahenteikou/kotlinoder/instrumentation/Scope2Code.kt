@@ -16,6 +16,27 @@ class Scope2Code {
             )
             return renderer.render(scope)
         }
+        @JvmStatic
+        fun getCode(scope:ClassDeclaration):String{
+            var renderer=ClassDeclarationRenderer(
+                MethodDeclarationRenderer(
+                    InvocationCodeRenderer()
+                )
+            )
+            return renderer.render(scope)
+        }
+        @JvmStatic
+        fun getCode(scope:MethodDeclaration):String{
+            var renderer=MethodDeclarationRenderer(
+                InvocationCodeRenderer()
+            )
+            return renderer.render(scope)
+        }
+        @JvmStatic
+        fun getCode(scope:Invocation):String{
+            var renderer=InvocationCodeRenderer()
+            return renderer.render(scope)
+        }
     }
 }
 final class Utils {
