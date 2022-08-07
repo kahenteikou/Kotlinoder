@@ -36,7 +36,7 @@ class KotlinCodeVisitor : KtVisitor<Unit, VisualCodeBuilder_Impl> {
     }
     private fun requestId():String{
         var result:String=""
-        if(vIdStack.isEmpty()){
+        if(!vIdStack.isEmpty()){
             result=vIdStack.pop()
             if(generator.ids.contains(result)){
                 error(">> requestId(): id already exists: $result")
@@ -52,7 +52,7 @@ class KotlinCodeVisitor : KtVisitor<Unit, VisualCodeBuilder_Impl> {
     }
 
     override fun visitClass(klass: KtClass, data: VisualCodeBuilder_Impl?) {
-        
+        println(klass.name)
         super.visitClass(klass, data)
     }
 
