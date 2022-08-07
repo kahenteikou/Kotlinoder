@@ -9,6 +9,16 @@ class CodeBuilder {
                 this.indentCount = indentCount
                 this.line = line
             }
+            constructor(line:String){
+                this.indentCount = 0
+                this.line = line
+            }
+            fun getLine():String{
+                return line
+            }
+            fun getIndentCount():Int{
+                return indentCount
+            }
         }
     }
 }
