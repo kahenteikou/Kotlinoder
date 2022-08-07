@@ -207,3 +207,6 @@ class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
 
     }
 }
+class CompilationUnitRenderer :CodeRenderer<CompilationUnitDeclaration>{
+    
+}
