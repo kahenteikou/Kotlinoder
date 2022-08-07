@@ -108,5 +108,9 @@ class InvocationCodeRenderer :CodeRenderer<Invocation>{
 
 }
 class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
+    private var invocationRenderer:CodeRenderer<Invocation>
+    constructor(invocationRenderer:CodeRenderer<Invocation>){
+        this.invocationRenderer=invocationRenderer
+    }
     
 }
