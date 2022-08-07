@@ -48,12 +48,20 @@ class Scope2Code {
                 Modifiers(Modifier.PUBLIC),Extends(),Extends()
             )
             builder.createVariable(myFileClass,Type("Int"),"value1")
-            
+
             return myFile
         }
         @JvmStatic
         fun main(args:Array<String>){
             var scope:CompilationUnitDeclaration=demoScope()
+            var renderer:CompilationUnitRenderer=CompilationUnitRenderer(
+                ClassDeclarationRenderer(
+                    MethodDeclarationRenderer(
+                        InvocationCodeRenderer()
+                    )
+                )
+            )
+            println(renderer.render(scope))
             println("demo")
         }
     }
@@ -216,8 +224,19 @@ class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
         return cb.getCode()
     }
 
-    override fun render(entity: ClassDeclaration, cb: CodeBuilder) {
-
+    override fun render(cd: ClassDeclaration, cb: CodeBuilder) {
+        createModifiers(cd,cb)
+        cb.append("class ")
+        cb.append(Type(cd.getName()).getShortName()!!)
+        createExtendsAndImplements(cd,cb)
+        cb.append(" {").newLine()
+        cb.incIndentation()
+        createDeclaredVariables(cd,cb)
+        for(md:MethodDeclaration in cd.getDeclaredMethods()){
+            methodDeclarationRenderer.render(md,cb)
+        }
+        cb.decIndentation()
+        cb.append("}").newLine()
     }
     private fun createDeclaredVariables(cd:ClassDeclaration,cb:CodeBuilder){
         for(v:Variable in cd.getVariables()){
