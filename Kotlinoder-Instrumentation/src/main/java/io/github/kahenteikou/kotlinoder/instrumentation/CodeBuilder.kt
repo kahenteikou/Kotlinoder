@@ -52,6 +52,9 @@ class CodeBuilder {
         code.add(Line(line,indentCount))
         return this
     }
+    fun addLine(line:String):CodeBuilder{
+        return addLine(line,cursorPos)
+    }
     companion object{
         private class Line{
             private var indentCount:Int
