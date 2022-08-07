@@ -150,6 +150,28 @@ class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
     }
 
 }
-class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration>{
-    
+class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
+    private var methodDeclarationRenderer: CodeRenderer<MethodDeclaration>
+
+    constructor(methodDeclarationRenderer: CodeRenderer<MethodDeclaration>) {
+        this.methodDeclarationRenderer = methodDeclarationRenderer
+    }
+
+    override fun render(entity: ClassDeclaration): String {
+        var cb: CodeBuilder = CodeBuilder()
+        render(entity, cb)
+        return cb.getCode()
+    }
+
+    override fun render(entity: ClassDeclaration, cb: CodeBuilder) {
+
+    }
+    private fun createDeclaredVariables(cd:ClassDeclaration,cb:CodeBuilder){
+        for(v:Variable in cd.getVariables()){
+            if(!"this".equals(v.getName())){
+                cb.newLine().append(v.getType().getFullClassName()!!).
+                        append(" ").append(v.getName()!!).newLine()
+            }
+        }
+    }
 }
