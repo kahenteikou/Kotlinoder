@@ -5,6 +5,16 @@ class CodeBuilder {
     private var currentLine:StringBuilder = StringBuilder()
     private var cursorPos:Int=0
     private var code:ArrayList<Line> =ArrayList()
+    fun getIndentString():String{
+        return indentString
+    }
+    private fun setIndentDepth(depth:Int){
+        var result:String=""
+        for(i in 1..depth){
+            result += " "
+        }
+        indentString = result
+    }
     
     companion object{
         private class Line{
