@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
+import io.github.kahenteikou.kotlinoder.lang.VLangUtils
 import org.jetbrains.kotlin.diagnostics.rendering.renderParameter
 
 class Scope2Code {
@@ -84,6 +85,24 @@ class InvocationCodeRenderer :CodeRenderer<Invocation>{
         cb.newLine()
     }
     fun renderParams(e:Invocation,cb:CodeBuilder){
-
+        var firstCall:Boolean=true
+        for(v in e.getArguments()){
+            if(firstCall){
+                firstCall=false
+            }else{
+                cb.append(", ")
+            }
+            if(v!!.isConstant()!!){
+                var constString:String?=null
+                if(v.getType().equals(Type("kotlin.String"))){
+                    constString="\""+VLangUtils.addEscapeCharsToCode(v!!.getValue().toString())+"\""
+                }else{
+                    constString=v!!.getValue().toString()
+                }
+                cb.append(constString)
+            }else{
+                cb.append(v.getName()!!)
+            }
+        }
     }
 }
