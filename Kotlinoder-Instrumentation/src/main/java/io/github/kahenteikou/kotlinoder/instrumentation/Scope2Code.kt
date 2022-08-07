@@ -59,6 +59,14 @@ class InvocationCodeRenderer :CodeRenderer<Invocation>{
                 }else{
                     cb.append(" downTo ").append(s.getTo().toString())
                 }
+                if(s.getInc()==1 || s.getInc()==-1){
+                    //no
+                    cb.append("")
+                }else if(s.getInc() < 0){
+                    cb.append(" step ").append(s.getInc().toString().replace("-",""))
+                }else{
+                    cb.append(" step ").append(s.getInc().toString())
+                }
                 
             }
         }
