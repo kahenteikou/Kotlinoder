@@ -15,7 +15,12 @@ class CodeBuilder {
         }
         indentString = result
     }
-    
+    fun decIndentation():CodeBuilder{
+        if(cursorPos > 0){
+            cursorPos--
+        }
+        return this
+    }
     companion object{
         private class Line{
             private var indentCount:Int
