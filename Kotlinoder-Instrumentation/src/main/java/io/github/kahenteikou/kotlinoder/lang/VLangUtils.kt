@@ -86,5 +86,15 @@ class VLangUtils {
             }
             return isIdentifierValid(className2)
         }
+        @JvmStatic
+        fun addEscapeCharsToCode(code:String?):String{
+            var code2:String
+            code2 = if(code==null){
+                ""
+            }else{
+                code
+            }
+            return code2.replace("\"","\\\"")
+        }
     }
 }
