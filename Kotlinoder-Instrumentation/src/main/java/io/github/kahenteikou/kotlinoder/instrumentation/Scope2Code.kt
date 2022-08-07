@@ -181,7 +181,7 @@ class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
         }
     }
     private fun createExtendsAndImplements(cd:ClassDeclaration,cb:CodeBuilder){
-        var types:MutableList<IType> = MutableList<IType>()
+        var types:MutableList<IType> = ArrayList<IType>()
         for(typekun in cd.getImplements().getTypes()){
             types.add(typekun)
         }
@@ -192,6 +192,18 @@ class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
             return
         }
         var isFirst:Boolean=true
-        
+        for(type:IType in types){
+            if(type.getFullClassName().equals("java.lang.Object") || type.getFullClassName().equals("kotlin.Any")){
+                continue
+            }
+            if(isFirst) {
+                isFirst = false
+                cb.append(" : ")
+            }else{
+                cb.append(", ")
+            }
+            cb.append(type.getFullClassName()!!)
+        }
+
     }
 }
