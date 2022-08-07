@@ -48,7 +48,7 @@ class Scope2Code {
         @JvmStatic
         fun main(args:Array<String>){
             var scope:CompilationUnitDeclaration=demoScope()
-            
+            println("demo")
         }
     }
 }
