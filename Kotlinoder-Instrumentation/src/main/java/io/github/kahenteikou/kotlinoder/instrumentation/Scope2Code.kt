@@ -223,7 +223,12 @@ class CompilationUnitRenderer :CodeRenderer<CompilationUnitDeclaration>{
     }
 
     override fun render(e: CompilationUnitDeclaration, cb: CodeBuilder) {
-        if(e.getPackageName()!=null)
+        if(e.getPackageName()!=null||e.getPackageName()!!.isEmpty()){
+            cb.append("package ").append(e.getPackageName()!!).newLine().newLine()
+        }
+        for(cd in e.getDeclaredClasses()){
+            classDeclarationRenderer!!.render(cd,cb)
+        }
     }
 
 
