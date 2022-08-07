@@ -175,4 +175,9 @@ class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
         }
         cb.newLine()
     }
+    private fun createModifiers(cd:ClassDeclaration,cb:CodeBuilder){
+        for(m:Modifier in cd.getClassModifiers().getModifiers()){
+            cb.append(Utils.modifierToName(m)).append(" ")
+        }
+    }
 }
