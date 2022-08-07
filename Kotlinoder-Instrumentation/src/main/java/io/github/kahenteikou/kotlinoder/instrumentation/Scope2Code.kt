@@ -87,7 +87,6 @@ class Scope2Code {
             )
             var ksfactory = KtPsiFactory(env.project)
             var psif= ksfactory.createFile(renderer.render(scope).trimIndent())
-
             for(elem in psif.children) {
                 println(elem.text)
             }
