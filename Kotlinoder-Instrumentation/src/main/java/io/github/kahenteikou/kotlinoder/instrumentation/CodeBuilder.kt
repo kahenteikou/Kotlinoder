@@ -41,6 +41,9 @@ class CodeBuilder {
         currentLine = StringBuilder()
         return this
     }
+    fun newLine():CodeBuilder{
+        return newLine(cursorPos)
+    }
     
     companion object{
         private class Line{
