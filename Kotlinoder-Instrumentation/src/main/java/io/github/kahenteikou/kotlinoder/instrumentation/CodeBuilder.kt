@@ -21,6 +21,17 @@ class CodeBuilder {
         }
         return this
     }
+    fun incIndentation():CodeBuilder{
+        cursorPos++
+        return this
+    }
+    private fun getIndentation(pos:Int):String{
+        var result:String=""
+        for(i in 1..pos){
+            result += getIndentString()
+        }
+        return result
+    }
     companion object{
         private class Line{
             private var indentCount:Int
