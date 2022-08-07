@@ -209,7 +209,22 @@ class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
 }
 class CompilationUnitRenderer :CodeRenderer<CompilationUnitDeclaration>{
     private var classDeclarationRenderer:CodeRenderer<ClassDeclaration>?=null
-    
+    constructor(){
+
+    }
+    constructor(classDeclarationRenderer:CodeRenderer<ClassDeclaration>){
+        this.classDeclarationRenderer=classDeclarationRenderer
+    }
+
+    override fun render(entity: CompilationUnitDeclaration): String {
+        var cb=CodeBuilder()
+        render(entity,cb)
+        return cb.getCode()
+    }
+
+    override fun render(entity: CompilationUnitDeclaration, cb: CodeBuilder) {
+        TODO("Not yet implemented")
+    }
 
 
 }
