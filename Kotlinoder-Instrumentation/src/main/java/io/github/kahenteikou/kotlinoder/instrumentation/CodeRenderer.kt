@@ -1,4 +1,4 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
-interface CodeRenderer {
+interface CodeRenderer <T : CodeEntity> {
 }
