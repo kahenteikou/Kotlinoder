@@ -48,7 +48,9 @@ class Scope2Code {
                 Modifiers(Modifier.PUBLIC),Extends(),Extends()
             )
             builder.createVariable(myFileClass,Type("Int"),"value1")
-
+            var m1:MethodDeclaration=builder.declareMethod(myFileClass,
+            Modifiers(Modifier.PUBLIC),Type("Int"),"m1",
+                Parame
             return myFile
         }
         @JvmStatic
