@@ -124,7 +124,13 @@ class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
         cb.append(entity.getReturnType()!!.getFullClassName()!!)
         cb.append(" ").append(entity.getName()).append("(")
         renderParams(entity,cb)
-        
+        cb.append(") {").newLine()
+        cb.incIndentation()
+        for(i:Invocation in entity.getControlFlow().getInvocations()){
+            println(" --> inv: $i")
+            invocationRenderer.render(i,cb)
+        }
+        cb.decIndentation().append("}").newLine()
     }
     private fun createModifiers(md:MethodDeclaration,cb:CodeBuilder){
         for(m in md.getModifiers().getModifiers()){
