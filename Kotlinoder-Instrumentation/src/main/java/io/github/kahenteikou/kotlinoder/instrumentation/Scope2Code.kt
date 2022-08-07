@@ -127,5 +127,16 @@ class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
             cb.append(Utils.modifierToName(m)).append(" ")
         }
     }
+    private fun renderParams(e:MethodDeclaration,cb:CodeBuilder){
+        var firstCall:Boolean=true
+        for(v:IParameter in e.getParameters().getParamenters()){
+            if(firstCall){
+                firstCall=false
+            }else{
+                cb.append(", ")
+            }
+            cb.append(v.getType().getFullClassName()!!).append(" ").append(v.getName()!!)
+        }
+    }
 
 }
