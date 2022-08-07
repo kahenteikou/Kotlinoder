@@ -22,3 +22,9 @@ final class Utils {
     }
 
 }
+class InvocationCodeRenderer :CodeRenderer<Invocation>{
+    constructor(){
+
+    }
+    
+}
