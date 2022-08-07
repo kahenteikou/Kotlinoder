@@ -105,4 +105,8 @@ class InvocationCodeRenderer :CodeRenderer<Invocation>{
             }
         }
     }
+
+}
+class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
+    
 }
