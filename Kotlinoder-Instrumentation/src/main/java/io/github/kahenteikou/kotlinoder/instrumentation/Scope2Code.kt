@@ -40,7 +40,10 @@ class Scope2Code {
         @JvmStatic
         fun demoScope():CompilationUnitDeclaration{
             var builder:VisualCodeBuilder=VisualCodeBuilder_Impl()
-            
+            var myFile:CompilationUnitDeclaration=builder.declareCompilationUnit(
+                "MyFile.kt","my.testpackage"
+            )
+            return myFile
         }
     }
 }
