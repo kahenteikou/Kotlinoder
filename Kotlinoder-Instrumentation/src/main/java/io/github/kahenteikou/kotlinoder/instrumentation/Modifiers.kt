@@ -10,6 +10,10 @@ final class Modifiers :IModifiers{
         this.modifiers.addAll(modifiers)
     }
 
+    constructor(modifiers: List<Modifier>){
+        this.modifiers.addAll(modifiers)
+    }
+
     override fun getModifiers(): MutableList<Modifier> {
         if(readOnlyModifiers==null){
             readOnlyModifiers= Collections.unmodifiableList(modifiers)

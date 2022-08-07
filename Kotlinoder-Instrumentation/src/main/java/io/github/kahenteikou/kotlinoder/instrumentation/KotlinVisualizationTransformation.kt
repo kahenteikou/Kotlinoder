@@ -3,8 +3,12 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 import com.intellij.psi.PsiElement
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.IdGenerator
+import org.jetbrains.kotlin.lexer.KtModifierKeywordToken
+import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.psi.*
+import org.jetbrains.kotlin.psi.psiUtil.allChildren
 import java.util.*
+import kotlin.collections.ArrayList
 
 class KotlinVisualizationTransformation {
 }
@@ -51,8 +55,14 @@ class KotlinCodeVisitor{
     }
 
     fun visitClass(klass: KtClass) {
-        println(">> visitClass: ${klass.name}")
-
+        //println(">> visitClass: ${klass.name}")
+        println("CLASS: ${klass.name}")
+        /*currentScope=codeBuilder.declareClass(
+            currentScope as CompilationUnitDeclaration,
+            Type(klass.name,false),
+            convertModifiers(klass.modifierList)
+        )*/
+        convertModifiers(klass.modifierList)
     }
     fun visitNamedFunction(kfunc:KtNamedFunction){
         println(">> func : ${kfunc.name}")
@@ -69,5 +79,14 @@ class KotlinCodeVisitor{
                 parse(elemchild)
             }
         }
+    }
+    private fun convertModifiers(modifiers:KtModifierList?):IModifiers {
+        var modifierList:MutableList<Modifier> = ArrayList()
+        if(modifiers!!.hasModifier(KtTokens.PUBLIC_KEYWORD)){
+            modifierList.add(Modifier.PUBLIC)
+        }else if(modifiers!!.hasModifier(KtTokens.PRIVATE_KEYWORD)){
+            modifierList.add(Modifier.PRIVATE)
+        }
+        return Modifiers(modifierList)
     }
 }
