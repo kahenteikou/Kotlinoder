@@ -1,5 +1,5 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
-
+//complete
 class CodeBuilder {
     private var indentString:String="    "
     private var currentLine:StringBuilder = StringBuilder()
@@ -94,5 +94,9 @@ class CodeBuilder {
                 return indentCount
             }
         }
+    }
+
+    override fun toString(): String {
+        return getCode()
     }
 }
