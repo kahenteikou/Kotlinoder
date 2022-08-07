@@ -14,7 +14,7 @@ class Keywords {
         private var keywords:HashSet<String> = HashSet<String>()
         init{
             var keyWordStr=readKeyWords(
-                "/io/github/kahenteikou/kotlinoder/lang/keywords_kotlin"
+                "keywords_kotlin"
             )
             keywords.addAll(keyWordStr.split("\n"))
         }
