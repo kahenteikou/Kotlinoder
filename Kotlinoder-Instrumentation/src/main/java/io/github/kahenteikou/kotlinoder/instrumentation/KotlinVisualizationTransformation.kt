@@ -50,16 +50,20 @@ class KotlinCodeVisitor{
         return result
     }
 
-    fun visitClass(klass: KtClass, data: Int?) {
+    fun visitClass(klass: KtClass) {
         println(">> visitClass: ${klass.name}")
 
+    }
+    fun visitNamedFunction(kfunc:KtNamedFunction){
+        println(">> func : ${kfunc.name}")
     }
     fun parse(element: PsiElement){
         for(celem in element.children){
             if(celem is KtClass) {
-                visitClass(celem, 0)
-            }else if(celem is KtFunction) {
+                visitClass(celem)
+            }else if(celem is KtNamedFunction) {
                 //visitFunction(celem, 0)
+                visitNamedFunction(celem)
             }
             for(elemchild in celem.children){
                 parse(elemchild)
