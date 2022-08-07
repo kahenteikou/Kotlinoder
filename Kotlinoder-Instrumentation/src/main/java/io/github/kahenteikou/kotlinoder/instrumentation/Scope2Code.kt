@@ -180,4 +180,14 @@ class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
             cb.append(Utils.modifierToName(m)).append(" ")
         }
     }
+    private fun createExtendsAndImplements(cd:ClassDeclaration,cb:CodeBuilder){
+        var types:MutableList<IType> = MutableList<IType>()
+        for(typekun in cd.getImplements().getTypes()){
+            types.add(typekun)
+        }
+        for(typekun2 in cd.getExtends().getTypes()){
+            types.add(typekun2)
+        }
+        
+    }
 }
