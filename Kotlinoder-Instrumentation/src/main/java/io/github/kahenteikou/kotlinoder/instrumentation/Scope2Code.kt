@@ -185,7 +185,8 @@ class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
 
     override fun render(entity: MethodDeclaration, cb: CodeBuilder) {
         createModifiers(entity,cb)
-        cb.append(entity.getReturnType()!!.getFullClassName()!!)
+        cb.append("fun ")
+        //cb.append(entity.getReturnType()!!.getFullClassName()!!)
         cb.append(" ").append(entity.getName()).append("(")
         renderParams(entity,cb)
         cb.append(") {").newLine()
@@ -209,7 +210,8 @@ class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
             }else{
                 cb.append(", ")
             }
-            cb.append(v.getType().getFullClassName()!!).append(" ").append(v.getName()!!)
+            //cb.append(v.getType().getFullClassName()!!).append(" ").append(v.getName()!!)
+            cb.append(v.getName()!!).append(" : ").append(v.getType().getFullClassName()!!)
         }
     }
 
