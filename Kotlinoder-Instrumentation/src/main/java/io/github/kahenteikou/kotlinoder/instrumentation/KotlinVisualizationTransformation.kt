@@ -1,16 +1,14 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
+import com.intellij.psi.PsiElement
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.IdGenerator
-import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtClassOrObject
-import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.kotlin.psi.KtVisitor
+import org.jetbrains.kotlin.psi.*
 import java.util.*
 
 class KotlinVisualizationTransformation {
 }
-class KotlinCodeVisitor : KtVisitor<Unit, Int> {
+class KotlinCodeVisitor{
     private var codeBuilder:VisualCodeBuilder_Impl
     private var ktFile:KtFile
     private var rootScope:Scope?=null
@@ -52,8 +50,20 @@ class KotlinCodeVisitor : KtVisitor<Unit, Int> {
         return result
     }
 
-    override fun visitClass(klass: KtClass, data: Int?) {
+    fun visitClass(klass: KtClass, data: Int?) {
         println(">> visitClass: ${klass.name}")
-        return super.visitClass(klass, data)
+
+    }
+    fun parse(element: PsiElement){
+        for(celem in element.children){
+            if(celem is KtClass) {
+                visitClass(celem, 0)
+            }else if(celem is KtFunction) {
+                //visitFunction(celem, 0)
+            }
+            for(elemchild in celem.children){
+                parse(elemchild)
+            }
+        }
     }
 }

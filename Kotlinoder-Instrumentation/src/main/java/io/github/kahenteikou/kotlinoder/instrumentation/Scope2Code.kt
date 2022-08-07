@@ -97,11 +97,7 @@ class Scope2Code {
             var buffile=LightVirtualFile(scope.getFileName()!!, KotlinFileType.INSTANCE,renderer.render(scope))
             var psif=PsiManager.getInstance(env.project).findFile(buffile) as KtFile
             var parserkun = KotlinCodeVisitor(psif,VisualCodeBuilder_Impl())
-            for(clskun in psif.children){
-                if(clskun is KtClass){
-                    parserkun.visitClass(clskun,0)
-                }
-            }
+            parserkun.parse(psif)
 
         }
     }
