@@ -50,7 +50,8 @@ class Scope2Code {
             builder.createVariable(myFileClass,Type("Int"),"value1")
             var m1:MethodDeclaration=builder.declareMethod(myFileClass,
             Modifiers(Modifier.PUBLIC),Type("Int"),"m1",
-                Parame
+                Parameters(Parameter(Type("Int"),"v1")))
+
             return myFile
         }
         @JvmStatic
