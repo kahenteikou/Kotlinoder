@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
 class CodeBuilder {
+    private var indentString:String="    "
     companion object{
         private class Line{
             private var indentCount:Int
