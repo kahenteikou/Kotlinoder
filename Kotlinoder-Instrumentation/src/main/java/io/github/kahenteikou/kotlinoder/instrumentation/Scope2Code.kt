@@ -120,7 +120,11 @@ class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
     }
 
     override fun render(entity: MethodDeclaration, cb: CodeBuilder) {
-        TODO("Not yet implemented")
+        createModifiers(entity,cb)
+        cb.append(entity.getReturnType()!!.getFullClassName()!!)
+        cb.append(" ").append(entity.getName()).append("(")
+        renderParams(entity,cb)
+        
     }
     private fun createModifiers(md:MethodDeclaration,cb:CodeBuilder){
         for(m in md.getModifiers().getModifiers()){
