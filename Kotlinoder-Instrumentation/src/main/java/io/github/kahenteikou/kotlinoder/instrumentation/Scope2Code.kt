@@ -112,5 +112,15 @@ class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
     constructor(invocationRenderer:CodeRenderer<Invocation>){
         this.invocationRenderer=invocationRenderer
     }
-    
+
+    override fun render(entity: MethodDeclaration): String {
+        var cb:CodeBuilder=CodeBuilder()
+        render(entity,cb)
+        return cb.toString()
+    }
+
+    override fun render(entity: MethodDeclaration, cb: CodeBuilder) {
+        TODO("Not yet implemented")
+    }
+
 }
