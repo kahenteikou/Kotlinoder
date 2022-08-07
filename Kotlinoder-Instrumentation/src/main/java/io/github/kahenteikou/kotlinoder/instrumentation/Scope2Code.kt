@@ -173,5 +173,6 @@ class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
                         append(" ").append(v.getName()!!).newLine()
             }
         }
+        cb.newLine()
     }
 }
