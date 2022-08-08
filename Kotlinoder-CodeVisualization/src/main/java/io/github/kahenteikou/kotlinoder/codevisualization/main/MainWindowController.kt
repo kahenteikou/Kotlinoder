@@ -86,7 +86,11 @@ class MainWindowController : Initializable {
         }
     }
     private fun updateView(){
-
+        if(rootPane==null){
+            error("UI NOT READY!")
+            return
+        }
+        U
     }
 
 }
