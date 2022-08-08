@@ -20,6 +20,9 @@ class KotlinCodeVisitor{
     private var lastMethod:Invocation?=null
     private var vIdStack: Stack<String> = Stack()
     private var generator:IdGenerator=FlowFactory.newIdGenerator()
+    fun getrootScope():Scope?{
+        return rootScope
+    }
     constructor(ktFile:KtFile,codeBuilder:VisualCodeBuilder_Impl){
 
         this.codeBuilder=codeBuilder
