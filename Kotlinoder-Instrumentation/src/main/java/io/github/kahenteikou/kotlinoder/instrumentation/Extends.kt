@@ -9,6 +9,9 @@ class Extends : IExtends {
     constructor(vararg types:IType){
         this.types.addAll(types)
     }
+    constructor(types:List<IType>){
+        this.types.addAll(types)
+    }
 
     override fun getTypes(): MutableList<IType> {
         if(readOnlyTypes==null){

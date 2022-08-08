@@ -63,6 +63,7 @@ class KotlinCodeVisitor{
             convertModifiers(klass.modifierList)
         )*/
         convertModifiers(klass.modifierList)
+        convertExtends(klass)
     }
     fun visitNamedFunction(kfunc:KtNamedFunction){
         println(">> func : ${kfunc.name}")
@@ -88,5 +89,17 @@ class KotlinCodeVisitor{
             modifierList.add(Modifier.PRIVATE)
         }
         return Modifiers(modifierList)
+    }
+    private fun convertExtends(klass: KtClass):IExtends{
+        var types:MutableList<Type> = ArrayList()
+
+        if(klass.getSuperTypeList()==null)
+            return Extends()
+        for(sp in klass.getSuperTypeList()!!.children){
+            if(sp is KtSuperTypeEntry){
+                types.add(Type(sp.typeReference!!.text,false))
+            }
+        }
+        return Extends(types)
     }
 }
