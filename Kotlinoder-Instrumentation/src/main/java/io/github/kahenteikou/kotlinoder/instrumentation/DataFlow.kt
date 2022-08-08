@@ -45,10 +45,10 @@ class DataFlowImpl :DataFlow{
             }
         }
         for(receiver:Invocation in controlFlow.getInvocations()){
-            for(v:Variable in receiver.getArguments()){
-                var sender=senders.get(v.getName())
-                println(">> searching sender for " + v.getName()
-                 + " with type " + v.getType())
+            for(v:Variable? in receiver.getArguments()){
+                var sender=senders.get(v!!.getName())
+                println(">> searching sender for " + v!!.getName()
+                 + " with type " + v!!.getType())
                 if(sender!=null){
                     println("--> sender found for '"
                     + v.getName()

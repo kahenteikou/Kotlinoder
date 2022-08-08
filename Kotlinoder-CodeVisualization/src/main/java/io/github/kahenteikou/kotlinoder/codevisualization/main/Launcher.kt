@@ -5,12 +5,16 @@ import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.stage.Stage
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 
 class Launcher : Application(){
     companion object{
         @JvmStatic
         fun main(args: Array<String>) {
-            println("Main!!")
+            var loggerkun:Logger=LogManager.getLogger("Launcher")
+
+            loggerkun.warn("Main!!")
             launch(Launcher::class.java,*args)
         }
     }
