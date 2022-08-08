@@ -6,7 +6,7 @@ import java.util.*
 
 class MainWindowController : Initializable {
     override fun initialize(location: URL?, resources: ResourceBundle?) {
-        
+
     }
 
 }
