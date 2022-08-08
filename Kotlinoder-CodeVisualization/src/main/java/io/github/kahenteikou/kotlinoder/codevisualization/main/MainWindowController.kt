@@ -75,7 +75,7 @@ class MainWindowController : Initializable {
                 chooser.title="Open kotlin file"
                 chooser.extensionFilters.add(mdFilt)
                 chooser.extensionFilters.add(allFsFilt)
-                currentDocument=chooser.showOpenDialog(null).absoluteFile
+                currentDocument=chooser.showOpenDialog(this.rootPane.scene.window).absoluteFile
             }else{
                 currentDocument=f
             }
