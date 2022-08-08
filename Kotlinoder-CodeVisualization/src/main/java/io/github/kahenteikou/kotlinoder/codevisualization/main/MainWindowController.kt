@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
+import com.intellij.openapi.util.Disposer
 import eu.mihosoft.vrl.workflow.Connector
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.VFlow
@@ -13,6 +14,10 @@ import javafx.scene.control.TextArea
 import javafx.scene.input.KeyEvent
 import javafx.scene.layout.Pane
 import javafx.stage.FileChooser
+import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
+import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
+import org.jetbrains.kotlin.config.CompilerConfiguration
+import org.jetbrains.kotlin.psi.KtPsiFactory
 import java.io.File
 import java.io.IOException
 import java.net.URL
