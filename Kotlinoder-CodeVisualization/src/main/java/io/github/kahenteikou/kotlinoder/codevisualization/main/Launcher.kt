@@ -11,7 +11,7 @@ class Launcher : Application(){
         @JvmStatic
         fun main(args: Array<String>) {
             println("Main!!")
-            launch(*args)
+            launch(Launcher::class.java,*args)
         }
     }
     private var controller:MainWindowController?=null
