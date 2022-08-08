@@ -91,6 +91,14 @@ class MainWindowController : Initializable {
             return
         }
 
+        val config= CompilerConfiguration()
+        var dispos= Disposer.newDisposable()
+        val env= KotlinCoreEnvironment.createForProduction(
+            dispos,
+            config,
+            EnvironmentConfigFiles.JVM_CONFIG_FILES
+        )
+        var ksfactory = KtPsiFactory(env.project)
     }
 
 }
