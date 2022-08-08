@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Kotlinoder-CodeObserver" />
+            <option value="$PROJECT_DIR$/Kotlinoder-CodeVisualization" />
             <option value="$PROJECT_DIR$/Kotlinoder-Instrumentation" />
           </set>
         </option>
