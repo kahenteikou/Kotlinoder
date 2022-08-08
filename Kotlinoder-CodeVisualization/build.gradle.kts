@@ -7,3 +7,6 @@ plugins {
 }
 group="io.github.kahenteikou.kotlinoder"
 version="1.0-SNAPSHOT"
+application{
+    mainClass.set("io.github.kahenteikou.kotlinoder.codevisualization.main.Launcher")
+}
