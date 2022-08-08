@@ -25,6 +25,9 @@ class Launcher : Application(){
         }
         controller=fxmlLoader.getController()
         var scene:Scene=Scene(fxmlLoader.getRoot() as Parent, 1200.0, 800.0)
-        
+        primaryStage?.title="Code Visualization"
+        primaryStage?.scene=scene
+        primaryStage?.show()
+
     }
 }
