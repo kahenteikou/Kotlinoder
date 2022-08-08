@@ -12,11 +12,18 @@ import javafx.fxml.Initializable
 import javafx.scene.control.TextArea
 import javafx.scene.input.KeyEvent
 import javafx.scene.layout.Pane
+import javafx.stage.FileChooser
+import java.io.File
+import java.io.IOException
 import java.net.URL
+import java.nio.file.Files
+import java.nio.file.Paths
 import java.util.*
+import java.util.logging.Logger
 import kotlin.collections.HashMap
 
 class MainWindowController : Initializable {
+    private var currentDocument:File?=null
     @FXML
     lateinit var editor: TextArea
     @FXML
@@ -45,7 +52,7 @@ class MainWindowController : Initializable {
     }
     @FXML
     fun onLoadAction(e:ActionEvent){
-
+        loadTextFile(null)
     }
     @FXML
     fun onSaveAction(e:ActionEvent){
@@ -57,6 +64,28 @@ class MainWindowController : Initializable {
     }
     @FXML
     fun onCloseAction(e:ActionEvent){
+
+    }
+    private fun loadTextFile(f: File?){
+        try{
+            if(f==null){
+                var mdFilt:FileChooser.ExtensionFilter = FileChooser.ExtensionFilter("Kotlin files (*.kt)", "*.kt")
+                var allFsFilt=FileChooser.ExtensionFilter("All files (*.*)", "*.*")
+                var chooser=FileChooser()
+                chooser.title="Open kotlin file"
+                chooser.extensionFilters.add(mdFilt)
+                chooser.extensionFilters.add(allFsFilt)
+                currentDocument=chooser.showOpenDialog(null).absoluteFile
+            }else{
+                currentDocument=f
+            }
+            editor.text=String(Files.readAllBytes(Paths.get(currentDocument!!.absolutePath)),Charsets.UTF_8)
+            updateView()
+        }catch (ex:IOException){
+            Logger.getLogger(MainWindowController::class.java.name).severe(ex.toString())
+        }
+    }
+    private fun updateView(){
 
     }
 
