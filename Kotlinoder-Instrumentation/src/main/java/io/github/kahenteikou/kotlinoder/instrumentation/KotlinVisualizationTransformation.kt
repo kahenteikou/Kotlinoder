@@ -69,10 +69,13 @@ class KotlinCodeVisitor{
         }
         currentScope=(currentScope as ClassDeclaration).getParent()
         currentScope?.setCode(klass.text)
-        
+
     }
     fun visitNamedFunction(kfunc:KtNamedFunction){
         println(">> func : ${kfunc.name}")
+        for(elemchild in kfunc.children){
+            parse(elemchild)
+        }
     }
     fun parse(element: PsiElement){
         for(celem in element.children){
