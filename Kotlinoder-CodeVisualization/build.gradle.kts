@@ -16,6 +16,7 @@ dependencies{
     implementation("eu.mihosoft.vrl.workflow:vworkflows-fx:0.2.5.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
     implementation("org.jetbrains.kotlin:kotlin-test:1.7.10")
+    implementation(project(":Kotlinoder-Instrumentation"))
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.7.10")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
