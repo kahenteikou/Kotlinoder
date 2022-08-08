@@ -1,8 +1,10 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
 import eu.mihosoft.vrl.workflow.Connector
+import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.VFlow
 import eu.mihosoft.vrl.workflow.VNode
+import eu.mihosoft.vrl.workflow.fx.ScalableContentPane
 import io.github.kahenteikou.kotlinoder.instrumentation.CodeEntity
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
@@ -19,13 +21,23 @@ class MainWindowController : Initializable {
     lateinit var editor: TextArea
     @FXML
     lateinit var view:Pane
-    private var rootPane:Pane
-    private var flow:VFlow
+    lateinit private var rootPane:Pane
+    lateinit private var flow:VFlow
     private var invocationNodes:MutableMap<CodeEntity, VNode> = HashMap()
     private var variableConnectors:MutableMap<String,Connector> = HashMap()
-    
-    override fun initialize(location: URL?, resources: ResourceBundle?) {
 
+    override fun initialize(location: URL?, resources: ResourceBundle?) {
+        println("Init...")
+        var canvas=ScalableContentPane()
+        canvas.style="-fx-background-color: rgb(0,0,0)"
+        canvas.maxScaleX=1.0
+        canvas.maxScaleY=1.0
+        view.children.add(canvas)
+        var root:Pane=Pane()
+        canvas.content=root
+        root.style="-fx-background-color: linear-gradient(to bottom, rgb(10,32,60), rgb(42,52,120));"
+        rootPane=root
+        flow=FlowFactory.newFlow()
     }
     @FXML
     fun onKeyTyped(event: KeyEvent){
