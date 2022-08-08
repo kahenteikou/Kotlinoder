@@ -28,4 +28,5 @@ val jar by tasks.getting(Jar::class){
     manifest{
         attributes["Main-Class"]= "io.github.kahenteikou.kotlinoder.codevisualization.main.Launcher"
     }
+    duplicatesStrategy= DuplicatesStrategy.EXCLUDE
 }
