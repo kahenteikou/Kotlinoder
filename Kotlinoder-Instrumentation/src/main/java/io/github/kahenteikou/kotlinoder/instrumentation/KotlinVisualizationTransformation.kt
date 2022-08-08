@@ -57,13 +57,19 @@ class KotlinCodeVisitor{
     fun visitClass(klass: KtClass) {
         //println(">> visitClass: ${klass.name}")
         println("CLASS: ${klass.name}")
-        /*currentScope=codeBuilder.declareClass(
+        currentScope=codeBuilder.declareClass(
             currentScope as CompilationUnitDeclaration,
             Type(klass.name,false),
-            convertModifiers(klass.modifierList)
-        )*/
-        convertModifiers(klass.modifierList)
-        convertExtends(klass)
+            convertModifiers(klass.modifierList),
+            convertExtends(klass),Extends()
+        )
+
+        for(elemchild in klass.children){
+            parse(elemchild)
+        }
+        currentScope=(currentScope as ClassDeclaration).getParent()
+        currentScope?.setCode(klass.text)
+        
     }
     fun visitNamedFunction(kfunc:KtNamedFunction){
         println(">> func : ${kfunc.name}")
@@ -75,9 +81,6 @@ class KotlinCodeVisitor{
             }else if(celem is KtNamedFunction) {
                 //visitFunction(celem, 0)
                 visitNamedFunction(celem)
-            }
-            for(elemchild in celem.children){
-                parse(elemchild)
             }
         }
     }
