@@ -17,4 +17,15 @@ dependencies{
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
     implementation("org.jetbrains.kotlin:kotlin-test:1.7.10")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.7.10")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+}
+javafx{
+    version="17"
+    modules= arrayOf("javafx.controls", "javafx.fxml").toMutableList()
+}
+val jar by tasks.getting(Jar::class){
+    manifest{
+        attributes["Main-Class"]= "io.github.kahenteikou.kotlinoder.codevisualization.main.Launcher"
+    }
 }
