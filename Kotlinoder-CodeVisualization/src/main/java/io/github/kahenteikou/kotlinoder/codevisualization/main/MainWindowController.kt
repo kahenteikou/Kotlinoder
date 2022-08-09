@@ -18,6 +18,7 @@ import javafx.scene.control.TextArea
 import javafx.scene.input.KeyEvent
 import javafx.scene.layout.Pane
 import javafx.stage.FileChooser
+import org.apache.logging.log4j.LogManager
 import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
 import org.jetbrains.kotlin.config.CompilerConfiguration
@@ -93,12 +94,12 @@ class MainWindowController : Initializable {
             editor.text=String(Files.readAllBytes(Paths.get(currentDocument!!.absolutePath)),Charsets.UTF_8)
             updateView()
         }catch (ex:IOException){
-            Logger.getLogger(MainWindowController::class.java.name).severe(ex.toString())
+            LogManager.getLogger("Launcher").error(ex.toString())
         }
     }
     private fun updateView(){
         if(rootPane==null){
-            error("UI NOT READY!")
+            LogManager.getLogger("Launcher").error("UI NOT READY!")
             return
         }
 
@@ -120,8 +121,10 @@ class MainWindowController : Initializable {
         flow.setSkinFactories()
         flow.model.isVisible=true
         if(parserkun.getrootScope()==null){
+            LogManager.getLogger("Launcher").error("No Scope!")
             return
         }
+        println(parserkun.getrootScope()!!.toString())
 
 
     }
