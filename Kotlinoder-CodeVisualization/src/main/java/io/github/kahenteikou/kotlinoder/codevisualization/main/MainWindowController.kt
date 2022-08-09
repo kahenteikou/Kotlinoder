@@ -8,10 +8,7 @@ import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.VFlow
 import eu.mihosoft.vrl.workflow.VNode
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane
-import io.github.kahenteikou.kotlinoder.instrumentation.CodeEntity
-import io.github.kahenteikou.kotlinoder.instrumentation.CompilationUnitDeclaration
-import io.github.kahenteikou.kotlinoder.instrumentation.KotlinCodeVisitor
-import io.github.kahenteikou.kotlinoder.instrumentation.VisualCodeBuilder_Impl
+import io.github.kahenteikou.kotlinoder.instrumentation.*
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
@@ -126,6 +123,13 @@ class MainWindowController : Initializable {
             return
         }
         println(parserkun.getrootScope()!!.toString())
+        var renderer: CompilationUnitRenderer = CompilationUnitRenderer(
+            ClassDeclarationRenderer(
+                MethodDeclarationRenderer(
+                    InvocationCodeRenderer()
+                )
+            )
+        )
         println(renderer.render(parserkun.getrootScope() as CompilationUnitDeclaration))
 
 
