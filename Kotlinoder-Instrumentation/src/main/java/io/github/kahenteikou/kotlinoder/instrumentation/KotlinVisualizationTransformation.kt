@@ -76,11 +76,12 @@ class KotlinCodeVisitor{
     }
     fun visitNamedFunction(kfunc:KtNamedFunction){
         println("m: ${kfunc.name}, parentscope: ${currentScope?.getName()}: ${currentScope?.getType()}")
+        println("${kfunc.typeReference!!.text}")
         if(currentScope is ClassDeclaration){
             currentScope=codeBuilder.declareMethod(
                 currentScope as ClassDeclaration,
                 convertModifiers(kfunc.modifierList),
-                Type(kfunc.typeReference!!.name,true),
+                Type(kfunc.typeReference!!.text,true),
                 kfunc.name!!,Parameters()
             )
 

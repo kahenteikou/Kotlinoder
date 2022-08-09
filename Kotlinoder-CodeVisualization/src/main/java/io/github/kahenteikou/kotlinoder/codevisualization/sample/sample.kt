@@ -5,3 +5,6 @@ public class sample {
         return v1
     }
 }
+public class s2{
+
+}
