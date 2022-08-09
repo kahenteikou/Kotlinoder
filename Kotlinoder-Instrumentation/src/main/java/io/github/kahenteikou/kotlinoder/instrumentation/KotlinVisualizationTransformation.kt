@@ -81,7 +81,7 @@ class KotlinCodeVisitor{
         }
     }
     fun visitPackageDirective(ktPackageDirective: KtPackageDirective){
-        (rootScope as? CompilationUnitDeclaration)?.setPackageName(ktPackageDirective.name)
+        (rootScope as? CompilationUnitDeclaration)?.setPackageName(ktPackageDirective.qualifiedName)
         for(elemchild in ktPackageDirective.children){
             parse(elemchild)
         }
