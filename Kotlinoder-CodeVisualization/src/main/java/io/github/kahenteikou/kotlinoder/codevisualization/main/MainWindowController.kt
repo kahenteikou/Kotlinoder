@@ -1,12 +1,16 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
 import com.intellij.openapi.util.Disposer
+import com.intellij.psi.PsiManager
+import com.intellij.testFramework.LightVirtualFile
 import eu.mihosoft.vrl.workflow.Connector
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.VFlow
 import eu.mihosoft.vrl.workflow.VNode
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane
 import io.github.kahenteikou.kotlinoder.instrumentation.CodeEntity
+import io.github.kahenteikou.kotlinoder.instrumentation.KotlinCodeVisitor
+import io.github.kahenteikou.kotlinoder.instrumentation.VisualCodeBuilder_Impl
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
@@ -17,6 +21,8 @@ import javafx.stage.FileChooser
 import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
 import org.jetbrains.kotlin.config.CompilerConfiguration
+import org.jetbrains.kotlin.idea.KotlinFileType
+import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtPsiFactory
 import java.io.File
 import java.io.IOException
@@ -104,6 +110,20 @@ class MainWindowController : Initializable {
             EnvironmentConfigFiles.JVM_CONFIG_FILES
         )
         var ksfactory = KtPsiFactory(env.project)
+
+        //var psif= ksfactory.createFile(renderer.render(scope))
+        var buffile= LightVirtualFile(currentDocument!!.name, KotlinFileType.INSTANCE,editor.getText())
+        var psif= PsiManager.getInstance(env.project).findFile(buffile) as KtFile
+        var parserkun = KotlinCodeVisitor(psif, VisualCodeBuilder_Impl())
+        parserkun.parse(psif)
+        flow.clear()
+        flow.setSkinFactories()
+        flow.model.isVisible=true
+        if(parserkun.getrootScope()==null){
+            return
+        }
+
+
     }
 
 }
