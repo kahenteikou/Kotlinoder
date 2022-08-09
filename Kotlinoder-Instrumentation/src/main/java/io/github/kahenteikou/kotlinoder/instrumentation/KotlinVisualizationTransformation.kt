@@ -82,7 +82,7 @@ class KotlinCodeVisitor{
                 currentScope as ClassDeclaration,
                 convertModifiers(kfunc.modifierList),
                 Type(kfunc.typeReference!!.text,true),
-                kfunc.name!!,Parameters()
+                kfunc.name!!,convertMethodParameters(kfunc.valueParameters)
             )
 
         }
@@ -134,9 +134,9 @@ class KotlinCodeVisitor{
         }
         return Extends(types)
     }
-    private fun convertMethodParameters(ktFunction: KtFunction):IParameters{
+    private fun convertMethodParameters(params: List<KtParameter>):IParameters{
         var parameters:MutableList<Parameter> = ArrayList()
-        for(param in ktFunction.valueParameters){
+        for(param in params){
             parameters.add(Parameter(Type(param.typeReference!!.text!!,true),param.name!!))
         }
         return Parameters(parameters)
