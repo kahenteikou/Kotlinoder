@@ -98,7 +98,6 @@ class Scope2Code {
             var psif=PsiManager.getInstance(env.project).findFile(buffile) as KtFile
             var parserkun = KotlinCodeVisitor(psif,VisualCodeBuilder_Impl())
             parserkun.parse(psif)
-
         }
     }
 }

@@ -9,6 +9,7 @@ import eu.mihosoft.vrl.workflow.VFlow
 import eu.mihosoft.vrl.workflow.VNode
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane
 import io.github.kahenteikou.kotlinoder.instrumentation.CodeEntity
+import io.github.kahenteikou.kotlinoder.instrumentation.CompilationUnitDeclaration
 import io.github.kahenteikou.kotlinoder.instrumentation.KotlinCodeVisitor
 import io.github.kahenteikou.kotlinoder.instrumentation.VisualCodeBuilder_Impl
 import javafx.event.ActionEvent
@@ -125,6 +126,7 @@ class MainWindowController : Initializable {
             return
         }
         println(parserkun.getrootScope()!!.toString())
+        println(renderer.render(parserkun.getrootScope() as CompilationUnitDeclaration))
 
 
     }
