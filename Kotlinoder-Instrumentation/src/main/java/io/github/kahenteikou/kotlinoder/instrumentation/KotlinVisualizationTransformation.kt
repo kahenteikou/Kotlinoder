@@ -134,4 +134,11 @@ class KotlinCodeVisitor{
         }
         return Extends(types)
     }
+    private fun convertMethodParameters(ktFunction: KtFunction):IParameters{
+        var parameters:MutableList<Parameter> = ArrayList()
+        for(param in ktFunction.valueParameters){
+            parameters.add(Parameter(Type(param.typeReference!!.text!!,true),param.name!!))
+        }
+        return Parameters(parameters)
+    }
 }

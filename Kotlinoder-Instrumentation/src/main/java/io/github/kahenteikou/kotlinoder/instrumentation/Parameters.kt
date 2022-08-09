@@ -10,6 +10,9 @@ class Parameters:IParameters {
     constructor(vararg params:IParameter){
         this.arguments.addAll(params)
     }
+    constructor(aparams:List<IParameter>){
+        this.arguments.addAll(aparams)
+    }
 
     override fun getParamenters(): MutableList<IParameter> {
         if(readOnlyParams==null){
