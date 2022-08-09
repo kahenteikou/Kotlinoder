@@ -80,6 +80,9 @@ class KotlinCodeVisitor{
             parse(elemchild)
         }
     }
+    fun visitPackageDirective(ktPackageDirective: KtPackageDirective){
+
+    }
     fun parse(element: PsiElement){
         for(celem in element.children){
             if(celem is KtClass) {
@@ -87,6 +90,8 @@ class KotlinCodeVisitor{
             }else if(celem is KtNamedFunction) {
                 //visitFunction(celem, 0)
                 visitNamedFunction(celem)
+            }else if(celem is KtPackageDirective){
+                visitPackageDirective(celem)
             }
         }
     }

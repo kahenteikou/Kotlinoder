@@ -28,6 +28,11 @@ ScopeImpl(id,parent,ScopeType.COMPILATION_UNIT,name,null),CompilationUnitDeclara
         return metadata.getPackageName()
     }
 
+    override fun setPackageName(packageName: String) {
+        metadata.setPackageName(packageName)
+    }
+
+
 }
 final class CompilationUnitMetaData {
     private final var packageName:String
@@ -36,5 +41,8 @@ final class CompilationUnitMetaData {
     }
     fun getPackageName():String {
         return packageName
+    }
+    fun setPackageName(packageName:String) {
+        this.packageName = packageName
     }
 }
