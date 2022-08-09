@@ -75,7 +75,9 @@ class KotlinCodeVisitor{
 
     }
     fun visitNamedFunction(kfunc:KtNamedFunction){
-        println(">> func : ${kfunc.name}")
+        println("m: ${kfunc.name}, parentscope: ${currentScope?.getName()}: ${currentScope?.getType()}")
+
+
         for(elemchild in kfunc.children){
             parse(elemchild)
         }
