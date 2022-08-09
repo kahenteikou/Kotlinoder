@@ -76,11 +76,23 @@ class KotlinCodeVisitor{
     }
     fun visitNamedFunction(kfunc:KtNamedFunction){
         println("m: ${kfunc.name}, parentscope: ${currentScope?.getName()}: ${currentScope?.getType()}")
+        if(currentScope is ClassDeclaration){
+            currentScope=codeBuilder.declareMethod(
+                currentScope as ClassDeclaration,
+                convertModifiers(kfunc.modifierList),
+                Type(kfunc.typeReference!!.name,true),
+                kfunc.name!!,Parameters()
+            )
+
+        }
+        currentScope!!.setCode(kfunc.text)
 
 
         for(elemchild in kfunc.children){
             parse(elemchild)
         }
+        currentScope=currentScope!!.getParent()
+        currentScope!!.setCode(kfunc.text)
     }
     fun visitPackageDirective(ktPackageDirective: KtPackageDirective){
         (rootScope as? CompilationUnitDeclaration)?.setPackageName(ktPackageDirective.qualifiedName)
