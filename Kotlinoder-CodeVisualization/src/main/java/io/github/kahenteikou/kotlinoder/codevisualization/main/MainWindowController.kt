@@ -197,6 +197,7 @@ class MainWindowController : Initializable {
                 scopeToFlow(s,resultflow)
             }
         }
+        dataFlowToFlow(scope,resultflow)
         return resultflow
     }
     fun getVariableById(n:VNode,vName:String):Connector?{
