@@ -134,8 +134,12 @@ class MainWindowController : Initializable {
 
 
     }
-    fun scopeToFlow(scope:Scope,parent:VFlow?):VFlow{
-        
+    fun scopeToFlow(scope:Scope,parent:VFlow):VFlow{
+        var isClassOrScript:Boolean=
+            scope.getType()==ScopeType.CLASS||scope.getType()==ScopeType.COMPILATION_UNIT
+                    || scope.getType()==ScopeType.NONE
+        var resultflow:VFlow=parent.newSubFlow()
+        return resultflow
     }
 
 }
