@@ -111,6 +111,9 @@ class KotlinCodeVisitor{
             parse(elemchild)
         }
     }
+    fun visitMethodInvokeExpression(dotQualifiedExpression: KtDotQualifiedExpression){
+
+    }
     fun parse(element: PsiElement){
         for(celem in element.children){
             if(celem is KtClass) {
@@ -120,6 +123,8 @@ class KotlinCodeVisitor{
                 visitNamedFunction(celem)
             }else if(celem is KtPackageDirective){
                 visitPackageDirective(celem)
+            }else if(celem is KtDotQualifiedExpression){
+                visitMethodInvokeExpression(celem)
             }
         }
     }
