@@ -139,6 +139,11 @@ class MainWindowController : Initializable {
             scope.getType()==ScopeType.CLASS||scope.getType()==ScopeType.COMPILATION_UNIT
                     || scope.getType()==ScopeType.NONE
         var resultflow:VFlow=parent.newSubFlow()
+        invocationNodes[scope] = resultflow.model
+        var title="${scope.getType()} ${scope.getName()}(): ${scope.getId()}"
+        if(isClassOrScript){
+            
+        }
         return resultflow
     }
 
