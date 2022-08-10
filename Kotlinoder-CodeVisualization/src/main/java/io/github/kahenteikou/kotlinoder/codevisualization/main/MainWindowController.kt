@@ -144,6 +144,10 @@ class MainWindowController : Initializable {
             var relations:MutableList<DataRelation> = dataFlow.getRelationsForReceiver(i)
             println("relations: ${relations.size}")
             for(dataRelation:DataRelation in relations){
+                var sender:VNode= invocationNodes[dataRelation.getSender()]!!
+                var receiver:VNode= invocationNodes[dataRelation.getReceiver()]!!
+                println("SENDER: ${sender.id}, receiver: ${receiver.id}")
+                var retValName:String=dataRelation.getSender().getReturnValueName()
                 
             }
         }
