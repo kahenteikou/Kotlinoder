@@ -200,6 +200,12 @@ class MainWindowController : Initializable {
             println("id: $id")
             return id
         }
+        @JvmStatic
+        fun getVariableId(n:VNode,v:String):String{
+            var id:String="${n.id}:${v}"
+            println("id: $id")
+            return id
+        }
     }
 
 }
