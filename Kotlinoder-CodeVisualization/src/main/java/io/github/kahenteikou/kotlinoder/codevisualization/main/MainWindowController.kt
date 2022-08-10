@@ -142,8 +142,15 @@ class MainWindowController : Initializable {
         invocationNodes[scope] = resultflow.model
         var title="${scope.getType()} ${scope.getName()}(): ${scope.getId()}"
         if(isClassOrScript){
-            
+            resultflow.model.width=550.0
+            resultflow.model.height=800.0
+            resultflow.isVisible = true
+        }else{
+            resultflow.model.width=400.0
+            resultflow.model.height=300.0
         }
+        resultflow.model.title=title
+        
         return resultflow
     }
 
