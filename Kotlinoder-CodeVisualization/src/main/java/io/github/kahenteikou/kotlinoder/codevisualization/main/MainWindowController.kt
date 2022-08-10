@@ -150,6 +150,7 @@ class MainWindowController : Initializable {
             resultflow.model.height=300.0
         }
         resultflow.model.title=title
+        println("Title: $title, ${scope.getType()}")
         
         return resultflow
     }
