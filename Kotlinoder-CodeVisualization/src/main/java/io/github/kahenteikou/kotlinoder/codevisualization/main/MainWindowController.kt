@@ -138,6 +138,8 @@ class MainWindowController : Initializable {
 
     }
     fun dataFlowToFlow(scope:Scope,parent: VFlow){
+        var dataFlow:DataFlow=scope.getDataFlow()
+        dataFlow.create(scope.getControlFlow())
         
     }
     fun scopeToFlow(scope:Scope,parent:VFlow):VFlow{
