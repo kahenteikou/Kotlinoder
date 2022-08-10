@@ -148,6 +148,9 @@ class MainWindowController : Initializable {
                 var receiver:VNode= invocationNodes[dataRelation.getReceiver()]!!
                 println("SENDER: ${sender.id}, receiver: ${receiver.id}")
                 var retValName:String=dataRelation.getSender().getReturnValueName()
+                println(" --> sender: ${retValName}")
+                var senderConnector:Connector=getVariableById(sender,retValName)!!
+                var inputIndex=0
                 
             }
         }
