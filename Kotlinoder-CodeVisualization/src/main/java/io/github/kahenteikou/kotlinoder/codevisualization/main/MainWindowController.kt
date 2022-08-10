@@ -183,9 +183,10 @@ class MainWindowController : Initializable {
             }
             n.width=400.0
             n.height=100.0
-            println("")
-
+            println("Node: ${i.getCode()?.toString()}")
+            prevNode=n
         }
+        
         return resultflow
     }
     companion object{
