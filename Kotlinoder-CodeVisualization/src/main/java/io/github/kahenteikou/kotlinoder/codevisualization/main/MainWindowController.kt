@@ -163,6 +163,14 @@ class MainWindowController : Initializable {
                 n.title=newTitle
                 invocationNodes[i] = n
             }
+            n.setMainInput(n.addInput("control"))
+            n.setMainOutput(n.addOutput("control"))
+            if(prevNode!=null){
+                resultflow.connect(prevNode,n,"control")
+            }
+            for(v:Variable in i.getArguments()){
+                
+            }
 
         }
         return resultflow
