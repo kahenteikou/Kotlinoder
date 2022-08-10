@@ -3,6 +3,7 @@ package io.github.kahenteikou.kotlinoder.codevisualization.main
 import com.intellij.openapi.util.Disposer
 import com.intellij.psi.PsiManager
 import com.intellij.testFramework.LightVirtualFile
+import eu.mihosoft.vrl.workflow.ConnectionResult
 import eu.mihosoft.vrl.workflow.Connector
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.VFlow
@@ -151,7 +152,19 @@ class MainWindowController : Initializable {
                 println(" --> sender: ${retValName}")
                 var senderConnector:Connector=getVariableById(sender,retValName)!!
                 var inputIndex=0
-                
+                for(v:Variable? in dataRelation.getReceiver().getArguments()){
+                    if(v != null){
+                        println(" --> receiver: ${v.getName()}, (possion receiver)")
+                        if(v.getName()?.equals(retValName) == true){
+                            var receiverConnector:Connector=getVariableById(receiver,v.getName()!!)!!
+                            var result:ConnectionResult=parent.connect(senderConnector,receiverConnector)
+                            println(" -> connected: ${result.status.isCompatible}")
+                            println(" -> ${result.status.message}")
+
+                        }
+                        inputIndex++
+                    }
+                }
             }
         }
     }
