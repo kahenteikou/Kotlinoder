@@ -168,8 +168,12 @@ class MainWindowController : Initializable {
             if(prevNode!=null){
                 resultflow.connect(prevNode,n,"control")
             }
-            for(v:Variable in i.getArguments()){
-                
+            for(v:Variable? in i.getArguments()){
+                if(v!=null){
+                    var input:Connector=n.addInput("data")
+                    println(" > Write Connector: ")
+                    variableConnectors[getV]
+                }
             }
 
         }
