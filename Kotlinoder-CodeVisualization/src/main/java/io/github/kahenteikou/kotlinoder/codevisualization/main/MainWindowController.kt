@@ -151,7 +151,20 @@ class MainWindowController : Initializable {
         }
         resultflow.model.title=title
         println("Title: $title, ${scope.getType()}")
-        
+        var prevNode:VNode?=null
+        for(i:Invocation in scope.getControlFlow().getInvocations()){
+            lateinit var n:VNode
+            if(i.isScope()&&!isClassOrScript){
+                val sI:ScopeInvocation=i as ScopeInvocation
+                n=scopeToFlow(sI.getScope(),resultflow).model
+            }else{
+                n=resultflow.newNode()
+                var newTitle="${i.getVariableName()!!}.${i.getMethodName()}():${i.getId()}"
+                n.title=newTitle
+                invocationNodes[i] = n
+            }
+
+        }
         return resultflow
     }
 
