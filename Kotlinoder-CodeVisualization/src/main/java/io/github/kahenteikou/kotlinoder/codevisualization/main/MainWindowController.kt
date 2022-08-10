@@ -172,12 +172,29 @@ class MainWindowController : Initializable {
                 if(v!=null){
                     var input:Connector=n.addInput("data")
                     println(" > Write Connector: ")
-                    variableConnectors[getV]
+                    variableConnectors[getVariableId(n,v)]=input
                 }
             }
+            if(!i.isVoid()){
+                var output:Connector=n.addOutput("data")
+                var v:Variable=scope.getVariable(i.getReturnValueName())!!
+                println(" > Write Connector: ")
+                variableConnectors[getVariableId(n,v)]=output
+            }
+            n.width=400.0
+            n.height=100.0
+            println("")
 
         }
         return resultflow
+    }
+    companion object{
+        @JvmStatic
+        fun getVariableId(n:VNode,v:Variable):String{
+            var id:String="${n.id}:${v.getName()!!}"
+            println("id: $id")
+            return id
+        }
     }
 
 }
