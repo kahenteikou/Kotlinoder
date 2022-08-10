@@ -134,5 +134,8 @@ class MainWindowController : Initializable {
 
 
     }
+    fun scopeToFlow(scope:Scope,parent:VFlow?):VFlow{
+        
+    }
 
 }
