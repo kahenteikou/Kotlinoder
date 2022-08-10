@@ -140,7 +140,13 @@ class MainWindowController : Initializable {
     fun dataFlowToFlow(scope:Scope,parent: VFlow){
         var dataFlow:DataFlow=scope.getDataFlow()
         dataFlow.create(scope.getControlFlow())
-        
+        for(i:Invocation in scope.getControlFlow().getInvocations()){
+            var relations:MutableList<DataRelation> = dataFlow.getRelationsForReceiver(i)
+            println("relations: ${relations.size}")
+            for(dataRelation:DataRelation in relations){
+                
+            }
+        }
     }
     fun scopeToFlow(scope:Scope,parent:VFlow):VFlow{
         var isClassOrScript:Boolean=
