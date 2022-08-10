@@ -79,6 +79,19 @@ class VisualCodeBuilder_Impl : VisualCodeBuilder {
         var resultkun:Invocation=scope!!.getControlFlow().callStaticMethod(id,type,mName,isVoid,retValName,*args)
         return resultkun
     }
+
+    override fun invokeStaticMethod(
+        scope: Scope?,
+        mName: String,
+        isVoid: Boolean,
+        retValName: String,
+        vararg args: Variable
+    ): Invocation {
+        var id:String=idRequest.request()
+        var resultkun:Invocation=scope!!.getControlFlow().callStaticMethod(id,mName,isVoid,retValName,*args)
+        return resultkun
+    }
+
     override fun assignConstant(scope:Scope?,varName:String,constant:Any?){
         scope!!.assignConstant(varName,constant)
     }
