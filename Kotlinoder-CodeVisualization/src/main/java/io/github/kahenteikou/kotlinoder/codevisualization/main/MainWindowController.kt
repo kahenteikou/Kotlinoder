@@ -193,6 +193,9 @@ class MainWindowController : Initializable {
         }
         return resultflow
     }
+    fun getVariableById(n:VNode,vName:String):Connector?{
+        return variableConnectors.get(getVariableId(n,vName))
+    }
     companion object{
         @JvmStatic
         fun getVariableId(n:VNode,v:Variable):String{
