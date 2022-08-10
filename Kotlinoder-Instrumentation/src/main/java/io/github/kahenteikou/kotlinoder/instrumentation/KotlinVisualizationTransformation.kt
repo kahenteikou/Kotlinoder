@@ -7,6 +7,7 @@ import org.jetbrains.kotlin.lexer.KtModifierKeywordToken
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.psi.*
 import org.jetbrains.kotlin.psi.psiUtil.allChildren
+import org.jetbrains.kotlin.psi.psiUtil.referenceExpression
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -112,7 +113,15 @@ class KotlinCodeVisitor{
         }
     }
     fun visitMethodInvokeExpression(dotQualifiedExpression: KtDotQualifiedExpression){
-
+        var receiverkun:KtExpression=dotQualifiedExpression.receiverExpression
+        if(dotQualifiedExpression.selectorExpression is KtCallExpression) {
+            var targetkun: KtCallExpression = dotQualifiedExpression.selectorExpression as KtCallExpression
+            if(targetkun.referenceExpression() != null) {
+                var methodName = targetkun.referenceExpression()!!.text
+                println(" --> METHOD: $methodName")
+                
+            }
+        }
     }
     fun parse(element: PsiElement){
         for(celem in element.children){
