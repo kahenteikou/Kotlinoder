@@ -186,7 +186,11 @@ class MainWindowController : Initializable {
             println("Node: ${i.getCode()?.toString()}")
             prevNode=n
         }
-        
+        if(isClassOrScript){
+            for(s:Scope in scope.getScopes()){
+                scopeToFlow(s,resultflow)
+            }
+        }
         return resultflow
     }
     companion object{
