@@ -132,6 +132,7 @@ class MainWindowController : Initializable {
                 )
             )
         )
+        println(renderer.render(parserkun.getrootScope()!! as CompilationUnitDeclaration))
         scopeToFlow(parserkun.getrootScope()!!,flow)
         var fxFact:FXSkinFactory= FXSkinFactory(rootPane)
         flow.setSkinFactories(fxFact)
