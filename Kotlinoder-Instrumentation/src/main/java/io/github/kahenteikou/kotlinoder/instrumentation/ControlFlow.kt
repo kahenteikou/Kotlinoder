@@ -3,6 +3,8 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 interface ControlFlow {
     fun createInstance(id:String,type: IType,varName:String,vararg args:Variable?):Invocation
     fun callMethod(id: String,varName:String,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
+    fun callMethod(id: String,varName:String,mName:String,isVoid:Boolean,retValueName:String,args:List<Variable>):Invocation
+
     fun callStaticMethod(id:String,type:IType,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
     fun callStaticMethod(id:String,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
     fun callStaticMethod(id:String,type:IType,mName:String,isVoid:Boolean,retValueName:String,args:List<Variable>):Invocation
@@ -28,6 +30,18 @@ class ControlFlowImpl:ControlFlow{
         vararg args: Variable
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,varName,mName,false,isVoid,false,retValueName,*args)
+        getInvocations().add(result)
+        return result
+    }
+    override fun callMethod(
+        id: String,
+        varName: String,
+        mName: String,
+        isVoid: Boolean,
+        retValueName: String,
+        args:List<Variable>
+    ): Invocation {
+        val result:Invocation= InvocationImpl(parent,id,varName,mName,false,isVoid,false,retValueName,args)
         getInvocations().add(result)
         return result
     }

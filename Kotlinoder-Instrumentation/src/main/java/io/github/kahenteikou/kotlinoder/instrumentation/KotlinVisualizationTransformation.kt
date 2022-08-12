@@ -134,6 +134,7 @@ class KotlinCodeVisitor{
                     }else{
                         codeBuilder.invokeMethod(currentScope,objName,methodName,true,
                                 "",arguments)
+                            .setCode(dotQualifiedExpression.text)
                     }
                 }
 
