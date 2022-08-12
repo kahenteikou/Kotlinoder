@@ -129,7 +129,7 @@ class KotlinCodeVisitor{
                 if(objName!=null){
                     if(objName.equals("System.out")){
                         codeBuilder.invokeStaticMethod(currentScope,Type("System.out"),methodName,true,
-                        "",*arguments)
+                        "",arguments)
                     }
                 }
 
