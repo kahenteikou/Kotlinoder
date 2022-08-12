@@ -87,7 +87,7 @@ class KotlinCodeVisitor{
                 convertExtends(classkun.parents),
                 Extends()
             )
-            
+
         }
     }
     private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
