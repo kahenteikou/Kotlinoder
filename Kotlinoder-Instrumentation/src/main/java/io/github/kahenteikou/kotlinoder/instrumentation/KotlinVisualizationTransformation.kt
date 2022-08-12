@@ -119,9 +119,11 @@ class KotlinCodeVisitor{
             if(targetkun.referenceExpression() != null) {
                 var methodName = targetkun.referenceExpression()!!.text
                 println(" --> METHOD: $methodName")
-                for(i in targetkun.valueArguments){
+                /*for(i in targetkun.valueArguments){
                     println(" --> ARG: ${i.text}")
-                }
+                }*/
+                var arguments:MutableList<Variable> =convertArguments(targetkun.valueArguments)
+                
             }
         }
     }
