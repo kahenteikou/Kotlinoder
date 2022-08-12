@@ -341,10 +341,7 @@ open class CustomVisitor {
                 visitChildren(expression)
             }
             is Node.Expression.Call -> {
-                visitChildren(expression)
-                visitChildren(typeArgs)
-                visitChildren(args)
-                visitChildren(lambdaArg)
+                visitExpressionCall(this,v)
             }
             is Node.Expression.Call.LambdaArg -> {
                 visitChildren(annotationSets)
@@ -424,6 +421,13 @@ open class CustomVisitor {
         v.visitChildren(f.postModifiers)
         v.visitChildren(f.equals)
         v.visitChildren(f.body)
+    }
+    protected open fun visitExpressionCall(c:Node.Expression.Call,v:Node){
+
+        v.visitChildren(c.expression)
+        v.visitChildren(c.typeArgs)
+        v.visitChildren(c.args)
+        v.visitChildren(c.lambdaArg)
     }
     protected fun <T : Node> Node.visitChildren(v: T?) {
         if (v != null) {
