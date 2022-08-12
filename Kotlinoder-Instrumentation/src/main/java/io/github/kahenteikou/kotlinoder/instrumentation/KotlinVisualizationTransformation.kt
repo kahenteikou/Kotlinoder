@@ -70,7 +70,9 @@ class KotlinCodeVisitor{
         }
     }
     fun visitClass(classkun:Node.Declaration.Class,parent:Node?){
-        println("CLASS: ${classkun.name}")
+        if(classkun.name != null){
+            println("CLASS: ${classkun.name?.name}")
+        }
     }
 /*
     fun visitClass(klass: KtClass) {
