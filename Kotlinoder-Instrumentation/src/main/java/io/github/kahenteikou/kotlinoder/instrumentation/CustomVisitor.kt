@@ -68,16 +68,7 @@ open class CustomVisitor {
                 visitChildren(block)
             }
             is Node.Declaration.Function -> {
-                visitChildren(modifiers)
-                visitChildren(funKeyword)
-                visitChildren(typeParams)
-                visitChildren(receiverTypeRef)
-                visitChildren(name)
-                visitChildren(params)
-                visitChildren(typeRef)
-                visitChildren(postModifiers)
-                visitChildren(equals)
-                visitChildren(body)
+                visitFunctionDeclaration(this,v)
             }
             is Node.Declaration.Function.Param -> {
                 visitChildren(modifiers)
@@ -421,6 +412,18 @@ open class CustomVisitor {
         v.visitChildren(clsNode.parents)
         v.visitChildren(clsNode.typeConstraints)
         v.visitChildren(clsNode.body)
+    }
+    protected open fun visitFunctionDeclaration(f:Node.Declaration.Function, v:Node){
+        v.visitChildren(f.modifiers)
+        v.visitChildren(f.funKeyword)
+        v.visitChildren(f.typeParams)
+        v.visitChildren(f.receiverTypeRef)
+        v.visitChildren(f.name)
+        v.visitChildren(f.params)
+        v.visitChildren(f.typeRef)
+        v.visitChildren(f.postModifiers)
+        v.visitChildren(f.equals)
+        v.visitChildren(f.body)
     }
     protected fun <T : Node> Node.visitChildren(v: T?) {
         if (v != null) {
