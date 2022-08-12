@@ -195,7 +195,7 @@ class KotlinCodeVisitor{
                     for(elem in e.entries){
                         textkun=elem.text
                     }
-                    v=VariableFactory.createConstantVariable(currentScope,Type("String",true),"",textkun)
+                    v=VariableFactory.createConstantVariable(currentScope,Type("kotlin.String",true),"",textkun)
                     println("S")
                 }
             }
