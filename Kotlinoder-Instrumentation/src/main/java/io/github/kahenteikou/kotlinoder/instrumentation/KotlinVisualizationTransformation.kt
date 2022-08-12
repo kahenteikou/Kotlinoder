@@ -136,7 +136,10 @@ class KotlinCodeVisitor:CustomVisitor{
                     convertFuncParameters(f.params)
                 )
                 currentScope!!.setCode(Writer.write(f))
-                
+
+                super.visitFunctionDeclaration(f, v)
+                currentScope=currentScope!!.getParent()
+                currentScope!!.setCode(Writer.write(f))
             }else{
                 super.visitFunctionDeclaration(f, v)
             }
