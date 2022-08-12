@@ -406,8 +406,7 @@ open class CustomVisitor {
         }
     }
     //module ls
-    protected fun visitPackageDirective(p:Node.PackageDirective,v:Node){
-
+    protected open fun visitPackageDirective(p:Node.PackageDirective,v:Node){
         v.visitChildren(p.modifiers)
         v.visitChildren(p.packageKeyword)
         v.visitChildren(p.names)

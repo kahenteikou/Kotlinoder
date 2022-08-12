@@ -3,6 +3,7 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.IdGenerator
+import io.github.kahenteikou.kotlinoder.lang.VLangUtils
 import ktast.ast.Node
 import ktast.ast.Visitor
 import ktast.ast.Writer
@@ -63,6 +64,22 @@ class KotlinCodeVisitor:CustomVisitor{
             result=generator.newId()
         }
         return result
+    }
+
+    override fun visitPackageDirective(p: Node.PackageDirective, v: Node) {
+
+        var s2:String=""
+        var isFirst:Boolean=true
+        for(namekun in p.names){
+            if(isFirst)
+                s2+=namekun.name
+            else
+                s2+=".${namekun.name}"
+
+            isFirst=false
+        }
+        (rootScope as? CompilationUnitDeclaration)?.setPackageName(s2)
+        super.visitPackageDirective(p, v)
     }
     override fun visitClass(classkun:Node.Declaration.Class, parent:Node){
         if(classkun.name != null) {
