@@ -2,6 +2,7 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
 import ktast.ast.Node
+import ktast.ast.psi.Converter.Companion.map
 import ktast.ast.psi.Parser
 
 class ClassDeclarationRenderer:CodeRenderer<ClassDeclaration>{
@@ -10,7 +11,14 @@ class ClassDeclarationRenderer:CodeRenderer<ClassDeclaration>{
     constructor(methodDeclarationRenderer: CodeRenderer<MethodDeclaration>){
         this.methodDeclarationRenderer = methodDeclarationRenderer
     }
-    
+
+    override fun render(entity: ClassDeclaration): Node {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun render(entity: ClassDeclaration, nd: Node) {
+    }
+
 }
 class CompilationUnitRenderer:CodeRenderer<CompilationUnitDeclaration>{
     private var classDeclarationRenderer:CodeRenderer<ClassDeclaration>?=null

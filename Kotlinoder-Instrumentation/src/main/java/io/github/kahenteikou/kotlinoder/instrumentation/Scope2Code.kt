@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
+import ktast.ast.MutableVisitor
 import ktast.ast.Node
 import ktast.ast.Visitor
 import ktast.ast.psi.Parser
