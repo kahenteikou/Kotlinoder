@@ -92,7 +92,7 @@ class Scope2Code {
             val code="""
                 package io.github.kahenteikou.kotlinoder.instrumentation
                 class A{
-                    fun foo(){
+                    fun foo(tdn:Int){
                         var a:Int=1
                         println("ex")
                     }

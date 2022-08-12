@@ -108,6 +108,11 @@ class KotlinCodeVisitor:CustomVisitor{
             super.visitClass(classkun, parent)
         }
     }
+
+    override fun visitFunctionDeclaration(f: Node.Declaration.Function, v: Node) {
+        println("FUNCTION: ${f.name?.name}")
+        super.visitFunctionDeclaration(f, v)
+    }
     private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
         var modskun:MutableList<Modifier> = ArrayList()
         for(mkun in modifiers){
@@ -142,6 +147,7 @@ class KotlinCodeVisitor:CustomVisitor{
         }
         return Extends(types)
     }
+
 /*
     fun visitNamedFunction(kfunc:KtNamedFunction){
         println("m: ${kfunc.name}, parentscope: ${currentScope?.getName()}: ${currentScope?.getType()}")
