@@ -93,6 +93,9 @@ class KotlinCodeVisitor{
                     modskun.add(Modifier.ABSTRACT)
             }
         }
+        if(!(modskun.contains(Modifier.PUBLIC) && modskun.contains(Modifier.PRIVATE) && modskun.contains(Modifier.PROTECTED))) {
+            modskun.add(Modifier.PUBLIC)
+        }
         return Modifiers(modskun)
     }
 /*
