@@ -97,6 +97,12 @@ class Scope2Code {
                         println("ex")
                     }
                 }
+                class B{
+                    fun foo(){
+                        var a:Int=1
+                        println("ex")
+                    }
+                }
             """.trimIndent()
             var filekun=Parser.parseFile(code)
 
