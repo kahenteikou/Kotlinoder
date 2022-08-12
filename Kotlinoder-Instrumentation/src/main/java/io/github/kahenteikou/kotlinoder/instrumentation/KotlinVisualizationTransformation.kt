@@ -121,12 +121,17 @@ class KotlinCodeVisitor:CustomVisitor{
             modifierskun?.getModifiers()?.forEach({
                 println(">> MODIFIER: $it")
             })
+            var typeName=""
+            if(f.receiverTypeRef?.type is Node.Type.Simple){
+                for(ikun in (f.receiverTypeRef?.type as Node.Type.Simple).pieces){
+                    typeName=ikun.name.name
+                }
+            }
             currentScope=codeBuilder.declareMethod(currentScope as ClassDeclaration,
-                modifierskun,
-                convertParameters(f.parameters),
-                convertTypeParameters(f.typeParameters),
-                convertType(f.returnType),
-                convertBody(f.body)
+                modifierskun!!,
+                Type(typeName,true),
+                f.name!!.name,
+                convertFuncParameters(f.params)
             )
         }else{
 
@@ -166,6 +171,9 @@ class KotlinCodeVisitor:CustomVisitor{
             }
         }
         return Extends(types)
+    }
+    private fun convertFuncParameters(params: Node.Declaration.Function.Params?):IParameters{
+
     }
 
 /*
