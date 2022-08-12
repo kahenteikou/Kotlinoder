@@ -38,14 +38,7 @@ open class CustomVisitor {
                 visitChildren(name)
             }
             is Node.Declaration.Class -> {
-                visitChildren(modifiers)
-                visitChildren(declarationKeyword)
-                visitChildren(name)
-                visitChildren(typeParams)
-                visitChildren(primaryConstructor)
-                visitChildren(parents)
-                visitChildren(typeConstraints)
-                visitChildren(body)
+                visitClass(this,v)
             }
             is Node.Declaration.Class.Parent.CallConstructor -> {
                 visitChildren(type)
