@@ -102,6 +102,9 @@ class Scope2Code {
             Visitor.visit(filekun){v,_->
                 println(v.javaClass)
             }
+            Visitor.visit(filekun){v,v2->
+                KotlinVisualizationTransformationVisit(v,v2)
+            }
         }
     }
 }
