@@ -412,7 +412,7 @@ open class CustomVisitor {
         v.visitChildren(p.packageKeyword)
         v.visitChildren(p.names)
     }
-    protected fun visitClass(clsNode:Node.Declaration.Class,v:Node){
+    protected open fun visitClass(clsNode:Node.Declaration.Class, v:Node){
 
         v.visitChildren(clsNode.modifiers)
         v.visitChildren(clsNode.declarationKeyword)

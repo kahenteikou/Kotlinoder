@@ -16,12 +16,9 @@ fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
     var clsScopes:MutableList<Scope> = ArrayList()
     scopes["rootfile.kt"] = clsScopes
     scopes.get("rootfile.kt")!!.add(visitor.getrootScope()!!)
-    Visitor.visit(fkun){
-        v,v2->
-            visitor.visit(v,v2)
-    }
+
 }
-class KotlinCodeVisitor{
+class KotlinCodeVisitor:CustomVisitor{
     private var codeBuilder:VisualCodeBuilder_Impl
     private var ktFile:Node.KotlinFile
     private var rootScope:Scope?=null
@@ -64,12 +61,7 @@ class KotlinCodeVisitor{
         }
         return result
     }
-    fun visit(v:Node,parent:Node?){
-        if(v is Node.Declaration.Class){
-            visitClass(v,parent)
-        }
-    }
-    fun visitClass(classkun:Node.Declaration.Class,parent:Node?){
+    override fun visitClass(classkun:Node.Declaration.Class, parent:Node){
         if(classkun.name != null) {
             println("CLASS: ${classkun.name?.name}")
             var modifierskun: IModifiers? = null
@@ -87,7 +79,11 @@ class KotlinCodeVisitor{
                 convertExtends(classkun.parents),
                 Extends()
             )
+            super.visitClass(classkun, parent)
 
+        }else{
+
+            super.visitClass(classkun, parent)
         }
     }
     private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
