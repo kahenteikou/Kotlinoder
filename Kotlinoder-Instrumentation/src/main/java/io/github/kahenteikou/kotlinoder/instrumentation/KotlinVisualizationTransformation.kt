@@ -1,4 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
-class KotlinVisualizationTransformation {
+import ktast.ast.Node
+
+fun KotlinVisualizationTransformationVisit(v: Node, parent: Node?){
+
 }
