@@ -168,6 +168,8 @@ class KotlinCodeVisitor:CustomVisitor{
                         targetName,
                         isVoid,
                         returnValueName
+                    ).setCode(
+                        Writer.write(b)
                     )
                 }else{
                     codeBuilder.invokeMethod(currentScope,
@@ -175,6 +177,8 @@ class KotlinCodeVisitor:CustomVisitor{
                         targetName,
                         isVoid,
                         returnValueName
+                    ).setCode(
+                        Writer.write(b)
                     )
                 }
             }
