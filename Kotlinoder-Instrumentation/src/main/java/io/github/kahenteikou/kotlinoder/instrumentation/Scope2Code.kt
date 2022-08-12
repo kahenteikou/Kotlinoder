@@ -1,6 +1,9 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
+import ktast.ast.Visitor
+import ktast.ast.Writer
+import ktast.ast.psi.Parser
 
 class Scope2Code {
     companion object{
@@ -86,6 +89,19 @@ class Scope2Code {
             var psif=PsiManager.getInstance(env.project).findFile(buffile) as KtFile
             var parserkun = KotlinCodeVisitor(psif,VisualCodeBuilder_Impl())
             parserkun.parse(psif)*/
+            val code="""
+                package io.github.kahenteikou.kotlinoder.instrumentation
+                class A{
+                    fun foo(){
+                        var a:Int=1
+                        println("ex")
+                    }
+                }
+            """.trimIndent()
+            var filekun=Parser.parseFile(code)
+            Visitor.visit(filekun){v,_->
+                println(v.javaClass)
+            }
         }
     }
 }
