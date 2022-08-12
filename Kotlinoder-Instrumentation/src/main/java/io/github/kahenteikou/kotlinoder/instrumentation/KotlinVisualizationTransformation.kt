@@ -123,7 +123,7 @@ class KotlinCodeVisitor{
                     println(" --> ARG: ${i.text}")
                 }*/
                 var arguments:MutableList<Variable> =convertArguments(targetkun.valueArguments)
-
+                
             }
         }
     }
@@ -185,6 +185,12 @@ class KotlinCodeVisitor{
 
                 }
             }
+            if(v == null){
+                println("errtype ")
+            }else{
+                variables.add(v)
+            }
+
         }
         return variables
     }
