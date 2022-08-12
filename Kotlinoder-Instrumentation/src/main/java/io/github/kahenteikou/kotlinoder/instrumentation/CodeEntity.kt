@@ -8,7 +8,7 @@ import ktast.ast.Node
 interface CodeEntity {
     fun getId() : String
     fun setId(id:String)
-    fun getNode() : Node?
-    fun setNode(node:Node?)
+    fun getCode() : String?
+    fun setCode(node:String?)
 
 }

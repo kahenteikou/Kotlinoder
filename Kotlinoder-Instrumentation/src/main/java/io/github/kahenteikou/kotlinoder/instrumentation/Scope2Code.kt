@@ -65,7 +65,7 @@ class Scope2Code {
         }
         @JvmStatic
         fun main(args:Array<String>){
-            var scope:CompilationUnitDeclaration=demoScope()
+            /*var scope:CompilationUnitDeclaration=demoScope()
             var renderer:CompilationUnitRenderer=CompilationUnitRenderer(
                 ClassDeclarationRenderer(
                     MethodDeclarationRenderer(
@@ -74,7 +74,7 @@ class Scope2Code {
                 )
             )
             println(renderer.render(scope))
-            println("demo")
+            println("demo")*/
             //kotlin parser
             /*
             val config= CompilerConfiguration()
@@ -101,7 +101,10 @@ class Scope2Code {
             """.trimIndent()
             var filekun=Parser.parseFile(code)
             Visitor.visit(filekun){v,_->
-                println(v.javaClass)
+                if(v is Node.PackageDirective){
+                    println(v.names)
+                    println(v.packageKeyword)
+                }
             }
         }
     }
@@ -336,25 +339,39 @@ class CompilationUnitRenderer :CodeRenderer<CompilationUnitDeclaration>{
         this.classDeclarationRenderer=classDeclarationRenderer
     }
 
-    override fun render(entity: CompilationUnitDeclaration): Node {
+    fun render2(entity: CompilationUnitDeclaration): Node {
         var nd=Parser.parseFile("")
-        render(entity,nd)
-        return cb.getCode()
+        render2(entity,nd)
+        return nd
     }
 
-    override fun render(e: CompilationUnitDeclaration, nd: Node) {
+
+    fun render2(e: CompilationUnitDeclaration, nd: Node) {
         if(e.getPackageName()!=null||e.getPackageName()!!.isEmpty()){
-            cb.append("package ").append(e.getPackageName()!!).newLine().newLine()
+            if(nd is Node.KotlinEntry){
+                //nd.packageDirective=Node.PackageDirective(e.getPackageName()!!)
+            }
+            //cb.append("package ").append(e.getPackageName()!!).newLine().newLine()
+
         }
         for(cd in e.getDeclaredClasses()){
-            classDeclarationRenderer!!.render(cd,cb)
+            //classDeclarationRenderer!!.render2(cd,nd)
         }
     }
+
     fun getClassDeclarationRenderer():CodeRenderer<ClassDeclaration>{
         return classDeclarationRenderer!!
     }
     fun setClassDeclarationRenderer(classDeclarationRenderer:CodeRenderer<ClassDeclaration>){
         this.classDeclarationRenderer=classDeclarationRenderer
+    }
+
+    override fun render(entity: CompilationUnitDeclaration): String {
+        TODO("Not yet implemented")
+    }
+
+    override fun render(entity: CompilationUnitDeclaration, cb: CodeBuilder) {
+        TODO("Not yet implemented")
     }
 
 
