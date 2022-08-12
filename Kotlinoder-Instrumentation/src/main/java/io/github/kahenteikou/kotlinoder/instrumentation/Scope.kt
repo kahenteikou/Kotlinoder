@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 //complete
+import ktast.ast.Node
 import java.lang.UnsupportedOperationException
 import java.util.*
 import kotlin.collections.ArrayList
@@ -37,6 +38,7 @@ open class ScopeImpl:Scope{
     private var dataFlow:DataFlow
     private final var scopes:ArrayList<Scope> = ArrayList()
     private var code:String?=null
+    private var node: Node?=null
     private var readOnlyScopes:MutableList <Scope>? = null
     constructor(id:String ,parent:Scope?,type:ScopeType,name:String,vararg args:Any?){
         this._id = id
@@ -178,6 +180,12 @@ open class ScopeImpl:Scope{
     }
     override fun setCode(code:String?){
         this.code=code
+    }
+    override fun getNode() : Node?{
+        return node
+    }
+    override fun setNode(node:Node?){
+        this.node=node
     }
     override fun getDataFlow():DataFlow{
         return dataFlow
