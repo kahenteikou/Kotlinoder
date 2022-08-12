@@ -126,10 +126,10 @@ class MainWindowController : Initializable {
             return
         }
         println(parserkun.getrootScope()!!.toString())
-        var renderer: CompilationUnitRenderer = CompilationUnitRenderer(
-            ClassDeclarationRenderer(
-                MethodDeclarationRenderer(
-                    InvocationCodeRenderer()
+        var renderer: CompilationUnitRendererOLD = CompilationUnitRendererOLD(
+            ClassDeclarationRendererOLD(
+                MethodDeclarationRendererOLD(
+                    InvocationCodeRendererOLD()
                 )
             )
         )

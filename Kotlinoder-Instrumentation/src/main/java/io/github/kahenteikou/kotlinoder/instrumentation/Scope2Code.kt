@@ -10,10 +10,10 @@ class Scope2Code {
     companion object{
         @JvmStatic
         fun getCode(scope:CompilationUnitDeclaration):String{
-            var renderer=CompilationUnitRenderer(
-                ClassDeclarationRenderer(
-                    MethodDeclarationRenderer(
-                        InvocationCodeRenderer()
+            var renderer=CompilationUnitRendererOLD(
+                ClassDeclarationRendererOLD(
+                    MethodDeclarationRendererOLD(
+                        InvocationCodeRendererOLD()
                     )
                 )
             )
@@ -21,23 +21,23 @@ class Scope2Code {
         }
         @JvmStatic
         fun getCode(scope:ClassDeclaration):String{
-            var renderer=ClassDeclarationRenderer(
-                MethodDeclarationRenderer(
-                    InvocationCodeRenderer()
+            var renderer=ClassDeclarationRendererOLD(
+                MethodDeclarationRendererOLD(
+                    InvocationCodeRendererOLD()
                 )
             )
             return renderer.render(scope)
         }
         @JvmStatic
         fun getCode(scope:MethodDeclaration):String{
-            var renderer=MethodDeclarationRenderer(
-                InvocationCodeRenderer()
+            var renderer=MethodDeclarationRendererOLD(
+                InvocationCodeRendererOLD()
             )
             return renderer.render(scope)
         }
         @JvmStatic
         fun getCode(scope:Invocation):String{
-            var renderer=InvocationCodeRenderer()
+            var renderer=InvocationCodeRendererOLD()
             return renderer.render(scope)
         }
         @JvmStatic
@@ -129,7 +129,7 @@ final class Utils {
     }
 
 }
-class InvocationCodeRenderer :CodeRenderer<Invocation>{
+class InvocationCodeRendererOLD :CodeRenderer_OLD<Invocation>{
     constructor(){
 
     }
@@ -211,9 +211,9 @@ class InvocationCodeRenderer :CodeRenderer<Invocation>{
     }
 
 }
-class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
-    private var invocationRenderer:CodeRenderer<Invocation>
-    constructor(invocationRenderer:CodeRenderer<Invocation>){
+class MethodDeclarationRendererOLD : CodeRenderer_OLD<MethodDeclaration>{
+    private var invocationRenderer:CodeRenderer_OLD<Invocation>
+    constructor(invocationRenderer:CodeRenderer_OLD<Invocation>){
         this.invocationRenderer=invocationRenderer
     }
 
@@ -260,10 +260,10 @@ class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
     }
 
 }
-class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
-    private var methodDeclarationRenderer: CodeRenderer<MethodDeclaration>
+class ClassDeclarationRendererOLD :CodeRenderer_OLD<ClassDeclaration> {
+    private var methodDeclarationRenderer: CodeRenderer_OLD<MethodDeclaration>
 
-    constructor(methodDeclarationRenderer: CodeRenderer<MethodDeclaration>) {
+    constructor(methodDeclarationRenderer: CodeRenderer_OLD<MethodDeclaration>) {
         this.methodDeclarationRenderer = methodDeclarationRenderer
     }
 
@@ -330,12 +330,12 @@ class ClassDeclarationRenderer :CodeRenderer<ClassDeclaration> {
 
     }
 }
-class CompilationUnitRenderer :CodeRenderer<CompilationUnitDeclaration>{
-    private var classDeclarationRenderer:CodeRenderer<ClassDeclaration>?=null
+class CompilationUnitRendererOLD :CodeRenderer_OLD<CompilationUnitDeclaration>{
+    private var classDeclarationRenderer:CodeRenderer_OLD<ClassDeclaration>?=null
     constructor(){
 
     }
-    constructor(classDeclarationRenderer:CodeRenderer<ClassDeclaration>){
+    constructor(classDeclarationRenderer:CodeRenderer_OLD<ClassDeclaration>){
         this.classDeclarationRenderer=classDeclarationRenderer
     }
 
@@ -359,10 +359,10 @@ class CompilationUnitRenderer :CodeRenderer<CompilationUnitDeclaration>{
         }
     }
 
-    fun getClassDeclarationRenderer():CodeRenderer<ClassDeclaration>{
+    fun getClassDeclarationRenderer():CodeRenderer_OLD<ClassDeclaration>{
         return classDeclarationRenderer!!
     }
-    fun setClassDeclarationRenderer(classDeclarationRenderer:CodeRenderer<ClassDeclaration>){
+    fun setClassDeclarationRenderer(classDeclarationRenderer:CodeRenderer_OLD<ClassDeclaration>){
         this.classDeclarationRenderer=classDeclarationRenderer
     }
 
