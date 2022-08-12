@@ -111,7 +111,12 @@ class KotlinCodeVisitor:CustomVisitor{
 
     override fun visitFunctionDeclaration(f: Node.Declaration.Function, v: Node) {
         println("FUNCTION: ${f.name?.name}, parentScope: ${currentScope?.getName()}:${currentScope?.getType()?.name}")
-        super.visitFunctionDeclaration(f, v)
+        if(currentScope is ClassDeclaration){
+            
+        }else{
+
+            super.visitFunctionDeclaration(f, v)
+        }
     }
     private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
         var modskun:MutableList<Modifier> = ArrayList()
