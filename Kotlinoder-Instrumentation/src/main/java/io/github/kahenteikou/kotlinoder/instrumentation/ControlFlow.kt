@@ -5,6 +5,8 @@ interface ControlFlow {
     fun callMethod(id: String,varName:String,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
     fun callStaticMethod(id:String,type:IType,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
     fun callStaticMethod(id:String,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
+    fun callStaticMethod(id:String,type:IType,mName:String,isVoid:Boolean,retValueName:String,args:List<Variable>):Invocation
+    fun callStaticMethod(id:String,mName:String,isVoid:Boolean,retValueName:String,args:List<Variable>):Invocation
 
     fun callScope(scope:Scope):ScopeInvocation
     fun getInvocations():MutableList <Invocation>
