@@ -1,8 +1,5 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
-import com.intellij.openapi.util.Disposer
-import com.intellij.psi.PsiManager
-import com.intellij.testFramework.LightVirtualFile
 import eu.mihosoft.vrl.workflow.ConnectionResult
 import eu.mihosoft.vrl.workflow.Connector
 import eu.mihosoft.vrl.workflow.FlowFactory
@@ -19,12 +16,6 @@ import javafx.scene.input.KeyEvent
 import javafx.scene.layout.Pane
 import javafx.stage.FileChooser
 import org.apache.logging.log4j.LogManager
-import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
-import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
-import org.jetbrains.kotlin.config.CompilerConfiguration
-import org.jetbrains.kotlin.idea.KotlinFileType
-import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.kotlin.psi.KtPsiFactory
 import java.io.File
 import java.io.IOException
 import java.net.URL
@@ -103,19 +94,9 @@ class MainWindowController : Initializable {
             LogManager.getLogger("Launcher").error("UI NOT READY!")
             return
         }
+        UIBinding.scopes.clear();
+        var filekun=Parser.parseFile(code)
 
-        val config= CompilerConfiguration()
-        var dispos= Disposer.newDisposable()
-        val env= KotlinCoreEnvironment.createForProduction(
-            dispos,
-            config,
-            EnvironmentConfigFiles.JVM_CONFIG_FILES
-        )
-        var ksfactory = KtPsiFactory(env.project)
-
-        //var psif= ksfactory.createFile(renderer.render(scope))
-        var buffile= LightVirtualFile(currentDocument!!.name, KotlinFileType.INSTANCE,editor.getText())
-        var psif= PsiManager.getInstance(env.project).findFile(buffile) as KtFile
         var parserkun = KotlinCodeVisitor(psif, VisualCodeBuilder_Impl())
         parserkun.parse(psif)
         flow.clear()
