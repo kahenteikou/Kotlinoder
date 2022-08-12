@@ -11,7 +11,7 @@ class Ast2Code {
     }
 
     fun exampleCodeGen() {
-        
+
 
     }
 }
