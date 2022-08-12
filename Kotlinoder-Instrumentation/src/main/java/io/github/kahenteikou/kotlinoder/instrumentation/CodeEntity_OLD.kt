@@ -1,11 +1,9 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
-import ktast.ast.Node
-
 /**
  * Code Entity
  */
-interface CodeEntity {
+interface CodeEntity_OLD {
     fun getId() : String
     fun setId(id:String)
     fun getCode() : String?

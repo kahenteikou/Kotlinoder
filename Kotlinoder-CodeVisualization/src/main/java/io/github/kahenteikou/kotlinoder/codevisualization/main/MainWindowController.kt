@@ -31,7 +31,6 @@ import java.net.URL
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.*
-import java.util.logging.Logger
 import kotlin.collections.HashMap
 
 class MainWindowController : Initializable {
@@ -42,7 +41,7 @@ class MainWindowController : Initializable {
     lateinit var view:Pane
     lateinit private var rootPane:Pane
     lateinit private var flow:VFlow
-    private var invocationNodes:MutableMap<CodeEntity, VNode> = HashMap()
+    private var invocationNodes:MutableMap<CodeEntity_OLD, VNode> = HashMap()
     private var variableConnectors:MutableMap<String,Connector> = HashMap()
 
     override fun initialize(location: URL?, resources: ResourceBundle?) {
