@@ -11,7 +11,7 @@ fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
 }
 class KotlinCodeVisitor{
     private var codeBuilder:VisualCodeBuilder_Impl
-    //private var ktFile:KtFile
+    private var ktFile:Node.KotlinFile
     private var rootScope:Scope?=null
     private var currentScope:Scope?=null
     private var lastMethod:Invocation?=null
@@ -20,8 +20,8 @@ class KotlinCodeVisitor{
     fun getrootScope():Scope?{
         return rootScope
     }
-    constructor(codeBuilder:VisualCodeBuilder_Impl){
-
+    constructor(kf:Node.KotlinFile,codeBuilder:VisualCodeBuilder_Impl){
+        this.ktFile=kf
         this.codeBuilder=codeBuilder
         codeBuilder.setIdRequest(object : IdRequest{
             override fun request(): String {
@@ -31,7 +31,7 @@ class KotlinCodeVisitor{
         })
 
         this.rootScope=codeBuilder.declareCompilationUnit(
-            ktFile.name,
+            "rootfile.kt",
             "undefined"
         )
         this.currentScope=rootScope
