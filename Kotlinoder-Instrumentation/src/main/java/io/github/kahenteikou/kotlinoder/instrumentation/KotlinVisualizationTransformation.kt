@@ -8,6 +8,7 @@ import ktast.ast.Visitor
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
+import kotlin.jvm.internal.Intrinsics.Kotlin
 
 fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
     var codeBuilder:VisualCodeBuilder_Impl= VisualCodeBuilder_Impl()
@@ -16,7 +17,7 @@ fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
     var clsScopes:MutableList<Scope> = ArrayList()
     scopes["rootfile.kt"] = clsScopes
     scopes.get("rootfile.kt")!!.add(visitor.getrootScope()!!)
-
+    visitor.visit(fkun)
 }
 class KotlinCodeVisitor:CustomVisitor{
     private var codeBuilder:VisualCodeBuilder_Impl
