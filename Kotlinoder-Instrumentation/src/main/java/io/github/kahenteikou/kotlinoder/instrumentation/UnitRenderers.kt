@@ -21,6 +21,7 @@ class CompilationUnitRenderer:CodeRenderer<CompilationUnitDeclaration>{
     }
 
     override fun render(entity: CompilationUnitDeclaration): Node {
+
         var nd= Parser.parseFile("package ${entity.getPackageName()!!}")
         render(entity,nd)
         return nd
@@ -28,14 +29,6 @@ class CompilationUnitRenderer:CodeRenderer<CompilationUnitDeclaration>{
 
     override fun render(e: CompilationUnitDeclaration, nd: Node) {
 
-        if(e.getPackageName()!=null||e.getPackageName()!!.isEmpty()){
-            if(nd is Node.KotlinEntry){
-
-
-            }
-            //cb.append("package ").append(e.getPackageName()!!).newLine().newLine()
-
-        }
         for(cd in e.getDeclaredClasses()){
             //classDeclarationRenderer!!.render2(cd,nd)
         }
