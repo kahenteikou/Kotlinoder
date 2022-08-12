@@ -337,12 +337,12 @@ class CompilationUnitRenderer :CodeRenderer<CompilationUnitDeclaration>{
     }
 
     override fun render(entity: CompilationUnitDeclaration): Node {
-        var cb=CodeBuilder()
-        render(entity,cb)
+        var nd=Parser.parseFile("")
+        render(entity,nd)
         return cb.getCode()
     }
 
-    override fun render(e: CompilationUnitDeclaration, cb: CodeBuilder) {
+    override fun render(e: CompilationUnitDeclaration, nd: Node) {
         if(e.getPackageName()!=null||e.getPackageName()!!.isEmpty()){
             cb.append("package ").append(e.getPackageName()!!).newLine().newLine()
         }

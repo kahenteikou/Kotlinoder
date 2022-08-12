@@ -5,5 +5,5 @@ import ktast.ast.Node
 //complete
 interface CodeRenderer <T : CodeEntity> {
     fun render(entity: T): Node
-    fun render(entity:T,cb:CodeBuilder)
+    fun render(entity:T,nd:Node)
 }
