@@ -149,14 +149,22 @@ class KotlinCodeVisitor:CustomVisitor{
     override fun visitExpressionBinary(b: Node.Expression.Binary, v: Node) {
         if(b.rhs is Node.Expression.Call){
             var callkun=b.rhs as Node.Expression.Call
-            
+
             super.visitExpressionBinary(b, v)
+            var targetName=""
+            if(callkun.expression is Node.Expression.Name)
+                targetName="." + (callkun.expression as Node.Expression.Name).name
+            targetName=convertCallLHS(targetName,b)
         }else {
             super.visitExpressionBinary(b, v)
         }
     }
 
-
+    private fun convertCallLHS(nowstrkun:String,lhs:Node.Expression):String{
+        var retstr=nowstrkun
+        
+        return retstr
+    }
     private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
         var modskun:MutableList<Modifier> = ArrayList()
         for(mkun in modifiers){
