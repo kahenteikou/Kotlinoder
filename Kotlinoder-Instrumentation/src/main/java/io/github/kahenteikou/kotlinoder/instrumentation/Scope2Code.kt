@@ -112,7 +112,16 @@ class Scope2Code {
             /*Visitor.visit(filekun){v,v2->
                 KotlinVisualizationTransformationVisit(filekun,v,v2)
             }*/
+            UIBinding.scopes.clear()
             KotlinVisualizationTransformationVisit(filekun)
+            for(scopeLs in UIBinding.scopes.values){
+                for(scope in scopeLs){
+                    if(scope is CompilationUnitDeclaration){
+                        println(getCode(scope))
+                    }
+                }
+            }
+
         }
     }
 }

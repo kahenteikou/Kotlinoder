@@ -5,6 +5,7 @@ import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.IdGenerator
 import ktast.ast.Node
 import ktast.ast.Visitor
+import ktast.ast.Writer
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -18,6 +19,7 @@ fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
     scopes["rootfile.kt"] = clsScopes
     scopes.get("rootfile.kt")!!.add(visitor.getrootScope()!!)
     visitor.visit(fkun)
+    UIBinding.scopes.putAll(scopes)
 }
 class KotlinCodeVisitor:CustomVisitor{
     private var codeBuilder:VisualCodeBuilder_Impl
@@ -81,6 +83,8 @@ class KotlinCodeVisitor:CustomVisitor{
                 Extends()
             )
             super.visitClass(classkun, parent)
+            currentScope=currentScope?.getParent()
+            currentScope?.setCode(Writer.write(classkun))
 
         }else{
 
