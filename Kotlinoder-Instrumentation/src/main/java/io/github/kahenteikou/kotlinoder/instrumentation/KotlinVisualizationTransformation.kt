@@ -1,3 +1,4 @@
+
 package io.github.kahenteikou.kotlinoder.instrumentation
 
 import eu.mihosoft.vrl.workflow.FlowFactory
@@ -9,8 +10,11 @@ import kotlin.collections.HashMap
 
 fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
     var codeBuilder:VisualCodeBuilder_Impl= VisualCodeBuilder_Impl()
-    var scopes:Map<String,MutableList<Scope>> = HashMap()
-    var visitor:KotlinCodeVisitor=KotlinCodeVisitor(fkun,codeBuilder)
+    var scopes:MutableMap<String,MutableList<Scope>> = HashMap()
+    var visitor:KotlinCodeVisitor= KotlinCodeVisitor(fkun,codeBuilder)
+    var clsScopes:MutableList<Scope> = ArrayList()
+    scopes["rootfile.kt"] = clsScopes
+    scopes.get("rootfile.kt")!!.add(visitor.getrootScope()!!)
     
 }
 class KotlinCodeVisitor{
