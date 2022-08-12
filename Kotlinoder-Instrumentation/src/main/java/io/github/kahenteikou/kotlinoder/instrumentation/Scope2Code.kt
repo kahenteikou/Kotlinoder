@@ -97,8 +97,8 @@ class Scope2Code {
                         println("ex")
                     }
                 }
-                class B{
-                    fun foo(){
+                class B:A{
+                    fun foo2(){
                         var a:Int=1
                         println("ex")
                     }

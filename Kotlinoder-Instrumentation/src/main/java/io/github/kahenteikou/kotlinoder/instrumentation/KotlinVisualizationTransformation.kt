@@ -111,6 +111,18 @@ class KotlinCodeVisitor{
         }
         return Modifiers(modskun)
     }
+    private fun convertExtends(parentskun:Node.Declaration.Class.Parents?):IExtends{
+        var types:MutableList<Type> = ArrayList()
+
+        if(klass.getSuperTypeList()==null)
+            return Extends()
+        for(sp in klass.getSuperTypeList()!!.children){
+            if(sp is KtSuperTypeEntry){
+                types.add(Type(sp.typeReference!!.text,false))
+            }
+        }
+        return Extends(types)
+    }
 /*
     fun visitClass(klass: KtClass) {
         //println(">> visitClass: ${klass.name}")
@@ -208,15 +220,6 @@ class KotlinCodeVisitor{
                 visitMethodInvokeExpression(celem)
             }
         }
-    }
-    private fun convertModifiers(modifiers:KtModifierList?):IModifiers {
-        var modifierList:MutableList<Modifier> = ArrayList()
-        if(modifiers!!.hasModifier(KtTokens.PUBLIC_KEYWORD)){
-            modifierList.add(Modifier.PUBLIC)
-        }else if(modifiers!!.hasModifier(KtTokens.PRIVATE_KEYWORD)){
-            modifierList.add(Modifier.PRIVATE)
-        }
-        return Modifiers(modifierList)
     }
     private fun convertExtends(klass: KtClass):IExtends{
         var types:MutableList<Type> = ArrayList()
