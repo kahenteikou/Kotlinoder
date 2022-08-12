@@ -147,9 +147,11 @@ class KotlinCodeVisitor:CustomVisitor{
 
     override fun visitExpressionBinary(b: Node.Expression.Binary, v: Node) {
         if(b.rhs is Node.Expression.Call){
-            println(b.rhs)
+
+            super.visitExpressionBinary(b, v)
+        }else {
+            super.visitExpressionBinary(b, v)
         }
-        super.visitExpressionBinary(b, v)
     }
 
     override fun visitExpressionCall(c: Node.Expression.Call, v: Node) {
