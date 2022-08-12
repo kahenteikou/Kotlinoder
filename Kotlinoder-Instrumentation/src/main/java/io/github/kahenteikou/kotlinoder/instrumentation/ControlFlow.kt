@@ -73,9 +73,9 @@ class ControlFlowImpl:ControlFlow{
         mName: String,
         isVoid: Boolean,
         retValueName: String,
-        vararg args: Variable
+        args: List<Variable>
     ): Invocation {
-        val result:Invocation= InvocationImpl(parent,id,type.getFullClassName(),mName,false,isVoid,true,retValueName,*args)
+        val result:Invocation= InvocationImpl(parent,id,type.getFullClassName(),mName,false,isVoid,true,retValueName,args)
         getInvocations().add(result)
         return result
     }
