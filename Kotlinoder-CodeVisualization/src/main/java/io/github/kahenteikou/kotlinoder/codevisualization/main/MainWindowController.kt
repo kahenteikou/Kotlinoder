@@ -15,6 +15,7 @@ import javafx.scene.control.TextArea
 import javafx.scene.input.KeyEvent
 import javafx.scene.layout.Pane
 import javafx.stage.FileChooser
+import ktast.ast.psi.Parser
 import org.apache.logging.log4j.LogManager
 import java.io.File
 import java.io.IOException
@@ -95,18 +96,18 @@ class MainWindowController : Initializable {
             return
         }
         UIBinding.scopes.clear();
-        var filekun=Parser.parseFile(code)
+        var filekun= Parser.parseFile(editor.text!!)
 
-        var parserkun = KotlinCodeVisitor(psif, VisualCodeBuilder_Impl())
-        parserkun.parse(psif)
+        KotlinVisualizationTransformationVisit(filekun)
+        println("UPDATE UI")
+
         flow.clear()
         flow.setSkinFactories()
         flow.model.isVisible=true
-        if(parserkun.getrootScope()==null){
+        if(UIBinding.scopes==null){
             LogManager.getLogger("Launcher").error("No Scope!")
             return
         }
-        println(parserkun.getrootScope()!!.toString())
         var renderer: CompilationUnitRenderer = CompilationUnitRenderer(
             ClassDeclarationRenderer(
                 MethodDeclarationRenderer(
@@ -114,8 +115,15 @@ class MainWindowController : Initializable {
                 )
             )
         )
+        /*
         println(renderer.render(parserkun.getrootScope()!! as CompilationUnitDeclaration))
-        scopeToFlow(parserkun.getrootScope()!!,flow)
+        scopeToFlow(parserkun.getrootScope()!!,flow)*/
+        for(scopels in UIBinding.scopes.values){
+            for(s in scopels){
+                println(renderer.render(s as CompilationUnitDeclaration))
+                scopeToFlow(s,flow)
+            }
+        }
         var fxFact:FXSkinFactory= FXSkinFactory(rootPane)
         flow.setSkinFactories(fxFact)
 
