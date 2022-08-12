@@ -78,7 +78,9 @@ class KotlinCodeVisitor{
             }
             if (modifierskun == null)
                 modifierskun= Modifiers(Modifier.PUBLIC)
-            
+            modifierskun?.getModifiers()?.forEach({
+                println(">> MODIFIER: $it")
+            })
         }
     }
     private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
