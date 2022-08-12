@@ -11,6 +11,7 @@ interface VisualCodeBuilder {
     fun declareMethod(scope:ClassDeclaration,modifiers:IModifiers,returnType:Type,methodName:String,params:IParameters ):MethodDeclaration
     fun declareWhile(scope:Scope?,check:Invocation):WhileDeclaration
     fun invokeMethod(scope:Scope?,varName:String,mName:String,isVoid:Boolean,retValName:String,vararg args:Variable):Invocation
+    fun invokeMethod(scope:Scope?,varName:String,mName:String,isVoid:Boolean,retValName:String,args:List<Variable>):Invocation
     fun invokeStaticMethod(scope:Scope?,type:IType,mName:String,isVoid:Boolean,retValName:String,vararg args:Variable):Invocation
     fun invokeStaticMethod(scope:Scope?,mName:String,isVoid:Boolean,retValName:String,vararg args:Variable):Invocation
     fun invokeStaticMethod(scope:Scope?,type:IType,mName:String,isVoid:Boolean,retValName:String,args:List<Variable>):Invocation
