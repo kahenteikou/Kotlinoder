@@ -121,28 +121,24 @@ class KotlinCodeVisitor:CustomVisitor{
             modifierskun?.getModifiers()?.forEach({
                 println(">> MODIFIER: $it")
             })
-            var typeName=""
+            var typeName="void"
             if(f.receiverTypeRef?.type is Node.Type.Simple){
                 for(ikun in (f.receiverTypeRef?.type as Node.Type.Simple).pieces){
                     typeName=ikun.name.name
                 }
             }
-            if(typeName!="") {
-                currentScope = codeBuilder.declareMethod(
-                    currentScope as ClassDeclaration,
-                    modifierskun!!,
-                    Type(typeName, true),
-                    f.name!!.name,
-                    convertFuncParameters(f.params)
-                )
-                currentScope!!.setCode(Writer.write(f))
+            currentScope = codeBuilder.declareMethod(
+                currentScope as ClassDeclaration,
+                modifierskun!!,
+                Type(typeName, true),
+                f.name!!.name,
+                convertFuncParameters(f.params)
+            )
+            currentScope!!.setCode(Writer.write(f))
 
-                super.visitFunctionDeclaration(f, v)
-                currentScope=currentScope!!.getParent()
-                currentScope!!.setCode(Writer.write(f))
-            }else{
-                super.visitFunctionDeclaration(f, v)
-            }
+            super.visitFunctionDeclaration(f, v)
+            currentScope=currentScope!!.getParent()
+            currentScope!!.setCode(Writer.write(f))
         }else{
 
             super.visitFunctionDeclaration(f, v)
