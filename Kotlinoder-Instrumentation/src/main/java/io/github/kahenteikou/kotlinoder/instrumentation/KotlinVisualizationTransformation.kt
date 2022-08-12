@@ -169,6 +169,9 @@ class KotlinCodeVisitor{
     }
     private fun convertArguments(args:List<KtValueArgument>):MutableList<Variable>{
         var variables:MutableList<Variable> = ArrayList()
+        for( arg in args){
+            
+        }
         return variables
     }
 }
