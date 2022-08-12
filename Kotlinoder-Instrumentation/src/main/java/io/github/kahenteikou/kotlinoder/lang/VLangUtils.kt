@@ -108,7 +108,9 @@ class VLangUtils {
         @JvmStatic
         fun packageNameStrToNames(namekun:String):List<Node.Expression.Name>{
             val names:MutableList<Node.Expression.Name> = ArrayList()
-            
+            for(n in namekun.split(".")){
+                names.add(Node.Expression.Name(n))
+            }
             return names
         }
     }

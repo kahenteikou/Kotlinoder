@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
+import io.github.kahenteikou.kotlinoder.lang.VLangUtils
 import ktast.ast.Node
 import ktast.ast.psi.Parser
 
@@ -20,7 +21,7 @@ class CompilationUnitRenderer:CodeRenderer<CompilationUnitDeclaration>{
     }
 
     override fun render(entity: CompilationUnitDeclaration): Node {
-        var nd= Parser.parseFile("")
+        var nd= Parser.parseFile("package ${entity.getPackageName()!!}")
         render(entity,nd)
         return nd
     }
@@ -29,7 +30,7 @@ class CompilationUnitRenderer:CodeRenderer<CompilationUnitDeclaration>{
 
         if(e.getPackageName()!=null||e.getPackageName()!!.isEmpty()){
             if(nd is Node.KotlinEntry){
-                nd.packageDirective=Node.PackageDirective(null,Node.Keyword.Package(),null)
+
 
             }
             //cb.append("package ").append(e.getPackageName()!!).newLine().newLine()
