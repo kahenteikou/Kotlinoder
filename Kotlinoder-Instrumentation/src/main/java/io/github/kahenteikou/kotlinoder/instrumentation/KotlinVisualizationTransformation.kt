@@ -176,7 +176,14 @@ class KotlinCodeVisitor{
             var oe:KtExpression?=arg.getArgumentExpression()
             if(oe != null){
                 var e:KtExpression=oe!!
+                if(e is KtStringTemplateExpression){
+                    var textkun:String=""
+                    for(elem in e.entries){
+                        textkun=elem.text
+                    }
+                    v=VariableFactory.createConstantVariable(currentScope,Type("String",true),"",textkun)
 
+                }
             }
         }
         return variables
