@@ -168,7 +168,8 @@ class KotlinCodeVisitor:CustomVisitor{
                         Type("System.out"),
                         targetName,
                         isVoid,
-                        returnValueName
+                        returnValueName,
+                        convertCallValueArgs(callkun.args)
                     ).setCode(
                         Writer.write(b)
                     )
@@ -177,7 +178,9 @@ class KotlinCodeVisitor:CustomVisitor{
                         objName,
                         targetName,
                         isVoid,
-                        returnValueName
+                        returnValueName,
+
+                        convertCallValueArgs(callkun.args)
                     ).setCode(
                         Writer.write(b)
                     )
@@ -187,14 +190,21 @@ class KotlinCodeVisitor:CustomVisitor{
             super.visitExpressionBinary(b, v)
         }
     }
-    private fun convertCallValueArgs(args: Node.ValueArgs?):MutableList<Argument>{
-        var result:MutableList<Argument> = ArrayList()
+    private fun convertCallValueArgs(args: Node.ValueArgs?):MutableList<Variable>{
+        var result:MutableList<Variable> = ArrayList()
         if(args != null){
             for(arg in args.elements){
                 if(arg is Node.ValueArg){
                     var exp = arg.expression
                     if(exp is Node.Expression.StringTemplate){
-                        
+                        for(ent in exp.entries){
+                            if(ent is Node.Expression.StringTemplate.Entry.Regular){
+                                result.add(VariableFactory.createConstantVariable(
+                                    currentScope,Type("kotlin.String",true),
+                                    "",ent.str
+                                ))
+                            }
+                        }
                     }
                 }
             }
