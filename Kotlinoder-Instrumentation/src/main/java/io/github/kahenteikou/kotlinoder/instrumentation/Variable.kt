@@ -1,6 +1,5 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
-import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 interface Variable {
     fun getName(): String?
