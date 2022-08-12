@@ -18,7 +18,7 @@ fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
     scopes.get("rootfile.kt")!!.add(visitor.getrootScope()!!)
     Visitor.visit(fkun){
         v,v2->
-
+            visitor.visit(v,v2)
     }
 }
 class KotlinCodeVisitor{
@@ -65,7 +65,12 @@ class KotlinCodeVisitor{
         return result
     }
     fun visit(v:Node,parent:Node?){
-        
+        if(v is Node.Declaration.Class){
+            visitClass(v,parent)
+        }
+    }
+    fun visitClass(classkun:Node.Declaration.Class,parent:Node?){
+
     }
 /*
     fun visitClass(klass: KtClass) {
