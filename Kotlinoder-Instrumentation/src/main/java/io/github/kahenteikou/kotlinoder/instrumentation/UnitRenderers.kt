@@ -29,7 +29,8 @@ class CompilationUnitRenderer:CodeRenderer<CompilationUnitDeclaration>{
 
         if(e.getPackageName()!=null||e.getPackageName()!!.isEmpty()){
             if(nd is Node.KotlinEntry){
-                //nd.packageDirective=Node.PackageDirective(e.getPackageName()!!)
+                nd.packageDirective=Node.PackageDirective(null,Node.Keyword.Package(),null)
+                
             }
             //cb.append("package ").append(e.getPackageName()!!).newLine().newLine()
 
