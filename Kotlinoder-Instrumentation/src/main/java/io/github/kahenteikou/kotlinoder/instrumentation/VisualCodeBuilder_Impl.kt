@@ -101,7 +101,7 @@ class VisualCodeBuilder_Impl : VisualCodeBuilder {
         args: List<Variable>
     ): Invocation {
         var id:String=idRequest.request()
-        var resultkun:Invocation=scope!!.getControlFlow().callStaticMethod(id,type,mName,isVoid,retValName,*args)
+        var resultkun:Invocation=scope!!.getControlFlow().callStaticMethod(id,type,mName,isVoid,retValName,args)
         return resultkun
     }
 
@@ -112,7 +112,9 @@ class VisualCodeBuilder_Impl : VisualCodeBuilder {
         retValName: String,
         args: List<Variable>
     ): Invocation {
-        TODO("Not yet implemented")
+        var id:String=idRequest.request()
+        var resultkun:Invocation=scope!!.getControlFlow().callStaticMethod(id,mName,isVoid,retValName,args)
+        return resultkun
     }
 
     override fun assignConstant(scope:Scope?,varName:String,constant:Any?){
