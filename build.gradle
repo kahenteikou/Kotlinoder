@@ -50,6 +50,7 @@ allprojects {
     targetCompatibility = "17"
     repositories {
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 jar{
