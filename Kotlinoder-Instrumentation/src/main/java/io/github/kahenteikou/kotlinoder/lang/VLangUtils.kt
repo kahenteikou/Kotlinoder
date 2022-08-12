@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.lang
 
+import ktast.ast.Node
 import java.util.regex.Pattern
 
 class VLangUtils {
@@ -103,6 +104,12 @@ class VLangUtils {
                 varName2=""
             }
             return isIdentifierValid(varName2)
+        }
+        @JvmStatic
+        fun packageNameStrToNames(namekun:String):List<Node.Expression.Name>{
+            val names:MutableList<Node.Expression.Name> = ArrayList()
+            
+            return names
         }
     }
 }
