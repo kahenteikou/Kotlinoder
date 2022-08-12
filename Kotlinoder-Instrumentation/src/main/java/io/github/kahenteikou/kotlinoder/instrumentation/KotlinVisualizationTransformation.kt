@@ -72,7 +72,28 @@ class KotlinCodeVisitor{
     fun visitClass(classkun:Node.Declaration.Class,parent:Node?){
         if(classkun.name != null){
             println("CLASS: ${classkun.name?.name}")
+            classkun.modifiers?.elements?.let{
+                convertModifiers(it)
+            }
         }
+    }
+    private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
+        var modskun:MutableList<Modifier> = ArrayList()
+        for(mkun in modifiers){
+            if(mkun is ktast.ast.Node.Modifier.Keyword){
+                if(mkun.token==Node.Modifier.Keyword.Token.PUBLIC)
+                    modskun.add(Modifier.PUBLIC)
+                else if(mkun.token==Node.Modifier.Keyword.Token.PRIVATE)
+                    modskun.add(Modifier.PRIVATE)
+                else if(mkun.token==Node.Modifier.Keyword.Token.PROTECTED)
+                    modskun.add(Modifier.PROTECTED)
+                else if(mkun.token==Node.Modifier.Keyword.Token.FINAL)
+                    modskun.add(Modifier.FINAL)
+                else if(mkun.token == Node.Modifier.Keyword.Token.ABSTRACT)
+                    modskun.add(Modifier.ABSTRACT)
+            }
+        }
+        return Modifiers(modskun)
     }
 /*
     fun visitClass(klass: KtClass) {
