@@ -56,6 +56,29 @@ class ControlFlowImpl:ControlFlow{
         getInvocations().add(result)
         return result
     }
+    override fun callStaticMethod(
+        id: String,
+        mName: String,
+        isVoid: Boolean,
+        retValueName: String,
+        args: List<Variable>
+    ): Invocation {
+        val result:Invocation= InvocationImpl(parent,id,"",mName,false,isVoid,true,retValueName,args)
+        getInvocations().add(result)
+        return result
+    }
+    override fun callStaticMethod(
+        id: String,
+        type: IType,
+        mName: String,
+        isVoid: Boolean,
+        retValueName: String,
+        vararg args: Variable
+    ): Invocation {
+        val result:Invocation= InvocationImpl(parent,id,type.getFullClassName(),mName,false,isVoid,true,retValueName,*args)
+        getInvocations().add(result)
+        return result
+    }
 
     override fun callScope(scope: Scope): ScopeInvocation {
         val result:ScopeInvocation = ScopeInvocationImpl(scope)

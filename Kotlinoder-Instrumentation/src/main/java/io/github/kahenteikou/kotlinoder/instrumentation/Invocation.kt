@@ -47,6 +47,33 @@ open class InvocationImpl :Invocation{
             var type=Type(varName)
         }
     }
+    constructor(parent:Scope,id:String,varName:String?,methodName:String,
+                 Constructor:Boolean,isVoid:Boolean,isStatic:Boolean,
+                 retValName:String,args:List<Variable?>){
+        this.parent=parent
+        this._id=id
+        this.varName=varName
+        this.MethodName=methodName
+        this.Constructor=Constructor
+        this.Void=isVoid
+        this.Static=isStatic
+        this.returnValueName=retValName
+        arguments.addAll(args)
+        var varkun:Variable?=null
+        try{
+            if(varName != null)
+                varkun=this.parent.getVariable(varName)
+        }catch (e:Exception){
+            //??
+        }
+        if(!isStatic&&isScope() && varkun == null){
+            throw IllegalArgumentException("Variable $varName not found in scope ${this.parent.getName()}")
+        }else {
+            //val typekun:Type
+            var type=Type(varName)
+        }
+    }
+
 
     override fun getVariableName(): String? {
         return varName
