@@ -4,6 +4,7 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.IdGenerator
 import ktast.ast.Node
+import ktast.ast.Visitor
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -15,7 +16,10 @@ fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
     var clsScopes:MutableList<Scope> = ArrayList()
     scopes["rootfile.kt"] = clsScopes
     scopes.get("rootfile.kt")!!.add(visitor.getrootScope()!!)
-    
+    Visitor.visit(fkun){
+        v,v2->
+
+    }
 }
 class KotlinCodeVisitor{
     private var codeBuilder:VisualCodeBuilder_Impl
@@ -59,6 +63,9 @@ class KotlinCodeVisitor{
             result=generator.newId()
         }
         return result
+    }
+    fun visit(v:Node,parent:Node?){
+        
     }
 /*
     fun visitClass(klass: KtClass) {
