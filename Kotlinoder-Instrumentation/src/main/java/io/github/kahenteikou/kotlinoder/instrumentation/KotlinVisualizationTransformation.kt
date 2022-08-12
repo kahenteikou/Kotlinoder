@@ -10,6 +10,7 @@ import kotlin.collections.HashMap
 fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
     var codeBuilder:VisualCodeBuilder_Impl= VisualCodeBuilder_Impl()
     var scopes:Map<String,MutableList<Scope>> = HashMap()
+    var visitor:KotlinCodeVisitor=KotlinCodeVisitor(fkun,codeBuilder)
     
 }
 class KotlinCodeVisitor{
