@@ -158,7 +158,9 @@ class KotlinCodeVisitor:CustomVisitor{
             if(targetName.last() == '.'){
                 targetName=targetName.substring(0,targetName.length-1)
             }
-            println(targetName)
+            var returnValueName:String="void"
+            var isVoid:Boolean=true
+            
         }else {
             super.visitExpressionBinary(b, v)
         }
