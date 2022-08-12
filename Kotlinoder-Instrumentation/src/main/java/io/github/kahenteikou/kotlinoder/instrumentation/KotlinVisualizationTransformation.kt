@@ -143,23 +143,6 @@ class KotlinCodeVisitor:CustomVisitor{
         return Extends(types)
     }
 /*
-    fun visitClass(klass: KtClass) {
-        //println(">> visitClass: ${klass.name}")
-        println("CLASS: ${klass.name}")
-        currentScope=codeBuilder.declareClass(
-            currentScope as CompilationUnitDeclaration,
-            Type(klass.name,false),
-            convertModifiers(klass.modifierList),
-            convertExtends(klass),Extends()
-        )
-
-        for(elemchild in klass.children){
-            parse(elemchild)
-        }
-        currentScope=(currentScope as ClassDeclaration).getParent()
-        currentScope?.setCode(klass.text)
-
-    }
     fun visitNamedFunction(kfunc:KtNamedFunction){
         println("m: ${kfunc.name}, parentscope: ${currentScope?.getName()}: ${currentScope?.getType()}")
         var tr:String=""
