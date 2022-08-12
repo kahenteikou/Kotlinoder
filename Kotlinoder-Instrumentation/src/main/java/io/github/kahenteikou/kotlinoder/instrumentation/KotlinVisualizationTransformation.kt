@@ -5,9 +5,12 @@ import eu.mihosoft.vrl.workflow.IdGenerator
 import ktast.ast.Node
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
-
+    var codeBuilder:VisualCodeBuilder_Impl= VisualCodeBuilder_Impl()
+    var scopes:Map<String,MutableList<Scope>> = HashMap()
+    
 }
 class KotlinCodeVisitor{
     private var codeBuilder:VisualCodeBuilder_Impl
@@ -52,7 +55,7 @@ class KotlinCodeVisitor{
         }
         return result
     }
-
+/*
     fun visitClass(klass: KtClass) {
         //println(">> visitClass: ${klass.name}")
         println("CLASS: ${klass.name}")
@@ -203,4 +206,6 @@ class KotlinCodeVisitor{
         }
         return variables
     }
+ */
+
 }
