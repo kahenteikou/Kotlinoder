@@ -151,16 +151,33 @@ class KotlinCodeVisitor:CustomVisitor{
             var callkun=b.rhs as Node.Expression.Call
             super.visitExpressionBinary(b, v)
             var targetName=""
-            /*if(callkun.expression is Node.Expression.Name)
-                targetName=(callkun.expression as Node.Expression.Name).name*/
-
-            targetName=convertCallLHS(targetName,b)
-            if(targetName.last() == '.'){
-                targetName=targetName.substring(0,targetName.length-1)
+            var objName=""
+            if(callkun.expression is Node.Expression.Name)
+                targetName=(callkun.expression as Node.Expression.Name).name
+            var isIdCall:Boolean=false
+            objName=convertCallLHS(objName,b)
+            if(objName.last() == '.'){
+                objName=objName.substring(0,objName.length-1)
             }
             var returnValueName:String="void"
             var isVoid:Boolean=true
-            
+            if(!isIdCall){
+                if(objName == "System.out"){
+                    codeBuilder.invokeStaticMethod(currentScope,
+                        Type("System.out"),
+                        targetName,
+                        isVoid,
+                        returnValueName
+                    )
+                }else{
+                    codeBuilder.invokeMethod(currentScope,
+                        objName,
+                        targetName,
+                        isVoid,
+                        returnValueName
+                    )
+                }
+            }
         }else {
             super.visitExpressionBinary(b, v)
         }
