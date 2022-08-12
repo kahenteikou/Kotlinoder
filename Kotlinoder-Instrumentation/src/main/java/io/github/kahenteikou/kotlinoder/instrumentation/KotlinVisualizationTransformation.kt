@@ -6,7 +6,7 @@ import ktast.ast.Node
 import java.util.*
 import kotlin.collections.ArrayList
 
-fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile,v: Node, parent: Node?){
+fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
 
 }
 class KotlinCodeVisitor{

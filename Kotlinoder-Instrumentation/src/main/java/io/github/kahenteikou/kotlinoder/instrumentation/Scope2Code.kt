@@ -99,12 +99,14 @@ class Scope2Code {
                 }
             """.trimIndent()
             var filekun=Parser.parseFile(code)
+
             Visitor.visit(filekun){v,_->
                 println(v.javaClass)
             }
-            Visitor.visit(filekun){v,v2->
+            /*Visitor.visit(filekun){v,v2->
                 KotlinVisualizationTransformationVisit(filekun,v,v2)
-            }
+            }*/
+            KotlinVisualizationTransformationVisit(filekun)
         }
     }
 }
