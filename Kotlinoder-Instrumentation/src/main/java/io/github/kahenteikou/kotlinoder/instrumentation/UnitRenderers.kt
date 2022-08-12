@@ -30,7 +30,7 @@ class CompilationUnitRenderer:CodeRenderer<CompilationUnitDeclaration>{
     override fun render(e: CompilationUnitDeclaration, nd: Node) {
 
         for(cd in e.getDeclaredClasses()){
-            //classDeclarationRenderer!!.render2(cd,nd)
+            classDeclarationRenderer?.render(cd,nd)
         }
     }
 }
