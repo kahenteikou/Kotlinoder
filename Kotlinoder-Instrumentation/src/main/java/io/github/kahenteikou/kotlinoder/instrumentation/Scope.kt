@@ -5,7 +5,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-interface Scope : CodeEntity_OLD{
+interface Scope : CodeEntity{
     fun getParent(): Scope?
     fun getType(): ScopeType
     fun getName(): String
