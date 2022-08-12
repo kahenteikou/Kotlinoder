@@ -123,7 +123,9 @@ class KotlinCodeVisitor{
                     println(" --> ARG: ${i.text}")
                 }*/
                 var arguments:MutableList<Variable> =convertArguments(targetkun.valueArguments)
-                
+                var objName:String?=null
+                var isIdCall:Boolean=false
+                println(arguments)
             }
         }
     }
