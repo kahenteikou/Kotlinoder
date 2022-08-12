@@ -5,6 +5,11 @@ import ktast.ast.Node
 import ktast.ast.psi.Parser
 
 class ClassDeclarationRenderer:CodeRenderer<ClassDeclaration>{
+
+    private var methodDeclarationRenderer: CodeRenderer<MethodDeclaration>
+    constructor(methodDeclarationRenderer: CodeRenderer<MethodDeclaration>){
+        this.methodDeclarationRenderer = methodDeclarationRenderer
+    }
     
 }
 class CompilationUnitRenderer:CodeRenderer<CompilationUnitDeclaration>{
