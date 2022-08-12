@@ -130,6 +130,10 @@ class KotlinCodeVisitor{
                     if(objName.equals("System.out")){
                         codeBuilder.invokeStaticMethod(currentScope,Type("System.out"),methodName,true,
                         "",arguments)
+                            .setCode(dotQualifiedExpression.text)
+                    }else{
+                        codeBuilder.invokeMethod(currentScope,objName,methodName,true,
+                                "",arguments)
                     }
                 }
 
