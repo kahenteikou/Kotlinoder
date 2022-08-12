@@ -157,6 +157,7 @@ class KotlinCodeVisitor:CustomVisitor{
                 targetName=(callkun.expression as Node.Expression.Name).name
             var isIdCall:Boolean=false
             objName=convertCallLHS(objName,b)
+            if(objName != "")
             if(objName.last() == '.'){
                 objName=objName.substring(0,objName.length-1)
             }
@@ -173,7 +174,7 @@ class KotlinCodeVisitor:CustomVisitor{
                     ).setCode(
                         Writer.write(b)
                     )
-                }else{
+                }else if(objName != ""){
                     codeBuilder.invokeMethod(currentScope,
                         objName,
                         targetName,
