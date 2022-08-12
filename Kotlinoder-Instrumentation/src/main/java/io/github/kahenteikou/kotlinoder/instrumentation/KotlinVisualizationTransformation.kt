@@ -126,7 +126,13 @@ class KotlinCodeVisitor{
                 var objName:String?=null
                 var isIdCall:Boolean=false
                 objName=receiverkun.text
-                
+                if(objName!=null){
+                    if(objName.equals("System.out")){
+                        codeBuilder.invokeStaticMethod(currentScope,Type("System.out"),methodName,true,
+                        "",*arguments)
+                    }
+                }
+
             }
         }
     }
