@@ -173,7 +173,19 @@ class KotlinCodeVisitor:CustomVisitor{
         return Extends(types)
     }
     private fun convertFuncParameters(params: Node.Declaration.Function.Params?):IParameters{
-
+        var parameters:MutableList<Parameter> = ArrayList()
+        if(params != null)
+        for(param in params.elements){
+            if(param.typeRef != null)
+            if(param.typeRef!!.type is Node.Type.Simple){
+                var typeName=""
+                for(ikun in (param.typeRef!!.type as Node.Type.Simple).pieces){
+                    typeName=ikun.name.name
+                }
+                parameters.add(Parameter(Type(typeName,true),param.name!!.name))
+            }
+        }
+        return Parameters(parameters)
     }
 
 /*
