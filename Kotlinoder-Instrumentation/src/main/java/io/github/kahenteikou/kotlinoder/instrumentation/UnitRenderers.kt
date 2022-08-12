@@ -4,6 +4,9 @@ import io.github.kahenteikou.kotlinoder.lang.VLangUtils
 import ktast.ast.Node
 import ktast.ast.psi.Parser
 
+class ClassDeclarationRenderer:CodeRenderer<ClassDeclaration>{
+    
+}
 class CompilationUnitRenderer:CodeRenderer<CompilationUnitDeclaration>{
     private var classDeclarationRenderer:CodeRenderer<ClassDeclaration>?=null
     constructor(){
