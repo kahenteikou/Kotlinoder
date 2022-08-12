@@ -1,6 +1,7 @@
 
 package io.github.kahenteikou.kotlinoder.instrumentation
 
+import com.sun.jdi.connect.Connector.Argument
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.IdGenerator
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
@@ -186,7 +187,24 @@ class KotlinCodeVisitor:CustomVisitor{
             super.visitExpressionBinary(b, v)
         }
     }
-
+    private fun convertCallValueArgs(args: Node.ValueArgs?):MutableList<Argument>{
+        var result:MutableList<Argument> = ArrayList()
+        if(args != null){
+            for(arg in args.elements){
+                if(arg is Node.ValueArg){
+                    var argName:String=""
+                    if(arg.name != null)
+                        argName=arg.name!!.name
+                    var argType:Type=Type("void",true)
+                    if(arg.value is Node.Expression.Name){
+                        argType=Type(arg.value as Node.Expression.Name).type
+                    }
+                    result.add(Argument(argName,argType))
+                }
+            }
+        }
+        return result
+    }
     private fun convertCallLHS(nowstrkun:String,lhs:Node.Expression):String{
         var retstr=nowstrkun
         if(lhs is Node.Expression.Name){
