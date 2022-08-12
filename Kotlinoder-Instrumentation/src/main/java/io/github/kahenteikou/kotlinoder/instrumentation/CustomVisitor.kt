@@ -419,6 +419,17 @@ open class CustomVisitor {
         v.visitChildren(p.packageKeyword)
         v.visitChildren(p.names)
     }
+    protected fun visitClass(clsNode:Node.Declaration.Class,v:Node){
+
+        v.visitChildren(clsNode.modifiers)
+        v.visitChildren(clsNode.declarationKeyword)
+        v.visitChildren(clsNode.name)
+        v.visitChildren(clsNode.typeParams)
+        v.visitChildren(clsNode.primaryConstructor)
+        v.visitChildren(clsNode.parents)
+        v.visitChildren(clsNode.typeConstraints)
+        v.visitChildren(clsNode.body)
+    }
     protected fun <T : Node> Node.visitChildren(v: T?) {
         if (v != null) {
             visit(v, this)
