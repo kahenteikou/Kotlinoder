@@ -113,12 +113,13 @@ class KotlinCodeVisitor{
     }
     private fun convertExtends(parentskun:Node.Declaration.Class.Parents?):IExtends{
         var types:MutableList<Type> = ArrayList()
-
-        if(klass.getSuperTypeList()==null)
-            return Extends()
-        for(sp in klass.getSuperTypeList()!!.children){
-            if(sp is KtSuperTypeEntry){
-                types.add(Type(sp.typeReference!!.text,false))
+        if(parentskun!=null){
+            parentskun.elements?.forEach {
+                if (it is Node.Declaration.Class.Parent.Type) {
+                    for (ikun in it.type.pieces) {
+                        types.add(Type(ikun.name.name, false))
+                    }
+                }
             }
         }
         return Extends(types)
