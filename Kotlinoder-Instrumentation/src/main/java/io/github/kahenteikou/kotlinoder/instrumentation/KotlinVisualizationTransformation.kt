@@ -70,11 +70,15 @@ class KotlinCodeVisitor{
         }
     }
     fun visitClass(classkun:Node.Declaration.Class,parent:Node?){
-        if(classkun.name != null){
+        if(classkun.name != null) {
             println("CLASS: ${classkun.name?.name}")
-            classkun.modifiers?.elements?.let{
-                convertModifiers(it)
+            var modifierskun: IModifiers? = null
+            classkun.modifiers?.elements?.let {
+                modifierskun = convertModifiers(it)
             }
+            if (modifierskun == null)
+                modifierskun= Modifiers(Modifier.PUBLIC)
+            
         }
     }
     private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
