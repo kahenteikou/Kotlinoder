@@ -192,14 +192,10 @@ class KotlinCodeVisitor:CustomVisitor{
         if(args != null){
             for(arg in args.elements){
                 if(arg is Node.ValueArg){
-                    var argName:String=""
-                    if(arg.name != null)
-                        argName=arg.name!!.name
-                    var argType:Type=Type("void",true)
-                    if(arg.value is Node.Expression.Name){
-                        argType=Type(arg.value as Node.Expression.Name).type
+                    var exp = arg.expression
+                    if(exp is Node.Expression.StringTemplate){
+                        
                     }
-                    result.add(Argument(argName,argType))
                 }
             }
         }
