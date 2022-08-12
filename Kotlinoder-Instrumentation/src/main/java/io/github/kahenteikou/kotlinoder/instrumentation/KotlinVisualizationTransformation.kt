@@ -81,13 +81,13 @@ class KotlinCodeVisitor{
             modifierskun?.getModifiers()?.forEach({
                 println(">> MODIFIER: $it")
             })
-            classkun.parents?.elements?.forEach({
-                if(it is Node.Declaration.Class.Parent.Type){
-                    for(ikun in it.type.pieces){
-                        println("SUPER : ${ikun.name.name}")
-                    }
-                }
-            })
+            currentScope=codeBuilder.declareClass(currentScope as CompilationUnitDeclaration,
+            Type(classkun.name!!.name,false),
+            modifierskun!!,
+                convertExtends(classkun.parents),
+                Extends()
+            )
+            
         }
     }
     private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
