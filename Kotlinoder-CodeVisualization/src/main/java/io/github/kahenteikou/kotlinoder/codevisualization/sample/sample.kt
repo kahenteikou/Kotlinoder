@@ -13,5 +13,7 @@ public class sample {
     }
 }
 public class s2{
+    public fun x2(v3:Int){
 
+    }
 }
