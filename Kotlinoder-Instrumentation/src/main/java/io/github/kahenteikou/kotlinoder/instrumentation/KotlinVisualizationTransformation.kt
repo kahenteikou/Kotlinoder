@@ -149,12 +149,16 @@ class KotlinCodeVisitor:CustomVisitor{
     override fun visitExpressionBinary(b: Node.Expression.Binary, v: Node) {
         if(b.rhs is Node.Expression.Call){
             var callkun=b.rhs as Node.Expression.Call
-
             super.visitExpressionBinary(b, v)
             var targetName=""
-            if(callkun.expression is Node.Expression.Name)
-                targetName="." + (callkun.expression as Node.Expression.Name).name
+            /*if(callkun.expression is Node.Expression.Name)
+                targetName=(callkun.expression as Node.Expression.Name).name*/
+
             targetName=convertCallLHS(targetName,b)
+            if(targetName.last() == '.'){
+                targetName=targetName.substring(0,targetName.length-1)
+            }
+            println(targetName)
         }else {
             super.visitExpressionBinary(b, v)
         }
@@ -162,7 +166,17 @@ class KotlinCodeVisitor:CustomVisitor{
 
     private fun convertCallLHS(nowstrkun:String,lhs:Node.Expression):String{
         var retstr=nowstrkun
-        
+        if(lhs is Node.Expression.Name){
+            retstr=lhs.name + "." + retstr
+        }
+        if(lhs is Node.Expression.Binary){
+            if(lhs.operator.token == Node.Expression.Binary.Operator.Token.DOT){
+                if(lhs.rhs is Node.Expression.Name){
+                    retstr= (lhs.rhs as Node.Expression.Name).name + "." + retstr
+                }
+                retstr=convertCallLHS(retstr,lhs.lhs)
+            }
+        }
         return retstr
     }
     private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
