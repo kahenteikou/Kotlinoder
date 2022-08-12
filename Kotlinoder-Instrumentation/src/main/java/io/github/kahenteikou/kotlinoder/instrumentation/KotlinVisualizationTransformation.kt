@@ -127,12 +127,19 @@ class KotlinCodeVisitor:CustomVisitor{
                     typeName=ikun.name.name
                 }
             }
-            currentScope=codeBuilder.declareMethod(currentScope as ClassDeclaration,
-                modifierskun!!,
-                Type(typeName,true),
-                f.name!!.name,
-                convertFuncParameters(f.params)
-            )
+            if(typeName!="") {
+                currentScope = codeBuilder.declareMethod(
+                    currentScope as ClassDeclaration,
+                    modifierskun!!,
+                    Type(typeName, true),
+                    f.name!!.name,
+                    convertFuncParameters(f.params)
+                )
+                currentScope!!.setCode(Writer.write(f))
+                
+            }else{
+                super.visitFunctionDeclaration(f, v)
+            }
         }else{
 
             super.visitFunctionDeclaration(f, v)
