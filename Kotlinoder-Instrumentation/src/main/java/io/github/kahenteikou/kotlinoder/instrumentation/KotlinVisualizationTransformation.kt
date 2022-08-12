@@ -112,7 +112,22 @@ class KotlinCodeVisitor:CustomVisitor{
     override fun visitFunctionDeclaration(f: Node.Declaration.Function, v: Node) {
         println("FUNCTION: ${f.name?.name}, parentScope: ${currentScope?.getName()}:${currentScope?.getType()?.name}")
         if(currentScope is ClassDeclaration){
-            
+            var modifierskun: IModifiers? = null
+            f.modifiers?.elements?.let {
+                modifierskun = convertModifiers(it)
+            }
+            if (modifierskun == null)
+                modifierskun= Modifiers(Modifier.PUBLIC)
+            modifierskun?.getModifiers()?.forEach({
+                println(">> MODIFIER: $it")
+            })
+            currentScope=codeBuilder.declareMethod(currentScope as ClassDeclaration,
+                modifierskun,
+                convertParameters(f.parameters),
+                convertTypeParameters(f.typeParameters),
+                convertType(f.returnType),
+                convertBody(f.body)
+            )
         }else{
 
             super.visitFunctionDeclaration(f, v)
