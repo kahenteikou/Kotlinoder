@@ -94,14 +94,13 @@ class Scope2Code {
                 class A{
                     fun foo(tdn:Int){
                         var a:Int=1
-                        println("ex")
-                        System.err.println("ex2")
+                        System.out.println("ex")
                     }
                 }
                 class B:A{
                     fun foo2(){
                         var a:Int=1
-                        println("ex")
+                        System.out.println("ex")
                     }
                 }
             """.trimIndent()

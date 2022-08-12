@@ -30,6 +30,7 @@ class KotlinCodeVisitor:CustomVisitor{
     private var lastMethod:Invocation?=null
     private var vIdStack: Stack<String> = Stack()
     private var generator: IdGenerator = FlowFactory.newIdGenerator()
+    private var callkuns_expressionskun:MutableList<Node.Expression.Call> = ArrayList()
     fun getrootScope():Scope?{
         return rootScope
     }
@@ -147,17 +148,14 @@ class KotlinCodeVisitor:CustomVisitor{
 
     override fun visitExpressionBinary(b: Node.Expression.Binary, v: Node) {
         if(b.rhs is Node.Expression.Call){
-
+            var callkun=b.rhs as Node.Expression.Call
+            
             super.visitExpressionBinary(b, v)
         }else {
             super.visitExpressionBinary(b, v)
         }
     }
 
-    override fun visitExpressionCall(c: Node.Expression.Call, v: Node) {
-
-        super.visitExpressionCall(c, v)
-    }
 
     private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
         var modskun:MutableList<Modifier> = ArrayList()
