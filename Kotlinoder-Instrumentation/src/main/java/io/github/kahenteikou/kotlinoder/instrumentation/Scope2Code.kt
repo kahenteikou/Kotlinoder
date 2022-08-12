@@ -95,7 +95,7 @@ class Scope2Code {
                     fun foo(tdn:Int){
                         var a:Int=1
                         println("ex")
-                        System.out.println("ex2")
+                        System.err.println("ex2")
                     }
                 }
                 class B:A{

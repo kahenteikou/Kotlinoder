@@ -223,9 +223,7 @@ open class CustomVisitor {
                 visitChildren(body)
             }
             is Node.Expression.Binary -> {
-                visitChildren(lhs)
-                visitChildren(operator)
-                visitChildren(rhs)
+                visitExpressionBinary(this,v)
             }
             is Node.Expression.BinaryInfix -> {
                 visitChildren(lhs)
@@ -428,6 +426,11 @@ open class CustomVisitor {
         v.visitChildren(c.typeArgs)
         v.visitChildren(c.args)
         v.visitChildren(c.lambdaArg)
+    }
+    protected open fun visitExpressionBinary(b:Node.Expression.Binary,v:Node){
+        v.visitChildren(b.lhs)
+        v.visitChildren(b.operator)
+        v.visitChildren(b.rhs)
     }
     protected fun <T : Node> Node.visitChildren(v: T?) {
         if (v != null) {
