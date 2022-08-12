@@ -144,6 +144,11 @@ class KotlinCodeVisitor:CustomVisitor{
             super.visitFunctionDeclaration(f, v)
         }
     }
+
+    override fun visitExpressionCall(c: Node.Expression.Call, v: Node) {
+        println(c.expression)
+        super.visitExpressionCall(c, v)
+    }
     private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
         var modskun:MutableList<Modifier> = ArrayList()
         for(mkun in modifiers){
