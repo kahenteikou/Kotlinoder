@@ -36,6 +36,10 @@ plugins{
 
 	id "org.openjfx.javafxplugin" version "0.0.13"
 }
+javafx{
+    version="17"
+    modules= ["javafx.controls"]
+}
 
 dependencies {
     implementation "com.thoughtworks.xstream:xstream:$xstreamVersion"
