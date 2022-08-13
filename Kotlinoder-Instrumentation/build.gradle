@@ -21,7 +21,11 @@ dependencies{
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit:1.7.10'
 
 }
-mainClassName="io.github.kahenteikou.kotlinoder.instrumentation.Scope2Code"
+//mainClassName="io.github.kahenteikou.kotlinoder.instrumentation.Scope2Code"
+application {
+    mainModule="io.github.kahenteikou.kotlinoder.Instrumentation"
+    mainClass="io.github.kahenteikou.kotlinoder.instrumentation.Scope2Code"
+}
 jar{
     manifest{
         attributes 'Main-Class': 'io.github.kahenteikou.kotlinoder.instrumentation.Scope2Code'

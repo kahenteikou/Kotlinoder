@@ -1,4 +1,3 @@
-module io.github.kahenteikou.kotlinoder.Instrumentation {
+module io.github.kahenteikou.kotlinoder.instrumentation {
     exports io.github.kahenteikou.kotlinoder.instrumentation;
-    exports io.github.kahenteikou.kotlinoder.lang;
 }
