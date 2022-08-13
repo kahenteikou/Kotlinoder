@@ -2,3 +2,7 @@ rootProject.name = 'Kotlinoder'
 include 'Kotlinoder-CodeObserver'
 include 'Kotlinoder-Instrumentation'
 include 'Kotlinoder-CodeVisualization'
+include ':VWorkflows-Core'
+project(":VWorkflows-Core").projectDir=new File("VWorkflows/VWorkflows-Core")
+include ':VWorkflows-FX'
+project(":VWorkflows-FX").projectDir=new File("VWorkflows/VWorkflows-FX")

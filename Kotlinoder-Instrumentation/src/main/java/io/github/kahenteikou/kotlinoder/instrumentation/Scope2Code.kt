@@ -1,19 +1,9 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
-import com.intellij.openapi.util.Disposer
-import com.intellij.psi.PsiManager
-import com.intellij.testFramework.LightVirtualFile
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
-import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
-import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
-import org.jetbrains.kotlin.config.CompilerConfiguration
-import org.jetbrains.kotlin.diagnostics.rendering.renderParameter
-import org.jetbrains.kotlin.idea.KotlinFileType
-import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.kotlin.psi.KtPsiFactory
-import org.jetbrains.kotlin.psi.classVisitor
-import org.jetbrains.kotlin.psi.psiUtil.containingClass
+import ktast.ast.Visitor
+import ktast.ast.Writer
+import ktast.ast.psi.Parser
 
 class Scope2Code {
     companion object{
@@ -85,7 +75,7 @@ class Scope2Code {
             println(renderer.render(scope))
             println("demo")
             //kotlin parser
-
+            /*
             val config= CompilerConfiguration()
             var dispos= Disposer.newDisposable()
             val env= KotlinCoreEnvironment.createForProduction(
@@ -98,7 +88,40 @@ class Scope2Code {
             var buffile=LightVirtualFile(scope.getFileName()!!, KotlinFileType.INSTANCE,renderer.render(scope))
             var psif=PsiManager.getInstance(env.project).findFile(buffile) as KtFile
             var parserkun = KotlinCodeVisitor(psif,VisualCodeBuilder_Impl())
-            parserkun.parse(psif)
+            parserkun.parse(psif)*/
+            val code="""
+                package io.github.kahenteikou.kotlinoder.instrumentation
+                class A{
+                    fun foo(tdn:Int){
+                        var a:Int=1
+                        System.out.println("ex")
+                    }
+                }
+                class B:A{
+                    fun foo2(){
+                        var a:Int=1
+                        System.out.println("ex")
+                    }
+                }
+            """.trimIndent()
+            var filekun=Parser.parseFile(code)
+
+            Visitor.visit(filekun){v,_->
+                println(v.javaClass)
+            }
+            /*Visitor.visit(filekun){v,v2->
+                KotlinVisualizationTransformationVisit(filekun,v,v2)
+            }*/
+            UIBinding.scopes.clear()
+            KotlinVisualizationTransformationVisit(filekun)
+            for(scopeLs in UIBinding.scopes.values){
+                for(scope in scopeLs){
+                    if(scope is CompilationUnitDeclaration){
+                        println(getCode(scope))
+                    }
+                }
+            }
+
         }
     }
 }

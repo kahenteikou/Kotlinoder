@@ -1,33 +1,43 @@
+
 package io.github.kahenteikou.kotlinoder.instrumentation
 
-import com.intellij.psi.PsiElement
+import com.sun.jdi.connect.Connector.Argument
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.IdGenerator
-import org.jetbrains.kotlin.lexer.KtModifierKeywordToken
-import org.jetbrains.kotlin.lexer.KtTokens
-import org.jetbrains.kotlin.psi.*
-import org.jetbrains.kotlin.psi.psiUtil.allChildren
-import org.jetbrains.kotlin.psi.psiUtil.referenceExpression
+import io.github.kahenteikou.kotlinoder.lang.VLangUtils
+import ktast.ast.Node
+import ktast.ast.Visitor
+import ktast.ast.Writer
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
+import kotlin.jvm.internal.Intrinsics.Kotlin
 
-class KotlinVisualizationTransformation {
+fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
+    var codeBuilder:VisualCodeBuilder_Impl= VisualCodeBuilder_Impl()
+    var scopes:MutableMap<String,MutableList<Scope>> = HashMap()
+    var visitor:KotlinCodeVisitor= KotlinCodeVisitor(fkun,codeBuilder)
+    var clsScopes:MutableList<Scope> = ArrayList()
+    scopes["rootfile.kt"] = clsScopes
+    scopes.get("rootfile.kt")!!.add(visitor.getrootScope()!!)
+    visitor.visit(fkun)
+    UIBinding.scopes.putAll(scopes)
 }
-class KotlinCodeVisitor{
+class KotlinCodeVisitor:CustomVisitor{
     private var codeBuilder:VisualCodeBuilder_Impl
-    private var ktFile:KtFile
+    private var ktFile:Node.KotlinFile
     private var rootScope:Scope?=null
     private var currentScope:Scope?=null
     private var lastMethod:Invocation?=null
     private var vIdStack: Stack<String> = Stack()
-    private var generator:IdGenerator=FlowFactory.newIdGenerator()
+    private var generator: IdGenerator = FlowFactory.newIdGenerator()
+    private var callkuns_expressionskun:MutableList<Node.Expression.Call> = ArrayList()
     fun getrootScope():Scope?{
         return rootScope
     }
-    constructor(ktFile:KtFile,codeBuilder:VisualCodeBuilder_Impl){
-
+    constructor(kf:Node.KotlinFile,codeBuilder:VisualCodeBuilder_Impl){
+        this.ktFile=kf
         this.codeBuilder=codeBuilder
-        this.ktFile=ktFile
         codeBuilder.setIdRequest(object : IdRequest{
             override fun request(): String {
                 return requestId()
@@ -36,7 +46,7 @@ class KotlinCodeVisitor{
         })
 
         this.rootScope=codeBuilder.declareCompilationUnit(
-            ktFile.name,
+            "rootfile.kt",
             "undefined"
         )
         this.currentScope=rootScope
@@ -58,23 +68,216 @@ class KotlinCodeVisitor{
         return result
     }
 
-    fun visitClass(klass: KtClass) {
-        //println(">> visitClass: ${klass.name}")
-        println("CLASS: ${klass.name}")
-        currentScope=codeBuilder.declareClass(
-            currentScope as CompilationUnitDeclaration,
-            Type(klass.name,false),
-            convertModifiers(klass.modifierList),
-            convertExtends(klass),Extends()
-        )
+    override fun visitPackageDirective(p: Node.PackageDirective, v: Node) {
 
-        for(elemchild in klass.children){
-            parse(elemchild)
+        var s2:String=""
+        var isFirst:Boolean=true
+        for(namekun in p.names){
+            if(isFirst)
+                s2+=namekun.name
+            else
+                s2+=".${namekun.name}"
+
+            isFirst=false
         }
-        currentScope=(currentScope as ClassDeclaration).getParent()
-        currentScope?.setCode(klass.text)
-
+        (rootScope as? CompilationUnitDeclaration)?.setPackageName(s2)
+        super.visitPackageDirective(p, v)
     }
+    override fun visitClass(classkun:Node.Declaration.Class, parent:Node){
+        if(classkun.name != null) {
+            println("CLASS: ${classkun.name?.name}")
+            var modifierskun: IModifiers? = null
+            classkun.modifiers?.elements?.let {
+                modifierskun = convertModifiers(it)
+            }
+            if (modifierskun == null)
+                modifierskun= Modifiers(Modifier.PUBLIC)
+            modifierskun?.getModifiers()?.forEach({
+                println(">> MODIFIER: $it")
+            })
+            currentScope=codeBuilder.declareClass(currentScope as CompilationUnitDeclaration,
+            Type(classkun.name!!.name,false),
+            modifierskun!!,
+                convertExtends(classkun.parents),
+                Extends()
+            )
+            super.visitClass(classkun, parent)
+            currentScope=currentScope?.getParent()
+            currentScope?.setCode(Writer.write(classkun))
+
+        }else{
+
+            super.visitClass(classkun, parent)
+        }
+    }
+
+    override fun visitFunctionDeclaration(f: Node.Declaration.Function, v: Node) {
+        println("FUNCTION: ${f.name?.name}, parentScope: ${currentScope?.getName()}:${currentScope?.getType()?.name}")
+        if(currentScope is ClassDeclaration){
+            var modifierskun: IModifiers? = null
+            f.modifiers?.elements?.let {
+                modifierskun = convertModifiers(it)
+            }
+            if (modifierskun == null)
+                modifierskun= Modifiers(Modifier.PUBLIC)
+            modifierskun?.getModifiers()?.forEach({
+                println(">> MODIFIER: $it")
+            })
+            var typeName="void"
+            if(f.receiverTypeRef?.type is Node.Type.Simple){
+                for(ikun in (f.receiverTypeRef?.type as Node.Type.Simple).pieces){
+                    typeName=ikun.name.name
+                }
+            }
+            currentScope = codeBuilder.declareMethod(
+                currentScope as ClassDeclaration,
+                modifierskun!!,
+                Type(typeName, true),
+                f.name!!.name,
+                convertFuncParameters(f.params)
+            )
+            currentScope!!.setCode(Writer.write(f))
+
+            super.visitFunctionDeclaration(f, v)
+            currentScope=currentScope!!.getParent()
+            currentScope!!.setCode(Writer.write(f))
+        }else{
+
+            super.visitFunctionDeclaration(f, v)
+        }
+    }
+
+    override fun visitExpressionBinary(b: Node.Expression.Binary, v: Node) {
+        if(b.rhs is Node.Expression.Call){
+            var callkun=b.rhs as Node.Expression.Call
+            super.visitExpressionBinary(b, v)
+            var targetName=""
+            var objName=""
+            if(callkun.expression is Node.Expression.Name)
+                targetName=(callkun.expression as Node.Expression.Name).name
+            var isIdCall:Boolean=false
+            objName=convertCallLHS(objName,b)
+            if(objName != "")
+            if(objName.last() == '.'){
+                objName=objName.substring(0,objName.length-1)
+            }
+            var returnValueName:String="void"
+            var isVoid:Boolean=true
+            if(!isIdCall){
+                if(objName == "System.out"){
+                    codeBuilder.invokeStaticMethod(currentScope,
+                        Type("System.out"),
+                        targetName,
+                        isVoid,
+                        returnValueName,
+                        convertCallValueArgs(callkun.args)
+                    ).setCode(
+                        Writer.write(b)
+                    )
+                }else if(objName != ""){
+                    codeBuilder.invokeMethod(currentScope,
+                        objName,
+                        targetName,
+                        isVoid,
+                        returnValueName,
+
+                        convertCallValueArgs(callkun.args)
+                    ).setCode(
+                        Writer.write(b)
+                    )
+                }
+            }
+        }else {
+            super.visitExpressionBinary(b, v)
+        }
+    }
+    private fun convertCallValueArgs(args: Node.ValueArgs?):MutableList<Variable>{
+        var result:MutableList<Variable> = ArrayList()
+        if(args != null){
+            for(arg in args.elements){
+                if(arg is Node.ValueArg){
+                    var exp = arg.expression
+                    if(exp is Node.Expression.StringTemplate){
+                        for(ent in exp.entries){
+                            if(ent is Node.Expression.StringTemplate.Entry.Regular){
+                                result.add(VariableFactory.createConstantVariable(
+                                    currentScope,Type("kotlin.String",true),
+                                    "",ent.str
+                                ))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return result
+    }
+    private fun convertCallLHS(nowstrkun:String,lhs:Node.Expression):String{
+        var retstr=nowstrkun
+        if(lhs is Node.Expression.Name){
+            retstr=lhs.name + "." + retstr
+        }
+        if(lhs is Node.Expression.Binary){
+            if(lhs.operator.token == Node.Expression.Binary.Operator.Token.DOT){
+                if(lhs.rhs is Node.Expression.Name){
+                    retstr= (lhs.rhs as Node.Expression.Name).name + "." + retstr
+                }
+                retstr=convertCallLHS(retstr,lhs.lhs)
+            }
+        }
+        return retstr
+    }
+    private fun convertModifiers(modifiers:List<Node.Modifier>):IModifiers{
+        var modskun:MutableList<Modifier> = ArrayList()
+        for(mkun in modifiers){
+            if(mkun is ktast.ast.Node.Modifier.Keyword){
+                if(mkun.token==Node.Modifier.Keyword.Token.PUBLIC)
+                    modskun.add(Modifier.PUBLIC)
+                else if(mkun.token==Node.Modifier.Keyword.Token.PRIVATE)
+                    modskun.add(Modifier.PRIVATE)
+                else if(mkun.token==Node.Modifier.Keyword.Token.PROTECTED)
+                    modskun.add(Modifier.PROTECTED)
+                else if(mkun.token==Node.Modifier.Keyword.Token.FINAL)
+                    modskun.add(Modifier.FINAL)
+                else if(mkun.token == Node.Modifier.Keyword.Token.ABSTRACT)
+                    modskun.add(Modifier.ABSTRACT)
+            }
+        }
+        if(!(modskun.contains(Modifier.PUBLIC) || modskun.contains(Modifier.PRIVATE) || modskun.contains(Modifier.PROTECTED))) {
+            modskun.add(Modifier.PUBLIC)
+        }
+        return Modifiers(modskun)
+    }
+    private fun convertExtends(parentskun:Node.Declaration.Class.Parents?):IExtends{
+        var types:MutableList<Type> = ArrayList()
+        if(parentskun!=null){
+            parentskun.elements?.forEach {
+                if (it is Node.Declaration.Class.Parent.Type) {
+                    for (ikun in it.type.pieces) {
+                        types.add(Type(ikun.name.name, false))
+                    }
+                }
+            }
+        }
+        return Extends(types)
+    }
+    private fun convertFuncParameters(params: Node.Declaration.Function.Params?):IParameters{
+        var parameters:MutableList<Parameter> = ArrayList()
+        if(params != null)
+        for(param in params.elements){
+            if(param.typeRef != null)
+            if(param.typeRef!!.type is Node.Type.Simple){
+                var typeName=""
+                for(ikun in (param.typeRef!!.type as Node.Type.Simple).pieces){
+                    typeName=ikun.name.name
+                }
+                parameters.add(Parameter(Type(typeName,true),param.name!!.name))
+            }
+        }
+        return Parameters(parameters)
+    }
+
+/*
     fun visitNamedFunction(kfunc:KtNamedFunction){
         println("m: ${kfunc.name}, parentscope: ${currentScope?.getName()}: ${currentScope?.getType()}")
         var tr:String=""
@@ -129,11 +332,11 @@ class KotlinCodeVisitor{
                 if(objName!=null){
                     if(objName.equals("System.out")){
                         codeBuilder.invokeStaticMethod(currentScope,Type("System.out"),methodName,true,
-                        "",arguments)
+                            "",arguments)
                             .setCode(dotQualifiedExpression.text)
                     }else{
                         codeBuilder.invokeMethod(currentScope,objName,methodName,true,
-                                "",arguments)
+                            "",arguments)
                             .setCode(dotQualifiedExpression.text)
                     }
                 }
@@ -154,15 +357,6 @@ class KotlinCodeVisitor{
                 visitMethodInvokeExpression(celem)
             }
         }
-    }
-    private fun convertModifiers(modifiers:KtModifierList?):IModifiers {
-        var modifierList:MutableList<Modifier> = ArrayList()
-        if(modifiers!!.hasModifier(KtTokens.PUBLIC_KEYWORD)){
-            modifierList.add(Modifier.PUBLIC)
-        }else if(modifiers!!.hasModifier(KtTokens.PRIVATE_KEYWORD)){
-            modifierList.add(Modifier.PRIVATE)
-        }
-        return Modifiers(modifierList)
     }
     private fun convertExtends(klass: KtClass):IExtends{
         var types:MutableList<Type> = ArrayList()
@@ -208,4 +402,6 @@ class KotlinCodeVisitor{
         }
         return variables
     }
+ */
+
 }

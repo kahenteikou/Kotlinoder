@@ -32,6 +32,7 @@ class Launcher : Application(){
         primaryStage?.title="Code Visualization"
         primaryStage?.scene=scene
         primaryStage?.show()
+        scene.stylesheets.add("/io/github/kahenteikou/kotlinoder/codevisualization/main/default.css")
 
     }
 }
