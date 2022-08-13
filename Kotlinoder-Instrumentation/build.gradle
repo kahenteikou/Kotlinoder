@@ -23,8 +23,13 @@ dependencies{
 }
 //mainClassName="io.github.kahenteikou.kotlinoder.instrumentation.Scope2Code"
 application {
-    mainModule="io.github.kahenteikou.kotlinoder.Instrumentation"
+    mainModule="io.github.kahenteikou.kotlinoder.instrumentation"
     mainClass="io.github.kahenteikou.kotlinoder.instrumentation.Scope2Code"
+}
+compileKotlin{
+    kotlinOptions{
+        moduleName="io.github.kahenteikou.kotlinoder.instrumentation"
+    }
 }
 jar{
     manifest{
