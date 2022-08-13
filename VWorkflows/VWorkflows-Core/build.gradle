@@ -32,31 +32,17 @@
  * or implied, of Michael Hoffer <info@michaelhoffer.de>.
  */
 
-buildscript {
-	repositories {
-		maven {
-			url 'https://plugins.gradle.org/m2/'
-		}
-	}
-	dependencies {
-		classpath "org.openjfx:javafx-plugin:$javafxPluginVersion"
-	}
-}
+plugins{
 
-if (JavaVersion.current().java11Compatible) {
-	apply plugin: 'org.openjfx.javafxplugin'
-
-	  javafx {
-        version = "$javafxVersion"
-        modules = [ 'javafx.controls' ] }
+	id "org.openjfx.javafxplugin" version "0.0.13"
 }
 
 dependencies {
     implementation "com.thoughtworks.xstream:xstream:$xstreamVersion"
-    compile "net.sf.jung:jung-api:$jungVersion"
-    compile "net.sf.jung:jung-graph-impl:$jungVersion"
-    compile "net.sf.jung:jung-algorithms:$jungVersion"
-    compile "net.sf.jung:jung-visualization:$jungVersion"
+    implementation "net.sf.jung:jung-api:$jungVersion"
+    implementation "net.sf.jung:jung-graph-impl:$jungVersion"
+    implementation "net.sf.jung:jung-algorithms:$jungVersion"
+    implementation "net.sf.jung:jung-visualization:$jungVersion"
     implementation "colt:colt:$coltVersion"
     implementation "org.apache.commons:commons-collections4:$commonsCollections4Version"
 }
