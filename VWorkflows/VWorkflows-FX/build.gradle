@@ -43,8 +43,8 @@ javafx{
 
 
 dependencies {
-    compile project(':Vworkflows-Core')
+    implementation project(':VWorkflows-Core')
 
-    compile "org.apache.commons:commons-math3:$commonsMath3Version"
-    compile "eu.mihosoft.jfx.scaledfx:scaledfx:$scaledfxVersion"
+    implementation "org.apache.commons:commons-math3:$commonsMath3Version"
+    implementation "eu.mihosoft.jfx.scaledfx:scaledfx:$scaledfxVersion"
 }
