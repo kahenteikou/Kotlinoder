@@ -13,6 +13,7 @@ class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration> {
         classDeclarationRenderer=classrenderer
     }
     override fun render(entity: CompilationUnitDeclaration): Node {
-        
+        lateinit var rootNode:Node.KotlinFile
+        return rootNode
     }
 }
