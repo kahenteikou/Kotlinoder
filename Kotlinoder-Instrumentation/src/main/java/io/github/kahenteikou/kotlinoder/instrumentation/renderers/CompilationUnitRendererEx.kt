@@ -22,6 +22,7 @@ class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration> {
             e.getPackageName()!!.split(".").forEach {
                 names.add(Node.Expression.Name(it))
             }
+            packageDirective=Node.PackageDirective(null,Node.Keyword.Package(),names)
         }
         return rootNode
     }
