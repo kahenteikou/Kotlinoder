@@ -72,6 +72,10 @@ null,
                     ))
             }
         }
+
+        for(md:MethodDeclaration in e.getDeclaredMethods()){
+            bodydecls.add(methodDeclarationRenderer.render(md))
+        }
         return Node.Declaration.Class.Body(
             ArrayList<Node.EnumEntry>(),
             false,
