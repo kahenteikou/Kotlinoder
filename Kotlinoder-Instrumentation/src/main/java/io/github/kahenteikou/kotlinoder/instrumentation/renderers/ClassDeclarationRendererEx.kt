@@ -34,10 +34,12 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
         return retClass
     }
     private fun createBody(e:ClassDeclaration):Node.Declaration.Class.Body?{
+        var bodydecls:MutableList<Node.Declaration> = ArrayList()
+        
         return Node.Declaration.Class.Body(
             ArrayList<Node.EnumEntry>(),
             false,
-            ArrayList<Node.Declaration>()
+            bodydecls
         )
     }
     private fun createModifiers(e:ClassDeclaration):Node.Modifiers?{
