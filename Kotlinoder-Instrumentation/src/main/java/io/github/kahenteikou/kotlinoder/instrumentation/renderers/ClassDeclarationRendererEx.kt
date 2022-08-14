@@ -17,6 +17,8 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
         var bodykun:Node.Declaration.Class.Body?=null
         var modifiers:Node.Modifiers?=null
         var name: Node.Expression.Name= Node.Expression.Name(Type(entity.getName()).getShortName()!!)
+        var typeparams: Node.TypeParams?=null
+        var primconst: Node.Declaration.Class.PrimaryConstructor?=null
         
         return retClass
     }
