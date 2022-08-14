@@ -84,10 +84,13 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
             }
             cb.append(type.getFullClassName()!!)*/
             var clsNameListkun:MutableList<Node.Type.Simple.Piece> = ArrayList()
-
+            type.getFullClassName()?.split(".")?.forEach {
+                clsNameListkun.add(Node.Type.Simple.Piece(Node.Expression.Name(it),null))
+            }
             retlist.add(Node.Declaration.Class.Parent.Type(Node.Type.Simple(clsNameListkun)))
         }
-        return null
+        if(retlist.isEmpty())return null
+        return Node.Declaration.Class.Parents(retlist)
     }
 
 }
