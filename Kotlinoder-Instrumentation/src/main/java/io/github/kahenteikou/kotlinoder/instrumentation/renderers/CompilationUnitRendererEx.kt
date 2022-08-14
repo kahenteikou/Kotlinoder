@@ -4,12 +4,12 @@ import io.github.kahenteikou.kotlinoder.instrumentation.ClassDeclaration
 import io.github.kahenteikou.kotlinoder.instrumentation.CompilationUnitDeclaration
 import ktast.ast.Node
 
-class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration> {
-    private var classDeclarationRenderer:CodeRendererEx<ClassDeclaration>? = null
+class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration,Node> {
+    private var classDeclarationRenderer:CodeRendererEx<ClassDeclaration,Node.Declaration>? = null
     constructor(){
 
     }
-    constructor(classrenderer:CodeRendererEx<ClassDeclaration>){
+    constructor(classrenderer:CodeRendererEx<ClassDeclaration,Node.Declaration>){
         classDeclarationRenderer=classrenderer
     }
     override fun render(e: CompilationUnitDeclaration): Node {
