@@ -54,7 +54,13 @@ null,
 
                 )
                 var namekun:Node.Expression.Name=Node.Expression.Name(v.getName()!!)
-                
+                bodydecls.add(Node.Declaration.Property(
+                    null,
+                    Node.Declaration.Property.ValOrVar(Node.Declaration.Property.ValOrVar.Token.VAR),
+                    null,null,
+                    Node.Keyword.LPar(),
+                    
+                ))
             }
         }
         return Node.Declaration.Class.Body(
