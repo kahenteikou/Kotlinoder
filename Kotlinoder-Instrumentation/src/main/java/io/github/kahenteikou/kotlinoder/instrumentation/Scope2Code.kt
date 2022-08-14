@@ -107,6 +107,7 @@ class Scope2Code {
             val code="""
                 package io.github.kahenteikou.kotlinoder.instrumentation
                 class A{
+                    var z2:Int
                     fun foo(tdn:Int){
                         var a:Int=1
                         System.out.println("ex")

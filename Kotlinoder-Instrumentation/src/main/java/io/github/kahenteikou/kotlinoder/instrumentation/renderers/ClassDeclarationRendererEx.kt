@@ -35,7 +35,17 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
     }
     private fun createBody(e:ClassDeclaration):Node.Declaration.Class.Body?{
         var bodydecls:MutableList<Node.Declaration> = ArrayList()
-        
+        for(v:Variable in e.getVariables()){
+
+            if(!"this".equals(v.getName())){/*
+                cb.newLine().append("var ").append(v.getName()!!).append(" : ")
+                    .append(v.getType().getFullClassName()!!).newLine()*/
+                var typepieces:MutableList<Node.Type.Simple.Piece> = ArrayList()
+                v.getType().getFullClassName()?.split(".")?.forEach {
+                    typepieces.add(Node.Type.Simple.Piece(Node.Expression.Name(it),null))
+                }
+            }
+        }
         return Node.Declaration.Class.Body(
             ArrayList<Node.EnumEntry>(),
             false,
