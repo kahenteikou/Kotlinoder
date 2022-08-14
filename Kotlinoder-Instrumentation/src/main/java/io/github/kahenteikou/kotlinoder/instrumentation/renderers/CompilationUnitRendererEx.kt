@@ -17,6 +17,7 @@ class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration> {
         var annotationSets:MutableList<Node.Modifier.AnnotationSet> = ArrayList()
         var importdirectives: Node.ImportDirectives? = null
         var packageDirective: Node.PackageDirective? = null
+        var declarations:MutableList<Node.Declaration> = ArrayList()
         if(e.getPackageName()!=null||e.getPackageName()!!.isEmpty()){
             var names:MutableList<Node.Expression.Name> = ArrayList()
             e.getPackageName()!!.split(".").forEach {
