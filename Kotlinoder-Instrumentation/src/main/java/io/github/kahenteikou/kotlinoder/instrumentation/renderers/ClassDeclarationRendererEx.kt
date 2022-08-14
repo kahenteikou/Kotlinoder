@@ -27,6 +27,7 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
         var primconst: Node.Declaration.Class.PrimaryConstructor?=null
         var parents: Node.Declaration.Class.Parents?=null
         var typeconsts: Node.PostModifier.TypeConstraints?=null
+        modifiers=createModifiers(entity)
         bodykun=createBody(entity)
         retClass=Node.Declaration.Class(modifiers,
             Node.Declaration.Class.DeclarationKeyword(Node.Declaration.Class.DeclarationKeyword.Token.CLASS)
@@ -38,6 +39,11 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
             ArrayList<Node.EnumEntry>(),
             false,
             ArrayList<Node.Declaration>()
+        )
+    }
+    private fun createModifiers(e:ClassDeclaration):Node.Modifiers?{
+        return Node.Modifiers(
+            ArrayList<Node.Modifier>()
         )
     }
 
