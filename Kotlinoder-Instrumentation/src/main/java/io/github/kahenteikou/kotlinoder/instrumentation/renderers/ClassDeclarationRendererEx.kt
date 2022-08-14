@@ -14,7 +14,7 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
 
     }
     constructor(coder:CodeRendererEx<MethodDeclaration,Node.Declaration>){
-        methodDeclarationRenderer = coder
+        _methodDeclarationRenderer = coder
     }
     override fun render(entity: ClassDeclaration): Node.Declaration.Class {
         lateinit var retClass:Node.Declaration.Class
@@ -72,9 +72,9 @@ null,
                     ))
             }
         }
-
+        if(_methodDeclarationRenderer!=null)
         for(md:MethodDeclaration in e.getDeclaredMethods()){
-            bodydecls.add(methodDeclarationRenderer.render(md))
+            bodydecls.add(_methodDeclarationRenderer!!.render(md))
         }
         return Node.Declaration.Class.Body(
             ArrayList<Node.EnumEntry>(),
