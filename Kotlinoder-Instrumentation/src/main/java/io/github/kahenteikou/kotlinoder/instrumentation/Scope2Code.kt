@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
+import ktast.ast.Node
 import ktast.ast.Visitor
 import ktast.ast.Writer
 import ktast.ast.psi.Parser
@@ -109,6 +110,9 @@ class Scope2Code {
             Visitor.visit(filekun){v,_->
                 println(v.javaClass)
             }
+            var f2= Node.KotlinFile(ArrayList<Node.Modifier.AnnotationSet>(),
+            null,null,ArrayList<Node.Declaration>())
+            println(Writer.write(f2))
             /*Visitor.visit(filekun){v,v2->
                 KotlinVisualizationTransformationVisit(filekun,v,v2)
             }*/
