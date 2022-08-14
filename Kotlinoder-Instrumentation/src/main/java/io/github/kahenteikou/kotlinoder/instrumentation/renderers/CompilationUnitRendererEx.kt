@@ -19,7 +19,9 @@ class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration> {
         var packageDirective: Node.PackageDirective? = null
         if(e.getPackageName()!=null||e.getPackageName()!!.isEmpty()){
             var names:MutableList<Node.Expression.Name> = ArrayList()
-            
+            e.getPackageName()!!.split(".").forEach {
+                names.add(Node.Expression.Name(it))
+            }
         }
         return rootNode
     }
