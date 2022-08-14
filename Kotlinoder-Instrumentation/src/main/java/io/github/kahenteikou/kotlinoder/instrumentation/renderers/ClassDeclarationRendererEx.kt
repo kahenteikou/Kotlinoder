@@ -13,7 +13,12 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
         }
     override fun render(entity: ClassDeclaration): Node.Declaration.Class {
         lateinit var retClass:Node.Declaration.Class
+        var bodykun:Node.Declaration.Class.Body?=null
+
         return retClass
+    }
+    private fun createBody(e:ClassDeclaration):Node.Declaration.Class.Body?{
+        return null
     }
 
 }
