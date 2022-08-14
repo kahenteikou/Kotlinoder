@@ -25,6 +25,10 @@ class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration> {
             }
             packageDirective=Node.PackageDirective(null,Node.Keyword.Package(),names)
         }
+        if(classDeclarationRenderer!=null)
+        for(cd in e.getDeclaredClasses()){
+            declarations.add(classDeclarationRenderer!!.render(cd))
+        }
         rootNode=Node.KotlinFile(annotationSets,packageDirective,importdirectives,declarations)
         return rootNode
     }
