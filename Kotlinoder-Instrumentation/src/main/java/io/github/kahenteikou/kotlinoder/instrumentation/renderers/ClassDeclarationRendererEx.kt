@@ -1,9 +1,6 @@
 package io.github.kahenteikou.kotlinoder.instrumentation.renderers
 
-import io.github.kahenteikou.kotlinoder.instrumentation.ClassDeclaration
-import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration
-import io.github.kahenteikou.kotlinoder.instrumentation.Modifier
-import io.github.kahenteikou.kotlinoder.instrumentation.Type
+import io.github.kahenteikou.kotlinoder.instrumentation.*
 import ktast.ast.Node
 
 class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declaration.Class> {
@@ -68,7 +65,28 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
     }
     private fun createExtendsAndImplements(cd:ClassDeclaration):Node.Declaration.Class.Parents?{
         var retlist:MutableList<Node.Declaration.Class.Parent> =ArrayList()
-        
+        var types:MutableList<IType> = ArrayList<IType>()
+        for(typekun in cd.getImplements().getTypes()){
+            types.add(typekun)
+        }
+        for(typekun2 in cd.getExtends().getTypes()){
+            types.add(typekun2)
+        }
+        for(type: IType in types){
+            if(type.getFullClassName().equals("java.lang.Object") || type.getFullClassName().equals("kotlin.Any")){
+                continue
+            }/*
+            if(isFirst) {
+                isFirst = false
+                cb.append(" : ")
+            }else{
+                cb.append(", ")
+            }
+            cb.append(type.getFullClassName()!!)*/
+            var clsNameListkun:MutableList<Node.Type.Simple.Piece> = ArrayList()
+
+            retlist.add(Node.Declaration.Class.Parent.Type(Node.Type.Simple(clsNameListkun)))
+        }
         return null
     }
 
