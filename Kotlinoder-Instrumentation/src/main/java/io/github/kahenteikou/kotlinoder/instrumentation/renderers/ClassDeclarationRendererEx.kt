@@ -67,6 +67,8 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
         )
     }
     private fun createExtendsAndImplements(cd:ClassDeclaration):Node.Declaration.Class.Parents?{
+        var retlist:MutableList<Node.Declaration.Class.Parent> =ArrayList()
+        
         return null
     }
 
