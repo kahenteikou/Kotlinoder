@@ -42,6 +42,8 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
         )
     }
     private fun createModifiers(e:ClassDeclaration):Node.Modifiers?{
+        var retkun:MutableList<Node.Modifier> =ArrayList()
+        
         return Node.Modifiers(
             ArrayList<Node.Modifier>()
         )
