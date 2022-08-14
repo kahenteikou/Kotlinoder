@@ -30,6 +30,7 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
         var typeconsts: Node.PostModifier.TypeConstraints?=null
         modifiers=createModifiers(entity)
         bodykun=createBody(entity)
+        parents=createExtendsAndImplements(entity)
         retClass=Node.Declaration.Class(modifiers,
             Node.Declaration.Class.DeclarationKeyword(Node.Declaration.Class.DeclarationKeyword.Token.CLASS)
             ,name,typeparams,primconst,parents,typeconsts,bodykun)
@@ -64,6 +65,9 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
         return Node.Modifiers(
             retkun
         )
+    }
+    private fun createExtendsAndImplements(cd:ClassDeclaration):Node.Declaration.Class.Parents?{
+        return null
     }
 
 }
