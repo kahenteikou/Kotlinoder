@@ -6,7 +6,13 @@ import ktast.ast.Node
 
 class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration> {
     private var classDeclarationRenderer:CodeRendererEx<ClassDeclaration>? = null
+    constructor(){
+
+    }
+    constructor(classrenderer:CodeRendererEx<ClassDeclaration>){
+        classDeclarationRenderer=classrenderer
+    }
     override fun render(entity: CompilationUnitDeclaration): Node {
-        TODO("Not yet implemented")
+        
     }
 }
