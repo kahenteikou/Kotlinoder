@@ -44,13 +44,12 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
                 v.getType().getFullClassName()?.split(".")?.forEach {
                     typepieces.add(Node.Type.Simple.Piece(Node.Expression.Name(it),null))
                 }
-                var typerefkun:Node.TypeRef=Node.TypeRef(Node.Keyword.LPar(),
+                var typerefkun:Node.TypeRef=Node.TypeRef(null,
 null,
-                    Node.Keyword.LPar(),
+                    null,
                     null,
                     Node.Type.Simple(typepieces),
-                    Node.Keyword.RPar(),
-                    Node.Keyword.RPar()
+                    null,null
 
                 )
                 var namekun:Node.Expression.Name=Node.Expression.Name(v.getName()!!)
@@ -59,8 +58,18 @@ null,
                     Node.Declaration.Property.ValOrVar(Node.Declaration.Property.ValOrVar.Token.VAR),
                     null,null,
                     Node.Keyword.LPar(),
-                    
-                ))
+                    arrayListOf(Node.Declaration.Property.Variable(
+                        namekun,
+                        typerefkun
+                    )),
+                    null,
+                    Node.Keyword.RPar(),
+                    null,
+                    null,
+                    null,
+                    null,
+                    ArrayList()
+                    ))
             }
         }
         return Node.Declaration.Class.Body(
