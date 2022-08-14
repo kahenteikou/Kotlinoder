@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
+import io.github.kahenteikou.kotlinoder.instrumentation.renderers.CompilationUnitRendererEx
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
 import ktast.ast.Node
 import ktast.ast.Visitor
@@ -66,14 +67,18 @@ class Scope2Code {
         @JvmStatic
         fun main(args:Array<String>){
             var scope:CompilationUnitDeclaration=demoScope()
-            var renderer:CompilationUnitRenderer=CompilationUnitRenderer(
+            /*var renderer:CompilationUnitRenderer=CompilationUnitRenderer(
                 ClassDeclarationRenderer(
                     MethodDeclarationRenderer(
                         InvocationCodeRenderer()
                     )
                 )
             )
-            println(renderer.render(scope))
+            println(renderer.render(scope))*/
+            var renderer:CompilationUnitRendererEx= CompilationUnitRendererEx(
+
+            )
+            println(Writer.write(renderer.render(scope)))
             println("demo")
             //kotlin parser
             /*

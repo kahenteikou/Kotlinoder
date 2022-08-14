@@ -25,6 +25,7 @@ class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration> {
             }
             packageDirective=Node.PackageDirective(null,Node.Keyword.Package(),names)
         }
+        rootNode=Node.KotlinFile(annotationSets,packageDirective,importdirectives,declarations)
         return rootNode
     }
 }
