@@ -53,6 +53,7 @@ null,
                     Node.Keyword.RPar()
 
                 )
+                var namekun:Node.Expression.Name=Node.Expression.Name(v.getName()!!)
                 
             }
         }
