@@ -14,6 +14,9 @@ class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration> {
     }
     override fun render(entity: CompilationUnitDeclaration): Node {
         lateinit var rootNode:Node.KotlinFile
+        var annotationSets:MutableList<Node.Modifier.AnnotationSet> = ArrayList()
+        var importdirectives: Node.ImportDirectives? = null
+        var packageDirective: Node.PackageDirective? = null
         return rootNode
     }
 }
