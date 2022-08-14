@@ -44,6 +44,16 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
                 v.getType().getFullClassName()?.split(".")?.forEach {
                     typepieces.add(Node.Type.Simple.Piece(Node.Expression.Name(it),null))
                 }
+                var typerefkun:Node.TypeRef=Node.TypeRef(Node.Keyword.LPar(),
+null,
+                    Node.Keyword.LPar(),
+                    null,
+                    Node.Type.Simple(typepieces),
+                    Node.Keyword.RPar(),
+                    Node.Keyword.RPar()
+
+                )
+                
             }
         }
         return Node.Declaration.Class.Body(
