@@ -6,6 +6,7 @@ import io.github.kahenteikou.kotlinoder.lang.VLangUtils
 import ktast.ast.Node
 import ktast.ast.Visitor
 import ktast.ast.Writer
+import ktast.ast.psi.ConverterWithExtras
 import ktast.ast.psi.Parser
 
 class Scope2Code {
@@ -52,7 +53,12 @@ class Scope2Code {
                 myFile,Type("my.testpackage.MyFileClass"),
                 Modifiers(Modifier.PUBLIC),Extends(),Extends()
             )
+            var myFileClass2:ClassDeclaration=builder.declareClass(
+                myFile,Type("my.testpackage.MyFileClass2"),
+                Modifiers(Modifier.PUBLIC),Extends(),Extends()
+            )
             builder.createVariable(myFileClass,Type("Int"),"value1")
+            builder.createVariable(myFileClass2,Type("Int"),"value2")
             var m1:MethodDeclaration=builder.declareMethod(myFileClass,
             Modifiers(Modifier.PUBLIC),Type("Int"),"m1",
                 Parameters(Parameter(Type("Int"),"v1")))
@@ -81,7 +87,7 @@ class Scope2Code {
 
                 )
             )
-            println(Writer.write(renderer.render(scope)))
+            println(Writer.write(renderer.render(scope), ConverterWithExtras()))
             println("demo")
             //kotlin parser
             /*

@@ -35,6 +35,7 @@ class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration,Node> 
             declarations.add(_classDeclarationRenderer!!.render(cd))
         }
         rootNode=Node.KotlinFile(annotationSets,packageDirective,importdirectives,declarations)
+
         return rootNode
     }
 
