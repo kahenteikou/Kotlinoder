@@ -62,7 +62,7 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
             }
         }
         return Node.Modifiers(
-            ArrayList<Node.Modifier>()
+            retkun
         )
     }
 
