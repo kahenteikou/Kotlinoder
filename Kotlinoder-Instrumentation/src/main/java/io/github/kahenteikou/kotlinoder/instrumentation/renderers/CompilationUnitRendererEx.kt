@@ -12,11 +12,14 @@ class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration> {
     constructor(classrenderer:CodeRendererEx<ClassDeclaration>){
         classDeclarationRenderer=classrenderer
     }
-    override fun render(entity: CompilationUnitDeclaration): Node {
+    override fun render(e: CompilationUnitDeclaration): Node {
         lateinit var rootNode:Node.KotlinFile
         var annotationSets:MutableList<Node.Modifier.AnnotationSet> = ArrayList()
         var importdirectives: Node.ImportDirectives? = null
         var packageDirective: Node.PackageDirective? = null
+        if(e.getPackageName()!=null||e.getPackageName()!!.isEmpty()){
+            
+        }
         return rootNode
     }
 }
