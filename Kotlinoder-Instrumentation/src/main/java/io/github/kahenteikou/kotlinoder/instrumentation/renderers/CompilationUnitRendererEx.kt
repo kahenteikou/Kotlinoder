@@ -6,8 +6,8 @@ import ktast.ast.Node
 
 class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration,Node> {
     private var _classDeclarationRenderer:CodeRendererEx<ClassDeclaration,Node.Declaration>? = null
-    var clsDeclarationRenderer:CodeRendererEx<ClassDeclaration,Node.Declaration>?
-        get() = _classDeclarationRenderer
+    var clsDeclarationRenderer:CodeRendererEx<ClassDeclaration,Node.Declaration>
+        get() = _classDeclarationRenderer!!
         set(value) {
             _classDeclarationRenderer = value
         }
