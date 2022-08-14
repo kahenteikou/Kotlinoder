@@ -112,6 +112,10 @@ class Scope2Code {
             }
             var f2= Node.KotlinFile(ArrayList<Node.Modifier.AnnotationSet>(),
             null,null,ArrayList<Node.Declaration>())
+            f2=f2.copy(packageDirective = Node.PackageDirective(
+                null,Node.Keyword.Package(),
+                listOf(Node.Expression.Name("io"),Node.Expression.Name("github"))
+            ))
             println(Writer.write(f2))
             /*Visitor.visit(filekun){v,v2->
                 KotlinVisualizationTransformationVisit(filekun,v,v2)
