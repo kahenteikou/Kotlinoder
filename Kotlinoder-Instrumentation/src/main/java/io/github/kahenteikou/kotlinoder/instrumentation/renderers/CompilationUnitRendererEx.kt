@@ -5,8 +5,8 @@ import io.github.kahenteikou.kotlinoder.instrumentation.CompilationUnitDeclarati
 import ktast.ast.Node
 
 class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration,Node> {
-    private var _classDeclarationRenderer:CodeRendererEx<ClassDeclaration,Node.Declaration>? = null
-    var clsDeclarationRenderer:CodeRendererEx<ClassDeclaration,Node.Declaration>
+    private var _classDeclarationRenderer:CodeRendererEx<ClassDeclaration,Node.Declaration.Class>? = null
+    var clsDeclarationRenderer:CodeRendererEx<ClassDeclaration,Node.Declaration.Class>
         get() = _classDeclarationRenderer!!
         set(value) {
             _classDeclarationRenderer = value
@@ -14,7 +14,7 @@ class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration,Node> 
     constructor(){
 
     }
-    constructor(classrenderer:CodeRendererEx<ClassDeclaration,Node.Declaration>){
+    constructor(classrenderer:CodeRendererEx<ClassDeclaration,Node.Declaration.Class>){
         _classDeclarationRenderer=classrenderer
     }
     override fun render(e: CompilationUnitDeclaration): Node {

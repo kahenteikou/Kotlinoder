@@ -12,6 +12,12 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
         set(value) {
             _methodDeclarationRenderer = value
         }
+    constructor(){
+
+    }
+    constructor(coder:CodeRendererEx<MethodDeclaration,Node.Declaration>){
+        methodDeclarationRenderer = coder
+    }
     override fun render(entity: ClassDeclaration): Node.Declaration.Class {
         lateinit var retClass:Node.Declaration.Class
         var bodykun:Node.Declaration.Class.Body?=null

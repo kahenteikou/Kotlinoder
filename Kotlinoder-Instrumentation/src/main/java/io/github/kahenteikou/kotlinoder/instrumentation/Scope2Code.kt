@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
+import io.github.kahenteikou.kotlinoder.instrumentation.renderers.ClassDeclarationRendererEx
 import io.github.kahenteikou.kotlinoder.instrumentation.renderers.CompilationUnitRendererEx
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
 import ktast.ast.Node
@@ -76,7 +77,9 @@ class Scope2Code {
             )
             println(renderer.render(scope))*/
             var renderer:CompilationUnitRendererEx= CompilationUnitRendererEx(
+                ClassDeclarationRendererEx(
 
+                )
             )
             println(Writer.write(renderer.render(scope)))
             println("demo")
