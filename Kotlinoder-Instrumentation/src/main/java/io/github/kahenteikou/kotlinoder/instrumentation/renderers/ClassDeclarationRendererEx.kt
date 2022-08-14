@@ -12,7 +12,8 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
             _methodDeclarationRenderer = value
         }
     override fun render(entity: ClassDeclaration): Node.Declaration.Class {
-        TODO("Not yet implemented")
+        lateinit var retClass:Node.Declaration.Class
+        return retClass
     }
 
 }
