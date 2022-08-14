@@ -2,6 +2,7 @@ package io.github.kahenteikou.kotlinoder.instrumentation.renderers
 
 import io.github.kahenteikou.kotlinoder.instrumentation.ClassDeclaration
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration
+import io.github.kahenteikou.kotlinoder.instrumentation.Modifier
 import io.github.kahenteikou.kotlinoder.instrumentation.Type
 import ktast.ast.Node
 
@@ -43,7 +44,23 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
     }
     private fun createModifiers(e:ClassDeclaration):Node.Modifiers?{
         var retkun:MutableList<Node.Modifier> =ArrayList()
-        
+        for(m: Modifier in e.getClassModifiers().getModifiers()) {
+            if(m == Modifier.PUBLIC){
+                retkun.add(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.PUBLIC))
+            }
+            if(m == Modifier.PROTECTED){
+                retkun.add(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.PROTECTED))
+            }
+            if(m == Modifier.ABSTRACT){
+                retkun.add(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.ABSTRACT))
+            }
+            if(m == Modifier.PRIVATE){
+                retkun.add(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.PRIVATE))
+            }
+            if(m == Modifier.FINAL){
+                retkun.add(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.FINAL))
+            }
+        }
         return Node.Modifiers(
             ArrayList<Node.Modifier>()
         )
