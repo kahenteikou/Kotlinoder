@@ -5,12 +5,17 @@ import io.github.kahenteikou.kotlinoder.instrumentation.CompilationUnitDeclarati
 import ktast.ast.Node
 
 class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration,Node> {
-    private var classDeclarationRenderer:CodeRendererEx<ClassDeclaration,Node.Declaration>? = null
+    private var _classDeclarationRenderer:CodeRendererEx<ClassDeclaration,Node.Declaration>? = null
+    var clsDeclarationRenderer:CodeRendererEx<ClassDeclaration,Node.Declaration>?
+        get() = _classDeclarationRenderer
+        set(value) {
+            _classDeclarationRenderer = value
+        }
     constructor(){
 
     }
     constructor(classrenderer:CodeRendererEx<ClassDeclaration,Node.Declaration>){
-        classDeclarationRenderer=classrenderer
+        _classDeclarationRenderer=classrenderer
     }
     override fun render(e: CompilationUnitDeclaration): Node {
         lateinit var rootNode:Node.KotlinFile
@@ -25,11 +30,12 @@ class CompilationUnitRendererEx:CodeRendererEx<CompilationUnitDeclaration,Node> 
             }
             packageDirective=Node.PackageDirective(null,Node.Keyword.Package(),names)
         }
-        if(classDeclarationRenderer!=null)
+        if(_classDeclarationRenderer!=null)
         for(cd in e.getDeclaredClasses()){
-            declarations.add(classDeclarationRenderer!!.render(cd))
+            declarations.add(_classDeclarationRenderer!!.render(cd))
         }
         rootNode=Node.KotlinFile(annotationSets,packageDirective,importdirectives,declarations)
         return rootNode
     }
+
 }
