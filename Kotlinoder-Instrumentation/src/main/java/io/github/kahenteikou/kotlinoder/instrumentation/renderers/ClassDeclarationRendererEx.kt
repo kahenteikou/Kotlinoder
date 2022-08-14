@@ -21,7 +21,9 @@ class ClassDeclarationRendererEx:CodeRendererEx<ClassDeclaration, Node.Declarati
         var primconst: Node.Declaration.Class.PrimaryConstructor?=null
         var parents: Node.Declaration.Class.Parents?=null
         var typeconsts: Node.PostModifier.TypeConstraints?=null
-        
+        retClass=Node.Declaration.Class(modifiers,
+            Node.Declaration.Class.DeclarationKeyword(Node.Declaration.Class.DeclarationKeyword.Token.CLASS)
+            ,name,typeparams,primconst,parents,typeconsts,bodykun)
         return retClass
     }
     private fun createBody(e:ClassDeclaration):Node.Declaration.Class.Body?{
