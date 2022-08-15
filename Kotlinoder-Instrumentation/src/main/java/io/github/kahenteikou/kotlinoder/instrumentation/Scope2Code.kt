@@ -71,7 +71,8 @@ class Scope2Code {
 
             var mz:MethodDeclaration=builder.declareMethod(myFileClass,
                 Modifiers(Modifier.STATIC,Modifier.PUBLIC),Type("Int"),"m462",
-                Parameters(Parameter(Type("Int"),"v1")))
+                Parameters(Parameter(Type("Int"),"v1"),
+                    Parameter(Type("Int"),"v2")))
             builder.invokeStaticMethod(mx,Type("System.out"),"println",true,"",mx.getVariable("v1")!!)
 
             return myFile

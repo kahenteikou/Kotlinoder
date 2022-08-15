@@ -35,11 +35,7 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         }
         paramItems=createParams(entity.getParameters())
         body=Node.Expression.Block(methodItems)
-        if(paramItems.isEmpty()) {
-            params = Node.Declaration.Function.Params(paramItems, null)
-        }else{
-            params = Node.Declaration.Function.Params(paramItems, Node.Keyword.Comma())
-        }
+        params = Node.Declaration.Function.Params(paramItems, null)
 
         retFunc=Node.Declaration.Function(mods,Node.Keyword.Fun(),typeparams,receiverRef,name,params,typeref,postMods,equals,body)
 
