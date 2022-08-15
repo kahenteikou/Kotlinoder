@@ -69,6 +69,10 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
     }
     private fun createParams(params: IParameters):MutableList<Node.Declaration.Function.Param>{
         var retList:MutableList<Node.Declaration.Function.Param> = ArrayList()
+        params.getParamenters().forEach{
+            var paramName=it.getName()
+            
+        }
         return retList
     }
 
