@@ -2,6 +2,7 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 
 import io.github.kahenteikou.kotlinoder.instrumentation.renderers.ClassDeclarationRendererEx
 import io.github.kahenteikou.kotlinoder.instrumentation.renderers.CompilationUnitRendererEx
+import io.github.kahenteikou.kotlinoder.instrumentation.renderers.MethodDeclarationRendererEx
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
 import ktast.ast.Node
 import ktast.ast.Visitor
@@ -84,7 +85,9 @@ class Scope2Code {
             println(renderer.render(scope))*/
             var renderer:CompilationUnitRendererEx= CompilationUnitRendererEx(
                 ClassDeclarationRendererEx(
-
+                    MethodDeclarationRendererEx(
+                        
+                    )
                 )
             )
             println(Writer.write(renderer.render(scope), ConverterWithExtras()))
