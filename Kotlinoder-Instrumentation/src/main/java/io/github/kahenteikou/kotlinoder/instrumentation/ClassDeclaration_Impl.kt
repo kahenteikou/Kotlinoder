@@ -46,7 +46,13 @@ ClassDeclaration{
             throw IllegalArgumentException("Specified scopetype does not support method declaration: " + this.getType())
         }
         var methodScope:MethodDeclaration=MethodDeclaration_Impl(id,methodName,this,returnType,modifiers,params)
-        metadata.getDeclaredMethods()!!.add(methodScope)
+
+        if(modifiers.getModifiers().contains(Modifier.STATIC)){
+
+            metadata.getStaticDeclaredMethods()!!.add(methodScope)
+        }else {
+            metadata.getDeclaredMethods()!!.add(methodScope)
+        }
         return methodScope
     }
 

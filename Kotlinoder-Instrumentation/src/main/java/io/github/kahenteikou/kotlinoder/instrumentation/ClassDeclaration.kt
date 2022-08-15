@@ -8,4 +8,5 @@ interface ClassDeclaration : Scope {
     fun getDeclaredMethods():MutableList<MethodDeclaration>
     fun getStaticDeclaredMethods():MutableList<MethodDeclaration>
     fun declareMethod(id:String,modifiers:IModifiers,returnType:IType,methodName:String,params:IParameters):MethodDeclaration
+
 }
