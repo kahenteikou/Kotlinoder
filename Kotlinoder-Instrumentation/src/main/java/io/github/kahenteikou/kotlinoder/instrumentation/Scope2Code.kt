@@ -86,7 +86,7 @@ class Scope2Code {
             var renderer:CompilationUnitRendererEx= CompilationUnitRendererEx(
                 ClassDeclarationRendererEx(
                     MethodDeclarationRendererEx(
-                        
+
                     )
                 )
             )
