@@ -89,7 +89,7 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
                 ),
                 null,null
             ))
-            
+
 
         }
         return retList
