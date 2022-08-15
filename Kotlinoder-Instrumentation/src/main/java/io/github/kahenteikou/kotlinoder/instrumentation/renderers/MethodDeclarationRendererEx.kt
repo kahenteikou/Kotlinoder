@@ -10,5 +10,11 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         set(value) {
             _invocationRenderer = value
         }
-    
+    constructor(){
+
+    }
+    constructor(_irenderer:CodeRendererEx<Invocation,Node.Statement>){
+        _invocationRenderer = _irenderer
+    }
+
 }
