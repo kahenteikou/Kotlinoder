@@ -33,6 +33,18 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         if(!modsLskun.isEmpty()){
             mods=Node.Modifiers(modsLskun)
         }
+        if(!entity.getReturnType().equals(Type("void"))) {
+            var TypeNameLs:MutableList<Node.Type.Simple.Piece> = ArrayList()
+            entity.getReturnType().getFullClassName()?.split(".")?.forEach {it2->
+                TypeNameLs.add(
+                    Node.Type.Simple.Piece(
+                        Node.Expression.Name(it2),
+                        null))
+            }
+            typeref = Node.TypeRef(null,null,null,null,
+            Node.Type.Simple(TypeNameLs),
+            null,null)
+        }
         paramItems=createParams(entity.getParameters())
         if(_invocationRenderer!=null){
             for(inv in entity.getControlFlow().getInvocations()){
