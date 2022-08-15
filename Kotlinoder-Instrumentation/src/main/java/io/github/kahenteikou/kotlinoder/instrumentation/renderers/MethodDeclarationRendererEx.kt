@@ -106,6 +106,8 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
             var paramName=it.getName()
             var paramType=it.getType()
             var TypeNameLs:MutableList<Node.Type.Simple.Piece> = ArrayList()
+            var DefValue: Node.Expression?=null
+            var equalkun:Node.Keyword.Equal?=null
             paramType.getFullClassName()?.split(".")?.forEach {it2->
                 TypeNameLs.add(
                     Node.Type.Simple.Piece(
@@ -120,7 +122,7 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
                     Node.Type.Simple(TypeNameLs),
                     null,null
                 ),
-                null,null
+                equalkun,DefValue
             ))
 
 
