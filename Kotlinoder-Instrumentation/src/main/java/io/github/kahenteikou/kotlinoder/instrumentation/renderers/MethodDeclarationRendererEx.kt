@@ -28,6 +28,8 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         var postMods:MutableList<Node.PostModifier> =ArrayList()
         var equals: Node.Keyword.Equal?=null
         var body: Node.Expression?=null
+        var retItems:MutableList<Node.Statement> = ArrayList()
+        body=Node.Expression.Block(retItems)
         retFunc=Node.Declaration.Function(mods,Node.Keyword.Fun(),typeparams,receiverRef,name,params,typeref,postMods,equals,body)
 
         return retFunc
