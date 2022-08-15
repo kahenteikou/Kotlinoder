@@ -1,6 +1,11 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.sample
 
 public class sample {
+    companion object{
+        fun ACJ(){
+
+        }
+    }
     public fun sample22(v1:Int):Int{
         System.out.println("xxxxx")
         System.out.println(2)
