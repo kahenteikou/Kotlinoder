@@ -3,6 +3,7 @@ package io.github.kahenteikou.kotlinoder.instrumentation.renderers
 import io.github.kahenteikou.kotlinoder.instrumentation.IModifiers
 import io.github.kahenteikou.kotlinoder.instrumentation.Invocation
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration
+import io.github.kahenteikou.kotlinoder.instrumentation.Modifier
 import ktast.ast.Node
 class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declaration>{
     private var _invocationRenderer:CodeRendererEx<Invocation,Node.Statement >?=null
@@ -48,6 +49,24 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
     }
     private fun createModifiers(imods:IModifiers):List<Node.Modifier>{
         var retList:MutableList<Node.Modifier> = ArrayList()
+        imods.getModifiers().forEach {
+            //retList.add(Node.Modifier(it))
+            if(it == Modifier.PUBLIC){
+                retList.add(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.PUBLIC))
+            }
+            if(it == Modifier.PROTECTED){
+                retList.add(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.PROTECTED))
+            }
+            if(it == Modifier.ABSTRACT){
+                retList.add(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.ABSTRACT))
+            }
+            if(it == Modifier.PRIVATE){
+                retList.add(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.PRIVATE))
+            }
+            if(it == Modifier.FINAL){
+                retList.add(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.FINAL))
+            }
+        }
         return retList
     }
 
