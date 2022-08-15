@@ -41,8 +41,8 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
 
         return retFunc
     }
-    private fun createModifiers(imods:IModifiers):List<Node.Modifier>{
-        
+    private fun createModifiers(imods:IModifiers):List<Node.Modifier>?{
+        return null
     }
 
 
