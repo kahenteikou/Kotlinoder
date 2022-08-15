@@ -72,11 +72,25 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         params.getParamenters().forEach{
             var paramName=it.getName()
             var paramType=it.getType()
-            var TypeNameLs:MutableList<Node.Expression.Name> = ArrayList()
+            var TypeNameLs:MutableList<Node.Type.Simple.Piece> = ArrayList()
             paramType.getFullClassName()?.split(".")?.forEach {it2->
-                TypeNameLs.add(Node.Expression.Name(it2))
+                TypeNameLs.add(
+                    Node.Type.Simple.Piece(
+                    Node.Expression.Name(it2),
+                    null))
             }
+            retList.add(Node.Declaration.Function.Param(
+                null,null,
+                Node.Expression.Name(paramName),
+                Node.TypeRef(
+                    null,null,null,null,
+                    Node.Type.Simple(TypeNameLs),
+                    null,null
+                ),
+                null,null
+            ))
             
+
         }
         return retList
     }
