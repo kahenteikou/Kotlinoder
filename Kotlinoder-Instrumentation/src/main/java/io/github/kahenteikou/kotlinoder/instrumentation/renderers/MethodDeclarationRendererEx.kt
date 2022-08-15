@@ -17,4 +17,9 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         _invocationRenderer = _irenderer
     }
 
+    override fun render(entity: MethodDeclaration): Node.Declaration.Function {
+        TODO("Not yet implemented")
+    }
+
+
 }
