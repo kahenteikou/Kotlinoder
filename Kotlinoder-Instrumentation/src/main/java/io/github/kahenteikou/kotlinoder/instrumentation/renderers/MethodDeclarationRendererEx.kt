@@ -1,9 +1,6 @@
 package io.github.kahenteikou.kotlinoder.instrumentation.renderers
 
-import io.github.kahenteikou.kotlinoder.instrumentation.IModifiers
-import io.github.kahenteikou.kotlinoder.instrumentation.Invocation
-import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration
-import io.github.kahenteikou.kotlinoder.instrumentation.Modifier
+import io.github.kahenteikou.kotlinoder.instrumentation.*
 import ktast.ast.Node
 class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declaration>{
     private var _invocationRenderer:CodeRendererEx<Invocation,Node.Statement >?=null
@@ -36,6 +33,7 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         if(!modsLskun.isEmpty()){
             mods=Node.Modifiers(modsLskun)
         }
+        paramItems=createParams(entity.getParameters())
         body=Node.Expression.Block(methodItems)
         if(paramItems.isEmpty()) {
             params = Node.Declaration.Function.Params(paramItems, null)
@@ -67,6 +65,10 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
                 retList.add(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.FINAL))
             }
         }
+        return retList
+    }
+    private fun createParams(params: IParameters):MutableList<Node.Declaration.Function.Param>{
+        var retList:MutableList<Node.Declaration.Function.Param> = ArrayList()
         return retList
     }
 
