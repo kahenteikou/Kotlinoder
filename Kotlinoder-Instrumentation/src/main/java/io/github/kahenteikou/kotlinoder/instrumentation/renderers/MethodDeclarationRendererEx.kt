@@ -18,7 +18,8 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
     }
 
     override fun render(entity: MethodDeclaration): Node.Declaration.Function {
-        TODO("Not yet implemented")
+        lateinit var retFunc:Node.Declaration.Function
+        return retFunc
     }
 
 
