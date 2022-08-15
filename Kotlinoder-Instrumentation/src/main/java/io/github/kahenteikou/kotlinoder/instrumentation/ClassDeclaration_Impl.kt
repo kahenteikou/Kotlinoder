@@ -29,6 +29,9 @@ ClassDeclaration{
     override fun getDeclaredMethods(): MutableList<MethodDeclaration> {
         return metadata.getDeclaredMethods()!!
     }
+    override fun getStaticDeclaredMethods(): MutableList<MethodDeclaration> {
+        return metadata.getStaticDeclaredMethods()!!
+    }
 
     override fun declareMethod(
         id: String,
@@ -55,6 +58,7 @@ final class ClassDeclarationMetaData {
     private final var extends : IExtends?
     private final var implements:IExtends?
     private final var declaredMethods:MutableList<MethodDeclaration> = ArrayList()
+    private final var staticdeclaredMethods:MutableList<MethodDeclaration> = ArrayList()
     constructor(type:IType,modifiers:IModifiers?,extends:IExtends?,implements:IExtends?) {
         this.type = type
         this.modifiers = modifiers
@@ -75,5 +79,8 @@ final class ClassDeclarationMetaData {
     }
     fun getDeclaredMethods():MutableList<MethodDeclaration>{
         return declaredMethods
+    }
+    fun getStaticDeclaredMethods():MutableList<MethodDeclaration>{
+        return staticdeclaredMethods
     }
 }
