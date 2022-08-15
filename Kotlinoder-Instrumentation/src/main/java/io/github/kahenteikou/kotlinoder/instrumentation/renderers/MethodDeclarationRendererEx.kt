@@ -31,7 +31,11 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         var paramItems:MutableList<Node.Declaration.Function.Param> =ArrayList()
         var methodItems:MutableList<Node.Statement> = ArrayList()
         body=Node.Expression.Block(methodItems)
-        params=Node.Declaration.Function.Params(paramItems,Node.Keyword.Comma())
+        if(paramItems.isEmpty()) {
+            params = Node.Declaration.Function.Params(paramItems, null)
+        }else{
+            params = Node.Declaration.Function.Params(paramItems, Node.Keyword.Comma())
+        }
         retFunc=Node.Declaration.Function(mods,Node.Keyword.Fun(),typeparams,receiverRef,name,params,typeref,postMods,equals,body)
 
         return retFunc
