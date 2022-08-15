@@ -88,6 +88,9 @@ null,
     }
     private fun createStaticMethods(medls:MutableList<MethodDeclaration>):Node.Declaration.Class{
         var bodydecls:MutableList<Node.Declaration> = ArrayList()
+        for(md:MethodDeclaration in medls){
+            bodydecls.add(_methodDeclarationRenderer!!.render(md))
+        }
         var staticCls=Node.Declaration.Class(Node.Modifiers(
             arrayListOf(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.COMPANION))),
             Node.Declaration.Class.DeclarationKeyword(Node.Declaration.Class.DeclarationKeyword.Token.OBJECT),
