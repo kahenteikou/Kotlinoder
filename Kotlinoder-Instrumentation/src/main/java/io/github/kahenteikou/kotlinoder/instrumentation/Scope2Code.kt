@@ -2,6 +2,7 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 
 import io.github.kahenteikou.kotlinoder.instrumentation.renderers.ClassDeclarationRendererEx
 import io.github.kahenteikou.kotlinoder.instrumentation.renderers.CompilationUnitRendererEx
+import io.github.kahenteikou.kotlinoder.instrumentation.renderers.MethodDeclarationRendererEx
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
 import ktast.ast.Node
 import ktast.ast.Visitor
@@ -67,6 +68,11 @@ class Scope2Code {
             var mx:MethodDeclaration=builder.declareMethod(myFileClass,
                 Modifiers(Modifier.PUBLIC),Type("void"),"mx",
                 Parameters(Parameter(Type("Int"),"v1")))
+
+            var mz:MethodDeclaration=builder.declareMethod(myFileClass,
+                Modifiers(Modifier.STATIC,Modifier.PUBLIC),Type("Int"),"m462",
+                Parameters(Parameter(Type("Int"),"v1"),
+                    Parameter(Type("Int"),"v2")))
             builder.invokeStaticMethod(mx,Type("System.out"),"println",true,"",mx.getVariable("v1")!!)
 
             return myFile
@@ -84,7 +90,9 @@ class Scope2Code {
             println(renderer.render(scope))*/
             var renderer:CompilationUnitRendererEx= CompilationUnitRendererEx(
                 ClassDeclarationRendererEx(
+                    MethodDeclarationRendererEx(
 
+                    )
                 )
             )
             println(Writer.write(renderer.render(scope), ConverterWithExtras()))
@@ -107,7 +115,11 @@ class Scope2Code {
             val code="""
                 package io.github.kahenteikou.kotlinoder.instrumentation
                 class A{
-                    var z2:Int
+                    companion object{
+                        fun A2D(){
+                        
+                        }
+                    }
                     fun foo(tdn:Int){
                         var a:Int=1
                         System.out.println("ex")

@@ -72,15 +72,33 @@ null,
                     ))
             }
         }
-        if(_methodDeclarationRenderer!=null)
-        for(md:MethodDeclaration in e.getDeclaredMethods()){
-            bodydecls.add(_methodDeclarationRenderer!!.render(md))
+        if(_methodDeclarationRenderer!=null) {
+            if(!e.getStaticDeclaredMethods().isEmpty()){
+                bodydecls.add(createStaticMethods(e.getStaticDeclaredMethods()))
+            }
+            for (md: MethodDeclaration in e.getDeclaredMethods()) {
+                bodydecls.add(_methodDeclarationRenderer!!.render(md))
+            }
         }
         return Node.Declaration.Class.Body(
             ArrayList<Node.EnumEntry>(),
             false,
             bodydecls
         )
+    }
+    private fun createStaticMethods(medls:MutableList<MethodDeclaration>):Node.Declaration.Class{
+        var bodydecls:MutableList<Node.Declaration> = ArrayList()
+        for(md:MethodDeclaration in medls){
+            bodydecls.add(_methodDeclarationRenderer!!.render(md))
+        }
+        var staticCls=Node.Declaration.Class(Node.Modifiers(
+            arrayListOf(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.COMPANION))),
+            Node.Declaration.Class.DeclarationKeyword(Node.Declaration.Class.DeclarationKeyword.Token.OBJECT),
+            null,null,null,
+            null,null,
+            Node.Declaration.Class.Body(ArrayList<Node.EnumEntry>(),false,bodydecls)
+        )
+        return staticCls
     }
     private fun createModifiers(e:ClassDeclaration):Node.Modifiers?{
         var retkun:MutableList<Node.Modifier> =ArrayList()
