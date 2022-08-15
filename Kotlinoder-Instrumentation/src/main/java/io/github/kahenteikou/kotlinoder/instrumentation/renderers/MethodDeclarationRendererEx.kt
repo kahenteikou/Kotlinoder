@@ -24,7 +24,7 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         var receiverRef: Node.TypeRef?=null
         var name:Node.Expression.Name=Node.Expression.Name(entity.getName())
         var params: Node.Declaration.Function.Params?=null
-        
+        var typeref: Node.TypeRef?=null
         return retFunc
     }
 
