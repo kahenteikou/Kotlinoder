@@ -73,15 +73,8 @@ null,
             }
         }
         if(_methodDeclarationRenderer!=null) {
-            var staticCls=Node.Declaration.Class(Node.Modifiers(
-                arrayListOf(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.COMPANION))),
-                Node.Declaration.Class.DeclarationKeyword(Node.Declaration.Class.DeclarationKeyword.Token.OBJECT),
-                null,null,null,
-                null,null,
-                null
-            )
             if(!e.getStaticDeclaredMethods().isEmpty()){
-                bodydecls.add(staticCls)
+                bodydecls.add(createStaticMethods(e.getStaticDeclaredMethods()))
             }
             for (md: MethodDeclaration in e.getDeclaredMethods()) {
                 bodydecls.add(_methodDeclarationRenderer!!.render(md))
@@ -92,6 +85,16 @@ null,
             false,
             bodydecls
         )
+    }
+    private fun createStaticMethods(medls:MutableList<MethodDeclaration>):Node.Declaration.Class{
+        var staticCls=Node.Declaration.Class(Node.Modifiers(
+            arrayListOf(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.COMPANION))),
+            Node.Declaration.Class.DeclarationKeyword(Node.Declaration.Class.DeclarationKeyword.Token.OBJECT),
+            null,null,null,
+            null,null,
+            null
+        )
+        return staticCls
     }
     private fun createModifiers(e:ClassDeclaration):Node.Modifiers?{
         var retkun:MutableList<Node.Modifier> =ArrayList()
