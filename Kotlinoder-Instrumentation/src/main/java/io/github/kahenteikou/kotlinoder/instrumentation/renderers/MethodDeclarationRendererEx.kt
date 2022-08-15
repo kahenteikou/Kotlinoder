@@ -34,6 +34,11 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
             mods=Node.Modifiers(modsLskun)
         }
         paramItems=createParams(entity.getParameters())
+        if(_invocationRenderer!=null){
+            for(inv in entity.getControlFlow().getInvocations()){
+                methodItems.add(_invocationRenderer!!.render(inv))
+            }
+        }
         body=Node.Expression.Block(methodItems)
         params = Node.Declaration.Function.Params(paramItems, null)
 
