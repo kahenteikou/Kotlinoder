@@ -10,4 +10,12 @@ interface IParameter {
      * @return type
      */
     fun getType():IType
+
+    /**
+     * @return DefaultValue
+     */
+    fun getDefaultValue():IParameter_Ext_DefaultValue?
+}
+interface IParameter_Ext_DefaultValue{
+    fun getValue():Any?
 }

@@ -123,7 +123,7 @@ class Scope2Code {
                     }
                     fun foo(tdn:Int){
                         var a:Int=1
-                        System.out.println("ex")
+                        a= 4
                     }
                 }
                 class B:A{
