@@ -4,6 +4,11 @@ import io.github.kahenteikou.kotlinoder.instrumentation.Invocation
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration
 import ktast.ast.Node
 class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declaration.Function>{
-    private var _invocationRenderer:CodeRendererEx<Invocation,MutableList<Node.Statement>>?=null
+    private var _invocationRenderer:CodeRendererEx<Invocation,Node.Statement >?=null
+    var invocationRenderer:CodeRendererEx<Invocation,Node.Statement >
+        get() = _invocationRenderer!!
+        set(value) {
+            _invocationRenderer = value
+        }
     
 }
