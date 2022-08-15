@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.instrumentation.renderers
 
+import io.github.kahenteikou.kotlinoder.instrumentation.IModifiers
 import io.github.kahenteikou.kotlinoder.instrumentation.Invocation
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration
 import ktast.ast.Node
@@ -39,6 +40,9 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         retFunc=Node.Declaration.Function(mods,Node.Keyword.Fun(),typeparams,receiverRef,name,params,typeref,postMods,equals,body)
 
         return retFunc
+    }
+    private fun createModifiers(imods:IModifiers):List<Node.Modifier>{
+        
     }
 
 
