@@ -114,6 +114,14 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
                     Node.Expression.Name(it2),
                     null))
             }
+            if(it.getDefaultValue()!=null){
+                var defV=it.getDefaultValue()!!
+                if(paramType.getFullClassName()=="Int"){
+                    DefValue=Node.Expression.Constant(defV.getValue().toString(),
+                    Node.Expression.Constant.Form.INT)
+                    equalkun=Node.Keyword.Equal()
+                }
+            }
             retList.add(Node.Declaration.Function.Param(
                 null,null,
                 Node.Expression.Name(paramName),
