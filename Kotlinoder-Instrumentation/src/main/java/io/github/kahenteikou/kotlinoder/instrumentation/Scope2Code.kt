@@ -62,7 +62,7 @@ class Scope2Code {
             builder.createVariable(myFileClass2,Type("Int"),"value2")
             var m1:MethodDeclaration=builder.declareMethod(myFileClass,
             Modifiers(Modifier.PUBLIC),Type("Int"),"m1",
-                Parameters(Parameter(Type("Int"),"v1")))
+                Parameters(Parameter(Type("Int"),"v1",Parameter_Ext_DefaultValue(4))))
             builder.invokeMethod(m1,"this",m1.getName(),true,"retM1a",m1.getVariable("v1")!!)
 
             var mx:MethodDeclaration=builder.declareMethod(myFileClass,
@@ -123,7 +123,7 @@ class Scope2Code {
                     }
                     fun foo(tdn:Int){
                         var a:Int=1
-                        System.out.println("ex")
+                        a= 4
                     }
                 }
                 class B:A{

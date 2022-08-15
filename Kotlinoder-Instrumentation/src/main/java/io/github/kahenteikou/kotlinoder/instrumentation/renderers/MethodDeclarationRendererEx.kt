@@ -33,6 +33,18 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         if(!modsLskun.isEmpty()){
             mods=Node.Modifiers(modsLskun)
         }
+        if(!entity.getReturnType().equals(Type("void"))) {
+            var TypeNameLs:MutableList<Node.Type.Simple.Piece> = ArrayList()
+            entity.getReturnType().getFullClassName()?.split(".")?.forEach {it2->
+                TypeNameLs.add(
+                    Node.Type.Simple.Piece(
+                        Node.Expression.Name(it2),
+                        null))
+            }
+            typeref = Node.TypeRef(null,null,null,null,
+            Node.Type.Simple(TypeNameLs),
+            null,null)
+        }
         paramItems=createParams(entity.getParameters())
         if(_invocationRenderer!=null){
             for(inv in entity.getControlFlow().getInvocations()){
@@ -94,11 +106,21 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
             var paramName=it.getName()
             var paramType=it.getType()
             var TypeNameLs:MutableList<Node.Type.Simple.Piece> = ArrayList()
+            var DefValue: Node.Expression?=null
+            var equalkun:Node.Keyword.Equal?=null
             paramType.getFullClassName()?.split(".")?.forEach {it2->
                 TypeNameLs.add(
                     Node.Type.Simple.Piece(
                     Node.Expression.Name(it2),
                     null))
+            }
+            if(it.getDefaultValue()!=null){
+                var defV=it.getDefaultValue()!!
+                if(paramType.getFullClassName()=="Int"){
+                    DefValue=Node.Expression.Constant(defV.getValue().toString(),
+                    Node.Expression.Constant.Form.INT)
+                    equalkun=Node.Keyword.Equal()
+                }
             }
             retList.add(Node.Declaration.Function.Param(
                 null,null,
@@ -108,7 +130,7 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
                     Node.Type.Simple(TypeNameLs),
                     null,null
                 ),
-                null,null
+                equalkun,DefValue
             ))
 
 
