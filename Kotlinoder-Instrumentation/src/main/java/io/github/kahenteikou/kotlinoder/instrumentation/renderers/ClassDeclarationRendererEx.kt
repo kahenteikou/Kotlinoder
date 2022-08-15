@@ -80,6 +80,9 @@ null,
                 null,null,
                 null
             )
+            if(!e.getStaticDeclaredMethods().isEmpty()){
+                bodydecls.add(staticCls)
+            }
             for (md: MethodDeclaration in e.getDeclaredMethods()) {
                 bodydecls.add(_methodDeclarationRenderer!!.render(md))
             }
