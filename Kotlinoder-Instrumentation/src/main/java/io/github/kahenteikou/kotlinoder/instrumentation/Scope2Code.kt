@@ -116,6 +116,7 @@ class Scope2Code {
                 package io.github.kahenteikou.kotlinoder.instrumentation
                 class A{
                     companion object{
+                        @JvmStatic
                         fun A2D(){
                         
                         }

@@ -65,6 +65,26 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
             if(it == Modifier.FINAL){
                 retList.add(Node.Modifier.Keyword(Node.Modifier.Keyword.Token.FINAL))
             }
+            if(it == Modifier.STATIC){
+                retList.add(Node.Modifier.AnnotationSet(
+                    Node.Keyword.At(),
+                    null,null,null,
+                    arrayListOf(Node.Modifier.AnnotationSet.Annotation(
+                        Node.Type.Simple(
+                            arrayListOf(
+                                Node.Type.Simple.Piece(
+                                    Node.Expression.Name("JvmStatic")
+                                    ,
+                                    null
+                                )
+                            )
+                        ),null
+                    )),
+                    null
+
+
+                ))
+            }
         }
         return retList
     }
