@@ -19,6 +19,12 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
 
     override fun render(entity: MethodDeclaration): Node.Declaration.Function {
         lateinit var retFunc:Node.Declaration.Function
+        var mods:Node.Modifiers?=null
+        var typeparams: Node.TypeParams?=null
+        var receiverRef: Node.TypeRef?=null
+        var name:Node.Expression.Name=Node.Expression.Name(entity.getName())
+        var params: Node.Declaration.Function.Params?=null
+        
         return retFunc
     }
 
