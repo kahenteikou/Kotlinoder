@@ -25,9 +25,10 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         var name:Node.Expression.Name=Node.Expression.Name(entity.getName())
         var params: Node.Declaration.Function.Params?=null
         var typeref: Node.TypeRef?=null
-        var postMods:MutableList<Node.PostModifier>?=ArrayList()
+        var postMods:MutableList<Node.PostModifier> =ArrayList()
         var equals: Node.Keyword.Equal?=null
         var body: Node.Expression?=null
+        retFunc=Node.Declaration.Function(mods,Node.Keyword.Fun(),typeparams,receiverRef,name,params,typeref,postMods,equals,body)
 
         return retFunc
     }
