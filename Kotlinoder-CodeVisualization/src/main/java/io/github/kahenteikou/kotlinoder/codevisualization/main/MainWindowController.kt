@@ -170,6 +170,7 @@ class MainWindowController : Initializable {
             resultflow.model.width=550.0
             resultflow.model.height=800.0
             resultflow.isVisible = true
+
         }else{
             resultflow.model.width=400.0
             resultflow.model.height=300.0
