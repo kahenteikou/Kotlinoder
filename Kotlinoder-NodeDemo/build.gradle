@@ -7,7 +7,7 @@ plugins {
 }
 group="io.github.kahenteikou.kotlinoder"
 version="1.0-SNAPSHOT"
-//mainClassName="io.github.kahenteikou.kotlinoder.codevisualization.main.Launcher"
+mainClassName="io.github.kahenteikou.kotlinoder.demo.Launcher"
 dependencies {
     implementation "org.jfxtras:jfxtras-labs:9.0-r1"
     implementation project(":VWorkflows-Core")
