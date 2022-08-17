@@ -65,7 +65,7 @@ class Scope2Code {
             Modifiers(Modifier.PUBLIC),Type("Int"),"m1",
                 Parameters(Parameter(Type("Int"),"v1",Parameter_Ext_DefaultValue(4))))
             builder.invokeMethod(m1,"this",m1.getName(),true,"retM1a",m1.getVariable("v1")!!)
-            
+
             var mx:MethodDeclaration=builder.declareMethod(myFileClass,
                 Modifiers(Modifier.PUBLIC),Type("void"),"mx",
                 Parameters(Parameter(Type("Int"),"v1")))
