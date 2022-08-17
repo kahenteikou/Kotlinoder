@@ -3,6 +3,7 @@ package io.github.kahenteikou.kotlinoder.demo
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.VFlow
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory
+import eu.mihosoft.vrl.workflow.fx.FXValueSkinFactory
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
@@ -20,15 +21,21 @@ class MainWindowController: Initializable {
         var canvas: ScalableContentPane = ScalableContentPane()
         canvas.maxScaleX=1.0
         canvas.maxScaleY=1.0
+        canvas.minScaleX=1.0
+        canvas.minScaleY=1.0
         view.children.add(canvas)
         var root : Pane = Pane()
         canvas.content=root
         rootPane=root
         flow= FlowFactory.newFlow()
-        flow.setSkinFactories(FXSkinFactory(rootPane))
+        var fXSkinFactory=FXValueSkinFactory(rootPane)
+        //fXSkinFactory.addSkinClassForConnectionType()
+        flow.setSkinFactories(fXSkinFactory)
 
-        flow.model.width=550.0
-        flow.model.height=800.0
+        flow.model.width=1080.0
+        flow.model.height=1920.0
+        flow.model.x=0.0
+        flow.model.y=0.0
         flow.model.isVisible=true
 
         flow.model.title="Test1"

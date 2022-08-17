@@ -6,6 +6,7 @@ import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.VFlow
 import eu.mihosoft.vrl.workflow.VNode
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory
+import eu.mihosoft.vrl.workflow.fx.FXValueSkinFactory
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane
 import io.github.kahenteikou.kotlinoder.instrumentation.*
 import javafx.event.ActionEvent
@@ -124,7 +125,7 @@ class MainWindowController : Initializable {
                 scopeToFlow(s,flow)
             }
         }
-        var fxFact:FXSkinFactory= FXSkinFactory(rootPane)
+        var fxFact:FXValueSkinFactory= FXValueSkinFactory(rootPane)
         flow.setSkinFactories(fxFact)
 
 

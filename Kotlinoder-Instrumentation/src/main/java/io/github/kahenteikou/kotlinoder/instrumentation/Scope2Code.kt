@@ -2,6 +2,7 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 
 import io.github.kahenteikou.kotlinoder.instrumentation.renderers.ClassDeclarationRendererEx
 import io.github.kahenteikou.kotlinoder.instrumentation.renderers.CompilationUnitRendererEx
+import io.github.kahenteikou.kotlinoder.instrumentation.renderers.InvocationCodeRendererEx
 import io.github.kahenteikou.kotlinoder.instrumentation.renderers.MethodDeclarationRendererEx
 import io.github.kahenteikou.kotlinoder.lang.VLangUtils
 import ktast.ast.Node
@@ -91,7 +92,7 @@ class Scope2Code {
             var renderer:CompilationUnitRendererEx= CompilationUnitRendererEx(
                 ClassDeclarationRendererEx(
                     MethodDeclarationRendererEx(
-
+                        InvocationCodeRendererEx()
                     )
                 )
             )
@@ -128,7 +129,6 @@ class Scope2Code {
                 }
                 class B:A{
                     fun foo2(){
-                        var a:Int=1
                         System.out.println("ex")
                     }
                 }
