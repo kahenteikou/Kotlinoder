@@ -11,8 +11,11 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
         lateinit var retStatement:Node.Statement
         if(entity.isConstructor()){
 
-        }else{
-            
+        }else if(!entity.isScope()){
+            var splitArg=entity.getVariableName()!!.split(".")
+            if(splitArg.size<2){
+                
+            }
         }
         return retStatement
     }

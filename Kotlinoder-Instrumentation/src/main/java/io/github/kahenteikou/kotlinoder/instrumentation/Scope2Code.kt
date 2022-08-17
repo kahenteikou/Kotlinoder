@@ -128,7 +128,6 @@ class Scope2Code {
                 }
                 class B:A{
                     fun foo2(){
-                        var a:Int=1
                         System.out.println("ex")
                     }
                 }
