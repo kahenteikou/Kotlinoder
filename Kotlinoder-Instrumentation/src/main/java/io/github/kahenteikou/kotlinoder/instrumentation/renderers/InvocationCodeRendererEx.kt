@@ -19,6 +19,7 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
                     null,null,null
                 )
             }else{
+                lateinit var rootEnum:Node.Expression
                 lateinit var currentEnum:Node.Expression
                 for(arg in splitArg){
                     
