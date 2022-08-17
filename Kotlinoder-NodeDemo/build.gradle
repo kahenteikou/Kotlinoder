@@ -1,0 +1,35 @@
+plugins {
+    id "java"
+    id "application"
+    id "org.jetbrains.kotlin.jvm" version "1.7.10"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "org.openjfx.javafxplugin" version "0.0.13"
+}
+group="io.github.kahenteikou.kotlinoder"
+version="1.0-SNAPSHOT"
+mainClassName="io.github.kahenteikou.kotlinoder.demo.Launcher"
+dependencies {
+    implementation "org.jfxtras:jfxtras-labs:9.0-r1"
+    implementation project(":VWorkflows-Core")
+    implementation project(":VWorkflows-FX")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.10"
+    implementation "org.jetbrains.kotlin:kotlin-test:1.7.10"
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+    implementation "org.apache.logging.log4j:log4j-core:2.18.0"
+    implementation "eu.mihosoft.jfx.scaledfx:scaledfx:0.4"
+
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:1.7.10"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.1"
+    runtimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.1"
+
+}
+javafx{
+    version="17"
+    modules= ["javafx.controls", "javafx.fxml"]
+}
+jar{
+    /*manifest{
+        attributes 'Main-Class' : "io.github.kahenteikou.kotlinoder.codevisualization.main.Launcher"
+    }*/
+    duplicatesStrategy= DuplicatesStrategy.EXCLUDE
+}

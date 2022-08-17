@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/Kotlinoder-CodeObserver" />
             <option value="$PROJECT_DIR$/Kotlinoder-CodeVisualization" />
             <option value="$PROJECT_DIR$/Kotlinoder-Instrumentation" />
+            <option value="$PROJECT_DIR$/Kotlinoder-NodeDemo" />
             <option value="$PROJECT_DIR$/VWorkflows/VWorkflows-Core" />
             <option value="$PROJECT_DIR$/VWorkflows/VWorkflows-FX" />
           </set>

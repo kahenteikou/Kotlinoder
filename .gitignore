@@ -14,3 +14,4 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 /VWorkflows/VWorkflows-Core/build/
 /VWorkflows/VWorkflows-FX/build/
+/Kotlinoder-NodeDemo/build/
