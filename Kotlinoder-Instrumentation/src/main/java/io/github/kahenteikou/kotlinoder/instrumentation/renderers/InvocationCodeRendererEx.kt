@@ -66,6 +66,12 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
                             ,false
                         )
                     }
+                    ret.add(Node.ValueArg(
+                        null,false,
+                        expressionkun
+                    ))
+                }else{
+                    
                 }
             }
         }
