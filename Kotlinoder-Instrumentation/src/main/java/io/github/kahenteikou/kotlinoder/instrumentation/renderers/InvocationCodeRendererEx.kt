@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation.renderers
 
 import io.github.kahenteikou.kotlinoder.instrumentation.Invocation
+import io.github.kahenteikou.kotlinoder.instrumentation.Variable
 import ktast.ast.Node
 
 class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
@@ -21,9 +22,10 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
             }else{
                 lateinit var currentEnum:Node.Expression
                 lateinit var callStatement:Node.Expression.Call
+                var argskun:MutableList<Node.ValueArg> = createParams(entity.getArguments())
                 callStatement=Node.Expression.Call(
                     Node.Expression.Name(entity.getMethodName()),
-                    null,null,null
+                    null,Node.ValueArgs(argskun,null),null
                 )
                 var isFirst=true
                 for(arg in splitArg.reversed()){
@@ -46,6 +48,10 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
             }
         }
         return retStatement
+    }
+    private fun createParams(params:List<Variable?>):MutableList<Node.ValueArg>{
+        var ret:MutableList<Node.ValueArg> = ArrayList()
+        return ret
     }
 
 }
