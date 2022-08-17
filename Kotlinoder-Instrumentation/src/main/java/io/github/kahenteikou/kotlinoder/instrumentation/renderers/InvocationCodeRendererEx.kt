@@ -13,8 +13,13 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
 
         }else if(!entity.isScope()){
             var splitArg=entity.getVariableName()!!.split(".")
-            if(splitArg.size<2){
-                
+            if(splitArg.isEmpty()){
+                retStatement=Node.Expression.Call(
+                    Node.Expression.Name(entity.getVariableName()!!),
+                    null,null,null
+                )
+            }else if(splitArg.size<2){
+
             }
         }
         return retStatement
