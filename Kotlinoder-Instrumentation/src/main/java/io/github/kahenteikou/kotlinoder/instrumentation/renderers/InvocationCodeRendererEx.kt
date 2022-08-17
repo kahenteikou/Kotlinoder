@@ -51,6 +51,13 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
     }
     private fun createParams(params:List<Variable?>):MutableList<Node.ValueArg>{
         var ret:MutableList<Node.ValueArg> = ArrayList()
+        for(param in params){
+            if(param!=null){
+                if(param!!.isConstant()!!){
+                    
+                }
+            }
+        }
         return ret
     }
 
