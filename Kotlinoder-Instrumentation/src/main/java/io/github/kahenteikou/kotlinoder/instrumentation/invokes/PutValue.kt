@@ -6,6 +6,4 @@ import io.github.kahenteikou.kotlinoder.instrumentation.Variable
 interface PutValue : Scope {
     fun getSrcVariable():Variable
     fun getDstVariable():Variable
-    fun setSrcVariable(v:Variable)
-    fun setDstVariable(v:Variable)
 }
