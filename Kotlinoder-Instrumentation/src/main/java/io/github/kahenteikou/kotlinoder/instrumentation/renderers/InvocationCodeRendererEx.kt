@@ -34,8 +34,15 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
                             callStatement
                         )
                         isFirst = false
+                    }else{
+                        currentEnum=Node.Expression.Binary(
+                            Node.Expression.Name(arg),
+                            Node.Expression.Binary.Operator(Node.Expression.Binary.Operator.Token.DOT),
+                            currentEnum
+                        )
                     }
                 }
+                retStatement=currentEnum
             }
         }
         return retStatement
