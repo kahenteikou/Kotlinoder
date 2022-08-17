@@ -2,6 +2,7 @@ package io.github.kahenteikou.kotlinoder.demo
 
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.VFlow
+import eu.mihosoft.vrl.workflow.fx.FXSkinFactory
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
@@ -24,5 +25,18 @@ class MainWindowController: Initializable {
         canvas.content=root
         rootPane=root
         flow= FlowFactory.newFlow()
+        flow.setSkinFactories(FXSkinFactory(rootPane))
+
+        flow.model.width=550.0
+        flow.model.height=800.0
+        flow.model.isVisible=true
+
+        flow.model.title="Test1"
+        var nodekun=flow.newNode()
+        nodekun.height=300.0
+        nodekun.width=300.0
+        nodekun.title="X"
+        nodekun.x=0.0
+        nodekun.y=0.0
     }
 }
