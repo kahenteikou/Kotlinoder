@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation.renderers
 
 import io.github.kahenteikou.kotlinoder.instrumentation.Invocation
+import io.github.kahenteikou.kotlinoder.instrumentation.Type
 import io.github.kahenteikou.kotlinoder.instrumentation.Variable
 import ktast.ast.Node
 
@@ -54,7 +55,17 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
         for(param in params){
             if(param!=null){
                 if(param!!.isConstant()!!){
-                    
+                    lateinit var expressionkun:Node.Expression
+                    if(param!!.getType().equals(Type("kotlin.String"))){
+                        expressionkun=Node.Expression.StringTemplate(
+                            arrayListOf(
+                                Node.Expression.StringTemplate.Entry.Regular(
+                                    param!!.getValue()!!.toString()
+                                )
+                            )
+                            ,false
+                        )
+                    }
                 }
             }
         }
