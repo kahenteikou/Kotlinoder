@@ -18,8 +18,11 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
                     Node.Expression.Name(entity.getVariableName()!!),
                     null,null,null
                 )
-            }else if(splitArg.size<2){
-
+            }else{
+                lateinit var currentEnum:Node.Expression
+                for(arg in splitArg){
+                    
+                }
             }
         }
         return retStatement
