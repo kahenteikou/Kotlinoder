@@ -17,4 +17,12 @@ open class PutValue_Impl:PutValue {
         this._DstVariable = dstVar
     }
 
+    override fun getSrcVariable(): Variable {
+        return _SrcVariable
+    }
+
+    override fun getDstVariable(): Variable {
+        return _DstVariable
+    }
+
 }
