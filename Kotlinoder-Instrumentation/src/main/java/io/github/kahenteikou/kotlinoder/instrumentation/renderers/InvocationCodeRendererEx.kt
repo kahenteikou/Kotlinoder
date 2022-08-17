@@ -9,6 +9,11 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
     }
     override fun render(entity: Invocation): Node.Statement {
         lateinit var retStatement:Node.Statement
+        if(entity.isConstructor()){
+
+        }else{
+            
+        }
         return retStatement
     }
 
