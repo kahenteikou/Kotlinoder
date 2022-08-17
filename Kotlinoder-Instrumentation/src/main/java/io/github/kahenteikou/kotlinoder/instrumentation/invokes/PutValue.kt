@@ -1,4 +1,11 @@
 package io.github.kahenteikou.kotlinoder.instrumentation.invokes
 
-class PutValue {
+import io.github.kahenteikou.kotlinoder.instrumentation.Scope
+import io.github.kahenteikou.kotlinoder.instrumentation.Variable
+
+interface PutValue : Scope {
+    fun getSrcVariable():Variable
+    fun getDstVariable():Variable
+    fun setSrcVariable(v:Variable)
+    fun setDstVariable(v:Variable)
 }
