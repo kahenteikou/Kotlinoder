@@ -15,14 +15,22 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
             var splitArg=entity.getVariableName()!!.split(".")
             if(splitArg.isEmpty()){
                 retStatement=Node.Expression.Call(
-                    Node.Expression.Name(entity.getVariableName()!!),
+                    Node.Expression.Name(entity.getMethodName()!!),
                     null,null,null
                 )
             }else{
                 lateinit var rootEnum:Node.Expression
-                lateinit var currentEnum:Node.Expression
+                lateinit var callStatement:Node.Expression.Call
+                callStatement=Node.Expression.Call(
+                    Node.Expression.Name(entity.getMethodName()),
+                    null,null,null
+                )
+                var isFirst=true
                 for(arg in splitArg){
-                    
+                    if(isFirst) {
+                        rootEnum = Node.Expression.Name(arg)
+                        isFirst = false
+                    }
                 }
             }
         }
