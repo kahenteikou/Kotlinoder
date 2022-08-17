@@ -19,16 +19,20 @@ class InvocationCodeRendererEx:CodeRendererEx<Invocation, Node.Statement> {
                     null,null,null
                 )
             }else{
-                lateinit var rootEnum:Node.Expression
+                lateinit var currentEnum:Node.Expression
                 lateinit var callStatement:Node.Expression.Call
                 callStatement=Node.Expression.Call(
                     Node.Expression.Name(entity.getMethodName()),
                     null,null,null
                 )
                 var isFirst=true
-                for(arg in splitArg){
+                for(arg in splitArg.reversed()){
                     if(isFirst) {
-                        rootEnum = Node.Expression.Name(arg)
+                        currentEnum=Node.Expression.Binary(
+                            Node.Expression.Name(arg),
+                            Node.Expression.Binary.Operator(Node.Expression.Binary.Operator.Token.DOT),
+                            callStatement
+                        )
                         isFirst = false
                     }
                 }
