@@ -11,7 +11,7 @@ interface ControlFlow {
     fun callStaticMethod(id:String,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
     fun callStaticMethod(id:String,type:IType,mName:String,isVoid:Boolean,retValueName:String,args:List<Variable>):Invocation
     fun callStaticMethod(id:String,mName:String,isVoid:Boolean,retValueName:String,args:List<Variable>):Invocation
-
+    fun putOtherStatement(id:String,obj:IInvokeAndStatement)
     fun callScope(scope:Scope):ScopeInvocation
     //fun getInvocations():MutableList <Invocation>
     fun getCallObjects():MutableList<IInvokeAndStatement>
