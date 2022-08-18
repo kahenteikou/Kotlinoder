@@ -18,7 +18,7 @@ class ControlFlowImpl:ControlFlow{
     private final val invocations:MutableList <Invocation> =java.util.ArrayList<Invocation>()
     override fun createInstance(id: String, type: IType, varName: String, vararg args: Variable?): Invocation {
         val result:Invocation = InvocationImpl(parent,id,type.getFullClassName(),"<init>",true,false,true,varName,*args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
 
@@ -31,7 +31,7 @@ class ControlFlowImpl:ControlFlow{
         vararg args: Variable
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,varName,mName,false,isVoid,false,retValueName,*args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
     override fun callMethod(
@@ -43,7 +43,7 @@ class ControlFlowImpl:ControlFlow{
         args:List<Variable>
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,varName,mName,false,isVoid,false,retValueName,args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
 
@@ -56,7 +56,7 @@ class ControlFlowImpl:ControlFlow{
         vararg args: Variable
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,"",mName,false,isVoid,true,retValueName,*args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
     override fun callStaticMethod(
@@ -68,7 +68,7 @@ class ControlFlowImpl:ControlFlow{
         vararg args: Variable
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,type.getFullClassName(),mName,false,isVoid,true,retValueName,*args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
     override fun callStaticMethod(
@@ -79,7 +79,7 @@ class ControlFlowImpl:ControlFlow{
         args: List<Variable>
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,"",mName,false,isVoid,true,retValueName,args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
     override fun callStaticMethod(
@@ -91,18 +91,18 @@ class ControlFlowImpl:ControlFlow{
         args: List<Variable>
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,type.getFullClassName(),mName,false,isVoid,true,retValueName,args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
 
     override fun callScope(scope: Scope): ScopeInvocation {
         val result:ScopeInvocation = ScopeInvocationImpl(scope)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
 
-    override fun getInvocations(): MutableList <Invocation> {
-        return invocations
+    override fun getCallObjects(): MutableList <Any> {
+        return callObjects
     }
     private final var parent:Scope
     constructor(parent:Scope){
@@ -111,7 +111,7 @@ class ControlFlowImpl:ControlFlow{
 
     override fun toString(): String {
         var result:String = "[\n"
-        for(invocation in getInvocations()){
+        for(invocation in getCallObjects()){
             result += invocation.toString()+"\n"
         }
         result += "]"
