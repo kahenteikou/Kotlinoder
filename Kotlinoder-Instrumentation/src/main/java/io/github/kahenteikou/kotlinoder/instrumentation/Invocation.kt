@@ -1,6 +1,9 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
+
+import io.github.kahenteikou.kotlinoder.instrumentation.invokes.IInvokeAndStatement
+
 //comp
-interface Invocation:CodeEntity {
+interface Invocation:CodeEntity, IInvokeAndStatement {
     fun getVariableName():String?
     fun getMethodName():String
     fun getReturnValueName():String

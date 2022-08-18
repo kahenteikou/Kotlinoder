@@ -1,5 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
+import io.github.kahenteikou.kotlinoder.instrumentation.invokes.IInvokeAndStatement
+
 interface ControlFlow {
     fun createInstance(id:String,type: IType,varName:String,vararg args:Variable?):Invocation
     fun callMethod(id: String,varName:String,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
@@ -12,10 +14,10 @@ interface ControlFlow {
 
     fun callScope(scope:Scope):ScopeInvocation
     //fun getInvocations():MutableList <Invocation>
-    fun getCallObjects():MutableList<Any>
+    fun getCallObjects():MutableList<IInvokeAndStatement>
 }
 class ControlFlowImpl:ControlFlow{
-    private final val callObjects:MutableList <Any> = ArrayList<Any>()
+    private final val callObjects:MutableList <IInvokeAndStatement> = ArrayList<IInvokeAndStatement>()
     override fun createInstance(id: String, type: IType, varName: String, vararg args: Variable?): Invocation {
         val result:Invocation = InvocationImpl(parent,id,type.getFullClassName(),"<init>",true,false,true,varName,*args)
         getCallObjects().add(result)
@@ -101,7 +103,7 @@ class ControlFlowImpl:ControlFlow{
         return result
     }
 
-    override fun getCallObjects(): MutableList <Any> {
+    override fun getCallObjects(): MutableList <IInvokeAndStatement> {
         return callObjects
     }
     private final var parent:Scope
