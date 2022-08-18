@@ -225,14 +225,15 @@ class InvocationCodeRenderer :CodeRenderer<Invocation>{
                     cb.append(" step ").append(s.getInc().toString())
                 }
                 cb.append(") {")
-                if(!s.getControlFlow().getInvocations().isEmpty()){
+                if(!s.getControlFlow().getCallObjects().isEmpty()){
                     cb.newLine()
                     cb.incIndentation()
                 }
-                for(j in s.getControlFlow().getInvocations()){
+                for(j in s.getControlFlow().getCallObjects()){
+                    if( j is Invocation)
                     render(j,cb)
                 }
-                if(!s.getControlFlow().getInvocations().isEmpty()){
+                if(!s.getControlFlow().getCallObjects().isEmpty()){
                     cb.decIndentation()
                 }
                 cb.append("}")
