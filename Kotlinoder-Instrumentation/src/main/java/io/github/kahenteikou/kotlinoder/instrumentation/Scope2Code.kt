@@ -287,9 +287,11 @@ class MethodDeclarationRenderer : CodeRenderer<MethodDeclaration>{
         }
         cb.append("{").newLine()
         cb.incIndentation()
-        for(i:Invocation in entity.getControlFlow().getInvocations()){
-            println(" --> inv: $i")
-            invocationRenderer.render(i,cb)
+        for(i in entity.getControlFlow().getCallObjects()){
+            if(i is Invocation) {
+                println(" --> inv: $i")
+                invocationRenderer.render(i, cb)
+            }
         }
         cb.decIndentation().append("}").newLine()
     }
