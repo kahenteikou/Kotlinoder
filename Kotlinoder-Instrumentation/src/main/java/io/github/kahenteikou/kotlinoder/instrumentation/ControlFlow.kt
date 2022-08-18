@@ -15,7 +15,7 @@ interface ControlFlow {
     fun getCallObjects():MutableList<Any>
 }
 class ControlFlowImpl:ControlFlow{
-    private final val invocations:MutableList <Invocation> =java.util.ArrayList<Invocation>()
+    private final val callObjects:MutableList <Any> = ArrayList<Any>()
     override fun createInstance(id: String, type: IType, varName: String, vararg args: Variable?): Invocation {
         val result:Invocation = InvocationImpl(parent,id,type.getFullClassName(),"<init>",true,false,true,varName,*args)
         getCallObjects().add(result)
