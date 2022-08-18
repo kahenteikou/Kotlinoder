@@ -11,7 +11,8 @@ interface ControlFlow {
     fun callStaticMethod(id:String,mName:String,isVoid:Boolean,retValueName:String,args:List<Variable>):Invocation
 
     fun callScope(scope:Scope):ScopeInvocation
-    fun getInvocations():MutableList <Invocation>
+    //fun getInvocations():MutableList <Invocation>
+    fun getCallObjects():MutableList<Any>
 }
 class ControlFlowImpl:ControlFlow{
     private final val invocations:MutableList <Invocation> =java.util.ArrayList<Invocation>()
