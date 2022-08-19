@@ -16,7 +16,6 @@ open class PutValue_Impl:PutValue {
         this._SrcVariable = srcVar
         this._DstVariable = dstVar
     }
-
     override fun getSrcVariable(): Variable {
         return _SrcVariable
     }
@@ -24,5 +23,6 @@ open class PutValue_Impl:PutValue {
     override fun getDstVariable(): Variable {
         return _DstVariable
     }
+    
 
 }
