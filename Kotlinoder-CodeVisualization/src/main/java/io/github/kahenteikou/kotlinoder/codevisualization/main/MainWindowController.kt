@@ -126,6 +126,7 @@ class MainWindowController : Initializable {
             }
         }
         var fxFact:FXValueSkinFactory= FXValueSkinFactory(rootPane)
+        
         flow.setSkinFactories(fxFact)
 
 
