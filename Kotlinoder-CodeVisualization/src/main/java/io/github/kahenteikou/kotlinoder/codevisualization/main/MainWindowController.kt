@@ -44,6 +44,8 @@ class MainWindowController : Initializable {
         canvas.style="-fx-background-color: rgb(0,0,0)"
         canvas.maxScaleX=1.0
         canvas.maxScaleY=1.0
+        canvas.minScaleX=1.0
+        canvas.minScaleY=1.0
         view.children.add(canvas)
         var root:Pane=Pane()
         canvas.content=root
@@ -126,7 +128,6 @@ class MainWindowController : Initializable {
             }
         }
         var fxFact:FXValueSkinFactory= FXValueSkinFactory(rootPane)
-
         flow.setSkinFactories(fxFact)
 
 
@@ -168,6 +169,8 @@ class MainWindowController : Initializable {
             scope.getType()==ScopeType.CLASS||scope.getType()==ScopeType.COMPILATION_UNIT
                     || scope.getType()==ScopeType.NONE
         var resultflow:VFlow=parent.newSubFlow()
+        var fxFact:FXValueSkinFactory= FXValueSkinFactory(rootPane)
+        resultflow.setSkinFactories(fxFact)
         invocationNodes[scope] = resultflow.model
         var title="${scope.getType()} ${scope.getName()}(): ${scope.getId()}"
         if(isClassOrScript){
