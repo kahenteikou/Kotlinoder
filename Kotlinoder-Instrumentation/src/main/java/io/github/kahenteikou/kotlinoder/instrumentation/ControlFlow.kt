@@ -84,6 +84,11 @@ class ControlFlowImpl:ControlFlow{
         getCallObjects().add(result)
         return result
     }
+
+    override fun putOtherStatement(id: String, obj: IInvokeAndStatement) {
+        getCallObjects().add(obj)
+    }
+
     override fun callStaticMethod(
         id: String,
         type: IType,
