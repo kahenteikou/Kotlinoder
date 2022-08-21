@@ -5,7 +5,8 @@ import ktast.ast.Node
 
 open class PutValueRenderer:CodeRendererEx<PutValue, Node.Statement> {
     override fun render(entity: PutValue): Node.Statement {
-        TODO("Not yet implemented")
+        lateinit var retStatement:Node.Statement
+        return retStatement
     }
 
 }
