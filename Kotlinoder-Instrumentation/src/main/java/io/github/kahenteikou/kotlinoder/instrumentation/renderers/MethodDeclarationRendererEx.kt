@@ -47,8 +47,10 @@ class MethodDeclarationRendererEx :CodeRendererEx<MethodDeclaration, Node.Declar
         }
         paramItems=createParams(entity.getParameters())
         if(_invocationRenderer!=null){
-            for(inv in entity.getControlFlow().getInvocations()){
-                methodItems.add(_invocationRenderer!!.render(inv))
+            for(R in entity.getControlFlow().getCallObjects()){
+                if(R is Invocation){
+                    methodItems.add(_invocationRenderer!!.render(R))
+                }
             }
         }
         body=Node.Expression.Block(methodItems)

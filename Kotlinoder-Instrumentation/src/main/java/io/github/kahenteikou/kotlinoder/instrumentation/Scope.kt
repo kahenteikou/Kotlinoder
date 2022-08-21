@@ -184,12 +184,14 @@ open class ScopeImpl:Scope{
     }
     override fun generateDataFlow(){
         println("DATAFLOW---------------------------------")
-        for(i:Invocation in controlFlow.getInvocations()){
-            for(v:Variable? in i.getArguments()){
-                println("--> varname: $v, $i")
-            }
-            if(i is ScopeInvocation){
-                i.getScope().generateDataFlow()
+        for(i in controlFlow.getCallObjects()){
+            if(i is Invocation) {
+                for (v: Variable? in i.getArguments()) {
+                    println("--> varname: $v, $i")
+                }
+                if (i is ScopeInvocation) {
+                    i.getScope().generateDataFlow()
+                }
             }
         }
         val isClassOrScript:Boolean = getType() == ScopeType.CLASS || getType() == ScopeType.NONE || getType() == ScopeType.COMPILATION_UNIT

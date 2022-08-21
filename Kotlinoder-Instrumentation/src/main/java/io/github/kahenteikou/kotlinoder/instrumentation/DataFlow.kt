@@ -37,27 +37,35 @@ class DataFlowImpl :DataFlow{
     override fun create(controlFlow: ControlFlow) {
         println(">> creating dataflow: ")
         var senders:HashMap<String,Invocation> = HashMap()
-        for(i : Invocation in controlFlow.getInvocations()){
-            println(" --> i:" + i.getMethodName())
-            if(!i.isVoid()){
-                println("  |--> potential sender with var " + i.getReturnValueName())
-                senders.put(i.getReturnValueName(),i)
-            }
-        }
-        for(receiver:Invocation in controlFlow.getInvocations()){
-            for(v:Variable? in receiver.getArguments()){
-                var sender=senders.get(v!!.getName())
-                println(">> searching sender for " + v!!.getName()
-                 + " with type " + v!!.getType())
-                if(sender!=null){
-                    println("--> sender found for '"
-                    + v.getName()
-                    + "', " + sender.getMethodName())
-                    createDataRelation(sender,receiver)
+        for(R  in controlFlow.getCallObjects()){
+            if(R is Invocation) {
+                println(" --> i:" + R.getMethodName())
+                if (!R.isVoid()) {
+                    println("  |--> potential sender with var " + R.getReturnValueName())
+                    senders.put(R.getReturnValueName(), R)
                 }
             }
         }
-        for(i:Invocation in controlFlow.getInvocations()){
+        for(receiver in controlFlow.getCallObjects()){
+            if(receiver is Invocation) {
+                for (v: Variable? in receiver.getArguments()) {
+                    var sender = senders.get(v!!.getName())
+                    println(
+                        ">> searching sender for " + v!!.getName()
+                                + " with type " + v!!.getType()
+                    )
+                    if (sender != null) {
+                        println(
+                            "--> sender found for '"
+                                    + v.getName()
+                                    + "', " + sender.getMethodName()
+                        )
+                        createDataRelation(sender, receiver)
+                    }
+                }
+            }
+        }
+        for(i in controlFlow.getCallObjects()){
             if(i is ScopeInvocation ){
                 var subScope=i.getScope()
                 subScope.getDataFlow().create(subScope.getControlFlow())

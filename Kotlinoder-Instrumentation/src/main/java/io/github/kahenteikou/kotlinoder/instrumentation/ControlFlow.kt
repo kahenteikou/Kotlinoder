@@ -1,5 +1,7 @@
 package io.github.kahenteikou.kotlinoder.instrumentation
 
+import io.github.kahenteikou.kotlinoder.instrumentation.invokes.IInvokeAndStatement
+
 interface ControlFlow {
     fun createInstance(id:String,type: IType,varName:String,vararg args:Variable?):Invocation
     fun callMethod(id: String,varName:String,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
@@ -9,15 +11,16 @@ interface ControlFlow {
     fun callStaticMethod(id:String,mName:String,isVoid:Boolean,retValueName:String,vararg args:Variable):Invocation
     fun callStaticMethod(id:String,type:IType,mName:String,isVoid:Boolean,retValueName:String,args:List<Variable>):Invocation
     fun callStaticMethod(id:String,mName:String,isVoid:Boolean,retValueName:String,args:List<Variable>):Invocation
-
+    fun putOtherStatement(id:String,obj:IInvokeAndStatement)
     fun callScope(scope:Scope):ScopeInvocation
-    fun getInvocations():MutableList <Invocation>
+    //fun getInvocations():MutableList <Invocation>
+    fun getCallObjects():MutableList<IInvokeAndStatement>
 }
 class ControlFlowImpl:ControlFlow{
-    private final val invocations:MutableList <Invocation> =java.util.ArrayList<Invocation>()
+    private final val callObjects:MutableList <IInvokeAndStatement> = ArrayList<IInvokeAndStatement>()
     override fun createInstance(id: String, type: IType, varName: String, vararg args: Variable?): Invocation {
         val result:Invocation = InvocationImpl(parent,id,type.getFullClassName(),"<init>",true,false,true,varName,*args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
 
@@ -30,7 +33,7 @@ class ControlFlowImpl:ControlFlow{
         vararg args: Variable
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,varName,mName,false,isVoid,false,retValueName,*args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
     override fun callMethod(
@@ -42,7 +45,7 @@ class ControlFlowImpl:ControlFlow{
         args:List<Variable>
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,varName,mName,false,isVoid,false,retValueName,args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
 
@@ -55,7 +58,7 @@ class ControlFlowImpl:ControlFlow{
         vararg args: Variable
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,"",mName,false,isVoid,true,retValueName,*args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
     override fun callStaticMethod(
@@ -67,7 +70,7 @@ class ControlFlowImpl:ControlFlow{
         vararg args: Variable
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,type.getFullClassName(),mName,false,isVoid,true,retValueName,*args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
     override fun callStaticMethod(
@@ -78,7 +81,7 @@ class ControlFlowImpl:ControlFlow{
         args: List<Variable>
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,"",mName,false,isVoid,true,retValueName,args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
     override fun callStaticMethod(
@@ -90,18 +93,18 @@ class ControlFlowImpl:ControlFlow{
         args: List<Variable>
     ): Invocation {
         val result:Invocation= InvocationImpl(parent,id,type.getFullClassName(),mName,false,isVoid,true,retValueName,args)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
 
     override fun callScope(scope: Scope): ScopeInvocation {
         val result:ScopeInvocation = ScopeInvocationImpl(scope)
-        getInvocations().add(result)
+        getCallObjects().add(result)
         return result
     }
 
-    override fun getInvocations(): MutableList <Invocation> {
-        return invocations
+    override fun getCallObjects(): MutableList <IInvokeAndStatement> {
+        return callObjects
     }
     private final var parent:Scope
     constructor(parent:Scope){
@@ -110,7 +113,7 @@ class ControlFlowImpl:ControlFlow{
 
     override fun toString(): String {
         var result:String = "[\n"
-        for(invocation in getInvocations()){
+        for(invocation in getCallObjects()){
             result += invocation.toString()+"\n"
         }
         result += "]"
