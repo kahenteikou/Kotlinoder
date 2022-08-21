@@ -133,28 +133,30 @@ class MainWindowController : Initializable {
     fun dataFlowToFlow(scope:Scope,parent: VFlow){
         var dataFlow:DataFlow=scope.getDataFlow()
         dataFlow.create(scope.getControlFlow())
-        for(i:Invocation in scope.getControlFlow().getInvocations()){
-            var relations:MutableList<DataRelation> = dataFlow.getRelationsForReceiver(i)
-            println("relations: ${relations.size}")
-            for(dataRelation:DataRelation in relations){
-                var sender:VNode= invocationNodes[dataRelation.getSender()]!!
-                var receiver:VNode= invocationNodes[dataRelation.getReceiver()]!!
-                println("SENDER: ${sender.id}, receiver: ${receiver.id}")
-                var retValName:String=dataRelation.getSender().getReturnValueName()
-                println(" --> sender: ${retValName}")
-                var senderConnector:Connector=getVariableById(sender,retValName)!!
-                var inputIndex=0
-                for(v:Variable? in dataRelation.getReceiver().getArguments()){
-                    if(v != null){
-                        println(" --> receiver: ${v.getName()}, (possion receiver)")
-                        if(v.getName()?.equals(retValName) == true){
-                            var receiverConnector:Connector=getVariableById(receiver,v.getName()!!)!!
-                            var result:ConnectionResult=parent.connect(senderConnector,receiverConnector)
-                            println(" -> connected: ${result.status.isCompatible}")
-                            println(" -> ${result.status.message}")
+        for(i in scope.getControlFlow().getCallObjects()){
+            if(i is Invocation) {
+                var relations: MutableList<DataRelation> = dataFlow.getRelationsForReceiver(i)
+                println("relations: ${relations.size}")
+                for (dataRelation: DataRelation in relations) {
+                    var sender: VNode = invocationNodes[dataRelation.getSender()]!!
+                    var receiver: VNode = invocationNodes[dataRelation.getReceiver()]!!
+                    println("SENDER: ${sender.id}, receiver: ${receiver.id}")
+                    var retValName: String = dataRelation.getSender().getReturnValueName()
+                    println(" --> sender: ${retValName}")
+                    var senderConnector: Connector = getVariableById(sender, retValName)!!
+                    var inputIndex = 0
+                    for (v: Variable? in dataRelation.getReceiver().getArguments()) {
+                        if (v != null) {
+                            println(" --> receiver: ${v.getName()}, (possion receiver)")
+                            if (v.getName()?.equals(retValName) == true) {
+                                var receiverConnector: Connector = getVariableById(receiver, v.getName()!!)!!
+                                var result: ConnectionResult = parent.connect(senderConnector, receiverConnector)
+                                println(" -> connected: ${result.status.isCompatible}")
+                                println(" -> ${result.status.message}")
 
+                            }
+                            inputIndex++
                         }
-                        inputIndex++
                     }
                 }
             }
@@ -179,39 +181,41 @@ class MainWindowController : Initializable {
         resultflow.model.title=title
         println("Title: $title, ${scope.getType()}")
         var prevNode:VNode?=null
-        for(i:Invocation in scope.getControlFlow().getInvocations()){
-            lateinit var n:VNode
-            if(i.isScope()&&!isClassOrScript){
-                val sI:ScopeInvocation=i as ScopeInvocation
-                n=scopeToFlow(sI.getScope(),resultflow).model
-            }else{
-                n=resultflow.newNode()
-                var newTitle="${i.getVariableName()!!}.${i.getMethodName()}():${i.getId()}"
-                n.title=newTitle
-                invocationNodes[i] = n
-            }
-            n.setMainInput(n.addInput("control"))
-            n.setMainOutput(n.addOutput("control"))
-            if(prevNode!=null){
-                resultflow.connect(prevNode,n,"control")
-            }
-            for(v:Variable? in i.getArguments()){
-                if(v!=null){
-                    var input:Connector=n.addInput("data")
-                    println(" > Write Connector: ")
-                    variableConnectors[getVariableId(n,v)]=input
+        for(i in scope.getControlFlow().getCallObjects()){
+            if(i is Invocation) {
+                lateinit var n: VNode
+                if (i.isScope() && !isClassOrScript) {
+                    val sI: ScopeInvocation = i as ScopeInvocation
+                    n = scopeToFlow(sI.getScope(), resultflow).model
+                } else {
+                    n = resultflow.newNode()
+                    var newTitle = "${i.getVariableName()!!}.${i.getMethodName()}():${i.getId()}"
+                    n.title = newTitle
+                    invocationNodes[i] = n
                 }
+                n.setMainInput(n.addInput("control"))
+                n.setMainOutput(n.addOutput("control"))
+                if (prevNode != null) {
+                    resultflow.connect(prevNode, n, "control")
+                }
+                for (v: Variable? in i.getArguments()) {
+                    if (v != null) {
+                        var input: Connector = n.addInput("data")
+                        println(" > Write Connector: ")
+                        variableConnectors[getVariableId(n, v)] = input
+                    }
+                }
+                if (!i.isVoid()) {
+                    var output: Connector = n.addOutput("data")
+                    var v: Variable = scope.getVariable(i.getReturnValueName())!!
+                    println(" > Write Connector: ")
+                    variableConnectors[getVariableId(n, v)] = output
+                }
+                n.width = 400.0
+                n.height = 100.0
+                println("Node: ${i.getCode()?.toString()}")
+                prevNode = n
             }
-            if(!i.isVoid()){
-                var output:Connector=n.addOutput("data")
-                var v:Variable=scope.getVariable(i.getReturnValueName())!!
-                println(" > Write Connector: ")
-                variableConnectors[getVariableId(n,v)]=output
-            }
-            n.width=400.0
-            n.height=100.0
-            println("Node: ${i.getCode()?.toString()}")
-            prevNode=n
         }
         if(isClassOrScript){
             for(s:Scope in scope.getScopes()){
