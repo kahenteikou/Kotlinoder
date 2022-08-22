@@ -26,6 +26,10 @@ class MainWindowController : Initializable {
     fun onCloseAction(e:ActionEvent){
 
     }
+    @FXML
+    fun onAboutAction(e:ActionEvent){
+
+    }
 
 
 }
