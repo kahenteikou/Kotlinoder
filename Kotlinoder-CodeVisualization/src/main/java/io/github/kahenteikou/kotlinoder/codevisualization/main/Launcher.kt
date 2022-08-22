@@ -21,7 +21,7 @@ class Launcher : Application(){
     private var controller:OLD_MainWindowController?=null
 
     override fun start(primaryStage: Stage?) {
-        var fxmlLoader=FXMLLoader(javaClass.getResource("MainWindow.fxml"))
+        var fxmlLoader=FXMLLoader(javaClass.getResource("OLD_MainWindow.fxml"))
         try{
             fxmlLoader.load()
         }catch (e:Exception){
