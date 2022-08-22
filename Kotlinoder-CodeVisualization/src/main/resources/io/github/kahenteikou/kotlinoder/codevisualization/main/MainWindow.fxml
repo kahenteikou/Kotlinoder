@@ -6,11 +6,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.input.KeyCodeCombination?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="io.github.kahenteikou.kotlinoder.codevisualization.main.MainWindowController"
             prefHeight="400.0" prefWidth="600.0">
 <children>
-    
+
+    <MenuBar prefHeight="25.0" prefWidth="1104.0001220703125" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="File(_F)">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#onLoadAction" text="Open">
+                        <accelerator>
+                            <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                        </accelerator></MenuItem>
+                    <MenuItem mnemonicParsing="false" onAction="#onSaveAction" text="Save" />
+                    <MenuItem mnemonicParsing="false" onAction="#onSaveAsAction" text="Save As" />
+                    <MenuItem mnemonicParsing="false" onAction="#onCloseAction" text="Close" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
 </children>
 </AnchorPane>
