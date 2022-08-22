@@ -5,7 +5,6 @@ import eu.mihosoft.vrl.workflow.Connector
 import eu.mihosoft.vrl.workflow.FlowFactory
 import eu.mihosoft.vrl.workflow.VFlow
 import eu.mihosoft.vrl.workflow.VNode
-import eu.mihosoft.vrl.workflow.fx.FXSkinFactory
 import eu.mihosoft.vrl.workflow.fx.FXValueSkinFactory
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane
 import io.github.kahenteikou.kotlinoder.instrumentation.*
@@ -24,10 +23,9 @@ import java.net.URL
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.*
-import java.util.logging.Logger
 import kotlin.collections.HashMap
 
-class MainWindowController : Initializable {
+class OLD_MainWindowController : Initializable {
     private var currentDocument:File?=null
     @FXML
     lateinit var editor: TextArea
