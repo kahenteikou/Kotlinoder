@@ -38,6 +38,9 @@ class MainWindowController : Initializable {
     fun onAboutAction(e:ActionEvent){
 
     }
+    private fun add_File(f:File){
+        
+    }
     private fun loadTextFile(f: File?){
         try{
             if(f==null){
@@ -49,7 +52,8 @@ class MainWindowController : Initializable {
                 chooser.extensionFilters.add(allFsFilt)
                 chooser.initialDirectory= Paths.get("").toAbsolutePath().toFile()
                 var fkun=chooser.showOpenDialog(null).absoluteFile
-                LogManager.getLogger("Launcher").info(fkun.absolutePath)
+                LogManager.getLogger("Launcher").info(fkun.name)
+                add_File(fkun)
             }
         }catch (e:Exception){
             LogManager.getLogger("Launcher").error("Error loading file",e)
