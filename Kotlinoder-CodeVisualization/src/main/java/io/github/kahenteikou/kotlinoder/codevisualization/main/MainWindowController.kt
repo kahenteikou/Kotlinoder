@@ -4,6 +4,7 @@ import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
 import javafx.scene.control.TreeView
+import org.apache.logging.log4j.LogManager
 import java.net.URL
 import java.util.*
 
@@ -11,7 +12,8 @@ class MainWindowController : Initializable {
     @FXML
     lateinit var fileClassTreeView:TreeView<String>
     override fun initialize(location: URL?, resources: ResourceBundle?) {
-        println("Start!")
+        LogManager.getLogger("Launcher").info("Start!")
+
     }
     @FXML
     fun onLoadAction(e:ActionEvent){
