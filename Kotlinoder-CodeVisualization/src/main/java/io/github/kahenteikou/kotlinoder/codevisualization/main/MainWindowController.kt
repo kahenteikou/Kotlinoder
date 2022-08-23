@@ -4,8 +4,11 @@ import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
 import javafx.scene.control.TreeView
+import javafx.stage.FileChooser
 import org.apache.logging.log4j.LogManager
+import java.io.File
 import java.net.URL
+import java.nio.file.Paths
 import java.util.*
 
 class MainWindowController : Initializable {
@@ -17,7 +20,7 @@ class MainWindowController : Initializable {
     }
     @FXML
     fun onLoadAction(e:ActionEvent){
-
+        loadTextFile(null)
     }
     @FXML
     fun onSaveAction(e:ActionEvent){
@@ -35,6 +38,22 @@ class MainWindowController : Initializable {
     fun onAboutAction(e:ActionEvent){
 
     }
-
+    private fun loadTextFile(f: File?){
+        try{
+            if(f==null){
+                var mdFilt: FileChooser.ExtensionFilter = FileChooser.ExtensionFilter("Kotlin files (*.kt)", "*.kt")
+                var allFsFilt= FileChooser.ExtensionFilter("All files (*.*)", "*.*")
+                var chooser= FileChooser()
+                chooser.title="Open kotlin file"
+                chooser.extensionFilters.add(mdFilt)
+                chooser.extensionFilters.add(allFsFilt)
+                chooser.initialDirectory= Paths.get("").toAbsolutePath().toFile()
+                var fkun=chooser.showOpenDialog(null).absoluteFile
+                LogManager.getLogger("Launcher").info(fkun.absolutePath)
+            }
+        }catch (e:Exception){
+            LogManager.getLogger("Launcher").error("Error loading file",e)
+        }
+    }
 
 }
