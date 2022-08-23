@@ -21,6 +21,7 @@ class MainWindowController : Initializable {
     lateinit private var treeViewFile:TreeView<String>
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         LogManager.getLogger("Launcher").info("Start!")
+        filetreeitems.add(TreeItem("root"))
         treeViewFile=TreeView<String>(filetreeitems.first())
         filetreePane.children.add(treeViewFile)
 
@@ -46,7 +47,7 @@ class MainWindowController : Initializable {
 
     }
     private fun add_File(f:File){
-        filetreeitems.add(TreeItem(f.name))
+        filetreeitems.first().children.add(TreeItem(f.name))
     }
     private fun loadTextFile(f: File?){
         try{
