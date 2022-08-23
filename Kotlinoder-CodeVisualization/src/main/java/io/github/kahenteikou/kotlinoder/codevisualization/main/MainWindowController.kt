@@ -3,19 +3,26 @@ package io.github.kahenteikou.kotlinoder.codevisualization.main
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
+import javafx.scene.control.TreeItem
 import javafx.scene.control.TreeView
+import javafx.scene.layout.FlowPane
 import javafx.stage.FileChooser
 import org.apache.logging.log4j.LogManager
 import java.io.File
 import java.net.URL
 import java.nio.file.Paths
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainWindowController : Initializable {
     @FXML
-    lateinit var fileClassTreeView:TreeView<String>
+    lateinit var filetreePane:FlowPane
+    private var filetreeitems:MutableList<TreeItem<String>> = ArrayList()
+    lateinit private var treeViewFile:TreeView<String>
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         LogManager.getLogger("Launcher").info("Start!")
+        treeViewFile=TreeView<String>(filetreeitems.first())
+        filetreePane.children.add(treeViewFile)
 
     }
     @FXML
@@ -39,7 +46,7 @@ class MainWindowController : Initializable {
 
     }
     private fun add_File(f:File){
-
+        filetreeitems.add(TreeItem(f.name))
     }
     private fun loadTextFile(f: File?){
         try{
