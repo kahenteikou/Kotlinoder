@@ -39,7 +39,7 @@ class MainWindowController : Initializable {
 
     }
     private fun add_File(f:File){
-        
+
     }
     private fun loadTextFile(f: File?){
         try{
