@@ -61,6 +61,7 @@ class MainWindowController : Initializable {
                 chooser.initialDirectory= Paths.get("").toAbsolutePath().toFile()
                 var fkun=chooser.showOpenDialog(null).absoluteFile
                 LogManager.getLogger("Launcher").info(fkun.name)
+                filetreeitems.clear()
                 add_File(fkun)
             }
         }catch (e:Exception){
