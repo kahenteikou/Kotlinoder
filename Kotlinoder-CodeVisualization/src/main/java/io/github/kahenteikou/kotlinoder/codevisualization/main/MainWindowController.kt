@@ -3,6 +3,7 @@ package io.github.kahenteikou.kotlinoder.codevisualization.main
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
+import javafx.scene.control.TabPane
 import javafx.scene.control.TreeItem
 import javafx.scene.control.TreeView
 import javafx.scene.layout.FlowPane
@@ -19,6 +20,8 @@ class MainWindowController : Initializable {
     lateinit var filetreePane:FlowPane
     private var filetreeitems:MutableList<TreeItem<String>> = ArrayList()
     lateinit private var treeViewFile:TreeView<String>
+    @FXML
+    lateinit var mainTabPane: TabPane
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         LogManager.getLogger("Launcher").info("Start!")
         filetreeitems.add(TreeItem("root"))
