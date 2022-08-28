@@ -37,7 +37,9 @@ class MainWindowController : Initializable {
         catch(e:Exception){
             LogManager.getLogger("Launcher").error("Error loading ClassEditorTab.fxml")
         }
-        mainTabPane.tabs.add(Tab(tabClsLoader.getRoot()))
+        var tab:Tab=Tab("A2")
+        tab.content=tabClsLoader.getRoot()
+        mainTabPane.tabs.add(tab)
     }
     @FXML
     fun onLoadAction(e:ActionEvent){
