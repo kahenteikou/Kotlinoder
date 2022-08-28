@@ -5,6 +5,7 @@ import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
 import javafx.fxml.Initializable
+import javafx.scene.control.Tab
 import javafx.scene.control.TabPane
 import javafx.scene.control.TreeItem
 import javafx.scene.control.TreeView
@@ -36,7 +37,7 @@ class MainWindowController : Initializable {
         catch(e:Exception){
             LogManager.getLogger("Launcher").error("Error loading ClassEditorTab.fxml")
         }
-        mainTabPane.tabs.add(tabClsLoader.getRoot())
+        mainTabPane.tabs.add(Tab(tabClsLoader.getRoot()))
     }
     @FXML
     fun onLoadAction(e:ActionEvent){
