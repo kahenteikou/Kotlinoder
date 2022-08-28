@@ -1,7 +1,9 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
+import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
+import javafx.fxml.FXMLLoader
 import javafx.fxml.Initializable
 import javafx.scene.control.TabPane
 import javafx.scene.control.TreeItem
@@ -27,7 +29,14 @@ class MainWindowController : Initializable {
         filetreeitems.add(TreeItem("root"))
         treeViewFile=TreeView<String>(filetreeitems.first())
         filetreePane.children.add(treeViewFile)
-
+        var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
+        try{
+            tabClsLoader.load()
+        }
+        catch(e:Exception){
+            LogManager.getLogger("Launcher").error("Error loading ClassEditorTab.fxml")
+        }
+        mainTabPane.tabs.add(tabClsLoader.getRoot())
     }
     @FXML
     fun onLoadAction(e:ActionEvent){
