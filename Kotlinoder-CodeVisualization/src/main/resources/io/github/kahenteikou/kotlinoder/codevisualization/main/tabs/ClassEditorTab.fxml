@@ -18,7 +18,7 @@
                         <AnchorPane>
                            <children>
                               <Label text="Name" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                              <TextField AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <TextField fx:id="ClassNameTxtField" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </children>
