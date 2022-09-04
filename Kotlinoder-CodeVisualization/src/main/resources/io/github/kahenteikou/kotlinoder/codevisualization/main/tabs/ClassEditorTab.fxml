@@ -21,6 +21,11 @@
                               <TextField fx:id="ClassNameTxtField" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
+                        <AnchorPane>
+                           <children>
+                              <Label text="Visibility Modifier" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </VBox>
             </content>
