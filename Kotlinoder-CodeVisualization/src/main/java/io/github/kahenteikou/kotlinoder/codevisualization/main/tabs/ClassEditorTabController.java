@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.tabs;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -17,5 +18,9 @@ public class ClassEditorTabController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LogManager.getLogger("ClassEditorTabController").info("Init");
+    }
+    @FXML
+    private void VisiblyModificationTypeComboBox_OnAction(ActionEvent event){
+
     }
 }
