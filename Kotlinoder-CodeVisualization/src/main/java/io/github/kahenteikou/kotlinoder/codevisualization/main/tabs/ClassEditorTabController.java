@@ -22,5 +22,6 @@ public class ClassEditorTabController implements Initializable {
     @FXML
     private void VisiblyModificationTypeComboBox_OnAction(ActionEvent event){
 
+        LogManager.getLogger("ClassEditorTabController").info("ComboAction");
     }
 }
