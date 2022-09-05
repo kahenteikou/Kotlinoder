@@ -40,6 +40,9 @@
                                           <String fx:value="internal" />
                                       </FXCollections>
                                   </items>
+                                  <value>
+                                      <String fx:value="public" />
+                                  </value>
                               </ComboBox>
                            </children>
                            <VBox.margin>
