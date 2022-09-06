@@ -74,8 +74,9 @@ class MainWindowController : Initializable {
         var editorkun:TextArea=TextArea()
         editorkun.text=String(Files.readAllBytes(Paths.get(f!!.absolutePath)),Charsets.UTF_8)
         var filekun= Parser.parseFile(editorkun.text!!)
-
+        currentFileitem.isExpanded=true
         KotlinVisualizationTransformationVisit(filekun)
+        filetreeitems.first().isExpanded=true
 
     }
     private fun loadTextFile(f: File?){
