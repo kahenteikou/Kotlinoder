@@ -2,6 +2,8 @@ package io.github.kahenteikou.kotlinoder.codevisualization.main
 
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
 import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisit
+import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisitEx
+import io.github.kahenteikou.kotlinoder.instrumentation.Scope
 import io.github.kahenteikou.kotlinoder.instrumentation.UIBinding
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
@@ -70,12 +72,13 @@ class MainWindowController : Initializable {
         var currentFileitem=TreeItem(f.name)
         filetreeitems.first().children.add(currentFileitem)
 
-        UIBinding.scopes.clear();
+        //UIBinding.scopes.clear();
         var editorkun:TextArea=TextArea()
         editorkun.text=String(Files.readAllBytes(Paths.get(f!!.absolutePath)),Charsets.UTF_8)
         var filekun= Parser.parseFile(editorkun.text!!)
         currentFileitem.isExpanded=true
-        KotlinVisualizationTransformationVisit(filekun)
+        var extraretkuns:MutableMap<String,MutableList<Scope>> = HashMap()
+        KotlinVisualizationTransformationVisitEx(filekun,extraretkuns)
         filetreeitems.first().isExpanded=true
 
     }
