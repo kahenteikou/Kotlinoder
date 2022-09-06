@@ -62,7 +62,9 @@ class MainWindowController : Initializable {
 
     }
     private fun add_File(f:File){
-        filetreeitems.first().children.add(TreeItem(f.name))
+        var currentFileitem=TreeItem(f.name)
+        filetreeitems.first().children.add(currentFileitem)
+        
     }
     private fun loadTextFile(f: File?){
         try{
