@@ -1,6 +1,8 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
+import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisit
+import io.github.kahenteikou.kotlinoder.instrumentation.UIBinding
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
@@ -11,9 +13,11 @@ import javafx.scene.control.TreeItem
 import javafx.scene.control.TreeView
 import javafx.scene.layout.FlowPane
 import javafx.stage.FileChooser
+import ktast.ast.psi.Parser
 import org.apache.logging.log4j.LogManager
 import java.io.File
 import java.net.URL
+import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.*
 import kotlin.collections.ArrayList
@@ -64,7 +68,13 @@ class MainWindowController : Initializable {
     private fun add_File(f:File){
         var currentFileitem=TreeItem(f.name)
         filetreeitems.first().children.add(currentFileitem)
-        
+
+        UIBinding.scopes.clear();
+        var fcontent=String(Files.readAllBytes(Paths.get(f!!.absolutePath)),Charsets.UTF_8)
+        var filekun= Parser.parseFile(fcontent)
+
+        KotlinVisualizationTransformationVisit(filekun)
+
     }
     private fun loadTextFile(f: File?){
         try{
