@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader
 import javafx.fxml.Initializable
 import javafx.scene.control.Tab
 import javafx.scene.control.TabPane
+import javafx.scene.control.TextArea
 import javafx.scene.control.TreeItem
 import javafx.scene.control.TreeView
 import javafx.scene.layout.FlowPane
@@ -67,11 +68,12 @@ class MainWindowController : Initializable {
     }
     private fun add_File(f:File){
         var currentFileitem=TreeItem(f.name)
-        filetreeitems.first().children.add(currentFileitem)
+        filetreeitems.add(currentFileitem)
 
         UIBinding.scopes.clear();
-        var fcontent=String(Files.readAllBytes(Paths.get(f!!.absolutePath)),Charsets.UTF_8)
-        var filekun= Parser.parseFile(fcontent)
+        var editorkun:TextArea=TextArea()
+        editorkun.text=String(Files.readAllBytes(Paths.get(f!!.absolutePath)),Charsets.UTF_8)
+        var filekun= Parser.parseFile(editorkun.text!!)
 
         KotlinVisualizationTransformationVisit(filekun)
 

@@ -1,5 +1,4 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.sample
-
 public class sample {
     companion object{
         fun ACJ(){
@@ -15,10 +14,5 @@ public class sample {
     }
     private fun sample82(v1: Int):Int{
         return v1
-    }
-}
-public class s2{
-    public fun x2(v3:Int){
-
     }
 }
