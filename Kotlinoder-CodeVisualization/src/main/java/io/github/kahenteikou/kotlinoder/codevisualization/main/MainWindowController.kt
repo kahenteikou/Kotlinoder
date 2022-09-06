@@ -68,7 +68,7 @@ class MainWindowController : Initializable {
     }
     private fun add_File(f:File){
         var currentFileitem=TreeItem(f.name)
-        filetreeitems.add(currentFileitem)
+        filetreeitems.first().children.add(currentFileitem)
 
         UIBinding.scopes.clear();
         var editorkun:TextArea=TextArea()
