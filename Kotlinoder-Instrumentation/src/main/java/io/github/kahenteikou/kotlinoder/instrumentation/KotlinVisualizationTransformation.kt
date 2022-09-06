@@ -23,6 +23,9 @@ fun KotlinVisualizationTransformationVisit(fkun:Node.KotlinFile){
     visitor.visit(fkun)
     UIBinding.scopes.putAll(scopes)
 }
+fun KotlinVisualizationTransformationVisitEx(fkun:Node.KotlinFile,retkun:MutableMap<String,MutableList<Scope>>){
+    
+}
 class KotlinCodeVisitor:CustomVisitor{
     private var codeBuilder:VisualCodeBuilder_Impl
     private var ktFile:Node.KotlinFile
