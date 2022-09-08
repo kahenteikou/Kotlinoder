@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
+import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.TreeWrappedItem
 import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisit
 import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisitEx
 import io.github.kahenteikou.kotlinoder.instrumentation.Scope
@@ -28,7 +29,7 @@ import kotlin.collections.ArrayList
 class MainWindowController : Initializable {
     @FXML
     lateinit var filetreePane:FlowPane
-    private var filetreeitems:MutableList<TreeItem<String>> = ArrayList()
+    private var filetreeitems:MutableList<TreeItem<TreeWrappedItem>> = ArrayList()
     lateinit private var treeViewFile:TreeView<String>
     @FXML
     lateinit var mainTabPane: TabPane
