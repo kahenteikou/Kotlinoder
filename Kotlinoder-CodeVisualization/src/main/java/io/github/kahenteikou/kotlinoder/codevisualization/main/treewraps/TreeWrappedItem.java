@@ -29,4 +29,9 @@ public class TreeWrappedItem {
         DIRECTORY,
         FIELD
     }
+
+    @Override
+    public String toString() {
+        return _title;
+    }
 }
