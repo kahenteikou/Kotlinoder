@@ -35,7 +35,7 @@ class MainWindowController : Initializable {
     lateinit var mainTabPane: TabPane
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         LogManager.getLogger("Launcher").info("Start!")
-        filetreeitems.add(TreeItem("root"))
+        filetreeitems.add(TreeItem(TreeWrappedItem("root",TreeWrappedItem.TreeWrappedItemType.ROOTNODE)))
         treeViewFile=TreeView<String>(filetreeitems.first())
         filetreePane.children.add(treeViewFile)
         var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
