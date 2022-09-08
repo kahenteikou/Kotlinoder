@@ -1,6 +1,8 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
+import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.FileTreeWrappedItem
+import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.TreeWrappedItem
 import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisit
 import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisitEx
 import io.github.kahenteikou.kotlinoder.instrumentation.Scope
@@ -28,14 +30,14 @@ import kotlin.collections.ArrayList
 class MainWindowController : Initializable {
     @FXML
     lateinit var filetreePane:FlowPane
-    private var filetreeitems:MutableList<TreeItem<String>> = ArrayList()
-    lateinit private var treeViewFile:TreeView<String>
+    private var filetreeitems:MutableList<TreeItem<TreeWrappedItem>> = ArrayList()
+    lateinit private var treeViewFile:TreeView<TreeWrappedItem>
     @FXML
     lateinit var mainTabPane: TabPane
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         LogManager.getLogger("Launcher").info("Start!")
-        filetreeitems.add(TreeItem("root"))
-        treeViewFile=TreeView<String>(filetreeitems.first())
+        filetreeitems.add(TreeItem(TreeWrappedItem("root",TreeWrappedItem.TreeWrappedItemType.ROOTNODE)))
+        treeViewFile=TreeView<TreeWrappedItem>(filetreeitems.first())
         filetreePane.children.add(treeViewFile)
         var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
         try{
@@ -69,7 +71,7 @@ class MainWindowController : Initializable {
 
     }
     private fun add_File(f:File){
-        var currentFileitem=TreeItem(f.name)
+        var currentFileitem=TreeItem<TreeWrappedItem>(FileTreeWrappedItem(f))
         filetreeitems.first().children.add(currentFileitem)
 
         //UIBinding.scopes.clear();
