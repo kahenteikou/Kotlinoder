@@ -34,4 +34,9 @@ public class TreeWrappedItem {
     public String toString() {
         return _title;
     }
+    public TreeWrappedItem(String title, Object data, TreeWrappedItem type){
+        _title=title;
+        _data=data;
+        _type=type;
+    }
 }
