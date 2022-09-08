@@ -10,6 +10,7 @@ public class FileTreeWrappedItem extends TreeWrappedItem {
     }
     public FileTreeWrappedItem(File _f){
         super(_f.getName(),TreeWrappedItemType.FILE);
+        _file=_f;
     }
     private File _file;
     public File getFile(){
