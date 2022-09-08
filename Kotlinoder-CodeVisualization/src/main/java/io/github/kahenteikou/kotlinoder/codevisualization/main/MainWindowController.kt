@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
+import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.FileTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.TreeWrappedItem
 import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisit
 import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisitEx
@@ -70,7 +71,7 @@ class MainWindowController : Initializable {
 
     }
     private fun add_File(f:File){
-        var currentFileitem=TreeItem(f.name)
+        var currentFileitem=TreeItem<TreeWrappedItem>(FileTreeWrappedItem(f))
         filetreeitems.first().children.add(currentFileitem)
 
         //UIBinding.scopes.clear();
