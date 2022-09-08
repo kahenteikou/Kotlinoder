@@ -20,7 +20,8 @@ public class TreeWrappedItem {
         METHOD,
         FILE,
         DIRECTORY,
-        FIELD
+        FIELD,
+        ROOTNODE
     }
 
     @Override
