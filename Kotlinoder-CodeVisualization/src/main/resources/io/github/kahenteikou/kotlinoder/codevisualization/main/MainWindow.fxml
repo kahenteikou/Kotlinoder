@@ -15,7 +15,7 @@
         <items>
             <SplitPane dividerPositions="0.25066755674232305" prefHeight="160.0" prefWidth="200.0">
               <items>
-                  <AnchorPane fx:id="filetreePane" prefHeight="283.0" prefWidth="148.0" />
+                  <FlowPane fx:id="filetreePane" prefHeight="283.0" prefWidth="148.0" />
                   <TabPane fx:id="mainTabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                     </tabs>
