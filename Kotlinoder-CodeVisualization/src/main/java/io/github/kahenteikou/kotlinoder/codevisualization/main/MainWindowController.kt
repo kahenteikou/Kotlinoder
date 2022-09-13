@@ -39,6 +39,12 @@ class MainWindowController : Initializable {
         LogManager.getLogger("Launcher").info("Start!")
         filetreeitems.add(TreeItem(TreeWrappedItem("root",TreeWrappedItem.TreeWrappedItemType.ROOTNODE)))
         treeViewFile=TreeView<TreeWrappedItem>(filetreeitems.first())
+        treeViewFile.minHeight=0.0
+        treeViewFile.minWidth=0.0
+        AnchorPane.setBottomAnchor(treeViewFile,0.0)
+        AnchorPane.setLeftAnchor(treeViewFile,0.0)
+        AnchorPane.setRightAnchor(treeViewFile,0.0)
+        AnchorPane.setTopAnchor(treeViewFile,0.0)
         filetreePane.children.add(treeViewFile)
         var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
         try{
