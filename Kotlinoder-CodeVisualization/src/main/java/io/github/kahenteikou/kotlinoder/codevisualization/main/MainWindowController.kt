@@ -16,6 +16,7 @@ import javafx.scene.control.TabPane
 import javafx.scene.control.TextArea
 import javafx.scene.control.TreeItem
 import javafx.scene.control.TreeView
+import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.FlowPane
 import javafx.stage.FileChooser
 import ktast.ast.psi.Parser
@@ -29,7 +30,7 @@ import kotlin.collections.ArrayList
 
 class MainWindowController : Initializable {
     @FXML
-    lateinit var filetreePane:FlowPane
+    lateinit var filetreePane: AnchorPane
     private var filetreeitems:MutableList<TreeItem<TreeWrappedItem>> = ArrayList()
     lateinit private var treeViewFile:TreeView<TreeWrappedItem>
     @FXML
