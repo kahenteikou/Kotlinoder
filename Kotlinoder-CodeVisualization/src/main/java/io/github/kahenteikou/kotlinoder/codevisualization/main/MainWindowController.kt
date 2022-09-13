@@ -16,6 +16,7 @@ import javafx.scene.control.TabPane
 import javafx.scene.control.TextArea
 import javafx.scene.control.TreeItem
 import javafx.scene.control.TreeView
+import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.FlowPane
 import javafx.stage.FileChooser
 import ktast.ast.psi.Parser
@@ -29,7 +30,7 @@ import kotlin.collections.ArrayList
 
 class MainWindowController : Initializable {
     @FXML
-    lateinit var filetreePane:FlowPane
+    lateinit var filetreePane: AnchorPane
     private var filetreeitems:MutableList<TreeItem<TreeWrappedItem>> = ArrayList()
     lateinit private var treeViewFile:TreeView<TreeWrappedItem>
     @FXML
@@ -38,6 +39,12 @@ class MainWindowController : Initializable {
         LogManager.getLogger("Launcher").info("Start!")
         filetreeitems.add(TreeItem(TreeWrappedItem("root",TreeWrappedItem.TreeWrappedItemType.ROOTNODE)))
         treeViewFile=TreeView<TreeWrappedItem>(filetreeitems.first())
+        treeViewFile.minHeight=0.0
+        treeViewFile.minWidth=0.0
+        AnchorPane.setBottomAnchor(treeViewFile,0.0)
+        AnchorPane.setLeftAnchor(treeViewFile,0.0)
+        AnchorPane.setRightAnchor(treeViewFile,0.0)
+        AnchorPane.setTopAnchor(treeViewFile,0.0)
         filetreePane.children.add(treeViewFile)
         var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
         try{
