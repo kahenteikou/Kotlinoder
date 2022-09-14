@@ -78,6 +78,7 @@ class MainWindowController : Initializable {
     private fun add_File(f:File){
         var currentFileitem=TreeItem<TreeWrappedItem>(FileTreeWrappedItem(f))
 
+        filetreeitems.first().children.add(currentFileitem)
         //UIBinding.scopes.clear();
         var editorkun:TextArea=TextArea()
         editorkun.text=String(Files.readAllBytes(Paths.get(f!!.absolutePath)),Charsets.UTF_8)
@@ -86,14 +87,15 @@ class MainWindowController : Initializable {
         var extraretkuns:MutableMap<String,MutableList<Scope>> = HashMap()
         KotlinVisualizationTransformationVisitEx(filekun,extraretkuns)
         for((k,v) in extraretkuns){
-            for(sc in v){
-                if(v is ClassDeclaration){
-                    var clsNode=TreeItem<TreeWrappedItem>(ClassTreeWrappedItem(sc as ClassDeclaration))
-                    currentFileitem.children.add(clsNode)
+            for(sc2 in v){
+                if(sc2 is CompilationUnitDeclaration){
+                    for(sc in sc2.getDeclaredClasses()) {
+                        var clsNode = TreeItem<TreeWrappedItem>(ClassTreeWrappedItem(sc as ClassDeclaration))
+                        currentFileitem.children.add(clsNode)
+                    }
                 }
             }
         }
-        filetreeitems.first().children.add(currentFileitem)
         filetreeitems.first().isExpanded=true
 
     }
