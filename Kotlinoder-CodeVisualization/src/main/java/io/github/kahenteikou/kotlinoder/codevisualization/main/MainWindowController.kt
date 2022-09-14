@@ -1,12 +1,10 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
+import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.ClassTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.FileTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.TreeWrappedItem
-import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisit
-import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisitEx
-import io.github.kahenteikou.kotlinoder.instrumentation.Scope
-import io.github.kahenteikou.kotlinoder.instrumentation.UIBinding
+import io.github.kahenteikou.kotlinoder.instrumentation.*
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
@@ -88,6 +86,14 @@ class MainWindowController : Initializable {
         currentFileitem.isExpanded=true
         var extraretkuns:MutableMap<String,MutableList<Scope>> = HashMap()
         KotlinVisualizationTransformationVisitEx(filekun,extraretkuns)
+        for((k,v) in extraretkuns){
+            for(sc in v){
+                if(v is ClassDeclaration){
+                    var clsNode=TreeItem<TreeWrappedItem>(ClassTreeWrappedItem(sc as ClassDeclaration))
+                    currentFileitem.children.add(clsNode)
+                }
+            }
+        }
         filetreeitems.first().isExpanded=true
 
     }
