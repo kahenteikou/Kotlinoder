@@ -77,7 +77,6 @@ class MainWindowController : Initializable {
     }
     private fun add_File(f:File){
         var currentFileitem=TreeItem<TreeWrappedItem>(FileTreeWrappedItem(f))
-        filetreeitems.first().children.add(currentFileitem)
 
         //UIBinding.scopes.clear();
         var editorkun:TextArea=TextArea()
@@ -94,6 +93,7 @@ class MainWindowController : Initializable {
                 }
             }
         }
+        filetreeitems.first().children.add(currentFileitem)
         filetreeitems.first().isExpanded=true
 
     }
