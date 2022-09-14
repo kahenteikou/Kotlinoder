@@ -6,5 +6,10 @@ public class ClassTreeWrappedItem extends TreeWrappedItem {
     private ClassDeclaration cd;
     public ClassTreeWrappedItem(ClassDeclaration clsd){
         super(clsd.getName(), TreeWrappedItemType.CLASS);
+        cd=clsd;
     }
+    public ClassDeclaration getClassDeclaration(){
+        return cd;
+    }
+
 }
