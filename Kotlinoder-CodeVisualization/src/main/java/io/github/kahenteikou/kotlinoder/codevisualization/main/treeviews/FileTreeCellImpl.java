@@ -9,4 +9,10 @@ public class FileTreeCellImpl extends TreeCell<TreeWrappedItem> {
     private static Image loadImage(String filepath){
         return new Image(FileTreeCellImpl.class.getResourceAsStream(filepath));
     }
+
+    @Override
+    protected void updateItem(TreeWrappedItem item, boolean empty) {
+        super.updateItem(item, empty);
+        
+    }
 }
