@@ -13,6 +13,14 @@ public class FileTreeCellImpl extends TreeCell<TreeWrappedItem> {
     @Override
     protected void updateItem(TreeWrappedItem item, boolean empty) {
         super.updateItem(item, empty);
-        
+        if(empty){
+            setText(null);
+            setGraphic(null);
+        }else{
+            setText(item.getTitle());
+            switch(item.getType()){
+                
+            }
+        }
     }
 }
