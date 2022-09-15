@@ -91,7 +91,7 @@ class MainWindowController : Initializable {
             for(sc2 in v){
                 if(sc2 is CompilationUnitDeclaration){
                     for(sc in sc2.getDeclaredClasses()) {
-                        var clsNode = TreeItem_ClassTreeWrappedItem(ClassTreeWrappedItem(sc as ClassDeclaration))
+                        var clsNode = TreeItem_ClassTreeWrappedItem(sc as ClassDeclaration)
                         currentFileitem.children.add(clsNode)
                     }
                 }
