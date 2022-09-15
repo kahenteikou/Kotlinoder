@@ -1,12 +1,11 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
+import io.github.kahenteikou.kotlinoder.codevisualization.main.TreeitemWs.TreeItem_ClassTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
+import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.ClassTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.FileTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.TreeWrappedItem
-import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisit
-import io.github.kahenteikou.kotlinoder.instrumentation.KotlinVisualizationTransformationVisitEx
-import io.github.kahenteikou.kotlinoder.instrumentation.Scope
-import io.github.kahenteikou.kotlinoder.instrumentation.UIBinding
+import io.github.kahenteikou.kotlinoder.instrumentation.*
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
@@ -79,8 +78,8 @@ class MainWindowController : Initializable {
     }
     private fun add_File(f:File){
         var currentFileitem=TreeItem<TreeWrappedItem>(FileTreeWrappedItem(f))
-        filetreeitems.first().children.add(currentFileitem)
 
+        filetreeitems.first().children.add(currentFileitem)
         //UIBinding.scopes.clear();
         var editorkun:TextArea=TextArea()
         editorkun.text=String(Files.readAllBytes(Paths.get(f!!.absolutePath)),Charsets.UTF_8)
@@ -88,6 +87,16 @@ class MainWindowController : Initializable {
         currentFileitem.isExpanded=true
         var extraretkuns:MutableMap<String,MutableList<Scope>> = HashMap()
         KotlinVisualizationTransformationVisitEx(filekun,extraretkuns)
+        for((k,v) in extraretkuns){
+            for(sc2 in v){
+                if(sc2 is CompilationUnitDeclaration){
+                    for(sc in sc2.getDeclaredClasses()) {
+                        var clsNode = TreeItem_ClassTreeWrappedItem(sc as ClassDeclaration)
+                        currentFileitem.children.add(clsNode)
+                    }
+                }
+            }
+        }
         filetreeitems.first().isExpanded=true
 
     }
