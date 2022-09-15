@@ -1,4 +1,7 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.TreeitemWs;
 
-public class TreeItem_ClassTreeWrappedItem {
+import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.TreeWrappedItem;
+import javafx.scene.control.TreeItem;
+
+public class TreeItem_ClassTreeWrappedItem extends TreeItem<TreeWrappedItem> {
 }
