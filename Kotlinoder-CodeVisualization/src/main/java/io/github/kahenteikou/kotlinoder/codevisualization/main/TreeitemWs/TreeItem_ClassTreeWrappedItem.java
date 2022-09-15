@@ -16,6 +16,6 @@ public class TreeItem_ClassTreeWrappedItem extends TreeItem<TreeWrappedItem> {
         super(value,new javafx.scene.image.ImageView(ClsImage));
     }
     public TreeItem_ClassTreeWrappedItem(ClassDeclaration cd){
-        
+        super(new ClassTreeWrappedItem(cd),new javafx.scene.image.ImageView(ClsImage));
     }
 }
