@@ -1,4 +1,9 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps;
 
-public class MethodTreeWrappedItem {
+import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration;
+
+public class MethodTreeWrappedItem extends TreeWrappedItem{
+    public MethodTreeWrappedItem(MethodDeclaration md){
+        super(md.getName(),TreeWrappedItemType.METHOD);
+    }
 }
