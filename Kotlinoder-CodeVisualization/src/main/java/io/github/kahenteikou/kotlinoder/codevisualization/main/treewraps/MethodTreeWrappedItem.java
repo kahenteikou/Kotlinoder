@@ -8,4 +8,7 @@ public class MethodTreeWrappedItem extends TreeWrappedItem{
         super(methd.getName(),TreeWrappedItemType.METHOD);
         md=methd;
     }
+    public MethodDeclaration getMethodDeclaration(){
+        return md;
+    }
 }
