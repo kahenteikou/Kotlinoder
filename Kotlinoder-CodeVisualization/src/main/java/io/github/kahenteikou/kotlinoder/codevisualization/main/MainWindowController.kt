@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
+import io.github.kahenteikou.kotlinoder.codevisualization.main.TreeitemWs.TreeItem_ClassTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.ClassTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.FileTreeWrappedItem
@@ -90,7 +91,7 @@ class MainWindowController : Initializable {
             for(sc2 in v){
                 if(sc2 is CompilationUnitDeclaration){
                     for(sc in sc2.getDeclaredClasses()) {
-                        var clsNode = TreeItem<TreeWrappedItem>(ClassTreeWrappedItem(sc as ClassDeclaration))
+                        var clsNode = TreeItem_ClassTreeWrappedItem(ClassTreeWrappedItem(sc as ClassDeclaration))
                         currentFileitem.children.add(clsNode)
                     }
                 }
