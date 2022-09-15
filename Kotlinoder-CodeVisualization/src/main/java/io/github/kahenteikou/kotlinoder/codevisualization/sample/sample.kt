@@ -1,7 +1,7 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.sample
 public class sample {
     companion object{
-        fun ACJ(){
+        fun Z42(){
 
         }
     }
