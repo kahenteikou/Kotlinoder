@@ -32,4 +32,7 @@ public class TreeWrappedItem {
         _title=title;
         _type=type;
     }
+    public void onDoubleClick(){
+        
+    }
 }
