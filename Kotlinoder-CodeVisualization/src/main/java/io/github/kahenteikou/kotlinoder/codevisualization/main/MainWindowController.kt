@@ -2,10 +2,11 @@ package io.github.kahenteikou.kotlinoder.codevisualization.main
 
 import io.github.kahenteikou.kotlinoder.codevisualization.main.TreeitemWs.TreeItem_ClassTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
-import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.ClassTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.FileTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.TreeWrappedItem
 import io.github.kahenteikou.kotlinoder.instrumentation.*
+import javafx.beans.value.ChangeListener
+import javafx.beans.value.ObservableValue
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
@@ -16,7 +17,6 @@ import javafx.scene.control.TextArea
 import javafx.scene.control.TreeItem
 import javafx.scene.control.TreeView
 import javafx.scene.layout.AnchorPane
-import javafx.scene.layout.FlowPane
 import javafx.stage.FileChooser
 import ktast.ast.psi.Parser
 import org.apache.logging.log4j.LogManager
@@ -44,6 +44,15 @@ class MainWindowController : Initializable {
         AnchorPane.setLeftAnchor(treeViewFile,0.0)
         AnchorPane.setRightAnchor(treeViewFile,0.0)
         AnchorPane.setTopAnchor(treeViewFile,0.0)
+        treeViewFile.selectionModel.selectedItemProperty().addListener(
+            ChangeListener{
+                    observableValue: ObservableValue<out TreeItem<TreeWrappedItem>>, oldValue: TreeItem<TreeWrappedItem>, newValue: TreeItem<TreeWrappedItem> ->
+                {
+                    
+                }
+
+            }
+        )
         filetreePane.children.add(treeViewFile)
         var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
         try{
