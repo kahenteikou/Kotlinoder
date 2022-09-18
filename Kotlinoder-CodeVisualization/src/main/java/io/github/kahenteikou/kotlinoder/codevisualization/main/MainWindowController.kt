@@ -11,13 +11,10 @@ import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
 import javafx.fxml.Initializable
-import javafx.scene.control.Tab
-import javafx.scene.control.TabPane
-import javafx.scene.control.TextArea
-import javafx.scene.control.TreeItem
-import javafx.scene.control.TreeView
+import javafx.scene.control.*
 import javafx.scene.layout.AnchorPane
 import javafx.stage.FileChooser
+import javafx.util.Callback
 import ktast.ast.psi.Parser
 import org.apache.logging.log4j.LogManager
 import java.io.File
@@ -53,6 +50,9 @@ class MainWindowController : Initializable {
 
             }
         )
+        treeViewFile.cellFactory= Callback<TreeView<TreeWrappedItem>, TreeCell<TreeWrappedItem>>{
+            TreeCell<TreeWrappedItem>()
+        }
         filetreePane.children.add(treeViewFile)
         var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
         try{
@@ -65,6 +65,7 @@ class MainWindowController : Initializable {
         tab.content=tabClsLoader.getRoot()
         mainTabPane.tabs.add(tab)
     }
+
     @FXML
     fun onLoadAction(e:ActionEvent){
         loadTextFile(null)
