@@ -42,9 +42,9 @@ class MainWindowController : Initializable {
         AnchorPane.setRightAnchor(treeViewFile,0.0)
         AnchorPane.setTopAnchor(treeViewFile,0.0)
         treeViewFile.selectionModel.selectedItemProperty().addListener(
-            ChangeListener{
-                    observableValue: ObservableValue<out TreeItem<TreeWrappedItem>>, oldValue: TreeItem<TreeWrappedItem>, newValue: TreeItem<TreeWrappedItem> ->
-                {
+            {
+                    observableValue: ObservableValue<out TreeItem<TreeWrappedItem>?>?, oldValue: TreeItem<TreeWrappedItem>?, newValue: TreeItem<TreeWrappedItem>? ->
+                run {
                     System.out.println("E926")
                 }
 
