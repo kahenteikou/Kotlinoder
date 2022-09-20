@@ -45,7 +45,7 @@ class MainWindowController : Initializable {
             ChangeListener{
                     observableValue: ObservableValue<out TreeItem<TreeWrappedItem>>, oldValue: TreeItem<TreeWrappedItem>, newValue: TreeItem<TreeWrappedItem> ->
                 {
-                    
+                    System.out.println("E926")
                 }
 
             }
