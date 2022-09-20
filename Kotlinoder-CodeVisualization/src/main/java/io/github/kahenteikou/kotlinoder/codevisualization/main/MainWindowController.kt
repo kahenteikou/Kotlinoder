@@ -50,9 +50,6 @@ class MainWindowController : Initializable {
 
             }
         )
-        treeViewFile.cellFactory= Callback<TreeView<TreeWrappedItem>, TreeCell<TreeWrappedItem>>{
-            TreeCell<TreeWrappedItem>()
-        }
         filetreePane.children.add(treeViewFile)
         var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
         try{
