@@ -46,6 +46,9 @@ class MainWindowController : Initializable {
                     observableValue: ObservableValue<out TreeItem<TreeWrappedItem>?>?, oldValue: TreeItem<TreeWrappedItem>?, newValue: TreeItem<TreeWrappedItem>? ->
                 run {
                     System.out.println("E926")
+                    if (observableValue != null) {
+                        println(observableValue.value?.javaClass.toString())
+                    }
                 }
 
             }
