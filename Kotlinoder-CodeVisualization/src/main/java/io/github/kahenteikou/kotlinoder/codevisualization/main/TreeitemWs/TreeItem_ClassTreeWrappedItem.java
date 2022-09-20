@@ -18,8 +18,8 @@ public class TreeItem_ClassTreeWrappedItem extends TreeItem<TreeWrappedItem> {
     }
     public TreeItem_ClassTreeWrappedItem(ClassDeclaration cd){
         super(new ClassTreeWrappedItem(cd),new javafx.scene.image.ImageView(ClsImage));
-        for(MethodDeclaration md : cd.getDeclaredMethods()){
+        /*for(MethodDeclaration md : cd.getDeclaredMethods()){
             this.getChildren().add(new TreeItem_MethodTreeWrappedItem(md));
-        }
+        }*/
     }
 }

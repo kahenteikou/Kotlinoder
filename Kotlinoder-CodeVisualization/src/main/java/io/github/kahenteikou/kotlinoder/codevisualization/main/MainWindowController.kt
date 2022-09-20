@@ -2,22 +2,19 @@ package io.github.kahenteikou.kotlinoder.codevisualization.main
 
 import io.github.kahenteikou.kotlinoder.codevisualization.main.TreeitemWs.TreeItem_ClassTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
-import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.ClassTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.FileTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.TreeWrappedItem
 import io.github.kahenteikou.kotlinoder.instrumentation.*
+import javafx.beans.value.ChangeListener
+import javafx.beans.value.ObservableValue
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
 import javafx.fxml.Initializable
-import javafx.scene.control.Tab
-import javafx.scene.control.TabPane
-import javafx.scene.control.TextArea
-import javafx.scene.control.TreeItem
-import javafx.scene.control.TreeView
+import javafx.scene.control.*
 import javafx.scene.layout.AnchorPane
-import javafx.scene.layout.FlowPane
 import javafx.stage.FileChooser
+import javafx.util.Callback
 import ktast.ast.psi.Parser
 import org.apache.logging.log4j.LogManager
 import java.io.File
@@ -44,6 +41,21 @@ class MainWindowController : Initializable {
         AnchorPane.setLeftAnchor(treeViewFile,0.0)
         AnchorPane.setRightAnchor(treeViewFile,0.0)
         AnchorPane.setTopAnchor(treeViewFile,0.0)
+        treeViewFile.selectionModel.selectedItemProperty().addListener { observableValue: ObservableValue<out TreeItem<TreeWrappedItem>?>?, oldValue: TreeItem<TreeWrappedItem>?, newValue: TreeItem<TreeWrappedItem>? ->
+            run {
+                System.out.println("E926")
+                if (observableValue != null) {
+                    if (observableValue.value != null) {
+                        if (observableValue.value?.value != null) {
+                            if (observableValue.value?.value?.type == TreeWrappedItem.TreeWrappedItemType.CLASS) {
+                                println("CLASS")
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
         filetreePane.children.add(treeViewFile)
         var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
         try{
@@ -56,6 +68,7 @@ class MainWindowController : Initializable {
         tab.content=tabClsLoader.getRoot()
         mainTabPane.tabs.add(tab)
     }
+
     @FXML
     fun onLoadAction(e:ActionEvent){
         loadTextFile(null)
