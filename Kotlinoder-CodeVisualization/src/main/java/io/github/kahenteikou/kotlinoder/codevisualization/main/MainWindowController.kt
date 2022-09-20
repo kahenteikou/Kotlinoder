@@ -41,24 +41,21 @@ class MainWindowController : Initializable {
         AnchorPane.setLeftAnchor(treeViewFile,0.0)
         AnchorPane.setRightAnchor(treeViewFile,0.0)
         AnchorPane.setTopAnchor(treeViewFile,0.0)
-        treeViewFile.selectionModel.selectedItemProperty().addListener(
-            {
-                    observableValue: ObservableValue<out TreeItem<TreeWrappedItem>?>?, oldValue: TreeItem<TreeWrappedItem>?, newValue: TreeItem<TreeWrappedItem>? ->
-                run {
-                    System.out.println("E926")
-                    if (observableValue != null) {
-                        if(observableValue.value!=null){
-                            if(observableValue.value?.value!=null){
-                                if(observableValue.value?.value?.type==TreeWrappedItem.TreeWrappedItemType.CLASS){
-                                    println("CLASS")
-                                }
+        treeViewFile.selectionModel.selectedItemProperty().addListener { observableValue: ObservableValue<out TreeItem<TreeWrappedItem>?>?, oldValue: TreeItem<TreeWrappedItem>?, newValue: TreeItem<TreeWrappedItem>? ->
+            run {
+                System.out.println("E926")
+                if (observableValue != null) {
+                    if (observableValue.value != null) {
+                        if (observableValue.value?.value != null) {
+                            if (observableValue.value?.value?.type == TreeWrappedItem.TreeWrappedItemType.CLASS) {
+                                println("CLASS")
                             }
                         }
                     }
                 }
-
             }
-        )
+
+        }
         filetreePane.children.add(treeViewFile)
         var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
         try{
