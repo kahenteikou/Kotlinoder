@@ -47,7 +47,13 @@ class MainWindowController : Initializable {
                 run {
                     System.out.println("E926")
                     if (observableValue != null) {
-                        println(observableValue.value?.javaClass.toString())
+                        if(observableValue.value!=null){
+                            if(observableValue.value?.value!=null){
+                                if(observableValue.value?.value?.type==TreeWrappedItem.TreeWrappedItemType.CLASS){
+                                    println("CLASS")
+                                }
+                            }
+                        }
                     }
                 }
 
