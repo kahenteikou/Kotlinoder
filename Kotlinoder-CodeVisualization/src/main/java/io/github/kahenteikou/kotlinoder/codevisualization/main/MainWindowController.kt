@@ -52,7 +52,7 @@ class MainWindowController : Initializable {
                         if (observableValue.value?.value != null) {
                             if (observableValue.value?.value?.type == TreeWrappedItem.TreeWrappedItemType.CLASS) {
                                 println("CLASS")
-                                changeProperty(observableValue.value?.value!!)
+                                //changeProperty(observableValue.value?.value!!)
                             }
                         }
                     }
