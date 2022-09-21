@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.TreeitemWs;
 
+import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.CLSMethodsTreeWrappedItem;
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.ClassTreeWrappedItem;
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.TreeWrappedItem;
 import io.github.kahenteikou.kotlinoder.instrumentation.ClassDeclaration;
@@ -18,8 +19,12 @@ public class TreeItem_ClassTreeWrappedItem extends TreeItem<TreeWrappedItem> {
     }
     public TreeItem_ClassTreeWrappedItem(ClassDeclaration cd){
         super(new ClassTreeWrappedItem(cd),new javafx.scene.image.ImageView(ClsImage));
-        /*for(MethodDeclaration md : cd.getDeclaredMethods()){
-            this.getChildren().add(new TreeItem_MethodTreeWrappedItem(md));
-        }*/
+        TreeItem<TreeWrappedItem> clspropertieskun=new TreeItem_CLSPROPERTIESTreeWrappedItem(cd);
+        TreeItem<TreeWrappedItem> methodskun=new TreeItem<>(new CLSMethodsTreeWrappedItem());
+        this.getChildren().add(clspropertieskun);
+        this.getChildren().add(methodskun);
+        for(MethodDeclaration md : cd.getDeclaredMethods()){
+            methodskun.getChildren().add(new TreeItem_MethodTreeWrappedItem(md));
+        }
     }
 }
