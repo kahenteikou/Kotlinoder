@@ -31,6 +31,9 @@ class MainWindowController : Initializable {
     lateinit private var treeViewFile:TreeView<TreeWrappedItem>
     @FXML
     lateinit var mainTabPane: TabPane
+    private fun changeProperty(dest:TreeWrappedItem){
+
+    }
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         LogManager.getLogger("Launcher").info("Start!")
         filetreeitems.add(TreeItem(TreeWrappedItem("root",TreeWrappedItem.TreeWrappedItemType.ROOTNODE)))
@@ -49,6 +52,7 @@ class MainWindowController : Initializable {
                         if (observableValue.value?.value != null) {
                             if (observableValue.value?.value?.type == TreeWrappedItem.TreeWrappedItemType.CLASS) {
                                 println("CLASS")
+                                changeProperty(observableValue.value?.value!!)
                             }
                         }
                     }
