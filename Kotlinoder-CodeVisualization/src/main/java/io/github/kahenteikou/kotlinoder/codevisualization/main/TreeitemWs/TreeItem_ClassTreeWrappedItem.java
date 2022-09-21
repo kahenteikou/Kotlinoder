@@ -19,8 +19,9 @@ public class TreeItem_ClassTreeWrappedItem extends TreeItem<TreeWrappedItem> {
     }
     public TreeItem_ClassTreeWrappedItem(ClassDeclaration cd){
         super(new ClassTreeWrappedItem(cd),new javafx.scene.image.ImageView(ClsImage));
-        //TreeItem<TreeWrappedItem>
+        TreeItem<TreeWrappedItem> clspropertieskun=new TreeItem_CLSPROPERTIESTreeWrappedItem(cd);
         TreeItem<TreeWrappedItem> methodskun=new TreeItem<>(new CLSMethodsTreeWrappedItem());
+        this.getChildren().add(clspropertieskun);
         this.getChildren().add(methodskun);
         for(MethodDeclaration md : cd.getDeclaredMethods()){
             methodskun.getChildren().add(new TreeItem_MethodTreeWrappedItem(md));
