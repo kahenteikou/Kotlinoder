@@ -21,7 +21,9 @@ public class TreeWrappedItem {
         FILE,
         DIRECTORY,
         FIELD,
-        ROOTNODE
+        ROOTNODE,
+        CLSPROPERTIES,
+        CLSMETHODS
     }
 
     @Override
