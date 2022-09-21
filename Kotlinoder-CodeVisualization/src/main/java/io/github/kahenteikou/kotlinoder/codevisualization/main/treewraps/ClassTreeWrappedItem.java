@@ -11,9 +11,4 @@ public class ClassTreeWrappedItem extends TreeWrappedItem {
     public ClassDeclaration getClassDeclaration(){
         return cd;
     }
-
-    @Override
-    public void onDoubleClick() {
-        System.out.println("Double Clicked on ClassTreeWrappedItem");
-    }
 }

@@ -63,7 +63,8 @@ class MainWindowController : Initializable {
         }
         treeViewFile.onMouseClicked=EventHandler(){
         if (it.clickCount==2){
-                println("Double-Clicked!")
+                var itemkun=treeViewFile.selectionModel.selectedItem
+                itemkun.value.onDoubleClick()
             }
         }
         filetreePane.children.add(treeViewFile)

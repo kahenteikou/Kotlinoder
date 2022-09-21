@@ -12,4 +12,9 @@ public class CLSPROPERTIESTreeWrappedItem extends TreeWrappedItem{
         super("Properties", TreeWrappedItemType.CLSPROPERTIES);
         cd=cd2;
     }
+
+    @Override
+    public void onDoubleClick() {
+        System.out.println("Double clicked CLSProp");
+    }
 }
