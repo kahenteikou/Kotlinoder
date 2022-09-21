@@ -8,6 +8,7 @@ import io.github.kahenteikou.kotlinoder.instrumentation.*
 import javafx.beans.value.ChangeListener
 import javafx.beans.value.ObservableValue
 import javafx.event.ActionEvent
+import javafx.event.EventHandler
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
 import javafx.fxml.Initializable
@@ -59,6 +60,11 @@ class MainWindowController : Initializable {
                 }
             }
 
+        }
+        treeViewFile.onMouseClicked=EventHandler(){
+        if (it.clickCount==2){
+                println("Double-Clicked!")
+            }
         }
         filetreePane.children.add(treeViewFile)
         var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
