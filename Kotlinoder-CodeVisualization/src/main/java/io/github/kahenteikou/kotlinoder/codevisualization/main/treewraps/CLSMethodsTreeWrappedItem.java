@@ -6,6 +6,6 @@ public class CLSMethodsTreeWrappedItem extends TreeWrappedItem{
         super(title, type);
     }
     public CLSMethodsTreeWrappedItem(){
-        super("Properties", TreeWrappedItemType.CLSMETHODS);
+        super("Methods", TreeWrappedItemType.CLSMETHODS);
     }
 }
