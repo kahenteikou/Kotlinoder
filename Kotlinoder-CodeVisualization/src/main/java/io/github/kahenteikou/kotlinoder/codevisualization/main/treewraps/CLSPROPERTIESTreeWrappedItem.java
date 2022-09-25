@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps;
 
+import io.github.kahenteikou.kotlinoder.codevisualization.main.IMainWinController;
 import io.github.kahenteikou.kotlinoder.instrumentation.ClassDeclaration;
 
 public class CLSPROPERTIESTreeWrappedItem extends TreeWrappedItem{
@@ -16,5 +17,11 @@ public class CLSPROPERTIESTreeWrappedItem extends TreeWrappedItem{
     @Override
     public void onDoubleClick() {
         System.out.println("Double clicked CLSProp");
+    }
+
+    @Override
+    public void onDoubleClick(IMainWinController controller) {
+        System.out.println("Double clicked CLSProp II");
+
     }
 }
