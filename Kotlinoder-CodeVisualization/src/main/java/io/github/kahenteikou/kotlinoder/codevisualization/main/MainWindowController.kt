@@ -32,6 +32,7 @@ class MainWindowController : Initializable,IMainWinController {
     lateinit private var treeViewFile:TreeView<TreeWrappedItem>
     @FXML
     lateinit var mainTabPane: TabPane
+    private var tabitems_str:MutableList<String> = ArrayList()
     private fun changeProperty(dest:TreeWrappedItem){
 
     }
@@ -141,6 +142,16 @@ class MainWindowController : Initializable,IMainWinController {
             }
         }catch (e:Exception){
             LogManager.getLogger("Launcher").error("Error loading file",e)
+        }
+    }
+
+    override fun add_tab(tab: Tab?) {
+        if(tab!=null){
+            var tabstrkun=tab.text;
+            if(!tabitems_str.contains(tabstrkun)){
+                tabitems_str.add(tabstrkun)
+                mainTabPane.tabs.add(tab)
+            }
         }
     }
 
