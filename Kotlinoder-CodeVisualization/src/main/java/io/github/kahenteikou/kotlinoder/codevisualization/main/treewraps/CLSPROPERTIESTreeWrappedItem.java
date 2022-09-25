@@ -22,6 +22,6 @@ public class CLSPROPERTIESTreeWrappedItem extends TreeWrappedItem{
     @Override
     public void onDoubleClick(IMainWinController controller) {
         System.out.println("Double clicked CLSProp II");
-
+        
     }
 }
