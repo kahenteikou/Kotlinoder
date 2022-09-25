@@ -25,7 +25,7 @@ import java.nio.file.Paths
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainWindowController : Initializable {
+class MainWindowController : Initializable,IMainWinController {
     @FXML
     lateinit var filetreePane: AnchorPane
     private var filetreeitems:MutableList<TreeItem<TreeWrappedItem>> = ArrayList()
@@ -64,7 +64,7 @@ class MainWindowController : Initializable {
         treeViewFile.onMouseClicked=EventHandler(){
         if (it.clickCount==2){
                 var itemkun=treeViewFile.selectionModel.selectedItem
-                itemkun.value.onDoubleClick()
+                itemkun.value.onDoubleClick(this)
             }
         }
         filetreePane.children.add(treeViewFile)

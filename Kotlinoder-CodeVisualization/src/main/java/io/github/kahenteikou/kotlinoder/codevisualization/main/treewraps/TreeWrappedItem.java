@@ -1,5 +1,7 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps;
 
+import io.github.kahenteikou.kotlinoder.codevisualization.main.IMainWinController;
+
 public class TreeWrappedItem {
     private String _title;
     private TreeWrappedItemType _type;
@@ -36,5 +38,8 @@ public class TreeWrappedItem {
     }
     public void onDoubleClick(){
         
+    }
+    public void onDoubleClick(IMainWinController controller){
+
     }
 }
