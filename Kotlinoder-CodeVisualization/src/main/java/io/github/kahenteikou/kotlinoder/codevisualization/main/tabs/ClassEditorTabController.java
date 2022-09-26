@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.tabs;
 
+import io.github.kahenteikou.kotlinoder.instrumentation.ClassDeclaration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,5 +24,8 @@ public class ClassEditorTabController implements Initializable {
     private void VisiblyModificationTypeComboBox_OnAction(ActionEvent event){
 
         LogManager.getLogger("ClassEditorTabController").info("ComboAction");
+    }
+    public void setClsInfo(ClassDeclaration cd){
+        ClassNameTxtField.setText(cd.getName());
     }
 }
