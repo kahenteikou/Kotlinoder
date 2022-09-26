@@ -25,13 +25,14 @@ import java.nio.file.Paths
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainWindowController : Initializable {
+class MainWindowController : Initializable,IMainWinController {
     @FXML
     lateinit var filetreePane: AnchorPane
     private var filetreeitems:MutableList<TreeItem<TreeWrappedItem>> = ArrayList()
     lateinit private var treeViewFile:TreeView<TreeWrappedItem>
     @FXML
     lateinit var mainTabPane: TabPane
+    private var tabitems_str:MutableList<String> = ArrayList()
     private fun changeProperty(dest:TreeWrappedItem){
 
     }
@@ -64,7 +65,7 @@ class MainWindowController : Initializable {
         treeViewFile.onMouseClicked=EventHandler(){
         if (it.clickCount==2){
                 var itemkun=treeViewFile.selectionModel.selectedItem
-                itemkun.value.onDoubleClick()
+                itemkun.value.onDoubleClick(this)
             }
         }
         filetreePane.children.add(treeViewFile)
@@ -141,6 +142,17 @@ class MainWindowController : Initializable {
             }
         }catch (e:Exception){
             LogManager.getLogger("Launcher").error("Error loading file",e)
+        }
+    }
+
+    override fun add_tab(tab: Tab?,tab_id:String?) {
+        if(tab!=null){
+            if(tab_id!=null) {
+                if (!tabitems_str.contains(tab_id)) {
+                    tabitems_str.add(tab_id)
+                    mainTabPane.tabs.add(tab)
+                }
+            }
         }
     }
 
