@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps;
 
 import io.github.kahenteikou.kotlinoder.codevisualization.main.IMainWinController;
+import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.ClassEditorTabController;
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS;
 import io.github.kahenteikou.kotlinoder.instrumentation.ClassDeclaration;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +31,8 @@ public class CLSPROPERTIESTreeWrappedItem extends TreeWrappedItem{
             loader.load();
             Tab tab=new Tab("PROP");
             tab.setContent(loader.getRoot());
-            controller.add_tab(tab,String.format("PROP_%s_%s",cd.getName(),cd.getId()));
+            ClassEditorTabController tabCon=loader.getController();
+            controller.add_tab(tab,String.format("PROP_%s",cd.getName()));
         }catch (Exception e){
             e.printStackTrace();
         }
