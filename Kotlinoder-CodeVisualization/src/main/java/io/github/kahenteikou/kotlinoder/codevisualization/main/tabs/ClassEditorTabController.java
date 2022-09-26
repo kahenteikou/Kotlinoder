@@ -26,6 +26,6 @@ public class ClassEditorTabController implements Initializable {
         LogManager.getLogger("ClassEditorTabController").info("ComboAction");
     }
     public void setClsInfo(ClassDeclaration cd){
-
+        ClassNameTxtField.setText(cd.getName());
     }
 }
