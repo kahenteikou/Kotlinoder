@@ -145,12 +145,13 @@ class MainWindowController : Initializable,IMainWinController {
         }
     }
 
-    override fun add_tab(tab: Tab?) {
+    override fun add_tab(tab: Tab?,tab_id:String?) {
         if(tab!=null){
-            var tabstrkun=tab.text;
-            if(!tabitems_str.contains(tabstrkun)){
-                tabitems_str.add(tabstrkun)
-                mainTabPane.tabs.add(tab)
+            if(tab_id!=null) {
+                if (!tabitems_str.contains(tab_id)) {
+                    tabitems_str.add(tab_id)
+                    mainTabPane.tabs.add(tab)
+                }
             }
         }
     }
