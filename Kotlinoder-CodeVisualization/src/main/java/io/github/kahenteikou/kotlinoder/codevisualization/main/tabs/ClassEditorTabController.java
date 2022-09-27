@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.tabs;
 
 import io.github.kahenteikou.kotlinoder.instrumentation.ClassDeclaration;
+import io.github.kahenteikou.kotlinoder.instrumentation.Modifier;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,5 +28,8 @@ public class ClassEditorTabController implements Initializable {
     }
     public void setClsInfo(ClassDeclaration cd){
         ClassNameTxtField.setText(cd.getName());
+        for(Modifier modkun :cd.getClassModifiers().getModifiers()){
+            VisiblyModificationTypeComboBox.getItems().add(modkun.toString());
+        }
     }
 }
