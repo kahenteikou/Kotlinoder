@@ -29,7 +29,12 @@ public class ClassEditorTabController implements Initializable {
     public void setClsInfo(ClassDeclaration cd){
         ClassNameTxtField.setText(cd.getName());
         for(Modifier modkun :cd.getClassModifiers().getModifiers()){
-            VisiblyModificationTypeComboBox.getItems().add(modkun.toString());
+            switch(modkun){
+                case PRIVATE -> VisiblyModificationTypeComboBox.getItems().add("private");
+                case PUBLIC -> VisiblyModificationTypeComboBox.getItems().add("public");
+                case PROTECTED -> VisiblyModificationTypeComboBox.getItems().add("protected");
+                
+            }
         }
     }
 }
