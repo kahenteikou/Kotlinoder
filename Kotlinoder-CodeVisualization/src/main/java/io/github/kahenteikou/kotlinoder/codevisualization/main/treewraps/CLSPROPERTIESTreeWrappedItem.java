@@ -34,6 +34,7 @@ public class CLSPROPERTIESTreeWrappedItem extends TreeWrappedItem{
             ClassEditorTabController tabCon=loader.getController();
             tabCon.setClsInfo(cd);
             controller.add_tab(tab,String.format("PROP_%s",cd.getName()));
+
         }catch (Exception e){
             e.printStackTrace();
         }
