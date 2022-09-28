@@ -151,6 +151,8 @@ class MainWindowController : Initializable,IMainWinController {
                 if (!tabitems_str.contains(tab_id)) {
                     tabitems_str.add(tab_id)
                     mainTabPane.tabs.add(tab)
+                    if(focus){
+                    }
                 }
             }
         }

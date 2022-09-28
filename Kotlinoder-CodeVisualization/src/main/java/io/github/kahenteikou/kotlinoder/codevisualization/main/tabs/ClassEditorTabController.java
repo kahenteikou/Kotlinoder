@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import org.apache.logging.log4j.LogManager;
 
 import java.net.URL;
@@ -17,6 +18,8 @@ public class ClassEditorTabController implements Initializable {
     private TextField ClassNameTxtField;
     @FXML
     private ComboBox<String> VisiblyModificationTypeComboBox;
+    @FXML
+    private TitledPane CLSInfoTitledPane;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LogManager.getLogger("ClassEditorTabController").info("Init");
@@ -36,5 +39,7 @@ public class ClassEditorTabController implements Initializable {
 
             }
         }
+        CLSInfoTitledPane.setExpanded(true);
+
     }
 }
