@@ -25,9 +25,7 @@ public class TreeWrappedItem {
         FIELD,
         ROOTNODE,
         CLSPROPERTIES,
-        CLSMETHODS,
-        METHODPROPERTIES,
-        METHODFUNCS
+        CLSMETHODS
     }
 
     @Override
