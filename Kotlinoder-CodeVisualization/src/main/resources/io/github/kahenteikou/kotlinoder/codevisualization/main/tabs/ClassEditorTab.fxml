@@ -15,7 +15,7 @@
    <children>
       <Accordion prefHeight="358.0" prefWidth="488.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <panes>
-          <TitledPane animated="false" text="Class info">
+          <TitledPane animated="false" text="Class info" fx:id="CLSInfoTitledPane">
             <content>
                   <VBox>
                      <children>

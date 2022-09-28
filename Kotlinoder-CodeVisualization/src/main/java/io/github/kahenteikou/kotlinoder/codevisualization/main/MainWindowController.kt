@@ -145,15 +145,19 @@ class MainWindowController : Initializable,IMainWinController {
         }
     }
 
-    override fun add_tab(tab: Tab?,tab_id:String?) {
+    override fun add_tab(tab: Tab?,tab_id:String?,focus:Boolean) {
         if(tab!=null){
             if(tab_id!=null) {
                 if (!tabitems_str.contains(tab_id)) {
                     tabitems_str.add(tab_id)
                     mainTabPane.tabs.add(tab)
+                    if(focus){
+                    }
                 }
             }
         }
     }
-
+    override fun add_tab(tab: Tab?,tab_id:String?){
+        add_tab(tab,tab_id,true)
+    }
 }
