@@ -12,4 +12,9 @@ public class MethodTreeWrappedItem extends TreeWrappedItem{
     public MethodDeclaration getMethodDeclaration(){
         return md;
     }
+
+    @Override
+    public void onDoubleClick(IMainWinController controller) {
+        System.out.println("Double clicked method II");
+    }
 }
