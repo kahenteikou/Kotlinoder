@@ -43,8 +43,7 @@ public class MethodTreeWrappedItem extends TreeWrappedItem{
                 currentS=currentS.getParent();
 
             }
-            System.out.println(pkgName);
-            controller.add_tab(tab,String.format("METHOD_%s_%s",md.getClass().getName(),md.getName()));
+            controller.add_tab(tab,String.format("METHOD_%s_%s_%s",pkgName,md.getClass().getName(),md.getName()));
 
         }catch (Exception e){
             e.printStackTrace();
