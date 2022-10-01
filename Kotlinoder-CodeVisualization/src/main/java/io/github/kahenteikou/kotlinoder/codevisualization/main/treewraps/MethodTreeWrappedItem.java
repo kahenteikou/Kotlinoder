@@ -27,8 +27,8 @@ public class MethodTreeWrappedItem extends TreeWrappedItem{
             Tab tab=new Tab("Method");
             tab.setContent(loader.getRoot());
             MethodEditorTabController tabCon=loader.getController();
-            //tabCon.setClsInfo(cd);
-            controller.add_tab(tab,String.format("PROP_%s",md.getName()));
+            tabCon.setMethodinfo(md);
+            controller.add_tab(tab,String.format("METHOD_%s_%s",md.getClass().getName(),md.getName()));
 
         }catch (Exception e){
             e.printStackTrace();
