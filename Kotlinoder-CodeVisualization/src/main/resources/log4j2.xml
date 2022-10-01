@@ -2,8 +2,8 @@
 <!DOCTYPE project>
 <Configuration status="WARN">
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern=" %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout disableAnsi="false" pattern=" %d{HH:mm:ss.SSS} [%t] %highlight{${LOG_LEVEL_PATTERN:-%5p}}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=green bold, TRACE=blue} %logger{36} - %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
