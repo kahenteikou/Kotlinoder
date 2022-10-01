@@ -9,6 +9,8 @@ import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration;
 import io.github.kahenteikou.kotlinoder.instrumentation.Scope;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
+import org.apache.logging.log4j.LogManager;
+
 
 public class MethodTreeWrappedItem extends TreeWrappedItem{
     private MethodDeclaration md;
@@ -44,7 +46,7 @@ public class MethodTreeWrappedItem extends TreeWrappedItem{
 
             }
             controller.add_tab(tab,String.format("METHOD_%s_%s_%s",pkgName,md.getClass().getName(),md.getName()));
-
+            LogManager.getLogger("MethodEditorTabController").debug(String.format("METHOD_%s_%s_%s",pkgName,md.getClass().getName(),md.getName()));
         }catch (Exception e){
             e.printStackTrace();
         }
