@@ -24,7 +24,7 @@ public class MethodTreeWrappedItem extends TreeWrappedItem{
         FXMLLoader loader=new FXMLLoader(new STUBCLS().getClass().getResource("MethodEditorTab.fxml"));
         try{
             loader.load();
-            Tab tab=new Tab("Method");
+            Tab tab=new Tab(String.format("Method - %s",md.getName()));
             tab.setContent(loader.getRoot());
             MethodEditorTabController tabCon=loader.getController();
             tabCon.setMethodinfo(md);
