@@ -4,7 +4,9 @@ import io.github.kahenteikou.kotlinoder.codevisualization.main.IMainWinControlle
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.ClassEditorTabController;
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.MethodEditorTabController;
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS;
+import io.github.kahenteikou.kotlinoder.instrumentation.CompilationUnitDeclaration;
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration;
+import io.github.kahenteikou.kotlinoder.instrumentation.Scope;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
 
@@ -28,6 +30,20 @@ public class MethodTreeWrappedItem extends TreeWrappedItem{
             tab.setContent(loader.getRoot());
             MethodEditorTabController tabCon=loader.getController();
             tabCon.setMethodinfo(md);
+            Scope currentS=md;
+            String pkgName="";
+            while(true){
+                if(currentS instanceof CompilationUnitDeclaration){
+                    pkgName= ((CompilationUnitDeclaration) currentS).getPackageName();
+                    break;
+                }
+                if(currentS==null){
+                    break;
+                }
+                currentS=currentS.getParent();
+
+            }
+            System.out.println(pkgName);
             controller.add_tab(tab,String.format("METHOD_%s_%s",md.getClass().getName(),md.getName()));
 
         }catch (Exception e){
