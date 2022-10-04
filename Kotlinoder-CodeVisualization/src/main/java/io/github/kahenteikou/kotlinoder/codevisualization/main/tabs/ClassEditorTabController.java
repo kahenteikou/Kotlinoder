@@ -2,6 +2,8 @@ package io.github.kahenteikou.kotlinoder.codevisualization.main.tabs;
 
 import io.github.kahenteikou.kotlinoder.instrumentation.ClassDeclaration;
 import io.github.kahenteikou.kotlinoder.instrumentation.Modifier;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +25,14 @@ public class ClassEditorTabController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LogManager.getLogger("ClassEditorTabController").info("Init");
+        ClassNameTxtField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(!newValue){
+                    
+                }
+            }
+        });
     }
     @FXML
     private void VisiblyModificationTypeComboBox_OnAction(ActionEvent event){
