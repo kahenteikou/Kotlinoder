@@ -30,7 +30,9 @@ public class ClassEditorTabController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(!newValue){
-
+                    if(cd___ != null){
+                        cd___.setName(ClassNameTxtField.getText());
+                    }
                 }
             }
         });
