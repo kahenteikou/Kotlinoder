@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.kahenteikou.kotlinoder.codevisualization.main.MainWindowController">
 <children>
@@ -38,6 +37,11 @@
                     <MenuItem mnemonicParsing="false" onAction="#onSaveAsAction" text="Save As" />
                     <MenuItem mnemonicParsing="false" onAction="#onCloseAction" text="Close" />
                 </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Convert?">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
                 <items>
