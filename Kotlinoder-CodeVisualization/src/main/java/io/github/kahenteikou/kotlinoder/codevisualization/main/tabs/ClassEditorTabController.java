@@ -22,6 +22,7 @@ public class ClassEditorTabController implements Initializable {
     private ComboBox<String> VisiblyModificationTypeComboBox;
     @FXML
     private TitledPane CLSInfoTitledPane;
+    private ClassDeclaration cd___;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LogManager.getLogger("ClassEditorTabController").info("Init");
@@ -29,7 +30,7 @@ public class ClassEditorTabController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(!newValue){
-                    
+
                 }
             }
         });
@@ -40,6 +41,7 @@ public class ClassEditorTabController implements Initializable {
         LogManager.getLogger("ClassEditorTabController").info("ComboAction");
     }
     public void setClsInfo(ClassDeclaration cd){
+        cd___=cd;
         ClassNameTxtField.setText(cd.getName());
         for(Modifier modkun :cd.getClassModifiers().getModifiers()){
             switch(modkun){

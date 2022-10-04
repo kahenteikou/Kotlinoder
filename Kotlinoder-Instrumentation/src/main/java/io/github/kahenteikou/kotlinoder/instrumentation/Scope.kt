@@ -23,6 +23,7 @@ interface Scope : CodeEntity{
     fun getDataFlow():DataFlow
     fun generateDataFlow()
     fun createScope(id:String,type:ScopeType,name:String,vararg args : Any?):Scope
+    fun setName(name:String)
 
 
 }
@@ -204,6 +205,10 @@ open class ScopeImpl:Scope{
 
     override fun createScope(id: String, type: ScopeType, name: String, vararg args: Any?): Scope {
         return ScopeImpl(id,this,type,name,*args)
+    }
+
+    override fun setName(name: String) {
+        this.name=name
     }
 
 }
