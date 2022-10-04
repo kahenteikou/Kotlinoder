@@ -2,6 +2,8 @@ package io.github.kahenteikou.kotlinoder.codevisualization.main.tabs;
 
 import io.github.kahenteikou.kotlinoder.instrumentation.ClassDeclaration;
 import io.github.kahenteikou.kotlinoder.instrumentation.Modifier;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,9 +22,20 @@ public class ClassEditorTabController implements Initializable {
     private ComboBox<String> VisiblyModificationTypeComboBox;
     @FXML
     private TitledPane CLSInfoTitledPane;
+    private ClassDeclaration cd___;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LogManager.getLogger("ClassEditorTabController").info("Init");
+        ClassNameTxtField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(!newValue){
+                    if(cd___ != null){
+                        cd___.setName(ClassNameTxtField.getText());
+                    }
+                }
+            }
+        });
     }
     @FXML
     private void VisiblyModificationTypeComboBox_OnAction(ActionEvent event){
@@ -30,6 +43,7 @@ public class ClassEditorTabController implements Initializable {
         LogManager.getLogger("ClassEditorTabController").info("ComboAction");
     }
     public void setClsInfo(ClassDeclaration cd){
+        cd___=cd;
         ClassNameTxtField.setText(cd.getName());
         for(Modifier modkun :cd.getClassModifiers().getModifiers()){
             switch(modkun){
