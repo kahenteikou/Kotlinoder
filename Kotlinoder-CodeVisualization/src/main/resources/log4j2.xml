@@ -3,7 +3,7 @@
 <Configuration status="DEBUG">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT" follow="true">
-            <PatternLayout disableAnsi="false" pattern=" %d{HH:mm:ss.SSS} [%t] %highlight{${LOG_LEVEL_PATTERN:-%5p}}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=magenta bold, TRACE=blue} %logger{36} - %msg%n"/>
+            <PatternLayout disableAnsi="false" pattern=" %highlight{%d{HH:mm:ss.SSS} [%t] ${LOG_LEVEL_PATTERN:-%5p} %logger{36} - %msg%n{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=magenta bold, TRACE=blue}}"/>
         </Console>
     </Appenders>
     <Loggers>

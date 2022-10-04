@@ -69,7 +69,7 @@ class MainWindowController : Initializable,IMainWinController {
             }
         }
         filetreePane.children.add(treeViewFile)
-        var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
+        /*var tabClsLoader:FXMLLoader= FXMLLoader(STUBCLS().javaClass.getResource("ClassEditorTab.fxml"))
         try{
             tabClsLoader.load()
         }
@@ -78,7 +78,7 @@ class MainWindowController : Initializable,IMainWinController {
         }
         var tab:Tab=Tab("A2")
         tab.content=tabClsLoader.getRoot()
-        mainTabPane.tabs.add(tab)
+        mainTabPane.tabs.add(tab)*/
     }
 
     @FXML
