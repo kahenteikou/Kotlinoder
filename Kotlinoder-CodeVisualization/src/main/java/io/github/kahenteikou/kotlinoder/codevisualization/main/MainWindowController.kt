@@ -101,6 +101,10 @@ class MainWindowController : Initializable,IMainWinController {
     fun onAboutAction(e:ActionEvent){
 
     }
+    @FXML
+    fun onRenderAction(e:ActionEvent){
+
+    }
     private fun add_File(f:File){
         var currentFileitem=TreeItem<TreeWrappedItem>(FileTreeWrappedItem(f))
 
