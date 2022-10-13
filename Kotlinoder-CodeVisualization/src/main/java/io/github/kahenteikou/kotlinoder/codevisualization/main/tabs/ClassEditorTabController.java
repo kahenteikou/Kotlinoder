@@ -32,6 +32,7 @@ public class ClassEditorTabController implements Initializable {
                 if(!newValue){
                     if(cd___ != null){
                         cd___.setName(ClassNameTxtField.getText());
+                        LogManager.getLogger("CLassEditorTabController").info("Changing class name");
                     }
                 }
             }

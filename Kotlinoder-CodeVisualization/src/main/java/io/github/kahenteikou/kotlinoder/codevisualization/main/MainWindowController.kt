@@ -5,6 +5,10 @@ import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.FileTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.TreeWrappedItem
 import io.github.kahenteikou.kotlinoder.instrumentation.*
+import io.github.kahenteikou.kotlinoder.instrumentation.renderers.ClassDeclarationRendererEx
+import io.github.kahenteikou.kotlinoder.instrumentation.renderers.CompilationUnitRendererEx
+import io.github.kahenteikou.kotlinoder.instrumentation.renderers.InvocationCodeRendererEx
+import io.github.kahenteikou.kotlinoder.instrumentation.renderers.MethodDeclarationRendererEx
 import javafx.beans.value.ChangeListener
 import javafx.beans.value.ObservableValue
 import javafx.event.ActionEvent
@@ -16,6 +20,8 @@ import javafx.scene.control.*
 import javafx.scene.layout.AnchorPane
 import javafx.stage.FileChooser
 import javafx.util.Callback
+import ktast.ast.Writer
+import ktast.ast.psi.ConverterWithExtras
 import ktast.ast.psi.Parser
 import org.apache.logging.log4j.LogManager
 import java.io.File
@@ -30,6 +36,7 @@ class MainWindowController : Initializable,IMainWinController {
     lateinit var filetreePane: AnchorPane
     private var filetreeitems:MutableList<TreeItem<TreeWrappedItem>> = ArrayList()
     lateinit private var treeViewFile:TreeView<TreeWrappedItem>
+    lateinit private var scopecurrent:CompilationUnitDeclaration
     @FXML
     lateinit var mainTabPane: TabPane
     private var tabitems_str:MutableList<String> = ArrayList()
@@ -101,6 +108,19 @@ class MainWindowController : Initializable,IMainWinController {
     fun onAboutAction(e:ActionEvent){
 
     }
+    @FXML
+    fun onRenderAction(e:ActionEvent){
+        LogManager.getLogger("MainWindowController").info("Render!")
+
+        var renderer: CompilationUnitRendererEx = CompilationUnitRendererEx(
+            ClassDeclarationRendererEx(
+                MethodDeclarationRendererEx(
+                    InvocationCodeRendererEx()
+                )
+            )
+        )
+        println(Writer.write(renderer.render(scopecurrent), ConverterWithExtras()))
+    }
     private fun add_File(f:File){
         var currentFileitem=TreeItem<TreeWrappedItem>(FileTreeWrappedItem(f))
 
@@ -115,6 +135,7 @@ class MainWindowController : Initializable,IMainWinController {
         for((k,v) in extraretkuns){
             for(sc2 in v){
                 if(sc2 is CompilationUnitDeclaration){
+                    scopecurrent=sc2
                     for(sc in sc2.getDeclaredClasses()) {
                         var clsNode = TreeItem_ClassTreeWrappedItem(sc as ClassDeclaration)
                         currentFileitem.children.add(clsNode)
