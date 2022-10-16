@@ -44,8 +44,24 @@ public class ClassEditorTabController implements Initializable {
                     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                         if(!newValue){
                             if(cd___ != null){
-                                cd___.getClassModifiers().getModifiers().remove(observable)
-                                LogManager.getLogger("CLassEditorTabController").info("Changing class modifier");
+                                if(currentMod!=null) {
+                                    cd___.getClassModifiers().getModifiers().remove(currentMod);
+                                    switch (VisiblyModificationTypeComboBox.getValue()) {
+                                        case "public":
+                                            currentMod = Modifier.PUBLIC;
+                                            cd___.getClassModifiers().getModifiers().add(currentMod);
+                                            break;
+                                        case "private":
+                                            currentMod = Modifier.PRIVATE;
+                                            cd___.getClassModifiers().getModifiers().add(currentMod);
+                                            break;
+                                        case "protected":
+                                            currentMod = Modifier.PROTECTED;
+                                            cd___.getClassModifiers().getModifiers().add(currentMod);
+                                            break;
+                                    }
+                                    LogManager.getLogger("CLassEditorTabController").info("Changing class modifier");
+                                }
                             }
                         }
                     }
