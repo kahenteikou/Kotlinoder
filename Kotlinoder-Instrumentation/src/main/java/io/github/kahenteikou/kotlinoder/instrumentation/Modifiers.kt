@@ -14,11 +14,32 @@ final class Modifiers :IModifiers{
         this.modifiers.addAll(modifiers)
     }
 
+    //mark
     override fun getModifiers(): MutableList<Modifier> {
         if(readOnlyModifiers==null){
             readOnlyModifiers= Collections.unmodifiableList(modifiers)
         }
         return readOnlyModifiers as MutableList<Modifier>
     }
+
+    override fun addModifier(modifier: Modifier) {
+        this.modifiers.add(modifier)
+    }
+
+    override fun delModifier(modifier: Modifier) {
+        if(this.modifiers.contains(modifier))
+            this.modifiers.remove(modifier)
+    }
+
+    override fun replaceModifier(oldModifier: Modifier, newModifier: Modifier): Boolean {
+        if(this.modifiers.contains(oldModifier)){
+            this.modifiers.remove(oldModifier)
+            this.modifiers.add(newModifier)
+            return true
+        }else{
+            return false
+        }
+    }
+
 
 }

@@ -23,6 +23,7 @@ public class ClassEditorTabController implements Initializable {
     @FXML
     private TitledPane CLSInfoTitledPane;
     private ClassDeclaration cd___;
+    private Modifier currentMod;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LogManager.getLogger("ClassEditorTabController").info("Init");
@@ -37,6 +38,34 @@ public class ClassEditorTabController implements Initializable {
                 }
             }
         });
+        VisiblyModificationTypeComboBox.focusedProperty().addListener(
+                new ChangeListener<Boolean>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                        if(!newValue){
+                            if(cd___ != null){
+                                if(currentMod!=null) {
+                                    switch (VisiblyModificationTypeComboBox.getValue()) {
+                                        case "public":
+                                            cd___.getClassModifiers().replaceModifier(currentMod,Modifier.PUBLIC);
+                                            currentMod = Modifier.PUBLIC;
+                                            break;
+                                        case "private":
+                                            cd___.getClassModifiers().replaceModifier(currentMod,Modifier.PRIVATE);
+                                            currentMod = Modifier.PRIVATE;
+                                            break;
+                                        case "protected":
+                                            cd___.getClassModifiers().replaceModifier(currentMod,Modifier.PROTECTED);
+                                            currentMod = Modifier.PROTECTED;
+                                            break;
+                                    }
+                                    LogManager.getLogger("CLassEditorTabController").info("Changing class modifier");
+                                }
+                            }
+                        }
+                    }
+                }
+        );
     }
     @FXML
     private void VisiblyModificationTypeComboBox_OnAction(ActionEvent event){
@@ -48,13 +77,23 @@ public class ClassEditorTabController implements Initializable {
         ClassNameTxtField.setText(cd.getName());
         for(Modifier modkun :cd.getClassModifiers().getModifiers()){
             switch(modkun){
-                case PRIVATE -> VisiblyModificationTypeComboBox.setValue("private");
-                case PUBLIC -> VisiblyModificationTypeComboBox.setValue("public");
-                case PROTECTED -> VisiblyModificationTypeComboBox.setValue("protected");
+                case PRIVATE:
+                    VisiblyModificationTypeComboBox.setValue("private");
+                    currentMod=Modifier.PRIVATE;
+                    break;
+                case PUBLIC:
+                    VisiblyModificationTypeComboBox.setValue("public");
+                    currentMod=Modifier.PUBLIC;
+                    break;
+                case PROTECTED:
+                    VisiblyModificationTypeComboBox.setValue("protected");
+                    currentMod=Modifier.PROTECTED;
+                    break;
 
             }
         }
         CLSInfoTitledPane.setExpanded(true);
+
 
     }
 }
