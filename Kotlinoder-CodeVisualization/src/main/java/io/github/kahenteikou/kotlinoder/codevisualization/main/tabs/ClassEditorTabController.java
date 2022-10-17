@@ -45,19 +45,18 @@ public class ClassEditorTabController implements Initializable {
                         if(!newValue){
                             if(cd___ != null){
                                 if(currentMod!=null) {
-                                    cd___.getClassModifiers().getModifiers().remove(currentMod);
                                     switch (VisiblyModificationTypeComboBox.getValue()) {
                                         case "public":
+                                            cd___.getClassModifiers().replaceModifier(currentMod,Modifier.PUBLIC);
                                             currentMod = Modifier.PUBLIC;
-                                            cd___.getClassModifiers().getModifiers().add(currentMod);
                                             break;
                                         case "private":
+                                            cd___.getClassModifiers().replaceModifier(currentMod,Modifier.PRIVATE);
                                             currentMod = Modifier.PRIVATE;
-                                            cd___.getClassModifiers().getModifiers().add(currentMod);
                                             break;
                                         case "protected":
+                                            cd___.getClassModifiers().replaceModifier(currentMod,Modifier.PROTECTED);
                                             currentMod = Modifier.PROTECTED;
-                                            cd___.getClassModifiers().getModifiers().add(currentMod);
                                             break;
                                     }
                                     LogManager.getLogger("CLassEditorTabController").info("Changing class modifier");
