@@ -10,5 +10,5 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.MethodEditorTabController"
             prefHeight="400.0" prefWidth="600.0">
-
+    
 </AnchorPane>
