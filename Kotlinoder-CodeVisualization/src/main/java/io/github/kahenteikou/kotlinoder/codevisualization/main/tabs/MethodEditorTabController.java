@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.tabs;
 
 import eu.mihosoft.vrl.workflow.VFlow;
+import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,6 +21,8 @@ public class MethodEditorTabController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         LogManager.getLogger("MethodEditorTabController").info("Init");
+        ScalableContentPane scalableContentPane = new ScalableContentPane();
+        
     }
     public void setMethodinfo(MethodDeclaration md){
         this.md=md;
