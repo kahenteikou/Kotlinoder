@@ -34,6 +34,7 @@ public class MethodEditorTabController implements Initializable {
         canvas.setMinScaleY(1.0);
         view.getChildren().add(canvas);*/
         ScrollPane canvas=new ScrollPane();
+        canvas.setStyle("-fx-background-color: rgb(0,0,0)");
         view.getChildren().add(canvas);
         Pane root=new Pane();
         canvas.setContent(root);
