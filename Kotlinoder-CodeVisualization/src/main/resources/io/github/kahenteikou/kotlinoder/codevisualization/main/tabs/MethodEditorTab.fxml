@@ -10,5 +10,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.MethodEditorTabController"
             prefHeight="400.0" prefWidth="600.0">
-    
+    <children>
+        <StackPane fx:id="view" prefHeight="737.0" prefWidth="588.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    </children>
 </AnchorPane>
