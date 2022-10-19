@@ -2,6 +2,8 @@ package io.github.kahenteikou.kotlinoder.codevisualization.main.tabs;
 
 import eu.mihosoft.vrl.workflow.FlowFactory;
 import eu.mihosoft.vrl.workflow.VFlow;
+import eu.mihosoft.vrl.workflow.VNode;
+import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration;
 import javafx.fxml.FXML;
@@ -35,6 +37,9 @@ public class MethodEditorTabController implements Initializable {
         root.setStyle("-fx-background-color: linear-gradient(to bottom, rgb(10,32,60), rgb(42,52,120));");
         rootPane=root;
         flow= FlowFactory.newFlow();
+        FXSkinFactory fXSkinFactory = new FXSkinFactory(rootPane);
+        flow.setSkinFactories(fXSkinFactory);
+        VNode n1 = flow.newNode();
     }
     public void setMethodinfo(MethodDeclaration md){
         this.md=md;
