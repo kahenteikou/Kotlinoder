@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.tabs;
 
+import eu.mihosoft.vrl.workflow.VFlow;
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +14,8 @@ public class MethodEditorTabController implements Initializable {
     private MethodDeclaration md;
     @FXML
     private Pane view;
+    private Pane rootPane;
+    private VFlow flow;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
