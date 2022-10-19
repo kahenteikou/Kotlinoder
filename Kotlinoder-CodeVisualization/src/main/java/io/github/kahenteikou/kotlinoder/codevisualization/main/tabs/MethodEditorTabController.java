@@ -38,7 +38,7 @@ public class MethodEditorTabController implements Initializable {
         view.getChildren().add(canvas);
         Pane root=new Pane();
         canvas.setContent(root);
-        root.setStyle("-fx-background-color: linear-gradient(to bottom, rgb(10,32,60), rgb(42,52,120));");
+        view.setStyle("-fx-background-color: linear-gradient(to bottom, rgb(10,32,60), rgb(42,52,120));");
         rootPane=root;
         flow= FlowFactory.newFlow();
         FXSkinFactory fXSkinFactory = new FXSkinFactory(rootPane);
