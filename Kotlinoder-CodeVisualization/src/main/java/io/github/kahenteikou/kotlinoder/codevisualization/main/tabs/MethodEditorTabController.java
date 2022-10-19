@@ -28,6 +28,10 @@ public class MethodEditorTabController implements Initializable {
         canvas.setMaxScaleY(1.0);
         canvas.setMinScaleX(1.0);
         canvas.setMinScaleY(1.0);
+        view.getChildren().add(canvas);
+        Pane root=new Pane();
+        canvas.setContent(root);
+        
     }
     public void setMethodinfo(MethodDeclaration md){
         this.md=md;
