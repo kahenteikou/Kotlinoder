@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.tabs;
 
+import eu.mihosoft.vrl.workflow.FlowFactory;
 import eu.mihosoft.vrl.workflow.VFlow;
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration;
@@ -32,7 +33,8 @@ public class MethodEditorTabController implements Initializable {
         Pane root=new Pane();
         canvas.setContent(root);
         root.setStyle("-fx-background-color: linear-gradient(to bottom, rgb(10,32,60), rgb(42,52,120));");
-        
+        rootPane=root;
+        flow= FlowFactory.newFlow();
     }
     public void setMethodinfo(MethodDeclaration md){
         this.md=md;
