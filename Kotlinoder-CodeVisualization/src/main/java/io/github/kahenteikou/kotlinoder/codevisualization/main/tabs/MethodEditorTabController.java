@@ -54,5 +54,6 @@ public class MethodEditorTabController implements Initializable {
         rootNode.setTitle("Entry Point");
         rootNode.addOutput("STRUCTFLOW");
         flow.getModel().setVisible(true);
+        flow.newNode();
     }
 }
