@@ -21,6 +21,7 @@ public class MethodEditorTabController implements Initializable {
     private Pane view;
     private Pane rootPane;
     private VFlow flow;
+    private VNode rootNode;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -43,12 +44,15 @@ public class MethodEditorTabController implements Initializable {
         flow= FlowFactory.newFlow();
         FXSkinFactory fXSkinFactory = new FXSkinFactory(rootPane);
         flow.setSkinFactories(fXSkinFactory);
-        VNode n1 = flow.newNode();
-        n1.setTitle("Method");
-        n1.getValueObject().setValue("Hello World!");
-        flow.getModel().setVisible(true);
+        generateNodes();
     }
     public void setMethodinfo(MethodDeclaration md){
         this.md=md;
+    }
+    private void generateNodes(){
+        rootNode=flow.newNode();
+        rootNode.setTitle("Entry Point");
+        rootNode.addOutput("STRUCTFLOW");
+        flow.getModel().setVisible(true);
     }
 }
