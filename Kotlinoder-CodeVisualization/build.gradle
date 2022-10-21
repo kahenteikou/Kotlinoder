@@ -9,7 +9,6 @@ group="io.github.kahenteikou.kotlinoder"
 version="1.0-SNAPSHOT"
 mainClassName="io.github.kahenteikou.kotlinoder.codevisualization.main.Launcher"
 dependencies {
-    implementation "org.jfxtras:jfxtras-labs:9.0-r1"
     implementation project(":VWorkflows-Core")
     implementation project(":VWorkflows-FX")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.10"
