@@ -96,8 +96,9 @@ public class FXNewConnectionSkin extends AbstractFXConnectionSkin {
         connectionPath.toFront();
         receiverConnectorUI.toFront();
 
-        MouseControlUtil.makeDraggable(receiverConnectorUI, (MouseEvent t) -> {
-            
+        MouseControlUtil.makeDraggable(receiverConnectorUI, new EventHandler<MouseEvent>() {
+            @Override
+                    public void handle(MouseEvent t){
             if (lastNode != null) {
 //                    lastNode.setEffect(null);
                 lastNode = null;
@@ -176,7 +177,7 @@ public class FXNewConnectionSkin extends AbstractFXConnectionSkin {
                     connectionListener.onNoConnection(receiverConnectorUI);
                 }
             }
-        }, (MouseEvent event) -> {
+        }}, (MouseEvent event) -> {
             receiverConnectorUI.layoutXProperty().unbind();
             receiverConnectorUI.layoutYProperty().unbind();
         }, true);
