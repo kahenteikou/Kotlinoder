@@ -44,6 +44,7 @@ public class MethodEditorTabController implements Initializable {
         flow= FlowFactory.newFlow();
         FXSkinFactory fXSkinFactory = new FXSkinFactory(rootPane);
         flow.setSkinFactories(fXSkinFactory);
+        flow.setVisible(true);
         generateNodes();
     }
     public void setMethodinfo(MethodDeclaration md){
@@ -53,7 +54,7 @@ public class MethodEditorTabController implements Initializable {
         rootNode=flow.newNode();
         rootNode.setTitle("Entry Point");
         rootNode.addOutput("STRUCTFLOW");
-        flow.getModel().setVisible(true);
-        flow.newNode();
+        //flow.getModel().setVisible(true);
+        flow.newNode().addOutput("STRUCTFLOW");
     }
 }
