@@ -36,11 +36,13 @@ public class MethodEditorTabController implements Initializable {
         canvas.setMinScaleY(1.0);
         view.getChildren().add(canvas);*/
         ScrollPane canvas=new ScrollPane();
-        canvas.setStyle("-fx-background-color: rgb(0,0,0)");
+        //canvas.setStyle("-fx-background-color: rgb(0,0,0)");
         view.getChildren().add(canvas);
         Pane root=new Pane();
         canvas.setContent(root);
-        view.setStyle("-fx-background-color: linear-gradient(to bottom, rgb(10,32,60), rgb(42,52,120));");
+        //view.setStyle("-fx-background-color: rgb(0,0,0)");
+        //root.setStyle("-fx-background-color: rgb(0,0,0)");
+        //view.setStyle("-fx-background-color: linear-gradient(to bottom, rgb(10,32,60), rgb(42,52,120));");
         rootPane=root;
         flow= FlowFactory.newFlow();
         flow.setVisible(true);
@@ -54,13 +56,15 @@ public class MethodEditorTabController implements Initializable {
     private void generateNodes(){
         rootNode=flow.newNode();
         rootNode.setTitle("Entry Point");
-        Connector cn1=rootNode.addOutput("control");
-        rootNode.addInput("control");
+        Connector cn1=rootNode.addOutput("event");
+
         rootNode.setWidth(300);
         rootNode.setHeight(200);
         //flow.getModel().setVisible(true);
         VNode node2=flow.newNode();
-        Connector cn2=node2.addInput("control");
+        Connector cn2=node2.addInput("event");
+        rootNode.setMainOutput(cn1);
+        node2.setMainInput(cn2);
         //flow.connect(cn1,cn2);
     }
 }
