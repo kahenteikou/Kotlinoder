@@ -1,5 +1,6 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.tabs;
 
+import eu.mihosoft.vrl.workflow.Connector;
 import eu.mihosoft.vrl.workflow.FlowFactory;
 import eu.mihosoft.vrl.workflow.VFlow;
 import eu.mihosoft.vrl.workflow.VNode;
@@ -42,9 +43,9 @@ public class MethodEditorTabController implements Initializable {
         view.setStyle("-fx-background-color: linear-gradient(to bottom, rgb(10,32,60), rgb(42,52,120));");
         rootPane=root;
         flow= FlowFactory.newFlow();
+        flow.setVisible(true);
         FXSkinFactory fXSkinFactory = new FXSkinFactory(rootPane);
         flow.setSkinFactories(fXSkinFactory);
-        flow.setVisible(true);
         generateNodes();
     }
     public void setMethodinfo(MethodDeclaration md){
@@ -53,8 +54,12 @@ public class MethodEditorTabController implements Initializable {
     private void generateNodes(){
         rootNode=flow.newNode();
         rootNode.setTitle("Entry Point");
-        rootNode.addOutput("STRUCTFLOW");
+        Connector cn1=rootNode.addOutput("STRUCTFLOW");
+        rootNode.setWidth(300);
+        rootNode.setHeight(200);
         //flow.getModel().setVisible(true);
-        flow.newNode().addOutput("STRUCTFLOW");
+        VNode node2=flow.newNode();
+        Connector cn2=node2.addInput("STRUCTFLOW");
+        flow.connect(cn1,cn2);
     }
 }
