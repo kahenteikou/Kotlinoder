@@ -5,6 +5,7 @@ import eu.mihosoft.vrl.workflow.FlowFactory;
 import eu.mihosoft.vrl.workflow.VFlow;
 import eu.mihosoft.vrl.workflow.VNode;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
+import eu.mihosoft.vrl.workflow.fx.FXValueSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration;
 import javafx.fxml.FXML;
@@ -46,7 +47,7 @@ public class MethodEditorTabController implements Initializable {
         rootPane=root;
         flow= FlowFactory.newFlow();
         flow.setVisible(true);
-        FXSkinFactory fXSkinFactory = new FXSkinFactory(rootPane);
+        FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
         flow.setSkinFactories(fXSkinFactory);
         generateNodes();
     }
