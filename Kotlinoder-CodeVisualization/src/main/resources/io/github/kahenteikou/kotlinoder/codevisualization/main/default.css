@@ -57,7 +57,6 @@
     rgba(0, 0, 0, 0.9),
     10, 0.0, 0, 0);
 }
-
 .vnode-new-connection {
     -fx-stroke: rgba(220, 220, 220, 0.75);
     -fx-stroke-width: 5px;
@@ -110,46 +109,31 @@
 }
 
 
+
 .vnode-connector {
-    -fx-fill: radial-gradient(center 50% 25%,
-    radius 75%,
-    rgb(122,120,125) 0%,
-    rgb(40,40,40) 100%);
-
-    -fx-effect: dropshadow(one-pass-box,
-    rgba(0, 0, 0, 0.9),
-    7, 0.0, 0, 0);
+    -fx-background-color: rgba(0,0,0,0.75);
+    -fx-stroke: rgba(120, 140, 255, 0.42);
+    -fx-border-width: 2px;
+    -fx-border-color: rgba(120, 140, 255, 0.72);
+    -fx-shape: "m 187.92089,378.88528 a 12.94066,12.94066 0 0 1 -12.94067,12.94066 12.94066,12.94066 0 0 1 -12.94066,-12.94066 12.94066,12.94066 0 0 1 12.94066,-12.94066 12.94066,12.94066 0 0 1 12.94067,12.94066 z"
 }
-
-
-.vnode-connector-data {
-    -fx-fill: radial-gradient(center 50% 25%,
-    radius 75%,
-    rgb(32,180,12) 0%,
-    rgb(0,20,0) 100%);
-}
-
 
 .vnode-connector-control {
-    -fx-fill: radial-gradient(center 50% 25%,
-    radius 75%,
-    rgb(255,255,10) 0%,
-    rgb(40,40,40) 100%);
-
-    /*    -fx-effect: dropshadow(one-pass-box,
-            rgba(0, 0, 0, 0.9),
-            7, 0.0, 0, 0);*/
+    -fx-background-color: rgba(255,255,0,0.75);
+    -fx-stroke: rgba(120, 140, 255, 0.42);
+    /*    -fx-border-color: rgba(255,255,0,0.75);*/
 }
 
 .vnode-connector-event {
-    -fx-fill: radial-gradient(center 50% 25%,
-    radius 75%,
-    rgb(10,255,10) 0%,
-    rgb(40,40,40) 100%);
+    -fx-background-color: rgba(255,100,255,0.75);
+    -fx-stroke: rgba(120, 140, 255, 0.42);
+    /*-fx-border-color: rgba(255,100,255,0.75);*/
+}
 
-    /*    -fx-effect: dropshadow(one-pass-box,
-            rgba(0, 0, 0, 0.9),
-            7, 0.0, 0, 0);*/
+.vnode-connector-data {
+    -fx-background-color: rgba(10,10,10,0.75);
+    -fx-stroke: rgba(120, 140, 255, 0.42);
+    /*-fx-border-color: rgba(10,10,10,0.75);*/
 }
 
 .segment-background {

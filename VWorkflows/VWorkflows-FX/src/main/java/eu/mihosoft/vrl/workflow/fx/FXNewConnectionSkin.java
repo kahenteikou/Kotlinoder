@@ -85,7 +85,6 @@ public class FXNewConnectionSkin extends AbstractFXConnectionSkin {
         final Node senderNode = senderShape.getNode();
 
         senderConnectorUI = senderShape;
-
         receiverConnectorUI.setLayoutX(senderNode.getLayoutX()
                 +receiverConnectorUI.getRadius());
         receiverConnectorUI.setLayoutY(senderNode.getLayoutY()
@@ -96,15 +95,16 @@ public class FXNewConnectionSkin extends AbstractFXConnectionSkin {
         connectionPath.toFront();
         receiverConnectorUI.toFront();
 
-        MouseControlUtil.makeDraggable(receiverConnectorUI, (MouseEvent t) -> {
-            
+        MouseControlUtil.makeDraggable(receiverConnectorUI, new EventHandler<MouseEvent>() {
+            @Override
+                    public void handle(MouseEvent t){
             if (lastNode != null) {
 //                    lastNode.setEffect(null);
                 lastNode = null;
             }
-            
+
             SelectedConnector selConnector = null;
-            
+
             if (getSender().isOutput()) {
                 selConnector = FXConnectorUtil.getSelectedInputConnector(
                         getSender().getNode(), getParent(), type, t);
@@ -112,7 +112,7 @@ public class FXNewConnectionSkin extends AbstractFXConnectionSkin {
                 selConnector = FXConnectorUtil.getSelectedOutputConnector(
                         getSender().getNode(), getParent(), type, t);
             }
-            
+
             // reject connection if no main input defined for current node
             if (selConnector != null
                     && selConnector.getNode() != null
@@ -121,62 +121,62 @@ public class FXNewConnectionSkin extends AbstractFXConnectionSkin {
 //                    Glow effect = new Glow(0.8);
 //                    effect.setInput(shadow);
 //                    selConnector.getNode().setEffect(effect);
-                
+
                 //onConnectionIncompatible();
                 connectionListener.onNoConnection(selConnector.getNode());
-                
+
                 lastNode = selConnector.getNode();
             }
-            
+
             if (selConnector != null
                     && selConnector.getNode() != null
                     && selConnector.getConnector() != null) {
-                
+
                 Connector receiverConnectorModel = selConnector.getConnector();
                 Node n = selConnector.getNode();
                 n.toFront();
-                
+
                 VNode model = selConnector.getConnector().getNode();
-                
+
 //                    // we cannot create a connection from us to us
 //                    if (model == getSender()) {
 //                        return;
 //                    }
                 ConnectionResult connResult = null;
-                
+
                 if (getSender().isInput() && receiverConnectorModel.isOutput()) {
-                    
+
                     connResult = flow.tryConnect(
                             receiverConnectorModel, getSender());
                 } else {
                     connResult = flow.tryConnect(
                             getSender(), receiverConnectorModel);
                 }
-                
+
                 if (connResult.getStatus().isCompatible()) {
-                    
+
                     if (lastNode != n) {
-                        
+
                         connectionListener.onConnectionCompatible(n);
                     }
-                    
-                } else {    
+
+                } else {
 //                        DropShadow shadow = new DropShadow(20, Color.RED);
 //                        Glow effect = new Glow(0.8);
 //                        effect.setInput(shadow);
 //                        n.setEffect(effect);
                     connectionListener.onConnectionIncompatible();
                 }
-                
+
                 receiverConnectorUI.toFront();
-                
+
                 lastNode = n;
             } else {
                 if (lastNode == null) {
                     connectionListener.onNoConnection(receiverConnectorUI);
                 }
             }
-        }, (MouseEvent event) -> {
+        }}, (MouseEvent event) -> {
             receiverConnectorUI.layoutXProperty().unbind();
             receiverConnectorUI.layoutYProperty().unbind();
         }, true);

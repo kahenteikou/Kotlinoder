@@ -58,6 +58,7 @@ import org.apache.commons.math3.geometry.euclidean.twod.Line;
 import org.apache.commons.math3.geometry.euclidean.twod.Segment;
 import org.apache.commons.math3.geometry.euclidean.twod.SubLine;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -587,6 +588,7 @@ public class FXFlowNodeSkin
         connectorNode.onMouseEnteredProperty().set(
                 (EventHandler<MouseEvent>) (MouseEvent t) -> {
                     connectorNode.toFront();
+                    //LogManager.getLogger("FXFlowNodeSkin").debug("CLICKED CN");
                 });
 
         connectorNode.onMousePressedProperty().set(
