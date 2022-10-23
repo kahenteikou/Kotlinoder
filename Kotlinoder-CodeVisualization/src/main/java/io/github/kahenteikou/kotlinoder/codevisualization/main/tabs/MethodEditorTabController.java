@@ -47,11 +47,12 @@ public class MethodEditorTabController implements Initializable {
         flow= FlowFactory.newFlow();
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
         flow.setSkinFactories(fXSkinFactory);
-        generateNodes();
-        flow.setVisible(true);
     }
     public void setMethodinfo(MethodDeclaration md){
         this.md=md;
+
+        generateNodes();
+        flow.setVisible(true);
     }
     private void generateNodes(){
         rootNode=flow.newNode();
@@ -70,6 +71,6 @@ public class MethodEditorTabController implements Initializable {
         //VFlow subflow = flow.newSubFlow();
         //flow.connect(cn1,cn2);
          */
-        
+
     }
 }
