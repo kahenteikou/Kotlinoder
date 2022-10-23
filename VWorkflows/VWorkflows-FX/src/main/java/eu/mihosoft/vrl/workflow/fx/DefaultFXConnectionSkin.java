@@ -52,6 +52,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import jfxtras.labs.util.event.MouseControlUtil;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.Optional;
 
@@ -136,6 +137,9 @@ public class DefaultFXConnectionSkin extends AbstractFXConnectionSkin {
             if (event.getButton() == MouseButton.SECONDARY) {
                 contextMenu.show(connectionPath,
                         event.getScreenX(), event.getScreenY());
+            }else if(event.getButton()== MouseButton.PRIMARY){
+                LogManager.getLogger("DefaultFXConnectionSkin").debug("Primary button clicked " + event.getSource().getClass().getCanonicalName());
+
             }
         };
     }
