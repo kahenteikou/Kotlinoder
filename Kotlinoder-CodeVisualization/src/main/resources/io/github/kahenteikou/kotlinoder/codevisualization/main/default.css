@@ -9,7 +9,7 @@
 
 
 .vflow-background {
-    -fx-background-color: linear-gradient(to top, rgb(50,50,50), rgb(110,110,120));
+    -fx-background-color: rgb(255,255,255);
 }
 
 .window {
@@ -18,7 +18,7 @@
     -fx-background-color : radial-gradient(center 50% 25%,
     radius 75%,
     rgba(82,82,82,0.9) 0%,
-    rgba(22,22,22,0.9) 100%);
+    rgba(255,255,255,0.9) 100%);
     /*        rgba(122,122,122,0.9) 0%,
             rgba(82,82,82,0.9) 100%);*/
 
@@ -139,34 +139,3 @@
 .segment-background {
     -fx-background-color: rgba(20,20,20,0.7);
 }
-
-
-.input-field {
-    -fx-background-image: url("input-field-01-bg.png");
-    -fx-background-size: stretch;
-    -fx-background-repeat: no-repeat;
-    -fx-font-size: 14;
-}
-
-
-.chart-title {
-    -fx-text-fill: rgb(220,220,200);
-    -fx-font-size: 1.6em;
-}
-
-.axis-label {
-    -fx-text-fill: rgb(220,220,200);
-}
-
-/*.chart-vertical-grid-lines {
-    -fx-stroke: #3278fa;
-}
-.chart-horizontal-grid-lines {
-    -fx-stroke: #3278fa;
-}*/
-.chart-alternative-row-fill {
-    -fx-fill: rgba(120,120,120,0.1);
-    -fx-stroke: transparent;
-    -fx-stroke-width: 0;
-}
-
