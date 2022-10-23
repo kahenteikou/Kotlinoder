@@ -1,9 +1,6 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.tabs;
 
-import eu.mihosoft.vrl.workflow.Connector;
-import eu.mihosoft.vrl.workflow.FlowFactory;
-import eu.mihosoft.vrl.workflow.VFlow;
-import eu.mihosoft.vrl.workflow.VNode;
+import eu.mihosoft.vrl.workflow.*;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.FXValueSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
@@ -59,17 +56,20 @@ public class MethodEditorTabController implements Initializable {
     private void generateNodes(){
         rootNode=flow.newNode();
         rootNode.setTitle("Entry Point");
+        rootNode.getVisualizationRequest().set(VisualizationRequest.KEY_DISABLE_EDITING,true);
         //rootNode.addInput("control");
         Connector cn1=rootNode.addOutput("control");
 
-        rootNode.setWidth(300);
-        rootNode.setHeight(200);
+        rootNode.setWidth(115);
+        rootNode.setHeight(60);
         //flow.getModel().setVisible(true);
-        VNode node2=flow.newNode();
+        /*VNode node2=flow.newNode();
         Connector cn2=node2.addInput("control");
         //rootNode.setMainOutput(cn1);
         //node2.setMainInput(cn2);
         //VFlow subflow = flow.newSubFlow();
         //flow.connect(cn1,cn2);
+         */
+        
     }
 }
