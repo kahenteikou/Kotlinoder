@@ -137,9 +137,6 @@ public class DefaultFXConnectionSkin extends AbstractFXConnectionSkin {
             if (event.getButton() == MouseButton.SECONDARY) {
                 contextMenu.show(connectionPath,
                         event.getScreenX(), event.getScreenY());
-            }else if(event.getButton()== MouseButton.PRIMARY){
-                LogManager.getLogger("DefaultFXConnectionSkin").debug("Primary button clicked " + event.getSource().getClass().getCanonicalName());
-
             }
         };
     }

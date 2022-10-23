@@ -57,6 +57,15 @@
     rgba(0, 0, 0, 0.9),
     10, 0.0, 0, 0);
 }
+.vnode-connection-receiver {
+    -fx-stroke: rgba(12, 220, 12, 0.75);
+    -fx-stroke-width: 5px;
+    /*-fx-stroke-line-cap: round;*/
+
+    -fx-effect: dropshadow(one-pass-box,
+    rgba(0, 0, 0, 0.9),
+    10, 0.0, 0, 0);
+}
 
 .vnode-new-connection {
     -fx-stroke: rgba(220, 220, 220, 0.75);
@@ -110,7 +119,7 @@
 }
 
 
-.vnode-connector {
+. vnode-connector{
     -fx-fill: radial-gradient(center 50% 25%,
     radius 75%,
     rgb(122,120,125) 100%,
