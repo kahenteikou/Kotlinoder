@@ -46,10 +46,10 @@ public class MethodEditorTabController implements Initializable {
         //view.setStyle("-fx-background-color: linear-gradient(to bottom, rgb(10,32,60), rgb(42,52,120));");
         rootPane=root;
         flow= FlowFactory.newFlow();
-        flow.setVisible(true);
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
         flow.setSkinFactories(fXSkinFactory);
         generateNodes();
+        flow.setVisible(true);
     }
     public void setMethodinfo(MethodDeclaration md){
         this.md=md;
