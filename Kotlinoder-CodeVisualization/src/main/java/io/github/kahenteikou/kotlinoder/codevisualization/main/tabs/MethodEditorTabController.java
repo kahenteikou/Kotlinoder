@@ -19,8 +19,10 @@ import java.util.ResourceBundle;
 
 public class MethodEditorTabController implements Initializable {
     private MethodDeclaration md;
+    /*@FXML
+    private Pane view;*/
     @FXML
-    private Pane view;
+    private ScrollPane canvas;
     private Pane rootPane;
     private VFlow flow;
     private VNode rootNode;
@@ -36,9 +38,9 @@ public class MethodEditorTabController implements Initializable {
         canvas.setMinScaleX(1.0);
         canvas.setMinScaleY(1.0);
         view.getChildren().add(canvas);*/
-        ScrollPane canvas=new ScrollPane();
+        //ScrollPane canvas=new ScrollPane();
         //canvas.setStyle("-fx-background-color: rgb(0,0,0)");
-        view.getChildren().add(canvas);
+        //view.getChildren().add(canvas);
         Pane root=new Pane();
         canvas.setContent(root);
         //view.setStyle("-fx-background-color: rgb(0,0,0)");
