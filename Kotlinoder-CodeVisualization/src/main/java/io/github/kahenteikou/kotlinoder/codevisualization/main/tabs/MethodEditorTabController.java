@@ -59,13 +59,13 @@ public class MethodEditorTabController implements Initializable {
     private void generateNodes(){
         rootNode=flow.newNode();
         rootNode.setTitle("Entry Point");
-        Connector cn1=rootNode.addOutput("event");
+        Connector cn1=rootNode.addOutput("control");
 
         rootNode.setWidth(300);
         rootNode.setHeight(200);
         //flow.getModel().setVisible(true);
         VNode node2=flow.newNode();
-        Connector cn2=node2.addInput("event");
+        Connector cn2=node2.addInput("control");
         rootNode.setMainOutput(cn1);
         node2.setMainInput(cn2);
         //flow.connect(cn1,cn2);
