@@ -96,7 +96,8 @@ public class MethodEditorTabController implements Initializable {
             if(i instanceof Invocation){
                 VNode n=null;
                 if(((Invocation) i).isScope() &&!isClassOrScript ){
-                    
+                    ScopeInvocation si=(ScopeInvocation) i;
+                    n=scopeToFlow(si.getScope(),resultFlow).getModel();
                 }
             }
         }
