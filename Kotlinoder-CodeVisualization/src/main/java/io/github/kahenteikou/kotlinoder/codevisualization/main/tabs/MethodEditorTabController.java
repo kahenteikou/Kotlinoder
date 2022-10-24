@@ -26,6 +26,7 @@ public class MethodEditorTabController implements Initializable {
     private VFlow flow;
     private VNode rootNode;
     private HashMap<CodeEntity,VNode> invocationNodes= new HashMap<CodeEntity,VNode>();
+    private HashMap<String,Connector> variableConnectors=new HashMap<>();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -113,12 +114,17 @@ public class MethodEditorTabController implements Initializable {
                     if(v!=null){
                         Connector input=n.addInput("data");
                         LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
-                        
+                        variableConnectors.put(getVariableId(n,v),input);
                     }
                 }
                 prevNode = n;
             }
         }
         return parent;
+    }
+    private static String getVariableId(VNode n,Variable v){
+        String id="%s,%s".formatted(n.getId(),v.getName());
+        LogManager.getLogger("id: %s".formatted(id));
+        return id;
     }
 }
