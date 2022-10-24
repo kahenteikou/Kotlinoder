@@ -88,7 +88,7 @@ public class MethodEditorTabController implements Initializable {
         return resultFlow;
     }
     private VFlow scopeToFlowFirst(Scope scope,VFlow parent){
-        VFlow resultFlow=parent.newSubFlow();
+        //VFlow resultFlow=parent.newSubFlow();
         VNode prevNode=null;
         Boolean isClassOrScript=scope.getType()== ScopeType.CLASS||scope.getType()==ScopeType.COMPILATION_UNIT
                 || scope.getType()==ScopeType.NONE;
@@ -97,9 +97,9 @@ public class MethodEditorTabController implements Initializable {
                 VNode n=null;
                 if(((Invocation) i).isScope() &&!isClassOrScript ){
                     ScopeInvocation si=(ScopeInvocation) i;
-                    n=scopeToFlow(si.getScope(),resultFlow).getModel();
+                    n=scopeToFlow(si.getScope(),parent).getModel();
                 }else{
-                    n=resultFlow.newNode();
+                    n=parent.newNode();
                     n.setTitle("%s.%s():%s".formatted(((Invocation)i).getVariableName(),((Invocation)i).getMethodName(),
                             ((Invocation)i).getId()));
                     invocationNodes.put((Invocation)i,n);
@@ -107,6 +107,6 @@ public class MethodEditorTabController implements Initializable {
                 prevNode = n;
             }
         }
-        return resultFlow;
+        return parent;
     }
 }
