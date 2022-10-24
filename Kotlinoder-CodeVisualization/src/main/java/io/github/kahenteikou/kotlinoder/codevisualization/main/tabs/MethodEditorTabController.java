@@ -102,7 +102,9 @@ public class MethodEditorTabController implements Initializable {
                     n=resultFlow.newNode();
                     n.setTitle("%s.%s():%s".formatted(((Invocation)i).getVariableName(),((Invocation)i).getMethodName(),
                             ((Invocation)i).getId()));
+                    invocationNodes.put((Invocation)i,n);
                 }
+                prevNode = n
             }
         }
         return resultFlow;
