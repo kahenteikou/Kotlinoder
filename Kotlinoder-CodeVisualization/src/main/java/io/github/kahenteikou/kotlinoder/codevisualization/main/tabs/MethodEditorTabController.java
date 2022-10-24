@@ -98,6 +98,10 @@ public class MethodEditorTabController implements Initializable {
                 if(((Invocation) i).isScope() &&!isClassOrScript ){
                     ScopeInvocation si=(ScopeInvocation) i;
                     n=scopeToFlow(si.getScope(),resultFlow).getModel();
+                }else{
+                    n=resultFlow.newNode();
+                    n.setTitle("%s.%s():%s".formatted(((Invocation)i).getVariableName(),((Invocation)i).getMethodName(),
+                            ((Invocation)i).getId()));
                 }
             }
         }
