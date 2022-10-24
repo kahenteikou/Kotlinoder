@@ -85,7 +85,7 @@ public class MethodEditorTabController implements Initializable {
         resultFlow.setSkinFactories(fXSkinFactory);
         invocationNodes.put(scope,resultFlow.getModel());
         String title=String.format("%s %s(): %s",scope.getType(),scope.getName(),scope.getId());
-        
+        resultFlow.getModel().setTitle(title);
 
         return resultFlow;
     }
