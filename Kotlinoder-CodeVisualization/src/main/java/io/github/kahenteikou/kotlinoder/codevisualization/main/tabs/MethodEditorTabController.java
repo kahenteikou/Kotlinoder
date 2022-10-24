@@ -90,6 +90,7 @@ public class MethodEditorTabController implements Initializable {
     }
     private VFlow scopeToFlowFirst(Scope scope,VFlow parent){
         VFlow resultFlow=parent.newSubFlow();
+        VNode prevNode=null;
         return resultFlow;
     }
 }
