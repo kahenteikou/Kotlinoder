@@ -81,14 +81,17 @@ public class MethodEditorTabController implements Initializable {
 
     }
     private VFlow scopeToFlow(Scope scope, VFlow parent){
+        return scopeToFlow(scope,parent,null);
+    }
+    private VFlow scopeToFlow(Scope scope, VFlow parent,VNode prevkun){
         VFlow resultFlow=parent.newSubFlow();
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
         resultFlow.setSkinFactories(fXSkinFactory);
         invocationNodes.put(scope,resultFlow.getModel());
         String title=String.format("%s %s(): %s X",scope.getType(),scope.getName(),scope.getId());
         resultFlow.getModel().setTitle(title);
-
         VNode prevNode=null;
+        if(prevkun != null) prevNode=prevkun;
         Boolean isClassOrScript=scope.getType()== ScopeType.CLASS||scope.getType()==ScopeType.COMPILATION_UNIT
                 || scope.getType()==ScopeType.NONE;
         for(IInvokeAndStatement i:scope.getControlFlow().getCallObjects()){
