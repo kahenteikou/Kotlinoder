@@ -4,9 +4,8 @@ import eu.mihosoft.vrl.workflow.*;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.FXValueSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
-import io.github.kahenteikou.kotlinoder.instrumentation.CodeEntity;
-import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration;
-import io.github.kahenteikou.kotlinoder.instrumentation.Scope;
+import io.github.kahenteikou.kotlinoder.instrumentation.*;
+import io.github.kahenteikou.kotlinoder.instrumentation.invokes.IInvokeAndStatement;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
@@ -14,7 +13,9 @@ import javafx.scene.layout.Pane;
 import org.apache.logging.log4j.LogManager;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MethodEditorTabController implements Initializable {
@@ -27,6 +28,7 @@ public class MethodEditorTabController implements Initializable {
     private VFlow flow;
     private VNode rootNode;
     private HashMap<CodeEntity,VNode> invocationNodes= new HashMap<CodeEntity,VNode>();
+    private HashMap<String,Connector> variableConnectors=new HashMap<>();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -75,18 +77,128 @@ public class MethodEditorTabController implements Initializable {
         //VFlow subflow = flow.newSubFlow();
         //flow.connect(cn1,cn2);
          */
-        scopeToFlow(md,flow);
-
+        scopeToFlowFirst(md,flow);
 
     }
     private VFlow scopeToFlow(Scope scope, VFlow parent){
-        /*VFlow resultFlow=parent.newSubFlow();
+        VFlow resultFlow=parent.newSubFlow();
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
-        resultFlow.setSkinFactories(fXSkinFactory);*/
-        invocationNodes.put(scope,parent.getModel());
-        String title=String.format("Entry Point %s %s(): %s",scope.getType(),scope.getName(),scope.getId());
-        parent.getModel().setTitle(title);
+        resultFlow.setSkinFactories(fXSkinFactory);
+        invocationNodes.put(scope,resultFlow.getModel());
+        String title=String.format("%s %s(): %s X",scope.getType(),scope.getName(),scope.getId());
+        resultFlow.getModel().setTitle(title);
 
+        VNode prevNode=null;
+        Boolean isClassOrScript=scope.getType()== ScopeType.CLASS||scope.getType()==ScopeType.COMPILATION_UNIT
+                || scope.getType()==ScopeType.NONE;
+        for(IInvokeAndStatement i:scope.getControlFlow().getCallObjects()){
+            if(i instanceof Invocation){
+                VNode n=null;
+                if(((Invocation) i).isScope() &&!isClassOrScript ){
+                    ScopeInvocation si=(ScopeInvocation) i;
+                    n=scopeToFlow(si.getScope(),resultFlow).getModel();
+                }else{
+                    n=resultFlow.newNode();
+                    n.setTitle("%s.%s():%s".formatted(((Invocation)i).getVariableName(),((Invocation)i).getMethodName(),
+                            ((Invocation)i).getId()));
+                    invocationNodes.put((Invocation)i,n);
+                }
+                n.setMainInput(n.addInput("control"));
+                n.setMainOutput(n.addOutput("control"));
+                if (prevNode != null) {
+                    resultFlow.connect(prevNode, n, "control");
+                }
+                for(Variable v:((Invocation) i).getArguments()){
+                    if(v!=null){
+                        Connector input=n.addInput("data");
+                        LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
+                        variableConnectors.put(getVariableId(n,v),input);
+                    }
+                }
+                if(!(((Invocation) i).isVoid())){
+                    Connector output=n.addOutput("data");
+                    Variable v = scope.getVariable(((Invocation) i).getReturnValueName());
+                    LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
+                    variableConnectors.put(getVariableId(n, v),output);
+                }
+                n.setWidth(400.0);
+                n.setHeight(100.0);
+                LogManager.getLogger("MethodEditorTabController").info("Node: %s".formatted(((Invocation) i).getCode()));
+                prevNode = n;
+            }
+        }
+        dataFlowToFlow(scope,resultFlow);
+        return resultFlow;
+    }
+    private VFlow scopeToFlowFirst(Scope scope,VFlow parent){
+        //VFlow resultFlow=parent.newSubFlow();
+        VNode prevNode=null;
+        Boolean isClassOrScript=scope.getType()== ScopeType.CLASS||scope.getType()==ScopeType.COMPILATION_UNIT
+                || scope.getType()==ScopeType.NONE;
+        for(IInvokeAndStatement i:scope.getControlFlow().getCallObjects()){
+            if(i instanceof Invocation){
+                VNode n=null;
+                if(((Invocation) i).isScope() &&!isClassOrScript ){
+                    ScopeInvocation si=(ScopeInvocation) i;
+                    n=scopeToFlow(si.getScope(),parent).getModel();
+                }else{
+                    n=parent.newNode();
+                    n.setTitle("%s.%s():%s".formatted(((Invocation)i).getVariableName(),((Invocation)i).getMethodName(),
+                            ((Invocation)i).getId()));
+                    invocationNodes.put((Invocation)i,n);
+                }
+                n.setMainInput(n.addInput("control"));
+                n.setMainOutput(n.addOutput("control"));
+                if (prevNode != null) {
+                    parent.connect(prevNode, n, "control");
+                }
+                for(Variable v:((Invocation) i).getArguments()){
+                    if(v!=null){
+                        Connector input=n.addInput("data");
+                        LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
+                        variableConnectors.put(getVariableId(n,v),input);
+                    }
+                }
+                if(!(((Invocation) i).isVoid())){
+                    Connector output=n.addOutput("data");
+                    Variable v = scope.getVariable(((Invocation) i).getReturnValueName());
+                    LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
+                    variableConnectors.put(getVariableId(n, v),output);
+                }
+                n.setWidth(400.0);
+                n.setHeight(100.0);
+                LogManager.getLogger("MethodEditorTabController").info("Node: %s".formatted(((Invocation) i).getCode()));
+                prevNode = n;
+            }
+        }
+        dataFlowToFlow(scope,parent);
         return parent;
+    }
+    private void dataFlowToFlow(Scope scope,VFlow parent){
+        DataFlow dataFlow=scope.getDataFlow();
+        dataFlow.create(scope.getControlFlow());
+        for(IInvokeAndStatement i :scope.getControlFlow().getCallObjects()){
+            if(i instanceof Invocation){
+                List<DataRelation> relations=dataFlow.getRelationsForReceiver((Invocation) i);
+                LogManager.getLogger("MethodEditorTabController").info("relations: %s",relations.size());
+                for(DataRelation dataRelation:relations){
+                    VNode sender=invocationNodes.get(dataRelation.getSender());
+                    VNode receiver=invocationNodes.get(dataRelation.getReceiver());
+                    LogManager.getLogger("MethodEditorTabController").info(
+                            "Sender: %s, receiver: %s".formatted(sender.getId(),receiver.getId())
+                    );
+                    String retValName=dataRelation.getReceiver().getReturnValueName();
+                    LogManager.getLogger("MethodEditorTabController").info(
+                            " --> sender: %s".formatted(retValName)
+                    );
+
+                }
+            }
+        }
+    }
+    private static String getVariableId(VNode n,Variable v){
+        String id="%s,%s".formatted(n.getId(),v.getName());
+        LogManager.getLogger("id: %s".formatted(id));
+        return id;
     }
 }
