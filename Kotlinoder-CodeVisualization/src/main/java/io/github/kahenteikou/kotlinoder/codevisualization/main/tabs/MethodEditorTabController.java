@@ -127,6 +127,7 @@ public class MethodEditorTabController implements Initializable {
                 prevNode = n;
             }
         }
+        dataFlowToFlow(scope,resultFlow);
         return resultFlow;
     }
     private VFlow scopeToFlowFirst(Scope scope,VFlow parent){
@@ -170,6 +171,7 @@ public class MethodEditorTabController implements Initializable {
                 prevNode = n;
             }
         }
+        dataFlowToFlow(scope,parent);
         return parent;
     }
     private void dataFlowToFlow(Scope scope,VFlow parent){
