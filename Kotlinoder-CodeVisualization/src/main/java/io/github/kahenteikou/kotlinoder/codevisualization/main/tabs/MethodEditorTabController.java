@@ -104,7 +104,7 @@ public class MethodEditorTabController implements Initializable {
                             ((Invocation)i).getId()));
                     invocationNodes.put((Invocation)i,n);
                 }
-                prevNode = n
+                prevNode = n;
             }
         }
         return resultFlow;
