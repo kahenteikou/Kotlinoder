@@ -128,7 +128,6 @@ class OLD_MainWindowController : Initializable {
         var fxFact:FXValueSkinFactory= FXValueSkinFactory(rootPane)
         flow.setSkinFactories(fxFact)
 
-
     }
     fun dataFlowToFlow(scope:Scope,parent: VFlow){
         var dataFlow:DataFlow=scope.getDataFlow()
@@ -162,7 +161,7 @@ class OLD_MainWindowController : Initializable {
             }
         }
     }
-    fun scopeToFlow(scope:Scope,parent:VFlow):VFlow{
+        fun scopeToFlow(scope:Scope,parent:VFlow):VFlow{
         var isClassOrScript:Boolean=
             scope.getType()==ScopeType.CLASS||scope.getType()==ScopeType.COMPILATION_UNIT
                     || scope.getType()==ScopeType.NONE

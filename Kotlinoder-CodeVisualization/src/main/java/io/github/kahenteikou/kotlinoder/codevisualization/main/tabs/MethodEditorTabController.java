@@ -1,13 +1,12 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.tabs;
 
-import eu.mihosoft.vrl.workflow.Connector;
-import eu.mihosoft.vrl.workflow.FlowFactory;
-import eu.mihosoft.vrl.workflow.VFlow;
-import eu.mihosoft.vrl.workflow.VNode;
+import eu.mihosoft.vrl.workflow.*;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.FXValueSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
+import io.github.kahenteikou.kotlinoder.instrumentation.CodeEntity;
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration;
+import io.github.kahenteikou.kotlinoder.instrumentation.Scope;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
@@ -15,6 +14,7 @@ import javafx.scene.layout.Pane;
 import org.apache.logging.log4j.LogManager;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class MethodEditorTabController implements Initializable {
@@ -26,6 +26,7 @@ public class MethodEditorTabController implements Initializable {
     private Pane rootPane;
     private VFlow flow;
     private VNode rootNode;
+    private HashMap<CodeEntity,VNode> invocationNodes= new HashMap<CodeEntity,VNode>();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -50,26 +51,42 @@ public class MethodEditorTabController implements Initializable {
         flow= FlowFactory.newFlow();
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
         flow.setSkinFactories(fXSkinFactory);
-        generateNodes();
-        flow.setVisible(true);
     }
     public void setMethodinfo(MethodDeclaration md){
         this.md=md;
+
+        generateNodes();
+        flow.setVisible(true);
     }
     private void generateNodes(){
         rootNode=flow.newNode();
         rootNode.setTitle("Entry Point");
+        rootNode.getVisualizationRequest().set(VisualizationRequest.KEY_DISABLE_EDITING,true);
         //rootNode.addInput("control");
         Connector cn1=rootNode.addOutput("control");
 
-        rootNode.setWidth(300);
-        rootNode.setHeight(200);
+        rootNode.setWidth(115);
+        rootNode.setHeight(60);
         //flow.getModel().setVisible(true);
-        VNode node2=flow.newNode();
+        /*VNode node2=flow.newNode();
         Connector cn2=node2.addInput("control");
         //rootNode.setMainOutput(cn1);
         //node2.setMainInput(cn2);
         //VFlow subflow = flow.newSubFlow();
         //flow.connect(cn1,cn2);
+         */
+
+
+
+    }
+    private VFlow scopeToFlow(Scope scope, VFlow parent){
+        VFlow resultFlow=parent.newSubFlow();
+        FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
+        resultFlow.setSkinFactories(fXSkinFactory);
+        invocationNodes.put(scope,resultFlow.getModel());
+        String title=String.format("%s %s(): %s",scope.getType(),scope.getName(),scope.getId());
+        
+
+        return resultFlow;
     }
 }
