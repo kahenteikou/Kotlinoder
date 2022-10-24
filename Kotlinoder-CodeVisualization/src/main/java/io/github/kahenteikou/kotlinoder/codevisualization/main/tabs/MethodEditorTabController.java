@@ -75,18 +75,18 @@ public class MethodEditorTabController implements Initializable {
         //VFlow subflow = flow.newSubFlow();
         //flow.connect(cn1,cn2);
          */
-        scopeToFlow(md,flow);
+        //scopeToFlow(md,flow);
 
 
     }
     private VFlow scopeToFlow(Scope scope, VFlow parent){
-        /*VFlow resultFlow=parent.newSubFlow();
+        VFlow resultFlow=parent.newSubFlow();
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
-        resultFlow.setSkinFactories(fXSkinFactory);*/
-        invocationNodes.put(scope,parent.getModel());
-        String title=String.format("Entry Point %s %s(): %s",scope.getType(),scope.getName(),scope.getId());
-        parent.getModel().setTitle(title);
+        resultFlow.setSkinFactories(fXSkinFactory);
+        invocationNodes.put(scope,resultFlow.getModel());
+        String title=String.format("%s %s(): %s",scope.getType(),scope.getName(),scope.getId());
+        resultFlow.getModel().setTitle(title);
 
-        return parent;
+        return resultFlow;
     }
 }
