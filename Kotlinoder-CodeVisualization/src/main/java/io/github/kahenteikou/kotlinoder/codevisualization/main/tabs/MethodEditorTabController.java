@@ -117,6 +117,10 @@ public class MethodEditorTabController implements Initializable {
                         variableConnectors.put(getVariableId(n,v),input);
                     }
                 }
+                if(!(((Invocation) i).isVoid())){
+                    Connector output=n.addOutput("data");
+                    Variable v = scope.getVariable(((Invocation) i).getReturnValueName());
+                }
                 prevNode = n;
             }
         }
