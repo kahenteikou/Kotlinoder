@@ -4,6 +4,7 @@ import eu.mihosoft.vrl.workflow.*;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.FXValueSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
+import io.github.kahenteikou.kotlinoder.instrumentation.CodeEntity;
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration;
 import io.github.kahenteikou.kotlinoder.instrumentation.Scope;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.layout.Pane;
 import org.apache.logging.log4j.LogManager;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class MethodEditorTabController implements Initializable {
@@ -24,6 +26,7 @@ public class MethodEditorTabController implements Initializable {
     private Pane rootPane;
     private VFlow flow;
     private VNode rootNode;
+    private HashMap<CodeEntity,VNode> invocationNodes= new HashMap<CodeEntity,VNode>();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -80,7 +83,7 @@ public class MethodEditorTabController implements Initializable {
         VFlow resultFlow=parent.newSubFlow();
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
         resultFlow.setSkinFactories(fXSkinFactory);
-        
+
 
         return resultFlow;
     }
