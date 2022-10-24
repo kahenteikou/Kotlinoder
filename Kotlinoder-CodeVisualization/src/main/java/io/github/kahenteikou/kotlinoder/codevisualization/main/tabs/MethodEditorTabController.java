@@ -84,6 +84,7 @@ public class MethodEditorTabController implements Initializable {
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
         resultFlow.setSkinFactories(fXSkinFactory);
         invocationNodes.put(scope,resultFlow.getModel());
+        String title=String.format("%s %s(): %s",scope.getType(),scope.getName(),scope.getId());
         
 
         return resultFlow;
