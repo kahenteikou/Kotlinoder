@@ -104,6 +104,8 @@ public class MethodEditorTabController implements Initializable {
                             ((Invocation)i).getId()));
                     invocationNodes.put((Invocation)i,n);
                 }
+                n.setMainInput(n.addInput("control"));
+                n.setMainOutput(n.addOutput("control"));
                 prevNode = n;
             }
         }
