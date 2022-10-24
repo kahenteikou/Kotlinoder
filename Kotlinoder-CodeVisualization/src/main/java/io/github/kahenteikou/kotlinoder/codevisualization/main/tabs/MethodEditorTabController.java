@@ -75,7 +75,7 @@ public class MethodEditorTabController implements Initializable {
         //VFlow subflow = flow.newSubFlow();
         //flow.connect(cn1,cn2);
          */
-
+        scopeToFlow(md,flow);
 
 
     }
