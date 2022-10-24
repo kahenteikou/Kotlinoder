@@ -180,7 +180,7 @@ public class MethodEditorTabController implements Initializable {
         for(IInvokeAndStatement i :scope.getControlFlow().getCallObjects()){
             if(i instanceof Invocation){
                 List<DataRelation> relations=dataFlow.getRelationsForReceiver((Invocation) i);
-                LogManager.getLogger("MethodEditorTabController").info("relations: %s",relations.size());
+                LogManager.getLogger("MethodEditorTabController").info("relations: %s".formatted(relations.size()));
                 for(DataRelation dataRelation:relations){
                     VNode sender=invocationNodes.get(dataRelation.getSender());
                     VNode receiver=invocationNodes.get(dataRelation.getReceiver());
