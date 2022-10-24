@@ -187,6 +187,10 @@ public class MethodEditorTabController implements Initializable {
                     LogManager.getLogger("MethodEditorTabController").info(
                             "Sender: %s, receiver: %s".formatted(sender.getId(),receiver.getId())
                     );
+                    String retValName=dataRelation.getReceiver().getReturnValueName();
+                    LogManager.getLogger("MethodEditorTabController").info(
+                            " --> sender: %s".formatted(retValName)
+                    );
                     
                 }
             }
