@@ -77,6 +77,7 @@ public class MethodEditorTabController implements Initializable {
 
     }
     private VFlow scopeToFlow(Scope scope, VFlow parent){
-        
+        VFlow resultFlow=parent.newSubFlow();
+        return resultFlow;
     }
 }
