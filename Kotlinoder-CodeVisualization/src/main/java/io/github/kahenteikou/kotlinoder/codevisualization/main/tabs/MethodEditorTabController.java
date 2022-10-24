@@ -154,6 +154,8 @@ public class MethodEditorTabController implements Initializable {
                 n.setMainOutput(n.addOutput("control"));
                 if (prevNode != null) {
                     parent.connect(prevNode, n, "control");
+                }else{
+                    parent.connect(rootNode,n,"control");
                 }
                 for(Variable v:((Invocation) i).getArguments()){
                     if(v!=null){
