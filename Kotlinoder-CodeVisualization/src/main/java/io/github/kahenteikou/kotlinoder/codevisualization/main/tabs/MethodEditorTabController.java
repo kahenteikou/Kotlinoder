@@ -75,8 +75,7 @@ public class MethodEditorTabController implements Initializable {
         //VFlow subflow = flow.newSubFlow();
         //flow.connect(cn1,cn2);
          */
-        //scopeToFlow(md,flow);
-
+        scopeToFlowFirst(md,flow);
 
     }
     private VFlow scopeToFlow(Scope scope, VFlow parent){
@@ -87,6 +86,10 @@ public class MethodEditorTabController implements Initializable {
         String title=String.format("%s %s(): %s",scope.getType(),scope.getName(),scope.getId());
         resultFlow.getModel().setTitle(title);
 
+        return resultFlow;
+    }
+    private VFlow scopeToFlowFirst(Scope scope,VFlow parent){
+        VFlow resultFlow=parent.newSubFlow();
         return resultFlow;
     }
 }
