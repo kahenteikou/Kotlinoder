@@ -13,7 +13,9 @@ import javafx.scene.layout.Pane;
 import org.apache.logging.log4j.LogManager;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MethodEditorTabController implements Initializable {
@@ -174,7 +176,10 @@ public class MethodEditorTabController implements Initializable {
         DataFlow dataFlow=scope.getDataFlow();
         dataFlow.create(scope.getControlFlow());
         for(IInvokeAndStatement i :scope.getControlFlow().getCallObjects()){
-            
+            if(i instanceof Invocation){
+                List<DataRelation> relations=dataFlow.getRelationsForReceiver((Invocation) i);
+
+            }
         }
     }
     private static String getVariableId(VNode n,Variable v){
