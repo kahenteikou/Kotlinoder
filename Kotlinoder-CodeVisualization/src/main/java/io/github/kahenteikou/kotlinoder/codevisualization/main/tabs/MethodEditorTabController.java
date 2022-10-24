@@ -120,6 +120,8 @@ public class MethodEditorTabController implements Initializable {
                 if(!(((Invocation) i).isVoid())){
                     Connector output=n.addOutput("data");
                     Variable v = scope.getVariable(((Invocation) i).getReturnValueName());
+                    LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
+                    
                 }
                 prevNode = n;
             }
