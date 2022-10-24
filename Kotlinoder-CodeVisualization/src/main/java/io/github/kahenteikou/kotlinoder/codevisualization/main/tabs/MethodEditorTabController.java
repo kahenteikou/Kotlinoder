@@ -171,7 +171,8 @@ public class MethodEditorTabController implements Initializable {
         return parent;
     }
     private void dataFlowToFlow(Scope scope,VFlow parent){
-        
+        DataFlow dataFlow=scope.getDataFlow();
+        dataFlow.create(scope.getControlFlow());
     }
     private static String getVariableId(VNode n,Variable v){
         String id="%s,%s".formatted(n.getId(),v.getName());
