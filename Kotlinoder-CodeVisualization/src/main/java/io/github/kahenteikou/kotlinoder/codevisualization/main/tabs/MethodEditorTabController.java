@@ -83,7 +83,8 @@ public class MethodEditorTabController implements Initializable {
         VFlow resultFlow=parent.newSubFlow();
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
         resultFlow.setSkinFactories(fXSkinFactory);
-
+        invocationNodes.put(scope,resultFlow.getModel());
+        
 
         return resultFlow;
     }
