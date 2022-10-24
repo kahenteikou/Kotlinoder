@@ -83,9 +83,48 @@ public class MethodEditorTabController implements Initializable {
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
         resultFlow.setSkinFactories(fXSkinFactory);
         invocationNodes.put(scope,resultFlow.getModel());
-        String title=String.format("%s %s(): %s",scope.getType(),scope.getName(),scope.getId());
+        String title=String.format("%s %s(): %s X",scope.getType(),scope.getName(),scope.getId());
         resultFlow.getModel().setTitle(title);
 
+        VNode prevNode=null;
+        Boolean isClassOrScript=scope.getType()== ScopeType.CLASS||scope.getType()==ScopeType.COMPILATION_UNIT
+                || scope.getType()==ScopeType.NONE;
+        for(IInvokeAndStatement i:scope.getControlFlow().getCallObjects()){
+            if(i instanceof Invocation){
+                VNode n=null;
+                if(((Invocation) i).isScope() &&!isClassOrScript ){
+                    ScopeInvocation si=(ScopeInvocation) i;
+                    n=scopeToFlow(si.getScope(),resultFlow).getModel();
+                }else{
+                    n=resultFlow.newNode();
+                    n.setTitle("%s.%s():%s".formatted(((Invocation)i).getVariableName(),((Invocation)i).getMethodName(),
+                            ((Invocation)i).getId()));
+                    invocationNodes.put((Invocation)i,n);
+                }
+                n.setMainInput(n.addInput("control"));
+                n.setMainOutput(n.addOutput("control"));
+                if (prevNode != null) {
+                    resultFlow.connect(prevNode, n, "control");
+                }
+                for(Variable v:((Invocation) i).getArguments()){
+                    if(v!=null){
+                        Connector input=n.addInput("data");
+                        LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
+                        variableConnectors.put(getVariableId(n,v),input);
+                    }
+                }
+                if(!(((Invocation) i).isVoid())){
+                    Connector output=n.addOutput("data");
+                    Variable v = scope.getVariable(((Invocation) i).getReturnValueName());
+                    LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
+                    variableConnectors.put(getVariableId(n, v),output);
+                }
+                n.setWidth(400.0);
+                n.setHeight(100.0);
+                LogManager.getLogger("MethodEditorTabController").info("Node: %s".formatted(((Invocation) i).getCode()));
+                prevNode = n;
+            }
+        }
         return resultFlow;
     }
     private VFlow scopeToFlowFirst(Scope scope,VFlow parent){
