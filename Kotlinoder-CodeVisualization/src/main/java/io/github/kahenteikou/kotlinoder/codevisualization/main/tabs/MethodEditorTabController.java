@@ -184,6 +184,10 @@ public class MethodEditorTabController implements Initializable {
                 for(DataRelation dataRelation:relations){
                     VNode sender=invocationNodes.get(dataRelation.getSender());
                     VNode receiver=invocationNodes.get(dataRelation.getReceiver());
+                    LogManager.getLogger("MethodEditorTabController").info(
+                            "Sender: %s, receiver: %s".formatted(sender.getId(),receiver.getId())
+                    );
+                    
                 }
             }
         }
