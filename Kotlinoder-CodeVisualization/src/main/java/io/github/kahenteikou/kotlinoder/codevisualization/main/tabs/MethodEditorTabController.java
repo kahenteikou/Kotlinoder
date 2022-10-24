@@ -111,7 +111,9 @@ public class MethodEditorTabController implements Initializable {
                 }
                 for(Variable v:((Invocation) i).getArguments()){
                     if(v!=null){
-
+                        Connector input=n.addInput("data");
+                        LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
+                        
                     }
                 }
                 prevNode = n;
