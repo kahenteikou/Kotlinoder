@@ -128,7 +128,6 @@ class OLD_MainWindowController : Initializable {
         var fxFact:FXValueSkinFactory= FXValueSkinFactory(rootPane)
         flow.setSkinFactories(fxFact)
 
-
     }
     fun dataFlowToFlow(scope:Scope,parent: VFlow){
         var dataFlow:DataFlow=scope.getDataFlow()

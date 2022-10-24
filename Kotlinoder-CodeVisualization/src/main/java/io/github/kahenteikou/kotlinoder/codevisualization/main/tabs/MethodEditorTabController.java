@@ -5,6 +5,7 @@ import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.FXValueSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
 import io.github.kahenteikou.kotlinoder.instrumentation.MethodDeclaration;
+import io.github.kahenteikou.kotlinoder.instrumentation.Scope;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
@@ -72,5 +73,10 @@ public class MethodEditorTabController implements Initializable {
         //flow.connect(cn1,cn2);
          */
 
+
+
+    }
+    private VFlow scopeToFlow(Scope scope, VFlow parent){
+        
     }
 }
