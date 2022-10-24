@@ -94,7 +94,9 @@ public class MethodEditorTabController implements Initializable {
         VFlow resultFlow=parent.newSubFlow();
         VNode prevNode=null;
         for(IInvokeAndStatement i:scope.getControlFlow().getCallObjects()){
-
+            if(i instanceof Invocation){
+                
+            }
         }
         return resultFlow;
     }
