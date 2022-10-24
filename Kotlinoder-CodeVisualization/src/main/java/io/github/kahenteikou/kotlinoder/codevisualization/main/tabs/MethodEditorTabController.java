@@ -106,6 +106,9 @@ public class MethodEditorTabController implements Initializable {
                 }
                 n.setMainInput(n.addInput("control"));
                 n.setMainOutput(n.addOutput("control"));
+                if (prevNode != null) {
+                    parent.connect(prevNode, n, "control");
+                }
                 prevNode = n;
             }
         }
