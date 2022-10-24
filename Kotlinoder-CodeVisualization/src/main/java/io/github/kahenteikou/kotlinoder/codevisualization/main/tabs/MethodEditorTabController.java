@@ -65,7 +65,7 @@ public class MethodEditorTabController implements Initializable {
         rootNode.setTitle("Entry Point");
         rootNode.getVisualizationRequest().set(VisualizationRequest.KEY_DISABLE_EDITING,true);
         //rootNode.addInput("control");
-        Connector cn1=rootNode.addOutput("control");
+        rootNode.setMainOutput(rootNode.addOutput("control"));
 
         rootNode.setWidth(115);
         rootNode.setHeight(60);
