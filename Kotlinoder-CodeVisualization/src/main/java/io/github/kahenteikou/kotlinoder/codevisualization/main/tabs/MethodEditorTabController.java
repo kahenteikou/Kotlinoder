@@ -179,7 +179,10 @@ public class MethodEditorTabController implements Initializable {
             if(i instanceof Invocation){
                 List<DataRelation> relations=dataFlow.getRelationsForReceiver((Invocation) i);
                 LogManager.getLogger("MethodEditorTabController").info("relations: %s",relations.size());
-                
+                for(DataRelation dataRelation:relations){
+                    VNode sender=invocationNodes.get(dataRelation.getSender());
+                    VNode receiver=invocationNodes.get(dataRelation.getReceiver());
+                }
             }
         }
     }
