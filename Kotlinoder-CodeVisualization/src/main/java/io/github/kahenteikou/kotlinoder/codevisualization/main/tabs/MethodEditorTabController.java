@@ -207,4 +207,7 @@ public class MethodEditorTabController implements Initializable {
         LogManager.getLogger("id: %s".formatted(id));
         return id;
     }
+    private Connector getVariableById(VNode n,String vName){
+        return variableConnectors.get(getVariableId(n,vName));
+    }
 }
