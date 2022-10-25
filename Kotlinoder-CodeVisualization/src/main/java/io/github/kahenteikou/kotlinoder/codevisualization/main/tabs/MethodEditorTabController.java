@@ -199,7 +199,9 @@ public class MethodEditorTabController implements Initializable {
                     Connector senderConnector=getVariableById(sender,retValName);
                     int inputIndex=0;
                     for(Variable v:dataRelation.getReceiver().getArguments()){
-                        
+                        if(v!=null){
+
+                        }
                     }
                 }
             }
