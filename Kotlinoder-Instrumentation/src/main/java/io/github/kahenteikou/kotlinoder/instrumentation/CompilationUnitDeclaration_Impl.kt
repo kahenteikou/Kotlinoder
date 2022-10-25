@@ -32,6 +32,10 @@ ScopeImpl(id,parent,ScopeType.COMPILATION_UNIT,name,null),CompilationUnitDeclara
         metadata.setPackageName(packageName)
     }
 
+    override fun getCode(): String? {
+        return super.getCode()
+    }
+
 
 }
 final class CompilationUnitMetaData {
