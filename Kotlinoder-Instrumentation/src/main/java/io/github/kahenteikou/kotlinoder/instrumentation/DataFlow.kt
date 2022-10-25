@@ -2,6 +2,7 @@ package io.github.kahenteikou.kotlinoder.instrumentation
 
 import com.google.common.collect.ArrayListMultimap
 import com.google.common.collect.ListMultimap
+import org.apache.logging.log4j.LogManager
 
 interface DataFlow {
     fun getRelations():MutableList<DataRelation>
@@ -35,7 +36,8 @@ class DataFlowImpl :DataFlow{
     }
 
     override fun create(controlFlow: ControlFlow) {
-        println(">> creating dataflow: ")
+        //println(">> creating dataflow: ")
+        LogManager.getLogger("DataFlow.kt").info(">> creating dataflow: ")
         var senders:HashMap<String,Invocation> = HashMap()
         for(R  in controlFlow.getCallObjects()){
             if(R is Invocation) {

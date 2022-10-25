@@ -172,7 +172,7 @@ public class MethodEditorTabController implements Initializable {
                 }
                 n.setWidth(400.0);
                 n.setHeight(100.0);
-                LogManager.getLogger("MethodEditorTabController").info("Node: %s".formatted(((Invocation) i).getCode()));
+                LogManager.getLogger().info("Node: %s".formatted(((Invocation) i).getCode()));
                 prevNode = n;
             }
         }
