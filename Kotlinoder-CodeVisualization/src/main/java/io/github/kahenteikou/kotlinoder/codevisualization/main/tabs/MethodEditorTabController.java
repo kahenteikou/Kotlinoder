@@ -203,7 +203,12 @@ public class MethodEditorTabController implements Initializable {
         }
     }
     private static String getVariableId(VNode n,Variable v){
-        String id="%s,%s".formatted(n.getId(),v.getName());
+        String id="%s:%s".formatted(n.getId(),v);
+        LogManager.getLogger("id: %s".formatted(id));
+        return id;
+    }
+    private static String getVariableId(VNode n,String v){
+        String id="%s,%s".formatted(n.getId(),v);
         LogManager.getLogger("id: %s".formatted(id));
         return id;
     }
