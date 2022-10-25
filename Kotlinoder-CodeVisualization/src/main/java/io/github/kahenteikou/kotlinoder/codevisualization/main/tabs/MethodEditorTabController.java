@@ -197,6 +197,7 @@ public class MethodEditorTabController implements Initializable {
                             " --> sender: %s".formatted(retValName)
                     );
                     Connector senderConnector=getVariableById(sender,retValName);
+                    int inputIndex=0;
 
                 }
             }
