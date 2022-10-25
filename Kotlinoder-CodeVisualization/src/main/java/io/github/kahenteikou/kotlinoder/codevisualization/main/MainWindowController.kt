@@ -156,7 +156,9 @@ class MainWindowController : Initializable,IMainWinController {
                 chooser.extensionFilters.add(mdFilt)
                 chooser.extensionFilters.add(allFsFilt)
                 chooser.initialDirectory= Paths.get("").toAbsolutePath().toFile()
-                var fkun=chooser.showOpenDialog(null).absoluteFile
+                var f2:File?=chooser.showOpenDialog(null);
+                if(f2==null) return;
+                var fkun=f2.absoluteFile
                 LogManager.getLogger("Launcher").info(fkun.name)
                 filetreeitems.first().children.clear()
                 add_File(fkun)
