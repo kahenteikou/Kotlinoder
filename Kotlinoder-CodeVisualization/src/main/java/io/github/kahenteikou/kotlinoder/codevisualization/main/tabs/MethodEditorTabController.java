@@ -196,7 +196,7 @@ public class MethodEditorTabController implements Initializable {
                     LogManager.getLogger("MethodEditorTabController").info(
                             " --> sender: %s".formatted(retValName)
                     );
-                    //Connector senderConnector=getVariableById
+                    Connector senderConnector=getVariableById(sender,retValName);
 
                 }
             }
