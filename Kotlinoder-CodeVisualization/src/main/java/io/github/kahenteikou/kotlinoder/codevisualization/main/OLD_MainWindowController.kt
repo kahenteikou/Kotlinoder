@@ -161,7 +161,7 @@ class OLD_MainWindowController : Initializable {
             }
         }
     }
-        fun scopeToFlow(scope:Scope,parent:VFlow):VFlow{
+    fun scopeToFlow(scope:Scope,parent:VFlow):VFlow{
         var isClassOrScript:Boolean=
             scope.getType()==ScopeType.CLASS||scope.getType()==ScopeType.COMPILATION_UNIT
                     || scope.getType()==ScopeType.NONE
