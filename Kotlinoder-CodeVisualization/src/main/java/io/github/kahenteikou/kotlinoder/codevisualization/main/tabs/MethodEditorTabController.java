@@ -200,7 +200,7 @@ public class MethodEditorTabController implements Initializable {
                     int inputIndex=0;
                     for(Variable v:dataRelation.getReceiver().getArguments()){
                         if(v!=null){
-                            LogManager.getLogger().info(" --> receiver: ${v.getName()}, (possion receiver)");
+                            LogManager.getLogger().info(" --> receiver: %s, (possion receiver)".formatted(v.getName()));
                         }
                     }
                 }
