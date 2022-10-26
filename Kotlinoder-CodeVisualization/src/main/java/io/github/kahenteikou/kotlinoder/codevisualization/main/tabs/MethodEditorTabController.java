@@ -32,7 +32,7 @@ public class MethodEditorTabController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        LogManager.getLogger("MethodEditorTabController").info("Init");
+        LogManager.getLogger().info("Init");
         /*ScalableContentPane canvas = new ScalableContentPane();
 
         canvas.setStyle("-fx-background-color: rgb(0,0,0)");
@@ -114,19 +114,19 @@ public class MethodEditorTabController implements Initializable {
                 for(Variable v:((Invocation) i).getArguments()){
                     if(v!=null){
                         Connector input=n.addInput("data");
-                        LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
+                        LogManager.getLogger().info(" > Write Connector: ");
                         variableConnectors.put(getVariableId(n,v),input);
                     }
                 }
                 if(!(((Invocation) i).isVoid())){
                     Connector output=n.addOutput("data");
                     Variable v = scope.getVariable(((Invocation) i).getReturnValueName());
-                    LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
+                    LogManager.getLogger().info(" > Write Connector: ");
                     variableConnectors.put(getVariableId(n, v),output);
                 }
                 n.setWidth(400.0);
                 n.setHeight(100.0);
-                LogManager.getLogger("MethodEditorTabController").info("Node: %s".formatted(((Invocation) i).getCode()));
+                LogManager.getLogger().info("Node: %s".formatted(((Invocation) i).getCode()));
                 prevNode = n;
             }
         }
@@ -160,14 +160,14 @@ public class MethodEditorTabController implements Initializable {
                 for(Variable v:((Invocation) i).getArguments()){
                     if(v!=null){
                         Connector input=n.addInput("data");
-                        LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
+                        LogManager.getLogger().info(" > Write Connector: ");
                         variableConnectors.put(getVariableId(n,v),input);
                     }
                 }
                 if(!(((Invocation) i).isVoid())){
                     Connector output=n.addOutput("data");
                     Variable v = scope.getVariable(((Invocation) i).getReturnValueName());
-                    LogManager.getLogger("MethodEditorTabController").info(" > Write Connector: ");
+                    LogManager.getLogger().info(" > Write Connector: ");
                     variableConnectors.put(getVariableId(n, v),output);
                 }
                 n.setWidth(400.0);
@@ -185,22 +185,22 @@ public class MethodEditorTabController implements Initializable {
         for(IInvokeAndStatement i :scope.getControlFlow().getCallObjects()){
             if(i instanceof Invocation){
                 List<DataRelation> relations=dataFlow.getRelationsForReceiver((Invocation) i);
-                LogManager.getLogger("MethodEditorTabController").info("relations: %s".formatted(relations.size()));
+                LogManager.getLogger().info("relations: %s".formatted(relations.size()));
                 for(DataRelation dataRelation:relations){
                     VNode sender=invocationNodes.get(dataRelation.getSender());
                     VNode receiver=invocationNodes.get(dataRelation.getReceiver());
-                    LogManager.getLogger("MethodEditorTabController").info(
+                    LogManager.getLogger().info(
                             "Sender: %s, receiver: %s".formatted(sender.getId(),receiver.getId())
                     );
                     String retValName=dataRelation.getReceiver().getReturnValueName();
-                    LogManager.getLogger("MethodEditorTabController").info(
+                    LogManager.getLogger().info(
                             " --> sender: %s".formatted(retValName)
                     );
                     Connector senderConnector=getVariableById(sender,retValName);
                     int inputIndex=0;
                     for(Variable v:dataRelation.getReceiver().getArguments()){
                         if(v!=null){
-
+                            LogManager.getLogger().info(" --> receiver: %s, (possion receiver)".formatted(v.getName()));
                         }
                     }
                 }
