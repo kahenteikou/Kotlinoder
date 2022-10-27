@@ -203,7 +203,7 @@ public class MethodEditorTabController implements Initializable {
                             LogManager.getLogger().info(" --> receiver: %s, (possion receiver)".formatted(v.getName()));
                             if(v.getName()!=null){
                                 if(v.getName().equals(retValName)){
-
+                                    Connector receiverConnector=getVariableById(receiver,v.getName());
                                 }
                             }
                         }
