@@ -201,6 +201,11 @@ public class MethodEditorTabController implements Initializable {
                     for(Variable v:dataRelation.getReceiver().getArguments()){
                         if(v!=null){
                             LogManager.getLogger().info(" --> receiver: %s, (possion receiver)".formatted(v.getName()));
+                            if(v.getName()!=null){
+                                if(v.getName().equals(retValName)){
+
+                                }
+                            }
                         }
                     }
                 }
