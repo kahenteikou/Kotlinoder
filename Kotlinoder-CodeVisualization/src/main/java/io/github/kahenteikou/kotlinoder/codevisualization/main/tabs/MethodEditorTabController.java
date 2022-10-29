@@ -204,6 +204,8 @@ public class MethodEditorTabController implements Initializable {
                             if(v.getName()!=null){
                                 if(v.getName().equals(retValName)){
                                     Connector receiverConnector=getVariableById(receiver,v.getName());
+                                    ConnectionResult result=parent.connect(senderConnector, receiverConnector);
+                                    
                                 }
                             }
                         }
