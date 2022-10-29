@@ -206,6 +206,7 @@ public class MethodEditorTabController implements Initializable {
                                     Connector receiverConnector=getVariableById(receiver,v.getName());
                                     ConnectionResult result=parent.connect(senderConnector, receiverConnector);
                                     LogManager.getLogger().info(" -> connected: %s".formatted(result.getStatus().isCompatible()));
+                                    LogManager.getLogger().info(" -> %s".formatted(result.getStatus().getMessage()));
                                 }
                             }
                         }
