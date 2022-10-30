@@ -209,6 +209,7 @@ public class MethodEditorTabController implements Initializable {
                                     LogManager.getLogger().info(" -> %s".formatted(result.getStatus().getMessage()));
                                 }
                             }
+                            inputIndex++;
                         }
                     }
                 }
