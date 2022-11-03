@@ -218,18 +218,19 @@ public class MethodEditorTabController implements Initializable {
     }
     private static String getVariableId(VNode n,Variable v){
         String id="%s:%s".formatted(n.getId(),v);
-        LogManager.getLogger("id: %s".formatted(id));
+        LogManager.getLogger().info("id: %s".formatted(id));
         return id;
     }
     private static String getVariableId(VNode n,String v){
         String id="%s,%s".formatted(n.getId(),v);
-        LogManager.getLogger("id: %s".formatted(id));
+        LogManager.getLogger().info("id: %s".formatted(id));
         return id;
     }
     private Connector getVariableById(VNode n,String vName){
         return variableConnectors.get(getVariableId(n,vName));
     }
     public void NodeRefresh(){
+        LogManager.getLogger().info("Refresh Node");
         for(Connection cn2:flow.getConnections("control").getAllWithNode(rootNode)){
             VNode nextNode=flow.getReceiver(cn2);
 
