@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
 import io.github.kahenteikou.kotlinoder.codevisualization.main.TreeitemWs.TreeItem_ClassTreeWrappedItem
+import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.MethodEditorTabController
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.FileTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.TreeWrappedItem
@@ -107,6 +108,17 @@ class MainWindowController : Initializable,IMainWinController {
     @FXML
     fun onAboutAction(e:ActionEvent){
 
+    }
+    @FXML
+    fun onRefeshNodeAction(e:ActionEvent){
+        var tabcurrent=mainTabPane.selectionModel.selectedItem
+        if(tabcurrent!=null){
+            var tabcurrentcontent=tabcurrent.content
+            LogManager.getLogger("MainWindowController").info("R2!")
+            if(tabcurrentcontent is MethodEditorTabController) {
+                tabcurrentcontent.NodeRefresh()
+            }
+        }
     }
     @FXML
     fun onRenderAction(e:ActionEvent){
