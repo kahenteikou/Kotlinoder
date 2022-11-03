@@ -230,6 +230,9 @@ public class MethodEditorTabController implements Initializable {
         return variableConnectors.get(getVariableId(n,vName));
     }
     private void NodeRefresh(){
-        
+        for(Connection cn2:flow.getConnections("control").getAllWithNode(rootNode)){
+            VNode nextNode=flow.getReceiver(cn2);
+
+        }
     }
 }
