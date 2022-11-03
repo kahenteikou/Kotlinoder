@@ -8,7 +8,7 @@
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.kahenteikou.kotlinoder.codevisualization.main.MainWindowController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.kahenteikou.kotlinoder.codevisualization.main.MainWindowController">
 <children>
       <SplitPane dividerPositions="0.7664702731655062" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <items>
@@ -40,7 +40,8 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Convert?">
               <items>
-                <MenuItem mnemonicParsing="false" text="Render" onAction="#onRenderAction" />
+                <MenuItem mnemonicParsing="false" onAction="#onRenderAction" text="Render" />
+                  <MenuItem mnemonicParsing="false" onAction="#onRefeshNodeAction" text="Refresh Node" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
