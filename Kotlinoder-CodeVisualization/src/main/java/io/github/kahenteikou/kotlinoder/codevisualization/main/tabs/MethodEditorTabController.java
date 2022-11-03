@@ -229,4 +229,7 @@ public class MethodEditorTabController implements Initializable {
     private Connector getVariableById(VNode n,String vName){
         return variableConnectors.get(getVariableId(n,vName));
     }
+    private void NodeRefresh(){
+        
+    }
 }
