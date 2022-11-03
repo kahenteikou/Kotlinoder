@@ -109,6 +109,10 @@ class MainWindowController : Initializable,IMainWinController {
 
     }
     @FXML
+    fun onRefeshNodeAction(e:ActionEvent){
+
+    }
+    @FXML
     fun onRenderAction(e:ActionEvent){
         LogManager.getLogger("MainWindowController").info("Render!")
 
