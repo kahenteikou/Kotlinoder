@@ -114,6 +114,7 @@ class MainWindowController : Initializable,IMainWinController {
         var tabcurrent=mainTabPane.selectionModel.selectedItem
         if(tabcurrent!=null){
             var tabcurrentcontent=tabcurrent.content
+            LogManager.getLogger("MainWindowController").info("R2!")
             if(tabcurrentcontent is MethodEditorTabController) {
                 tabcurrentcontent.NodeRefresh()
             }
