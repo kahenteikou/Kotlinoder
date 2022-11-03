@@ -1,6 +1,7 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main
 
 import io.github.kahenteikou.kotlinoder.codevisualization.main.TreeitemWs.TreeItem_ClassTreeWrappedItem
+import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.MethodEditorTabController
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.FileTreeWrappedItem
 import io.github.kahenteikou.kotlinoder.codevisualization.main.treewraps.TreeWrappedItem
@@ -113,8 +114,8 @@ class MainWindowController : Initializable,IMainWinController {
         var tabcurrent=mainTabPane.selectionModel.selectedItem
         if(tabcurrent!=null){
             var tabcurrentcontent=tabcurrent.content
-            if(tabcurrentcontent is ITabController) {
-                
+            if(tabcurrentcontent is MethodEditorTabController) {
+                tabcurrentcontent.NodeRefresh()
             }
         }
     }
