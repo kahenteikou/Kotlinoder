@@ -110,7 +110,13 @@ class MainWindowController : Initializable,IMainWinController {
     }
     @FXML
     fun onRefeshNodeAction(e:ActionEvent){
-
+        var tabcurrent=mainTabPane.selectionModel.selectedItem
+        if(tabcurrent!=null){
+            var tabcurrentcontent=tabcurrent.content
+            if(tabcurrentcontent is ITabController) {
+                
+            }
+        }
     }
     @FXML
     fun onRenderAction(e:ActionEvent){
