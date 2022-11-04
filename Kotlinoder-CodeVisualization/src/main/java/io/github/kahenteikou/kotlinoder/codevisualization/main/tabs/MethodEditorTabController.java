@@ -6,6 +6,7 @@ import eu.mihosoft.vrl.workflow.fx.FXValueSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
 import io.github.kahenteikou.kotlinoder.instrumentation.*;
 import io.github.kahenteikou.kotlinoder.instrumentation.invokes.IInvokeAndStatement;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
@@ -52,6 +53,7 @@ public class MethodEditorTabController implements Initializable {
         rootPane=root;
         flow= FlowFactory.newFlow();
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
+
         flow.setSkinFactories(fXSkinFactory);
     }
     public void setMethodinfo(MethodDeclaration md){
@@ -232,8 +234,12 @@ public class MethodEditorTabController implements Initializable {
     public void NodeRefresh(){
         LogManager.getLogger().info("Refresh Node");
         for(Connection cn2:flow.getConnections("control").getAllWithNode(rootNode)){
-            VNode nextNode=flow.getReceiver(cn2);
-
+            VNode nextNode=cn2.getReceiver().getNode();
+            LogManager.getLogger().info(nextNode.getTitle());
         }
+    }
+    @FXML
+    public void Refresh_Command(ActionEvent event){
+        NodeRefresh();
     }
 }
