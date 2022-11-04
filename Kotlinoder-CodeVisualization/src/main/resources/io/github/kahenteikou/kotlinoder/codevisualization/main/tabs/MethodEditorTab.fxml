@@ -18,7 +18,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ScrollPane fx:id="canvas" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;">
+      <ScrollPane fx:id="canvas" prefHeight="403.0" prefWidth="600.0" style="-fx-background-color: #000000;">
     <!--<children>
         <StackPane fx:id="view" prefHeight="737.0" prefWidth="588.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     </children>-->
