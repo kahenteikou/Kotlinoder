@@ -1,4 +1,6 @@
 package io.github.kahenteikou.kotlinoder.codevisualization.main.skins;
 
-public abstract class NodeSkinBase {
+import eu.mihosoft.vrl.workflow.fx.FXFlowNodeSkinBase;
+
+public abstract class NodeSkinBase extends FXFlowNodeSkinBase {
 }
