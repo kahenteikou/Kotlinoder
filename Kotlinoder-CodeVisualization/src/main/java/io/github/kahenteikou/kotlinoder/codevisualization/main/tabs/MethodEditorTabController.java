@@ -6,6 +6,7 @@ import eu.mihosoft.vrl.workflow.fx.FXValueSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
 import io.github.kahenteikou.kotlinoder.instrumentation.*;
 import io.github.kahenteikou.kotlinoder.instrumentation.invokes.IInvokeAndStatement;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
@@ -235,5 +236,9 @@ public class MethodEditorTabController implements Initializable {
             VNode nextNode=flow.getReceiver(cn2);
 
         }
+    }
+    @FXML
+    public void Refresh_Command(ActionEvent event){
+        NodeRefresh();
     }
 }
