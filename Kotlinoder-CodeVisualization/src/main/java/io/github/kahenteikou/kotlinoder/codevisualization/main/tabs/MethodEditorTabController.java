@@ -233,14 +233,8 @@ public class MethodEditorTabController implements Initializable {
     public void NodeRefresh(){
         LogManager.getLogger().info("Refresh Node");
         for(Connection cn2:flow.getConnections("control").getAllWithNode(rootNode)){
-            VNode nextNodeReceiver=flow.getReceiver(cn2);
-            if(nextNodeReceiver!=null){
-                if(nextNodeReceiver instanceof Connector){
-                    VNode nextNode=((Connector)nextNodeReceiver).getNode();
-
-                    LogManager.getLogger().info(nextNode);
-                }
-            }
+            VNode nextNode=cn2.getReceiver().getNode();
+            LogManager.getLogger().info(nextNode.getTitle());
         }
     }
     @FXML
