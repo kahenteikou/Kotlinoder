@@ -7,10 +7,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import org.apache.logging.log4j.LogManager;
 
 public class InvocationNodeValueSkin extends NodeSkinBase{
     public InvocationNodeValueSkin(FXSkinFactory skinFactory, VNode model, VFlow controller) {
         super(skinFactory, model, controller);
+        LogManager.getLogger().info("InvocationNodeValueSkin new");
     }
 
     @Override

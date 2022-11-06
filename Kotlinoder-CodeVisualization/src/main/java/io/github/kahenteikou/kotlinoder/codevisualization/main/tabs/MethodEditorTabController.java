@@ -55,6 +55,7 @@ public class MethodEditorTabController implements Initializable {
         flow= FlowFactory.newFlow();
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
         fXSkinFactory.addSkinClassForValueType(Invocation.class, InvocationNodeValueSkin.class);
+        fXSkinFactory.addSkinClassForValueType(InvocationImpl.class, InvocationNodeValueSkin.class);
         flow.setSkinFactories(fXSkinFactory);
     }
     public void setMethodinfo(MethodDeclaration md){
