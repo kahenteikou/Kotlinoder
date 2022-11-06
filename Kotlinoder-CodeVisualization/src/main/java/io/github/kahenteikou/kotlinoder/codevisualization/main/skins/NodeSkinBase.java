@@ -12,5 +12,8 @@ public abstract class NodeSkinBase extends FXFlowNodeSkinBase {
         super(skinFactory, model, controller);
     }
     protected abstract Node CreateView();
-    
+    @Override
+    public void updateView() {
+        super.updateView();
+    }
 }
