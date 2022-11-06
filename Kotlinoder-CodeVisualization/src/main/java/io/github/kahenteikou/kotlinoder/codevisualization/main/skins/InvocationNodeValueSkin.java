@@ -3,6 +3,7 @@ package io.github.kahenteikou.kotlinoder.codevisualization.main.skins;
 import eu.mihosoft.vrl.workflow.VFlow;
 import eu.mihosoft.vrl.workflow.VNode;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
+import io.github.kahenteikou.kotlinoder.instrumentation.Invocation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -17,7 +18,7 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
 
     @Override
     protected Node CreateView() {
-        Label retLabel=new Label("Hello World");
+        Label retLabel=new Label(((Invocation)(getModel().getValueObject().getValue())).getVariableName());
         retLabel.setFont(new Font(30));
         retLabel.setAlignment(Pos.CENTER);
         return retLabel;
