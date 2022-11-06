@@ -7,7 +7,9 @@ import eu.mihosoft.vrl.workflow.fx.FXFlowNodeSkinBase;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 
 public abstract class NodeSkinBase extends FXFlowNodeSkinBase {
     public NodeSkinBase(FXSkinFactory skinFactory,
@@ -26,9 +28,10 @@ public abstract class NodeSkinBase extends FXFlowNodeSkinBase {
         }
         Node view=CreateView();
         if(view!=null){
-            ScalableContentPane spane=new ScalableContentPane();
-            spane.setPadding(new Insets(10));
-            
+            GridPane pane=new GridPane();
+            pane.setAlignment(Pos.CENTER);
+            pane.getChildren().add(view);
+            getNode().setContentPane(pane);
         }
     }
 }
