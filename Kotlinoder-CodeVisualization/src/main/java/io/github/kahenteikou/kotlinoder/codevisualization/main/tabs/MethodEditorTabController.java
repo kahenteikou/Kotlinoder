@@ -4,6 +4,7 @@ import eu.mihosoft.vrl.workflow.*;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.FXValueSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.ScalableContentPane;
+import io.github.kahenteikou.kotlinoder.codevisualization.main.skins.InvocationNodeValueSkin;
 import io.github.kahenteikou.kotlinoder.instrumentation.*;
 import io.github.kahenteikou.kotlinoder.instrumentation.invokes.IInvokeAndStatement;
 import javafx.event.ActionEvent;
@@ -53,7 +54,7 @@ public class MethodEditorTabController implements Initializable {
         rootPane=root;
         flow= FlowFactory.newFlow();
         FXValueSkinFactory fXSkinFactory = new FXValueSkinFactory(rootPane);
-
+        fXSkinFactory.addSkinClassForValueType(Invocation.class, InvocationNodeValueSkin.class);
         flow.setSkinFactories(fXSkinFactory);
     }
     public void setMethodinfo(MethodDeclaration md){
@@ -128,6 +129,7 @@ public class MethodEditorTabController implements Initializable {
                 }
                 n.setWidth(400.0);
                 n.setHeight(100.0);
+                n.getValueObject().setValue(i);
                 LogManager.getLogger().info("Node: %s".formatted(((Invocation) i).getCode()));
                 prevNode = n;
             }
@@ -174,6 +176,7 @@ public class MethodEditorTabController implements Initializable {
                 }
                 n.setWidth(400.0);
                 n.setHeight(100.0);
+                n.getValueObject().setValue(i);
                 LogManager.getLogger().info("Node: %s".formatted(((Invocation) i).getCode()));
                 prevNode = n;
             }
