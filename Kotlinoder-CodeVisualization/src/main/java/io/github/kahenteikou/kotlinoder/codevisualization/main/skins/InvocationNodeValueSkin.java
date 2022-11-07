@@ -22,16 +22,14 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
     @Override
     protected Node CreateView() {
         LogManager.getLogger().info("InvocationNodeValueSkin CreateView!");
-
-        FXMLLoader loader=new FXMLLoader(this.getClass().getResource("InvoAcationNodeValuekun.fxml"));
+        Node retNode=null;
+        FXMLLoader loader=new FXMLLoader(this.getClass().getResource("InvocationNodeValuekun.fxml"));
         try{
             loader.load();
+            retNode=loader.getRoot();
         }catch (Exception e){
             LogManager.getLogger().error("error!",e);
         }
-        Label retLabel=new Label(((Invocation)(getModel().getValueObject().getValue())).getVariableName());
-        retLabel.setFont(new Font(30));
-        retLabel.setAlignment(Pos.CENTER);
-        return retLabel;
+        return retNode;
     }
 }
