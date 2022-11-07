@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import org.apache.logging.log4j.LogManager;
 
+import java.util.Arrays;
+
 public class InvocationNodeValueSkin extends NodeSkinBase{
     public InvocationNodeValueSkin(FXSkinFactory skinFactory, VNode model, VFlow controller) {
         super(skinFactory, model, controller);
@@ -25,7 +27,7 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
         try{
             loader.load();
         }catch (Exception e){
-            LogManager.getLogger().error(e.getStackTrace().toString());
+            LogManager.getLogger().error("error!",e);
         }
         Label retLabel=new Label(((Invocation)(getModel().getValueObject().getValue())).getVariableName());
         retLabel.setFont(new Font(30));
