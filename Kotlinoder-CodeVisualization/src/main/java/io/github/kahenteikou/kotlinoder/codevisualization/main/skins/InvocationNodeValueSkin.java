@@ -18,7 +18,7 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
     @Override
     protected Node CreateView() {
         LogManager.getLogger().info("InvocationNodeValueSkin CreateView!");
-        
+
         Label retLabel=new Label(((Invocation)(getModel().getValueObject().getValue())).getVariableName());
         retLabel.setFont(new Font(30));
         retLabel.setAlignment(Pos.CENTER);
