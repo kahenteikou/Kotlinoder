@@ -21,8 +21,12 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
     protected Node CreateView() {
         LogManager.getLogger().info("InvocationNodeValueSkin CreateView!");
 
-        FXMLLoader loader=new FXMLLoader(this.getClass().getResource("InvocationNodeValuekun.fxml"));
-        
+        FXMLLoader loader=new FXMLLoader(this.getClass().getResource("InvoAcationNodeValuekun.fxml"));
+        try{
+            loader.load();
+        }catch (Exception e){
+            LogManager.getLogger().error(e.getStackTrace().toString());
+        }
         Label retLabel=new Label(((Invocation)(getModel().getValueObject().getValue())).getVariableName());
         retLabel.setFont(new Font(30));
         retLabel.setAlignment(Pos.CENTER);
