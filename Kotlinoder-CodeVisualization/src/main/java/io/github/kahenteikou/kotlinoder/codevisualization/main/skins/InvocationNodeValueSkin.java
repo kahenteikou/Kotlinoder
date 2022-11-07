@@ -31,6 +31,8 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
         try{
             loader.load();
             retNode=loader.getRoot();
+            loader.setController(this);
+            targetTextField.setText("New Method");
         }catch (Exception e){
             LogManager.getLogger().error("error!",e);
         }
