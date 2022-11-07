@@ -29,9 +29,9 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
         Node retNode=null;
         FXMLLoader loader=new FXMLLoader(this.getClass().getResource("InvocationNodeValuekun.fxml"));
         try{
+            loader.setController(this);
             loader.load();
             retNode=loader.getRoot();
-            loader.setController(this);
             targetTextField.setText("New Method");
         }catch (Exception e){
             LogManager.getLogger().error("error!",e);
