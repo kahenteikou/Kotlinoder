@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.MethodEditorTabController">
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.MethodEditorTabController">
    <children>
       <MenuBar>
         <menus>
