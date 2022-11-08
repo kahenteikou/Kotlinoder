@@ -32,7 +32,7 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
             loader.setController(this);
             loader.load();
             retNode=loader.getRoot();
-            targetTextField.setText(((Invocation)(getModel().getValueObject().getValue())).getMethodName());
+            targetTextField.setText(((Invocation)(getModel().getValueObject().getValue())).getVariableName());
         }catch (Exception e){
             LogManager.getLogger().error("error!",e);
         }
