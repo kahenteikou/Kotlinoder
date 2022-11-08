@@ -5,6 +5,7 @@ import io.github.kahenteikou.kotlinoder.instrumentation.invokes.IInvokeAndStatem
 //comp
 interface Invocation:CodeEntity, IInvokeAndStatement {
     fun getVariableName():String?
+    fun setVariableName(text:String?)
     fun getMethodName():String
     fun getReturnValueName():String
     fun getArguments():List<Variable?>
@@ -124,6 +125,10 @@ open class InvocationImpl :Invocation{
 
     override fun setCode(code: String?) {
         this.code=code
+    }
+
+    override fun setVariableName(text: String?) {
+        this.varName=text
     }
     fun setStatic(Statickun:Boolean){
         this.Static=Statickun

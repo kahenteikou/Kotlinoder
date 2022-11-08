@@ -5,6 +5,8 @@ import eu.mihosoft.vrl.workflow.VNode;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import io.github.kahenteikou.kotlinoder.codevisualization.main.tabs.STUBCLS;
 import io.github.kahenteikou.kotlinoder.instrumentation.Invocation;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -32,7 +34,19 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
             loader.setController(this);
             loader.load();
             retNode=loader.getRoot();
-            targetTextField.setText("New Method");
+            targetTextField.setText(((Invocation)(getModel().getValueObject().getValue())).getVariableName());
+            targetTextField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                    if(!newValue){
+                        Invocation invokkun=(Invocation)(getModel().getValueObject().getValue());
+                        if(invokkun != null){
+                            invokkun.setVariableName(targetTextField.getText());
+                            LogManager.getLogger().info("Changing target name");
+                        }
+                    }
+                }
+            });
         }catch (Exception e){
             LogManager.getLogger().error("error!",e);
         }
