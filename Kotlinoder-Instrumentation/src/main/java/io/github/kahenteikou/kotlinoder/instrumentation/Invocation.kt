@@ -132,7 +132,7 @@ open class InvocationImpl :Invocation{
         this.varName=text
     }
     override fun setMethodName(text: String?) {
-        this.varName=text
+        this.MethodName=text!!
     }
     fun setStatic(Statickun:Boolean){
         this.Static=Statickun
