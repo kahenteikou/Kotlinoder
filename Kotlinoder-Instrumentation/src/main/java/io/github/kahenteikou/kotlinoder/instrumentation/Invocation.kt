@@ -7,6 +7,7 @@ interface Invocation:CodeEntity, IInvokeAndStatement {
     fun getVariableName():String?
     fun setVariableName(text:String?)
     fun getMethodName():String
+    fun setMethodName(text:String?)
     fun getReturnValueName():String
     fun getArguments():List<Variable?>
     fun isConstructor():Boolean
@@ -129,6 +130,9 @@ open class InvocationImpl :Invocation{
 
     override fun setVariableName(text: String?) {
         this.varName=text
+    }
+    override fun setMethodName(text: String?) {
+        this.MethodName=text!!
     }
     fun setStatic(Statickun:Boolean){
         this.Static=Statickun

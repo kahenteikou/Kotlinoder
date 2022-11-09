@@ -24,6 +24,8 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
     }
     @FXML
     public TextField targetTextField;
+    @FXML
+    public TextField methodNameTextField;
 
     @Override
     protected Node CreateView() {
@@ -43,6 +45,19 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
                         if(invokkun != null){
                             invokkun.setVariableName(targetTextField.getText());
                             LogManager.getLogger().info("Changing target name");
+                        }
+                    }
+                }
+            });
+            methodNameTextField.setText(((Invocation)(getModel().getValueObject().getValue())).getMethodName());
+            methodNameTextField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                    if(!newValue){
+                        Invocation invokkun=(Invocation)(getModel().getValueObject().getValue());
+                        if(invokkun != null){
+                            invokkun.setMethodName(methodNameTextField.getText());
+                            LogManager.getLogger().info("Changing method name");
                         }
                     }
                 }
