@@ -24,6 +24,8 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
     }
     @FXML
     public TextField targetTextField;
+    @FXML
+    public TextField methodNameTextField;
 
     @Override
     protected Node CreateView() {
