@@ -7,6 +7,7 @@ interface Invocation:CodeEntity, IInvokeAndStatement {
     fun getVariableName():String?
     fun setVariableName(text:String?)
     fun getMethodName():String
+    fun setMethodName(text:String?)
     fun getReturnValueName():String
     fun getArguments():List<Variable?>
     fun isConstructor():Boolean

@@ -49,6 +49,19 @@ public class InvocationNodeValueSkin extends NodeSkinBase{
                     }
                 }
             });
+            methodNameTextField.setText(((Invocation)(getModel().getValueObject().getValue())).getMethodName());
+            methodNameTextField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                    if(!newValue){
+                        Invocation invokkun=(Invocation)(getModel().getValueObject().getValue());
+                        if(invokkun != null){
+                            invokkun.setMethodName(methodNameTextField.getText());
+                            LogManager.getLogger().info("Changing method name");
+                        }
+                    }
+                }
+            });
         }catch (Exception e){
             LogManager.getLogger().error("error!",e);
         }
