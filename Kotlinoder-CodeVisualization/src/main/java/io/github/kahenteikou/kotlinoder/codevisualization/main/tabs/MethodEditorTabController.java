@@ -238,7 +238,7 @@ public class MethodEditorTabController implements Initializable {
     public void NodeRefresh(){
         LogManager.getLogger().info("Refresh Node");
         md.getControlFlow().getCallObjects().clear();
-        
+
         SubNodeRefresh(rootNode);
 
     }
@@ -248,6 +248,7 @@ public class MethodEditorTabController implements Initializable {
             if(cn2.getReceiver().getNode() != node) {
                 VNode nextNode = cn2.getReceiver().getNode();
                 LogManager.getLogger().info(nextNode.getTitle());
+                md.getControlFlow().getCallObjects().add(nextNode.valueObjectProperty().getValue().valueProperty().getValue())
                 SubNodeRefresh(nextNode);
             }
         }
