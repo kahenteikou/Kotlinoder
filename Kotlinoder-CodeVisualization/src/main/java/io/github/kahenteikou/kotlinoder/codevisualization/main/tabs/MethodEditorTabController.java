@@ -237,6 +237,8 @@ public class MethodEditorTabController implements Initializable {
     }
     public void NodeRefresh(){
         LogManager.getLogger().info("Refresh Node");
+        md.getControlFlow().getCallObjects().clear();
+        
         SubNodeRefresh(rootNode);
 
     }
